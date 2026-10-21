@@ -1,0 +1,120 @@
+## 5. 논문 1의 부차적 발견이 논문 2의 질문이 됐다: 조종사에서 두드러진 요산
+
+[5. 연구 질문]{.eyebrow}
+
+<div class="pipeline"><span class="active">질문</span><span>데이터 이해</span><span>분석</span><span>검증</span><span>논문</span><span>재현</span></div>
+
+::: {.cards}
+
+::: {.box}
+
+[논문 1, 2025]{.h3}
+
+*Aerosp Med Hum Perform*, 공군 1,044명, MAFLD
+
+- 조종사 하위군 다변량 로지스틱: 요산 OR 1.83 (95% CI 1.32–2.55)
+- 비조종사: 유의하지 않음
+
+:::
+
+::: {.box}
+
+[→ 논문 2, 2026]{.h3}
+
+*BMJ Mil Health*, 조종사 2,604 vs KNHANES 1,093
+
+- MetS 11.1% vs 37.1%
+- aOR 0.30 (Pilot vs KNHANES)
+
+:::
+
+::: {.box}
+
+[→ 논문 2의 요산]{.h3}
+
+- 일반 남성: MetS와 유의한 연관 없음
+- 조종사: per-SD OR 1.35 (95% CI 1.17–1.55)
+- 집단 간 차이 Δβ 0.27 (p = 0.009)
+
+:::
+
+:::
+
+[출처: doi:10.3357/AMHP.6646.2025, doi:10.1136/military-2026-003444(Abstract, Discussion)]{.src}
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 연구 질문은 에이전트가 아니라 앞 논문에 남은 의문에서 나옴
+- 말할 내용
+  - 논문 2 Discussion이 연결을 직접 서술: "The urate finding is particularly notable given our prior work."
+  - 지방간 논문에서 조종사에게만 두드러졌던 요산 → 일반 남성과의 비교라는 다음 질문
+  - 논문 2 Introduction도 HWE 틀과 선행 MAFLD 논문을 함께 연결
+  - 이 단계에서 에이전트의 몫: 거의 없음
+- 확정
+  - OR 1.83: 조종사 하위군 다변량 로지스틱 회귀 추정치, 비조종사에서는 유의하지 않음(사용자 확정 2026-10-20, 결정 4)
+- 질문 대비
+  - 논문 2 Discussion(r2 qmd 416행)의 문장은 "urate was an independent risk factor (OR 1.83, 95% CI 1.32–2.55) and a particularly strong predictor among pilots". 전체 표본 추정치처럼 읽힐 여지. 화면은 사용자 확정 기준
+  - Δβ: 1-SD당 log-OR의 집단 간 차이(Pilot − KNHANES)로 설명. 출판본 Methods "Interactions were assessed using Wald-type z statistics." 정의 문구는 아래 확인 필요 항목
+- 확인 필요
+  - per-SD OR 1.35 (95% CI 1.17–1.55): r2 qmd 416행 기준. 출판본 대조 필요(fact-checker). finalize msg[27] 검증 목록에도 "URATE OR PH 1.35"
+  - 일반 남성의 per-SD OR: 발췌 인용문에 수치 없음 → 미기재. 발췌본 요약란의 1.02는 인용 원문이 없어 쓰지 않음
+  - MAFLD 27.7% vs 34.7%: 어느 쪽이 조종사인지 발췌에 명시 없음 → 화면 제외
+  - Δβ 정의 문구: `09-two-odds-ratios-confused.md` 표 머리 "차이 β (Pilot-KHANES)"와 출판본 Methods에서 추론. 출판본 표 머리와 대조 필요
+- 출처
+  - `05-urate-origin.md`(논문 2 Introduction 2쪽, Discussion 6쪽, r2 qmd 352, 416, 426행, 출판본 Abstract 대조 "urate (Δβ 0.27, p=0.009)")
+  - `CLAUDE.md` 28–31행
+  - `memory/outline-decisions-2026-10-20.md` 결정 4
+  - `09-two-odds-ratios-confused.md` 54행(finalize msg[27])
+  - `08-probit-choice-reason.md`(논문 2 Statistical analysis)
+  - doi:10.3357/AMHP.6646.2025, doi:10.1136/military-2026-003444
+:::
+
+## 요산을 왜 넣었는지 리뷰어가 물었고, 답한 것은 연구자다 {.grey}
+
+[5. 연구 질문]{.eyebrow}
+
+> "Serum urate is not a conventional MetS screening test, so its inclusion warrants explanation."
+>
+> "… Aircrew differ in that urate is already in the standard aeromedical diagnostic panel at no added cost, and the ROKAF cohort mentioned above showed its strongest MetS signal in the highest quartiles of urate, white cell count and ALT."
+
+::: {.cards}
+
+::: {.human}
+
+[논거: 연구자]{.h3}
+
+- 리뷰어 R2-3 "Urate 사용 근거 상술"
+- 항공의학 표준 패널, 선행 ROKAF 코호트
+
+:::
+
+::: {.box}
+
+[문장: DataBot (모델 미기재)]{.h3}
+
+- r2 원고를 저자 문체로 재작성
+
+:::
+
+:::
+
+[출처: 논문 2 Introduction(doi:10.1136/military-2026-003444), output/agent_bot/2026-08-14/reviewer2-response-plan.md 131행]{.src}
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 질문의 정당화는 연구자의 맥락에서 나옴
+- 말할 내용
+  - 요산은 MetS 선별검사가 아님 → 리뷰어가 근거 질문(Reviewer 2, R2-3 "Urate 사용 근거 상술")
+  - r2에서 Introduction에 이 문단 추가
+  - 답의 두 축: 항공의학 표준 패널에 이미 포함(추가 비용 없음), 앞서 소개한 ROKAF 코호트(참고문헌 12)의 최상위 사분위 신호
+  - 두 축 모두 저자의 연구 맥락
+  - 문장은 DataBot이 저자 문체로 다듬음, 논거는 연구자가 가져옴
+- 질문 대비
+  - 같은 문단의 메타분석 수치: 최고 vs 최저 요산 범주의 incident MetS pooled HR 1.55 (95% CI 1.40 to 1.70), 1 mg/dL당 1.05. 인용 문헌(참고문헌 13)의 값
+  - 남성에서 연관이 약해 대부분의 보건체계가 이 목적으로 요산을 선별하지 않는다는 문장도 같은 문단(참고문헌 14)
+- 인용 표기
+  - 둘째 인용의 끝 "ALT." 뒤 원문의 참고문헌 번호 12는 생략
+- 출처
+  - `05-urate-origin.md`(논문 2 Introduction 2쪽 문단, `output/agent_bot/2026-08-14/reviewer2-response-plan.md` 131행)
+  - 에이전트 표기: `05-urate-origin.md` 8행(r2 qmd는 DataBot이 저자 문체로 재작성)
+:::

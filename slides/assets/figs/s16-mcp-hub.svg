@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 520" width="1440" height="520" font-family="'Noto Sans KR','Malgun Gothic',sans-serif">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B5FA5"/><stop offset="1" stop-color="#2E8FE0"/></linearGradient>
+    <linearGradient id="gNavy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14213D"/><stop offset="1" stop-color="#2F4A6E"/></linearGradient>
+    <linearGradient id="gCard" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F5F7FA"/></linearGradient>
+    <radialGradient id="gHalo"><stop offset="0" stop-color="#2E8FE0" stop-opacity="0.35"/><stop offset="1" stop-color="#2E8FE0" stop-opacity="0"/></radialGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#14213D" flood-opacity="0.14"/></filter>
+    <marker id="aB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#0B5FA5"/></marker>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8A94A1"/></marker>
+  </defs>
+
+  <!-- halo behind hub -->
+  <circle cx="720" cy="260" r="200" fill="url(#gHalo)"/>
+
+  <!-- local group -->
+  <g filter="url(#sh)"><rect x="20" y="130" width="380" height="260" rx="24" fill="#FFFFFF" stroke="#E3E8EF" stroke-width="1.5"/></g>
+  <rect x="44" y="110" width="110" height="34" rx="17" fill="url(#gNavy)"/>
+  <text x="99" y="134" font-size="19" fill="#F7F7F2" text-anchor="middle">내 PC</text>
+  <rect x="50" y="176" width="320" height="170" rx="18" fill="#DCEAF7"/>
+  <g transform="translate(76,206)" fill="none" stroke="#0B5FA5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="40" height="30" rx="5"/><path d="M0,10 h40 M14,10 v20"/></g>
+  <text x="136" y="230" font-size="26" font-weight="700" fill="#14213D">Positron MCP</text>
+  <text x="76" y="280" font-size="20" fill="#4A5568">내가 보는 R 세션에서 실행</text>
+  <text x="76" y="312" font-size="20" fill="#4A5568">객체, 그림, 콘솔 기록 조회</text>
+
+  <!-- external group -->
+  <rect x="1000" y="24" width="420" height="486" rx="24" fill="#FFFFFF" fill-opacity="0.5" stroke="#8A94A1" stroke-width="2" stroke-dasharray="10 8"/>
+  <rect x="1024" y="6" width="250" height="34" rx="17" fill="url(#gNavy)"/>
+  <text x="1149" y="30" font-size="19" fill="#F7F7F2" text-anchor="middle">외부 검색, 질의만 전송</text>
+
+  <g filter="url(#sh)">
+    <rect x="1022" y="56" width="376" height="98" rx="16" fill="url(#gCard)"/>
+    <rect x="1022" y="168" width="376" height="98" rx="16" fill="url(#gCard)"/>
+    <rect x="1022" y="280" width="376" height="98" rx="16" fill="url(#gCard)"/>
+    <rect x="1022" y="392" width="376" height="98" rx="16" fill="url(#gCard)"/>
+  </g>
+  <circle cx="1060" cy="105" r="22" fill="#DCEAF7"/><g transform="translate(1049,94)" fill="none" stroke="#0B5FA5" stroke-width="2.5" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><path d="M14,14 l7,7"/></g>
+  <text x="1098" y="98" font-size="24" font-weight="700" fill="#14213D">PubMed</text>
+  <text x="1098" y="132" font-size="19" fill="#4A5568">서지 정보, 인용 문구로 논문 찾기</text>
+  <circle cx="1060" cy="217" r="22" fill="#DCEAF7"/><g transform="translate(1049,206)" fill="none" stroke="#0B5FA5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2,0 h14 l6,6 v16 h-20 z M16,0 v6 h6 M6,12 h10 M6,17 h10"/></g>
+  <text x="1098" y="210" font-size="24" font-weight="700" fill="#14213D">bioRxiv</text>
+  <text x="1098" y="244" font-size="19" fill="#4A5568">bioRxiv, medRxiv 프리프린트</text>
+  <circle cx="1060" cy="329" r="22" fill="#DCEAF7"/><g transform="translate(1049,318)" fill="none" stroke="#0B5FA5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4,2 h14 M11,2 v8 l-8,10 a3,3 0 0 0 2,4 h12 a3,3 0 0 0 2,-4 l-8,-10 v-8"/></g>
+  <text x="1098" y="322" font-size="24" font-weight="700" fill="#14213D">Clinical Trials</text>
+  <text x="1098" y="356" font-size="19" fill="#4A5568">ClinicalTrials.gov 등록 시험</text>
+  <circle cx="1060" cy="441" r="22" fill="#DCEAF7"/><g transform="translate(1049,431)" fill="none" stroke="#0B5FA5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M0,6 l11,-5 l11,5 l-11,5 z M4,8 v6 c0,3 14,3 14,0 v-6"/></g>
+  <text x="1098" y="434" font-size="24" font-weight="700" fill="#14213D">Scholar Gateway</text>
+  <text x="1098" y="468" font-size="19" fill="#4A5568">학술 문헌 검색</text>
+
+  <!-- edges -->
+  <path d="M372,262 L586,262" stroke="#0B5FA5" stroke-width="3.5" marker-start="url(#aB)" marker-end="url(#aB)"/>
+  <rect x="432" y="222" width="130" height="32" rx="16" fill="#FFFFFF" stroke="#C9D0DB" stroke-width="1.5"/>
+  <text x="497" y="245" font-size="18" fill="#0B5FA5" text-anchor="middle">R 세션 연결</text>
+  <path d="M844,250 C930,250 940,105 1016,105" fill="none" stroke="#8A94A1" stroke-width="2.5" marker-end="url(#aG)"/>
+  <path d="M844,256 C930,256 940,217 1016,217" fill="none" stroke="#8A94A1" stroke-width="2.5" marker-end="url(#aG)"/>
+  <path d="M844,264 C930,264 940,329 1016,329" fill="none" stroke="#8A94A1" stroke-width="2.5" marker-end="url(#aG)"/>
+  <path d="M844,270 C930,270 940,441 1016,441" fill="none" stroke="#8A94A1" stroke-width="2.5" marker-end="url(#aG)"/>
+
+  <!-- hub -->
+  <g filter="url(#sh)"><rect x="590" y="205" width="250" height="110" rx="22" fill="url(#gBlue)"/></g>
+  <g transform="translate(612,238)" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"><rect x="0" y="0" width="34" height="26" rx="5"/><path d="M8,8 l6,5 l-6,5 M18,19 h9"/></g>
+  <text x="664" y="260" font-size="26" font-weight="700" fill="#FFFFFF">Claude Code</text>
+  <text x="715" y="296" font-size="18" fill="#DCEAF7" text-anchor="middle">MCP 클라이언트</text>
+  <text x="715" y="356" font-size="19" fill="#6A7179" text-anchor="middle">문헌 탐색 단계에서 호출</text>
+</svg>

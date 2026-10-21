@@ -1,0 +1,632 @@
+## 3. 한 바퀴: 같은 세 칸으로 일곱 단계를 본다
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+<div class="pipeline"><span>탐색</span><span>가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span></div>
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+내가 에이전트에게 한 말
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+읽고, 코드를 쓰고, 실행하고, 고친 것
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+고르고, 대조하고, 빼기로 한 것
+
+:::
+
+:::
+
+- 인용 블록은 대화 로그, 파일 원문 그대로. 일반 글자는 요약 또는 예시 프롬프트
+- 에이전트: 2026-03 장면은 Positron Assistant (Claude Sonnet 4.6), 2026-05 이후는 Claude Code
+
+[출처: slides/outline.md 3막, 사례 레포 대화 로그 3건, memory, 코드]{.src}
+
+::: {.notes}
+- 시간: 0.5분
+- 말할 것: 1막 S05의 일곱 단계를 같은 순서로 한 바퀴. 이번 묶음은 ① 탐색부터 ④ 해석까지
+- 단계마다 같은 세 칸: 프롬프트 / 에이전트가 한 일(파랑) / 내가 확인한 것(주황)
+- 읽는 법: 인용 블록은 로그 원문, 다듬지 않음. 일반 글자는 요약 또는 예시 프롬프트
+- 에이전트 이름: 3월 대화 로그는 Positron Assistant (Claude Sonnet 4.6). 5월 이후 memory, qmd, 코드 장면은 Claude Code로 부름(레포 표기 DataBot, 모델 미기재)
+- 출처: slides/outline.md 3막 머리와 작성 규칙, memory/talk-scenes-from-repo.md
+:::
+
+## ① 데이터 탐색: 에이전트에게 주는 것은 행이 아니라 구조와 정의다 {.grey}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+<div class="pipeline"><span class="active">탐색</span><span>가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span></div>
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+코드북과 분석 데이터셋 구조 요약
+
+- 계약서에 이미 있는 것: 분석 데이터 파일명, 로드 코드 한 줄, MetS 정의
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- 코드북 53행과 `names()`, `class()`, `levels()`만 읽음
+- 범주: 집단, 인구학, 신체계측, 약물, 질병, MetS 기준
+- 생활습관, 검사치, 설계변수(`wt_itvex`, `psu`, `kstrata`)
+- `mets_c1`–`mets_c5`: 계약서, 코드북, 코드에서 같은 이름
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- 식별 열 1개는 목록에서 제외
+- `URATE` mg/dL, 원고 표는 μmol/L (×59.48)
+- `GLUC` mg/dL, 원고 표는 mmol/L (÷18.02)
+- 약물 3개와 질병(`C_`) 7개는 다른 범주
+
+:::
+
+:::
+
+[출처: 07-data-structure (코드북, 데이터셋 메타데이터, 레포 CLAUDE.md 141–166, 204–260행)]{.src}
+
+::: {.notes}
+- 시간: 1.5분
+- 말할 것: 에이전트에게 데이터 행은 주지 않음. 주는 것은 구조(변수명, 자료형, 단위)와 정의(계약서의 파일 목록, MetS 정의)
+- 프롬프트는 예시, 로그 인용 아님. 분류표는 발표 준비 중 조사 결과(2026-10-19, 코드북과 메타데이터만 읽음). 2막 라이브 D3와 같은 동작
+- 3월 로그의 같은 단계: 에이전트가 `nrow`, `ncol`, `table(GROUP)`, 결과 표 열 이름만 출력(add-analysis msg[3]), `names()`로 실제 변수명 확인(finalize msg[7])
+- 데이터셋 3,697행 × 58열: 코드북 53개 + 파생 5개(`GROUP2`, `C_OBESEB`, `medication`, `medication_n`, `WC_GROUP`)
+- 단위 변환 계수 59.48, 1/18.02는 S30 SI 변환 검증으로 이어짐
+- 설계변수 3개는 있으나 비가중 분석(비교 목적, 한쪽만 가중하면 목표 모집단 불일치). 질문 나오면만: 08-unweighted-decision, r2 Limitations
+- 화면 노출 규칙 1, 3: 행 출력 없음, 식별 열 이름 없음
+- 출처: slides/excerpts/07-data-structure.md, 레포 `data/derived-data/afhe-khanes2022-analysis-codebook.rds`(메타데이터만), 레포 CLAUDE.md 141–166행(파일 목록), 204–260행(정의)
+:::
+
+## 기존 스크립트를 감사시키면 "의도인가"를 묻는다
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+> 현재 02-afhe-khanes-analysis-script.R 수행 내요 검증 및 결과 요약. output 파일 생성하지 않음.
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- 스크립트 721줄 읽기, 세션 객체는 구조만 확인
+
+> 포화 모델이 작성되어 있으나, 다중공선성 위험이 있어 결과 해석 시 주의 필요
+
+> `demo_tbl`에 MeTS 기준 항목이 포함되지 않음 → 의도적인지 확인 필요
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- MetS 기준 행 주석 처리는 의도. 구성요소는 Table 2에서 따로 보고
+- 다중공선성: 포화모형은 빼고 검사항목별 모형만 유지(모형 축소)
+
+:::
+
+:::
+
+[출처: 06-script-audit-questions (add-analysis msg[2–3], 2026-03-10)]{.src}
+
+::: {.notes}
+- 시간: 1.5분
+- 2026-03-10, Positron Assistant (Claude Sonnet 4.6)
+- 말할 것: 에이전트의 첫 일은 코드 작성이 아니라 내 스크립트 읽기. 끝에 "이게 의도인가"를 되물음
+- 도구 호출: read 1회(721줄), executeCode 2회(`nrow`, `ncol`, `table(GROUP)`, 결과 표 열 이름). 행 출력 없음
+- 요약 끝 "검토 사항" 2건: 포화모형 다중공선성, MeTS 기준 행 주석 처리. 둘 다 결정을 연구자에게 넘김
+- 같은 메시지의 조정 OR 0.37(MetS), 2.16(혈압): 중간값, 원고 최종값 aOR 0.30, 2.12. 보정 변수 세트가 바뀌기 전 값. 화면에 띄우지 않음
+- 확인 필요: 연구자의 답은 로그에 없음(다음 요청 msg[4]는 조정 모델 2, 3 비교 요약). 오른쪽 칸은 아웃라인 기술, 발표자 확인 후 확정
+- 오른쪽 칸 근거: 출판본 구성요소 aOR은 Table 2에서 인용(11-methods-draft-and-number-sourcing), 출판본 Statistical analysis "For 15 z-scored biomarkers, nested logistic regression estimated group-specific ORs for MetS per 1-SD increase"(08-probit-choice-reason)
+- 출처: slides/excerpts/06-script-audit-questions.md, 레포 `agent-conversation/conversation-add-analysis.json` msg[2–3]
+:::
+
+## ② 가설: 선행 논문의 패턴이 질문이 된다 {.grey}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+<div class="pipeline"><span>탐색</span><span class="active">가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span></div>
+
+::: {.stage3}
+
+::: {.box}
+
+[맥락]{.label}
+
+- AI 없이 쓴 선행 지방간 논문(AMHP 2025)
+- 요산 OR 1.83, 조종사에서만 유의
+- 대사증후군에서도 같은 패턴인가
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- 계약서의 연구 목적 5가지를 읽고 요약
+- RQ1 유병률, 구성요소 OR / RQ2 층화 수준별 차이
+- RQ3 혈액 지표의 집단 간 차이 / RQ4 보정 후 남은 지표의 영향 요인
+- RQ5 healthy-worker effect
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- RQ 1–5 확정, 계약서 "연구 목적" 절에 기록
+- 에이전트는 분석 전에 이 절을 다시 읽음(다음 장)
+
+:::
+
+:::
+
+[출처: 레포 CLAUDE.md 연구 목적 절, finalize msg[0–1], doi:10.3357/AMHP.6646.2025]{.src}
+
+::: {.notes}
+- 시간: 1.5분
+- 말할 것: 질문은 에이전트가 아니라 앞 논문의 남은 의문에서 나옴. 에이전트는 그 질문을 계약서에서 읽고 정리
+- 맥락: Song DH, Ku B. Aerosp Med Hum Perform 2025;96(9). doi:10.3357/AMHP.6646.2025. AI 미사용 논문. 지방간 논문 언급은 여기까지
+- 요산 OR 1.83: 조종사 하위군 다변량 로지스틱 회귀 추정치, 비조종사에서는 유의하지 않음(memory/outline-decisions-2026-10-20.md 결정 4, CLAUDE.md 사례 논문)
+- 에이전트 장면: finalize msg[0–1](2026-03-18, Positron Assistant (Claude Sonnet 4.6)). 기억 상태 확인 요청에 AGENTS.md를 읽고 연구 목적 5가지를 요약. 발췌본 없음, 문장을 인용하려면 발췌 필요
+- RQ 절은 이 세션 전부터 계약서에 있었음(msg[1]의 읽기 결과에 포함)
+- RQ 원문 요약(레포 CLAUDE.md 265–282행): RQ1 구성요소 유병률과 OR(로지스틱) / RQ2 연령, 허리둘레, 혈압, TG, HDL, 공복혈당 층화 수준별 유병률, OR / RQ3 혈액 지표의 단계별 보정 모형 / RQ4 보정 후 남은 지표의 영향 요인 / RQ5 healthy-worker effect
+- 계약서 RQ3은 Model 0–3의 4단계, 출판본은 Model 0–2(BMI와 약물을 Model 2에 함께)
+- 요산을 넣은 근거는 리뷰어 R2-3 대응으로 출판본 Introduction에 추가: "Serum urate is not a conventional MetS screening test, so its inclusion warrants explanation."(05-urate-origin)
+- RQ4의 "남은 지표" = `URATE`, `GLUC` → 다음 장
+- 출처: 레포 CLAUDE.md "연구 목적" 절, 레포 `agent-conversation/conversation-finalize.json` msg[0–1], slides/excerpts/05-urate-origin.md, CLAUDE.md 사례 논문
+:::
+
+## 에이전트는 설계안을 내고 멈춘다. 고르는 쪽은 연구자다
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+> URATE와 GLUC에 대해 연구목적 4번에 대한 분석 실시
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- 계약서의 연구목적 4번과 변수 구조 확인
+- 설계안: 종속 `URATE`, `GLUC` / 집단별 다중선형회귀 + 상호작용
+
+> 이 방향으로 진행할까요? 아니면 다른 접근(예: 매개분석, 경로분석 등)을 원하시는지 알려 주세요.
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+> 현재 방향으로 진행한 다음 매개분석(BMI → URATE/GLUC → MeTS) 방향  분석 실시
+
+- 매개분석은 뒤에 원고에서 제외
+
+> RQ4에서 mediation analysis 결과는 추가하지 않을 예정
+
+:::
+
+:::
+
+[출처: 06-design-proposal-choice (finalize msg[6–8]), 07-mediation-env-error (msg[24]), 2026-03-19]{.src}
+
+::: {.notes}
+- 시간: 1.5분
+- 2026-03-19, Positron Assistant (Claude Sonnet 4.6)
+- 말할 것: 에이전트는 계약서의 연구목적을 다시 읽고, 설계안을 내고, 멈춤. 방향은 내가 고름
+- 과정: 할 일 4항목 작성 → 공변량 선택에서 `DYSLIPIDEMIA` 없음 에러 → `names()`로 실제 이름 `DYSLIP` 확인(작은 자기수정, 화면에는 안 띄움) → `summary()`로 분포 확인(집계만)
+- 설계안 원문: 종속 URATE, GLUC(각각) / 독립 AGE, BMI, SMOKING, ALCOHOL, EXERCISE, medication + GROUP2 / 집단별 다중선형회귀 + 집단 간 회귀계수 비교(상호작용) / 표준화 β 비교
+- 선택지 3개를 제안 버튼으로 제시: 그대로 진행 / 상관 추가 / 매개분석
+- 연구자 선택: 현재 방향 + 매개분석 둘 다
+- 매개분석은 돌렸고(다음 장 D1) 원고에서는 뺌(finalize msg[24]). 출판본에 남은 것: "Linear regression examined determinants of urate and fasting glucose, with pooled-model interaction tests"(08-probit-choice-reason, 출판본 Statistical analysis)
+- "고쳤다"와 "쓴다"는 다른 결정: ⑦ 리뷰어 대응과 연결
+- 출처: slides/excerpts/06-design-proposal-choice.md, slides/excerpts/07-mediation-env-error.md, 레포 `agent-conversation/conversation-finalize.json` msg[6–8], msg[24]
+:::
+
+## ③ 분석: 에이전트가 내 세션에서 코드를 쓰고, 돌리고, 고친다 {.grey}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+<div class="pipeline"><span>탐색</span><span>가설</span><span class="active">분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span></div>
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+RQ1 로지스틱 회귀. MetS와 구성요소 5개, 보정 변수 연령, 흡연, 음주, 운동
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+- 코드 작성 → 내 R 세션에서 실행 → 출력 읽고 수정
+- 결과는 세션 객체로 남음. 다음 요청은 객체 이름으로
+- 스크립트는 `code/agent_bot/YYYY-MM-DD/`에 저장
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- 모형: 로지스틱, 참조군 KNHANES(`GROUP2`)
+- 보정 변수: `AGE`, `SMOKING`, `ALCOHOL`, `EXERCISE`
+- n = 3,697 (조종사 2,604 / KNHANES 1,093)
+
+:::
+
+:::
+
+[출처: 출판본 Statistical analysis (doi:10.1136/military-2026-003444), finalize msg[8–9]]{.src}
+
+::: {.notes}
+- 시간: 1분
+- 말할 것: 챗봇과 가장 다른 지점. 에이전트가 쓰는 R 세션 = 내가 보는 R 세션. 결과는 대화창이 아니라 세션 객체와 파일로 남음
+- 프롬프트는 예시: 출판본 Statistical analysis의 모형 사양을 프롬프트로 옮김. 원문 "MetS prevalence, components and adjusted associations were compared using logistic regression with adjustment for age, smoking, alcohol use and physical activity."(08-probit-choice-reason에 수록된 출판본 4쪽 추출문)
+- 확인 필요: RQ1 모형 코드는 원래 연구자 스크립트(`code/02-afhe-khanes-analysis-script.R`, S21에서 감사)에 있었음. 에이전트가 쓰고, 돌리고, 저장한 로그 근거는 RQ4(finalize msg[8–9], `code/agent_bot/2026-03-19/01_rq4_regression_urate_gluc.R`, `02_rq4_mediation_urate_gluc.R`)
+- 객체 이름이 다음 요청의 주소: 사용자가 `tbl_result_mets_lbtest`를 이름으로 지목(add-analysis msg[4], msg[20])
+- n: CLAUDE.md 사례 논문(조종사 2,604 vs KNHANES 1,093), 07-data-structure(3,697행), finalize msg[7] 집계(06-design-proposal-choice)
+- 다음 장: 이 루프에서 에러가 났을 때
+- 출처: slides/excerpts/08-probit-choice-reason.md(출판본 Statistical analysis), 레포 `agent-conversation/conversation-finalize.json` msg[8–9], 레포 `code/agent_bot/2026-03-19/`
+:::
+
+## 녹화 D1: 에러를 읽고 가설을 바꿔 가며 고친다
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.columns}
+
+::: {.column width="62%"}
+
+{{< video ../demo/clips/D1-error-fix.mp4 width="800" height="450" >}}
+
+:::
+
+::: {.column width="38%"}
+
+[시도 1]{.h3}
+
+`mediate()` 호출 → `object 'fm_med' not found`
+
+[틀린 진단]{.h3}
+
+"SAME data object" 가설로 수정 → `object 'fm_a' not found`
+
+[맞는 진단]{.h3}
+
+"captures the model call env" → `eval(bquote(...))`로 적합 → "Done."
+
+:::
+
+:::
+
+[출처: 07-mediation-env-error (finalize msg[9], 2026-03-19)]{.src}
+
+::: {.notes}
+- 시간: 2분(녹화 90초 + 정리 30초)
+- 녹화 D1 미제작(`demo/clips/`에 파일 없음, 2026-10-20 기준). 클립 내용은 아래 로그 장면과 일치해야 함. 오른쪽 요약 3줄은 로그 기준
+- 장면: RQ4 매개분석의 `mediation::mediate()` 환경 오류. 2026-03-19, Positron Assistant (Claude Sonnet 4.6), finalize msg[9](요청은 msg[8])
+- 시도 1: 함수 안에서 `as.formula(sprintf(...))`로 모형 적합 후 `mediate()` → `object 'fm_med' not found`
+- 시도 2: 주석 "# Fix: mediation models must be fit on the SAME data object passed to mediate()", `as.data.frame()` 추가 → `object 'fm_a' not found`. 진단이 틀림
+- 시도 3: 주석 "# mediation::mediate() captures the model call env", `eval(bquote(lm(.(as.formula(f_a_chr)), data = dat)))` → 4개 조합 모두 "Done."
+- 말할 것: 에러 메시지를 읽고 가설을 바꿈. 같은 수정을 반복하지 않음
+- 에이전트가 자기 도구 호출 한도 초과를 스스로 기록: "I have made 9 tool calls this turn."
+- 매개분석 수치는 출판 원고에 없음, 화면에 띄우지 않음. 원고에서 제외(msg[24])
+- 출처: slides/excerpts/07-mediation-env-error.md, slides/excerpts/07-knit-failure-three-causes.md(다음 장), 레포 `agent-conversation/conversation-finalize.json` msg[8–9]
+:::
+
+## "세션에서는 되는데 knit은 안 된다"의 세 원인을 한 번에 진단했다 {.grey}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+> knit 실행 시 오류. 분석 결과는 현재 작업공간에 저장된 결과를 기반으로 통계량 값들을 추출해서 테이블을 재생성하고, …
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+> 문제를 파악했습니다. 세 가지 핵심 이슈입니다:
+>
+> 1. **YAML 안 `#` 주석** → 파싱 오류
+> 2. **knit 환경은 세션과 독립** → `ft_urate`, `ft_gluc`, `ft_med` 객체가 없음. 청크 안에서 데이터로부터 직접 재생성 필요
+> 3. **`fig_path`** → 저장된 PNG를 `knitr::include_graphics()`로 삽입
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- 표는 qmd 안에서 재생성하도록 지시
+- 그림은 저장된 PNG를 쓰도록 지정
+- 응답이 끊겨 한 줄 입력: "재실행"
+- 매개분석 수치 하드코딩(`med_summary`): 에이전트의 절충, 수용
+
+:::
+
+:::
+
+[출처: 07-knit-failure-three-causes (finalize msg[18–21], 2026-03-19)]{.src}
+
+::: {.notes}
+- 시간: 1분
+- 2026-03-19, Positron Assistant (Claude Sonnet 4.6)
+- 말할 것: R Markdown, Quarto 사용자라면 겪어 본 세 가지. YAML 안 주석 / knit 환경은 세션과 별개 / 그림을 객체로 호출
+- 과정: read 도구 실패(ENOPRO, Positron Assistant의 workspace 경계 문제) → bash `cat`으로 대체해 YAML 머리 확인 → 3원인 진단 → 세션 객체, PNG 존재 확인 → 응답 끊김 → 사용자 "재실행" → 자급자족 qmd로 재작성, 자체 검증 "Overall: PASS"
+- 수정 요약: YAML 주석 제거 / setup 청크에서 데이터 로드 → 회귀 모형 → 표 재생성 / 경로 다이어그램은 `knitr::include_graphics()` / `source()` 의존 제거
+- 3번 원인의 PNG 사용은 내 프롬프트의 지정이기도 함. 그래서 오른쪽 칸에 적음
+- 하드코딩 판단: 2,000회 bootstrap을 knit마다 돌리지 않으려는 절충. 계약서 행동 규칙 7("직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김", 3월 AGENTS.md에도 있음)과 긴장. 에이전트가 정했고 연구자가 받아들임. 매개분석은 결국 원고에서 제외
+- 출처: slides/excerpts/07-knit-failure-three-causes.md, 레포 `agent-conversation/conversation-finalize.json` msg[18–21], 레포 CLAUDE.md 행동 규칙 7
+:::
+
+## 표와 그림은 코드에서 나온다: 양식은 내가 정하고 에이전트가 적용한다
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+Table 1을 Lancet 양식으로
+
+- 계약서 행동 규칙: "테이블은 Lancet 논문 포맷 적용"
+- 양식 함수 `lancet_ft()`는 내가 먼저 작성(`code/funs/helpers.R`)
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- Table 1: `tbl_summary()` → `as_flex_table()` → `border_remove()`, `hline_top()`
+- Figure 2: `emmeans()` 추정 → `patchwork` 조립
+- Figure 1 CONSORT: `DiagrammeR::grViz()`
+- 제출용 내보내기: PNG 600 dpi, TIFF 300 dpi
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- 표의 숫자가 코드 출력과 같은지
+- 소수점 규칙(|x| ≥ 10 → 1자리)이 표와 산문에서 같은지
+- 리뷰어 요청에는 표시만 바꿈
+
+> The underlying models, estimates and contrasts are untouched; only the display changes.
+
+:::
+
+:::
+
+[출처: 10-table-figure-automation (r2 qmd, code/funs/helpers.R, export-submission-figures.R)]{.src}
+
+::: {.notes}
+- 시간: 1분
+- 2026-08-15, 16. Claude Code(레포 표기 DataBot, 모델 미기재). `helpers.R`은 사용자 작성(`code/funs/`, agent_bot 폴더 아님)
+- 말할 것: 표와 그림은 데이터에서 문서까지 코드 한 줄기. 양식은 내가 먼저 정하고 에이전트는 따름
+- 프롬프트 첫 줄은 예시. 양식 근거는 계약서 행동 규칙(현재 레포 CLAUDE.md 8번)과 사용자 헬퍼 `lancet_ft()`
+- Lancet 골격: 상단 2pt, 헤더 아래 1pt, 본문 하단 2pt, Arial, 본문 9pt(r2 qmd 579–599행)
+- 그림: `emmeans(..., type = "response")` → patchwork 조립, 범례 7개를 하나로 모음(리뷰어 2, comment 12). Figure 2 재작도는 리뷰어 2, item 14 대응
+- 내보내기 스크립트: 원고와 같은 그림, 장치와 해상도만 다름
+- 다음 장 연결: 표는 코드 출력, 산문의 숫자는 글자라 따로 대조
+- 출처: slides/excerpts/10-table-figure-automation.md, 레포 `quarto/agent_bot/2026-08-16/manuscript-minor-revision-r2.qmd` 493–527, 579–599, 1264–1273, 1486–1494, 1815–1830행, `code/funs/helpers.R` 9–17행, `code/agent_bot/2026-08-16/export-submission-figures.R`, `code/agent_bot/2026-08-15/figure2-stratified-3col.R`
+:::
+
+## ④ 해석: 에이전트가 결과를 설명하고, 나는 그 설명을 의심한다 {.grey}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+<div class="pipeline"><span>탐색</span><span>가설</span><span>분석</span><span class="active">해석</span><span>문헌</span><span>원고</span><span>리뷰어</span></div>
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+전체 결과 해석
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- MetS 유병률: 조종사 11.1% vs KNHANES 37.1%, aOR 0.30
+- 혈압 구성요소만 조종사가 높음: 47.7% vs 38.8%, aOR 2.12
+- `URATE`, `GLUC`와 MetS의 연관: 조종사에서 더 강함
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+- 숫자는 원고 최종값(출판본 Abstract)과 대조
+- 3월 10일 요약의 조정 OR은 보정 변수 세트 변경 전 값
+- 어느 시점, 어느 모형의 숫자인지부터 확인
+
+:::
+
+:::
+
+[출처: 출판본 Abstract (doi:10.1136/military-2026-003444), 11-methods-draft-and-number-sourcing]{.src}
+
+::: {.notes}
+- 시간: 1.5분
+- 말할 것: 에이전트의 설명은 출발점. 내 일은 그 설명의 숫자와 말을 의심하는 것
+- 프롬프트는 예시. 실제 로그 장면 후보: finalize msg[2–3](2026-03-18), 보고서 청크 결과를 요약해 AGENTS.md에 반영하라는 요청 → 에이전트가 "핵심 해석" 작성, 이 시점 수치는 최종값과 같음. 발췌본 없음, 인용하려면 발췌 필요
+- 화면 수치 = 출판본 최종값: MetS 11.1% vs 37.1%, aOR 0.30 / 혈압 구성요소 47.7% vs 38.8%, aOR 2.12 (95% CI 1.80 to 2.52) / 집단 간 기울기 차이 공복혈당 Δβ 0.98 (p<0.001), 요산 Δβ 0.27 (p = 0.009)(CLAUDE.md 사례 논문, 05-urate-origin 출판본 Abstract 대조)
+- 3월 10일 감사 메시지의 조정 OR 0.37(MetS), 2.16(혈압): 중간값, 원고 최종값 0.30, 2.12. 보정 변수 세트가 바뀌기 전 값(06-script-audit-questions)
+- 산문의 숫자는 글자: 응답서에 "taken from Table 2; no reanalysis was required"처럼 표에서 가져온 출처를 적어 둠(11-methods-draft-and-number-sourcing)
+- 말도 의심: 에이전트 표의 "고혈압 (mets_c4)"는 진단명이 아니라 혈압 기준(≥ 130/85 mmHg 또는 약물) 충족
+- 다음 장: 숫자가 아니라 용어가 엇갈린 경우
+- 출처: CLAUDE.md 사례 논문, slides/excerpts/05-urate-origin.md, slides/excerpts/06-script-audit-questions.md, slides/excerpts/11-methods-draft-and-number-sourcing.md, 레포 `agent-conversation/conversation-finalize.json` msg[2–3](발췌 전)
+:::
+
+## 모호한 질문에는 되묻게 해야 한다: "오즈비"가 두 표를 가리켰던 날 {.dark}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.chat .user}
+
+[사용자, msg[18]]{.who}
+
+… 맨 처음 로지스틱 회귀모형 결과 보정 후에도 대사증후군에 대한 공군 집단의 오즈비가 일반 인구 집단보다 높게 나타난 사실과 어떻게 연결을 할 수 있지?
+
+:::
+
+::: {.chat}
+
+[Positron Assistant (Claude Sonnet 4.6), msg[19]]{.who}
+
+… 조종사 집단에 내재된 건강 근로자 효과(Healthy Worker Effect)로 수렴하는 공통 설명이 가능합니다.
+
+:::
+
+::: {.chat .catch}
+
+[사용자, msg[20]]{.who}
+
+결과 해석이 이상한데? 로지스틱 회귀모형 결과는 작업 공간의 tbl_result_mets_lbtest 결과를 확인해.
+
+:::
+
+::: {.chat}
+
+[Positron Assistant, msg[21]]{.who}
+
+확인했습니다. 이전 해석에 오류가 있었습니다. 정확하게 재정리합니다.
+
+:::
+
+- 탐색 단계의 질문. "오즈비"가 어느 표인지 묻지 않음 / 표 이름으로 바로잡음 / 이 연결 시도는 원고에 올리지 않음
+
+[출처: 09-two-odds-ratios-confused (add-analysis msg[18–21], 2026-03-10)]{.src}
+
+::: {.notes}
+- 시간: 1.5분
+- 2026-03-10, Positron Assistant (Claude Sonnet 4.6)
+- 구도(memory/outline-decisions-2026-10-20.md 결정 1): 탐색적 질문의 "오즈비"가 두 표 중 어느 것인지 에이전트가 묻지 않음 → 연구자가 표 이름으로 잡음 → 그 연결 시도는 원고에 올리지 않음. 사용자 질문의 전제 오류로 말하지 않음
+- 두 표: `tbl_data_mets_component`(집단 간 유병 OR) vs `tbl_result_mets_lbtest`(집단 안에서 검사값 1 SD 증가당 MetS OR). 사용자가 말한 것은 뒤쪽, 에이전트는 앞쪽으로 받음
+- 에이전트는 그 틀 위에 HWE 서사와 영어 "논문 서술 제안" 문장까지 작성. 자기 답 1번에서 OR이 낮다고 적은 것과도 모순
+- msg[20]: 표 이름 지목 + 결과 표 붙여 넣음. msg[21]: 결과 객체 구조를 다시 출력한 뒤 두 OR 정의를 나눠 다시 씀
+- 로그 속 수치(집단 간 0.37, 요산 1-SD OR 1.27 vs 0.98): 중간값, 원고 최종값 집단 간 MetS aOR 0.30, 조종사 요산 per-SD OR 1.35. 화면에 띄우지 않음
+- 출판 원고는 요산 연령 기울기와 OR을 연결하지 않음(사용자 확인 2026-10-20)
+- 통계 깊이는 여기까지. 교훈은 프롬프트 규칙: 용어가 모호하면 묻게 하라
+- 현재 레포 CLAUDE.md 코딩 규칙: "여러 해석이 가능하다면, 조용히 하나를 선택하지 말고 가능한 해석 제시". 대화 로그 3건의 AGENTS.md 읽기 결과에는 없는 문구, 추가 시점 확인 필요
+- 4막 S40 한계("모호한 용어를 묻지 않음")와 연결
+- 출처: slides/excerpts/09-two-odds-ratios-confused.md, 레포 `agent-conversation/conversation-add-analysis.json` msg[18–21], slides/excerpts/05-urate-origin.md(per-SD OR 1.35, r2 qmd 416행)
+:::
+
+## 숫자 검증은 스크립트로: 원고의 모든 숫자를 데이터에서 다시 계산한다 {.grey}
+
+[3. 사례 한 바퀴]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+응답서에 약속한 숫자를 원고에 넣기 전에 전부 재계산
+
+:::
+
+::: {.box .wide}
+
+[에이전트가 한 일]{.label}
+
+- `verify-numbers.R`: 약물, 유병 비율 / BMI 분포 / SI 변환 후 계수
+
+> Nothing here changes any analysis; it recomputes from the same analysis dataset the manuscript already uses.
+
+- 검증 기준을 먼저 적음: SI 변환 후 OR과 p는 그대로
+
+:::
+
+::: {.human}
+
+[내가 확인한 것]{.label}
+
+> `verify-numbers.R` 재실행: 약물/유병률 12개, BMI 6단계, Table 4 SI 계수 전부 일치
+
+- 렌더 성공과 그림 존재는 별개: "성공"한 docx 두 개에 Figure 1 없음
+
+> knitr `error = TRUE` 문서는 exit code만으로 성공을 판단하면 안 됨
+
+:::
+
+:::
+
+[출처: 09-verify-numbers-script, 09-render-success-missing-figure (2026-08-14, 16)]{.src}
+
+::: {.notes}
+- 시간: 1분
+- 2026-08-14(대응 계획 §D), 2026-08-16(스크립트, 렌더). Claude Code(레포 표기 DataBot, 모델 미기재)
+- 말할 것: 원고의 숫자는 R 객체가 아니라 글자. 넣기 전에 같은 데이터에서 다시 계산하는 스크립트를 따로 둠
+- 프롬프트는 예시. 스크립트 헤더 Purpose: 응답서가 원고에 넣겠다고 약속한 숫자를 넣기 전에 전부 검증
+- 검사 3가지: (1) 약물 복용, 유병 비율(comment 2.7) (2) BMI 분포, 한국과 WHO 기준(comment 2.9) (3) 요산, 공복혈당 SI 변환 후 Table 4 계수(comment 2.8)
+- SI 변환: 요산 mg/dL → μmol/L ×59.48, 혈당 mg/dL → mmol/L ÷18.02. 결과변수만 바뀌므로 계수와 CI는 같은 배수, p는 불변(스크립트 주석). 대응 계획 §D 2번: 변환 후 OR, Δβ, 95% CI, p가 기존과 다르면 변환 오류
+- §D 1번: 최종 표와 그림은 R에서 재생성. Python 값은 검증, 설계용
+- 이 스크립트 출력이 이 발표의 수치 대조 기준(CLAUDE.md 행동 규칙 2)
+- 렌더: R 4.6.1 사용자 라이브러리에 `DiagrammeR`, `webshot2`, `chromote` 없음 → Figure 1(CONSORT) 실패. `error = TRUE`라 렌더는 "성공", 그림 번호가 밀린 docx 두 차례(23:09, 23:28) → 패키지 설치 후 재렌더, Figure 1, 2 정상
+- 교훈이 memory에 남아 다음 세션의 체크리스트: docx에서 "Error" 문단, 그림 개수, 캡션 번호 확인
+- 다음: ⑤ 문헌 탐색
+- 출처: slides/excerpts/09-verify-numbers-script.md, slides/excerpts/09-render-success-missing-figure.md, 레포 `code/agent_bot/2026-08-16/verify-numbers.R` 1–14, 22–36, 68–87행, `output/agent_bot/2026-08-14/reviewer2-response-plan.md` §D 558–561행, `memory/agent_bot/2026-08-16/session-summary.md` §5 39행, §5-3 59–63행
+:::

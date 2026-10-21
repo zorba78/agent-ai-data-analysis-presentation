@@ -1,0 +1,297 @@
+## 4. 에이전트는 내 R 세션 안에서 다섯 가지 도구로 일한다
+
+[4. 환경 + CLAUDE.md]{.eyebrow}
+
+<div class="pipeline"><span>질문</span><span>데이터 이해</span><span>분석</span><span>검증</span><span>논문</span><span>재현</span></div>
+
+::: {.cards}
+
+::: {.box}
+
+[`todoWrite`]{.h3}
+
+<span class="tag-agent">계획</span>
+
+할 일 4항목 생성
+
+:::
+
+::: {.box}
+
+[`executeCode`]{.h3}
+
+<span class="tag-agent">R 콘솔, 세션</span>
+
+`names()`로 변수명 확인
+
+:::
+
+::: {.box}
+
+[`read`]{.h3}
+
+<span class="tag-agent">파일</span>
+
+스크립트 721줄 읽기
+
+:::
+
+::: {.box}
+
+[`write`]{.h3}
+
+<span class="tag-agent">파일</span>
+
+RQ4 스크립트 저장 시도
+
+:::
+
+::: {.box}
+
+[`bash`]{.h3}
+
+<span class="tag-agent">터미널</span>
+
+`cat`으로 읽기, `ls`
+
+:::
+
+:::
+
+- 경계: `read`, `write`가 실패하면 `bash`로 우회
+
+[출처: conversation-add-analysis.json msg[2–3], conversation-finalize.json msg[6–8], msg[12–15], msg[18–21], 2026-03]{.src}
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: Positron의 에이전트는 채팅창이 아니라 세션, 파일, 터미널에 손이 닿음
+- 말할 내용
+  - 도구 이름: 2026-03 로그에 기록된 그대로
+  - `todoWrite`: 할 일 4항목(연구목적 확인 → 요인 탐색 → 집단 내 회귀 → 시각화, 테이블)
+  - `executeCode`: 내 R 세션에서 `names(afhe_khanes_final)`, `exists()`, `file.exists()`
+  - `read`: 기존 분석 스크립트 721줄
+  - `write`: RQ4 스크립트 저장 시도. 첫 시도는 연구자가 거부("User declined to execute tool.", 12번), 둘째 시도는 workspace 밖이라 실패
+  - `bash`: `cat`으로 qmd 읽기, 파일 생성 후 `ls`
+  - 경계 1: `read` 실패 "ENOPRO: No file system provider found" → `bash`의 `cat`
+  - 경계 2: `write` 실패 "outside the workspace and not currently open in an editor" → `bash`로 파일 생성
+  - 연구자가 알아 둘 점: 에이전트는 경계에서 다른 도구로 우회
+- 확인 필요
+  - 도구 이름과 동작: 발표 1주 전 최신 Positron과 재대조(`CLAUDE.md` 행동 규칙 4)
+  - 아웃라인의 `write` 예시 "파일 저장"은 발췌상 성공 사례 없음 → "저장 시도"로 표기
+- 출처
+  - `06-design-proposal-choice.md`(finalize msg[6–8]): `todoWrite`, `executeCode`
+  - `06-script-audit-questions.md`(add-analysis msg[2–3]): `read` 721줄
+  - `07-user-cancels-tool-call.md`(finalize msg[12–15]): `write` 거부, 실패, `bash` 생성, `ls`
+  - `07-knit-failure-three-causes.md`(finalize msg[18–21]): `read` ENOPRO → `bash` `cat`
+:::
+
+## CLAUDE.md는 프롬프트가 아니라 계약서다: 여섯 블록 {.grey}
+
+[4. 환경 + CLAUDE.md]{.eyebrow}
+
+::: {.excerpt}
+
+```text
+## 프로젝트 개요
+상태: 데이터 전처리 완료, 기초 및 최종 분석 완료, Quarto 분석 보고서 작성 완료
+…
+## 역할
+1. 통계학 전문가(이론, 실무 모두)
+2. 의학(내과, 내분비학)/역학/생리학 전문가
+## 행동 규칙
+## 코딩 규칙
+## 윤리적 제약
+## 생성 파일 저장 공간
+…
+```
+
+:::
+
+[출처: airforce-fatty-liver/CLAUDE.md(원본 381행 중 헤더와 상태 줄 발췌)]{.src}
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 세션마다 같은 조건으로 시작하게 하는 문서는 여섯 블록으로 구성
+- 말할 내용
+  - 원본 381행 중 헤더와 상태 줄만
+  - 역할 블록 첫 두 줄: "통계학 전문가(이론, 실무 모두)", "의학(내과, 내분비학)/역학/생리학 전문가"
+  - 상태 줄: 새 세션의 에이전트가 어디서부터 이어갈지 결정
+  - `…` 자리: 원본의 `## 목적`, `## 분석 데이터 파일`, `## 사전 정보` 헤더. 사전 정보 안의 MetS 정의는 다음다음 장
+  - 코딩 규칙 아래 `### 코딩 전 생각하기`, 윤리적 제약 아래 `### 생성 시 반드시 지켜야할 규칙`, `### 생성 시 반드시 하지 말아야할 규칙`
+  - 이 발표 프로젝트도 같은 방식의 CLAUDE.md 사용(11번)
+- 확인 필요
+  - 대화 로그의 에이전트는 "AGENTS.md 규칙"을 언급(`07-user-cancels-tool-call.md`). 레포의 AGENTS.md와 CLAUDE.md가 같은 내용인지
+  - "여섯 블록"은 아웃라인, 발췌본의 묶음. 원본의 `##` 헤더는 아홉 개(목적, 분석 데이터 파일, 사전 정보 포함)
+- 출처
+  - `setup-claude-md-six-blocks.md`(레포 `CLAUDE.md` 1, 3, 5, 10, 20–23, 26, 34–36, 39, 41, 43, 95, 97, 113, 129, 141, 190행의 헤더와 문장, 마스킹 치환 0건)
+  - `06-contract-mets-definition.md`(레포 `CLAUDE.md` 5행 상태 줄)
+:::
+
+## 규칙 두 줄이 이후 모든 검증의 바탕이 된다: 표 값이 도출되는 과정을 남겨라
+
+[4. 환경 + CLAUDE.md]{.eyebrow}
+
+::: {.excerpt}
+
+```text
+7.  quarto 문서에서 테이블 및 그림 생성 시 사용하기 위해 만든 데이터셋은 quarto 문서 청크에 남김
+    -   직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김
+…
+9.  모든 수치 결과는 그 도출 과정을 문서에 포함
+```
+
+:::
+
+- 남은 것: 8번 약물 표의 `group_by → summarise → lancet_gt` 청크, 9번 `verify-numbers.R` 재계산
+- 규칙 1 "추론은 최대한 배제"가 있어도 9번 두 OR 혼동 발생
+- 규칙의 몫: 예방이 아니라 추적
+
+[출처: airforce-fatty-liver/CLAUDE.md 26–39행(행동 규칙 1–9)]{.src}
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 규칙은 오류를 막지 않음. 오류를 찾을 길을 남김
+- 말할 내용
+  - 규칙 7, 9 → 8번 약물 불균형 표가 `group_by → summarise → lancet_gt` 청크로 보고서에 남음
+  - 같은 규칙 → 9번 `verify-numbers.R`이 같은 분석 데이터에서 다시 계산
+  - 규칙 1 원문: "결과 생성 및 해석 시 추론은 최대한 배제하고 근거에 기반한 답변 도출"
+  - 규칙 1이 있었는데도 9번 두 OR 혼동 발생
+  - 규칙의 역할: 예방이 아니라 추적 가능성
+- 제목 표기
+  - 아웃라인 제목의 따옴표 제거. 원문은 "직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김"이고 제목은 요약이라 인용부호를 쓰지 않음
+- 출처
+  - `06-contract-mets-definition.md`(레포 `CLAUDE.md` 26–39행)
+  - `08-medication-imbalance-report.md`(2026-03-10 보고서 qmd 428–455행 `tbl-dyslip` 청크)
+  - `09-verify-numbers-script.md`(`verify-numbers.R` 1–14행)
+  - `09-two-odds-ratios-confused.md`(add-analysis msg[18–21])
+:::
+
+## MetS 정의 다섯 줄이 계약서에서 코드 변수 mets_c1–c5로 그대로 이어진다 {.grey}
+
+[4. 환경 + CLAUDE.md]{.eyebrow}
+
+::: {.excerpt}
+
+```text
+8. 대사증후군 (Metabolic Syndrome, MeTS) 진단 기준
+    - 복부비만 : 남성: ≥ 90cm / 여성: ≥ 85cm (허리둘레): mets_c1
+    - 중성지방 : ≥ 150 mg/dL 또는 이상지질혈증 약물 복용 중 :mets_c2
+    - HDL : 남성: < 40 mg/dL / 여성: < 50 mg/dL 또는 약물 복용 중 :mets_c3
+    - 혈압 : 고혈압 약물 복용중 또는 수축기 혈압  ≥ 130 또는
+             이완기 혈압  ≥ 85 :mets_c4
+    - 공복혈당 : ≥ 100 mg/dL 또는 당뇨병 약물 복용 중 :mets_c5
+```
+
+:::
+
+- → 코드북 `mets_c1`: "Abdominal Obesity (waist circumference ≥ 90 cm)"
+- → 코드와 표에서도 같은 이름 `mets_c1`–`mets_c5`
+
+[출처: airforce-fatty-liver/CLAUDE.md 252–260행, afhe-khanes2022-analysis-codebook.rds variable_label]{.src}
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 정의와 변수명이 계약서, 코드북, 코드, 표에서 같은 이름으로 이어짐
+- 말할 내용
+  - 허리둘레 90 cm, 혈압 130/85: 연구자가 정해 계약서에 적은 기준. 에이전트는 이 정의를 바꾸지 않음
+  - 같은 "사전 정보" 절의 표본 흐름: 조종사 2,827 → 2,604, KNHANES 6,265 → 1,093. 논문 2 최종값과 동일
+  - 코드북 라벨 나머지: `mets_c2` "High Triglyceride (TRIG ≥ 150 mg/dL | medication)", `mets_c3` "Low HDL Cholesterol (HDL < 40 mg/dL | medication)", `mets_c4` "High Blood Pressure (SYSBP ≥ 130 mmHg | DIABP ≥ 85 mmHg | medication)", `mets_c5` "High Fasting Glucose (GLUC ≥ 100 mg/dL | medication)"
+  - 원문의 "MeTS" 표기와 혈압 줄의 줄바꿈은 원본 그대로
+- 질문 대비
+  - 정의마다 "또는 약물 복용 중" 포함. 약물 보정의 순환성 논점은 이 발표에서 다루지 않음(사용자 결정 2(b))
+- 출처
+  - `06-contract-mets-definition.md`(레포 `CLAUDE.md` 192–202행 표본 흐름, 252–260행 MetS 정의)
+  - `07-data-structure.md`(코드북 `variable_label`)
+  - 최종 표본 수: `CLAUDE.md` 31행(논문 2)
+:::
+
+## 정의를 적어 두면 에이전트는 묻지 않고, 적지 않은 자리는 에이전트가 채운다
+
+[4. 환경 + CLAUDE.md]{.eyebrow}
+
+| 계약서 | 에이전트의 행동 | 장면 |
+|------|------------------|----|
+| 있음: MetS 정의 | 정의, 허리둘레 기준, 공복 질문 0건(로그 3종). 대신 "`demo_tbl`에 MeTS 기준 항목이 포함되지 않음 → 의도적인지 확인 필요" | 6번 |
+| 있음: 저장 위치 | "AGENTS.md 규칙에 따라 `code/agent_bot/2026-03-19/` 폴더에" | 12번 |
+| 없음: 모형 선택 이유 | "The probit link was chosen to match the visual representation conventions used in the companion figure" | 8번 |
+| 없음: 재현성 trade-off | 매개분석 결과값을 "**하드코딩**한 `med_summary` tibble로 `ft_med` 재생성" | 7번 |
+| 선택 | **[여기에: 계약서 없이 일했던 시기의 경험 1건]** | 발표자 |
+
+[출처: 대화 로그 3종 조사(2026-10-19), add-analysis msg[3], finalize msg[12–15], msg[21], 05_statistical_analysis_methods.qmd 96–112행]{.src}
+
+::: {.notes}
+- 시간: 1.25분
+- 메시지: 계약서가 말한 곳에서는 에이전트가 어긋남을 찾고, 침묵한 곳에서는 에이전트가 이유를 지어 넣음
+- 말할 내용
+  - 정의가 있던 곳: 에이전트가 정의를 되묻지 않음. 대신 표에서 기준 행이 빠진 것을 짚음
+  - 저장 위치가 있던 곳: 규칙대로 `code/agent_bot/<날짜>/`
+  - 계약서가 침묵한 곳 1: 모형 선택 이유를 에이전트가 지어 넣음(8번)
+  - 계약서가 침묵한 곳 2: 재현성과 실행 시간 사이 trade-off도 에이전트가 결정. 2,000 bootstrap을 knit마다 돌리지 않음(7번)
+  - 아래 두 행은 7, 8번에서 다시
+- 에이전트 표기(행별)
+  - 1, 2, 4행: Positron Assistant (Claude Sonnet 4.6), 대화 로그
+  - 3행: DataBot (모델 미기재), Methods qmd 2026-03-21
+- 확인 필요
+  - 레포 `CLAUDE.md`(381행)에 모형 선택 근거나 재현성 관련 규칙이 정말 없었는지. 발췌본은 일부 행만 포함
+  - 2행의 근거는 에이전트가 말한 "AGENTS.md 규칙". `CLAUDE.md`의 `## 생성 파일 저장 공간`과 같은 내용인지(앞 장과 같은 항목)
+  - 선택 행 **[여기에]**: 비우면 행 삭제
+- 출처
+  - `06-contract-mets-definition.md`(`memory/talk-scenes-from-repo.md` 10행 인용)
+  - `06-script-audit-questions.md`(add-analysis msg[3])
+  - `07-user-cancels-tool-call.md`(finalize msg[12–15])
+  - `08-probit-choice-reason.md`(`05_statistical_analysis_methods.qmd` 96–112행)
+  - `07-knit-failure-three-causes.md`(finalize msg[21])
+:::
+
+## 결정은 대화가 아니라 memory/ 파일에 남는다 {.grey}
+
+[4. 환경 + CLAUDE.md]{.eyebrow}
+
+::: {.cards}
+
+::: {.box}
+
+[사례 레포: 2026-05-09 session-summary §7]{.h3}
+
+```text
+1. **표, 그림 미포함**: 사용자 명시 …
+2. **em-dash 지양**: 사용자 명시 …
+3. **저자 문체 유지**: 사용자 명시 …
+4. **압축 우선**: Abstract, Limitations 모두 길이 압축 요청 두 차례
+```
+
+:::
+
+::: {.box}
+
+[다른 프로젝트: session-memory 스킬 규칙]{.h3}
+
+```text
+- **파일당 사실 1건.**
+- 상대 날짜("어제", "다음 주")는 절대 날짜(YYYY-MM-DD)로 변환해 기록.
+- 이미 repo가 기록하는 내용(코드 구조, CLAUDE.md 내용, 파일 목록)은 저장하지 않는다.
+```
+
+:::
+
+:::
+
+[출처: airforce-fatty-liver memory/agent_bot/2026-05-09/session-summary.md §7, regression-lecture-note .claude/skills/session-memory/SKILL.md]{.src}
+
+::: {.notes}
+- 시간: 0.75분
+- 메시지: 계약서는 고정, 세션의 결정과 교훈은 memory 파일로 누적
+- 말할 내용
+  - 왼쪽: 사례 레포 2026-05-09 요약 §7 "주요 의사결정 / 사용자 피드백". 사용자가 요구한 문체 규칙 4건
+  - 2026-08-16 요약에는 교훈이 남음: "교훈: knitr `error = TRUE` 문서는 exit code만으로 성공을 판단하면 안 됨." (9번)
+  - 오른쪽: 다른 프로젝트(회귀분석 강의 노트)에서 쓰는 기억 스킬의 규칙. 트리거는 "기억해", "메모리 저장", "세션 정리"
+  - 다음 세션의 에이전트: 대화가 아니라 이 파일을 읽고 이어감
+  - 이 발표 프로젝트의 `memory/`도 같은 규칙(파일당 사실 1건, `memory/MEMORY.md` 색인)
+- 시간 부족 시
+  - 이 슬라이드를 앞의 CLAUDE.md 여섯 블록 장 노트로 합침(아웃라인 "넘칠 때 줄일 순서" 1)
+- 출처
+  - `08-unweighted-decision.md`(session-summary 2026-05-09 §7, 72–78행)
+  - `setup-skill-session-memory.md`(원본 37행, 마스킹 치환 0건)
+  - `09-render-success-missing-figure.md`(session-summary 2026-08-16 §5-3)
+  - 이 프로젝트 `CLAUDE.md` 오케스트레이션 규칙 6
+:::

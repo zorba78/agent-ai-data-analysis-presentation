@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300" width="1440" height="300" font-family="'Noto Sans KR','Malgun Gothic',sans-serif">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B5FA5"/><stop offset="1" stop-color="#38A0F0"/></linearGradient>
+    <linearGradient id="gNavy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14213D"/><stop offset="1" stop-color="#34507C"/></linearGradient>
+    <linearGradient id="gCard" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F3F6FA"/></linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#14213D" flood-opacity="0.14"/></filter>
+    <marker id="mB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0B5FA5"/></marker>
+    <clipPath id="c0"><rect x="20" y="20" width="640" height="260" rx="22"/></clipPath>
+    <clipPath id="c1"><rect x="780" y="20" width="640" height="260" rx="22"/></clipPath>
+  </defs>
+
+  <!-- CLI -->
+  <g filter="url(#sh)"><rect x="20" y="20" width="640" height="260" rx="22" fill="url(#gCard)" stroke="#E3E8EF" stroke-width="1.5"/></g>
+  <g clip-path="url(#c0)"><rect x="20" y="20" width="640" height="60" fill="url(#gNavy)"/></g>
+  <g transform="translate(44,36)" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="36" height="28" rx="5"/><path d="M8,9 l7,5 l-7,5 M19,19 h10"/></g>
+  <text x="96" y="58" font-size="23" font-weight="700" fill="#FFFFFF">CLI: 터미널에서 실행</text>
+  <text x="640" y="58" font-size="18" fill="#BFD8F0" text-anchor="end">분석 작업의 기본</text>
+  <rect x="44" y="100" width="592" height="64" rx="10" fill="#14213D"/>
+  <text x="62" y="126" font-size="16" fill="#8FA3BF" font-family="Consolas,'JetBrains Mono',monospace">PS&gt; irm https://claude.ai/install.ps1 | iex</text>
+  <text x="62" y="152" font-size="16" fill="#8FA3BF" font-family="Consolas,'JetBrains Mono',monospace">$ curl -fsSL https://claude.ai/install.sh | bash</text>
+  <text x="44" y="200" font-size="19" fill="#4A5568">Windows PowerShell / macOS, Linux. 자동 업데이트</text>
+  <rect x="44" y="216" width="592" height="40" rx="10" fill="#DCEAF7"/>
+  <text x="62" y="242" font-size="16" fill="#0B5FA5" font-family="Consolas,'JetBrains Mono',monospace">PS&gt; cd &lt;프로젝트 폴더&gt;  →  PS&gt; claude  →  브라우저 로그인</text>
+
+  <!-- arrow between -->
+  <path d="M676,150 L764,150" stroke="#0B5FA5" stroke-width="4" stroke-linecap="round" marker-end="url(#mB)"/>
+  <text x="720" y="132" font-size="16" fill="#0B5FA5" text-anchor="middle">같은 엔진</text>
+
+  <!-- Extension -->
+  <g filter="url(#sh)"><rect x="780" y="20" width="640" height="260" rx="22" fill="url(#gCard)" stroke="#0B5FA5" stroke-width="2"/></g>
+  <g clip-path="url(#c1)"><rect x="780" y="20" width="640" height="60" fill="url(#gBlue)"/></g>
+  <g transform="translate(804,34)" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18,2 l4,12 l12,4 l-12,4 l-4,12 l-4,-12 l-12,-4 l12,-4 z"/></g>
+  <text x="856" y="58" font-size="23" font-weight="700" fill="#FFFFFF">확장: Positron 안의 패널</text>
+  <text x="1400" y="58" font-size="18" fill="#DCEAF7" text-anchor="end">VS Code 계열 공통</text>
+  <text x="804" y="122" font-size="20" font-weight="700" fill="#14213D">Extensions 창(Ctrl+Shift+X)에서 "Claude Code" 검색, 설치</text>
+  <text x="804" y="158" font-size="19" fill="#4A5568">확장 ID anthropic.claude-code, Open VSX 레지스트리</text>
+  <text x="804" y="192" font-size="19" fill="#4A5568">열기: 에디터 오른쪽 위 ✻ 아이콘, 또는 Ctrl+Shift+P → "Claude Code"</text>
+  <rect x="804" y="214" width="592" height="42" rx="10" fill="#DCEAF7"/>
+  <text x="822" y="241" font-size="17" fill="#0B5FA5">패널은 자체 CLI 내장. 터미널에서 claude를 쓰려면 CLI도 설치</text>
+</svg>

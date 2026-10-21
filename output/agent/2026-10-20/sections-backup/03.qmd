@@ -1,0 +1,139 @@
+## 3. 질문에서 재현까지 여섯 단계, 단계마다 연구자가 확인하는 지점이 있다
+
+<p class="eyebrow">3. 파이프라인 한 장</p>
+
+<div class="pipeline"><span class="all">질문</span><span class="all">데이터 이해</span><span class="all">분석</span><span class="all">검증</span><span class="all">논문</span><span class="all">재현</span></div>
+
+<div class="cards">
+
+<div>
+
+### 질문
+
+5번, 질문의 근거
+
+</div>
+
+<div>
+
+### 데이터 이해
+
+6번, 정의, 코드북, 설계안
+
+</div>
+
+<div>
+
+### 분석
+
+7, 8번, 모형, 척도, 가중치
+
+</div>
+
+<div>
+
+### 검증
+
+9번, 같은 데이터로 재계산
+
+</div>
+
+<div>
+
+### 논문
+
+10, 11번, 표, 그림, 원고 숫자의 출처
+
+</div>
+
+<div>
+
+### 재현
+
+7, 9, 10번, knit 자급자족, 재계산, 내보내기
+
+</div>
+
+</div>
+
+| 2026-03-10 | 03-17 | 03-19 | 03-21 | 05-09 | 08-14–16 |
+|---|---|---|---|---|---|
+| 기존 스크립트 감사 | probit 척도 | RQ4 회귀, knit | 해석 문서, Methods 초안 | 원고 개정 | 리뷰어 대응, `verify-numbers.R` |
+
+<p class="src">출처: 사례 레포 대화 로그, memory, qmd, code의 작성 날짜(발췌 6건, 노트 참조)</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 발표의 지도. 2막의 섹션이 각 단계에 대응
+- 말할 내용
+  - 오늘 보여줄 장면을 단계와 날짜에 올린 그림
+  - 3월 분석, 5월 원고, 8월 리뷰어 대응
+  - 단계와 섹션: 질문 5, 데이터 이해 6, 분석 7, 8, 검증 9, 논문 10, 11
+  - 재현은 따로 한 섹션이 아니라 세 곳: 7번 knit 자급자족, 9번 재계산, 10번 내보내기
+- 확인 필요
+  - 단계명이 발표자의 실제 워크플로와 다르면 교체: **[여기에: 사용자 단계명]**
+- 출처
+  - 진행바 6단계: `.claude/skills/revealjs-deck/SKILL.md`
+  - 2026-03-10: `06-script-audit-questions.md`(add-analysis msg[2–3])
+  - 2026-03-17: `08-probit-logit-probability-scale.md`(probit-logit-prob msg[2–9])
+  - 2026-03-19: `06-design-proposal-choice.md`, `07-knit-failure-three-causes.md`(finalize msg[6–8], msg[18–21])
+  - 2026-03-21: `07-factor-prevalence-zero.md`(finalize msg[26–27]), `08-probit-choice-reason.md`(Methods qmd `date`)
+  - 2026-05-09: `08-unweighted-decision.md`(session-summary 2026-05-09)
+  - 2026-08-14–16: `09-verify-numbers-script.md`(reviewer2-response-plan §D, `verify-numbers.R`)
+:::
+
+## 모든 단계는 같은 세 칸으로 본다: 프롬프트, 에이전트가 한 일, 연구자가 확인한 것 {.grey}
+
+<p class="eyebrow">3. 파이프라인 한 장</p>
+
+<div class="stage3">
+
+<div>
+
+<p class="label">프롬프트</p>
+
+- 연구자가 친 원문 그대로, 오타 포함
+- 원문이 없는 memory, qmd 장면: "맥락(프롬프트 원문 없음)"
+
+</div>
+
+<div>
+
+<p class="label">에이전트가 한 일</p>
+
+- 도구 호출, 출력, 에이전트의 문장
+- 오류 장면: 로그 문장 그대로
+
+</div>
+
+<div class="human">
+
+<p class="label">연구자가 확인한 것</p>
+
+- 고른 것, 거부한 것, 바로잡은 것
+- 데이터: 구조와 집계만
+
+</div>
+
+</div>
+
+- 대화 로그(json) 장면: **Positron Assistant (Claude Sonnet 4.6)**
+- memory, qmd 장면: **DataBot (모델 미기재)**
+
+<p class="src">출처: 사례 레포 대화 로그의 모델 기록, 05_statistical_analysis_methods.qmd 저자란, CLAUDE.md 화면 노출 규칙, 행동 규칙 3</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 장면을 읽는 형식과 두 에이전트 표기를 먼저 고정
+- 말할 내용
+  - 2막의 단계 슬라이드는 모두 같은 세 칸
+  - 파랑 칸은 에이전트, 주황 칸은 연구자
+  - 대화 로그(json): 모델명 기록 있음 → Positron Assistant (Claude Sonnet 4.6)
+  - memory, qmd 산출물: 저자란이 "Databot (Agent Analysis)"뿐, 모델 미기재 → DataBot (모델 미기재)
+  - 둘을 같은 모델로 가정하지 않고 표기를 나눔
+  - 프롬프트 원문이 없는 장면은 첫 칸을 "맥락"으로 표기
+- 출처
+  - `memory/talk-scenes-from-repo.md` 3행, 37행
+  - `08-probit-choice-reason.md`(qmd 저자란 "Databot (Agent Analysis)")
+  - `CLAUDE.md` 화면 노출 규칙, 행동 규칙 3
+:::

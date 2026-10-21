@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 560" width="1440" height="560" font-family="'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="aL" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#BFD8F0"/></marker>
+    <marker id="aO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#F59E0B"/></marker>
+  </defs>
+
+  <!-- PC boundary -->
+  <rect x="10" y="30" width="1060" height="520" rx="28" fill="none" stroke="#7FB3E6" stroke-width="2" stroke-dasharray="12 8"/>
+  <text x="40" y="78" font-size="24" fill="#7FB3E6">내 PC, Positron 창 하나</text>
+
+  <!-- edges (drawn first) -->
+  <line x1="185" y1="232" x2="185" y2="378" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="200" y="312" font-size="20" fill="#BFD8F0">로드</text>
+  <line x1="410" y1="272" x2="326" y2="208" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="300" y="272" font-size="20" fill="#BFD8F0">실행</text>
+  <line x1="660" y1="272" x2="744" y2="208" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="690" y="285" font-size="20" fill="#BFD8F0">읽기, 쓰기</text>
+  <line x1="746" y1="398" x2="662" y2="336" stroke="#F59E0B" stroke-width="3" marker-end="url(#aO)"/>
+  <text x="688" y="410" font-size="20" fill="#F59E0B">지침</text>
+  <line x1="668" y1="300" x2="1124" y2="300" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="935" y="288" font-size="20" fill="#BFD8F0" text-anchor="middle">검색 질의만</text>
+
+  <!-- nodes -->
+  <rect x="50" y="120" width="270" height="110" rx="16" fill="#F7F7F2"/>
+  <text x="72" y="166" font-size="28" font-weight="700" fill="#14213D">R 세션</text>
+  <text x="72" y="204" font-size="20" fill="#4A5568">분석 실행, 결과 객체</text>
+
+  <rect x="50" y="380" width="270" height="110" rx="16" fill="#F7F7F2"/>
+  <text x="72" y="426" font-size="28" font-weight="700" fill="#14213D">데이터 파일</text>
+  <text x="72" y="464" font-size="20" fill="#4A5568">원자료는 PC 안에</text>
+
+  <rect x="405" y="245" width="260" height="110" rx="18" fill="#0B5FA5" stroke="#7FB3E6" stroke-width="2"/>
+  <text x="535" y="293" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Claude Code</text>
+  <text x="535" y="330" font-size="20" fill="#DCEAF7" text-anchor="middle">읽기, 쓰기, 실행</text>
+
+  <rect x="750" y="120" width="280" height="110" rx="16" fill="#F7F7F2"/>
+  <text x="772" y="166" font-size="28" font-weight="700" fill="#14213D">프로젝트 파일</text>
+  <text x="772" y="204" font-size="20" fill="#4A5568">코드, 표, 원고</text>
+
+  <rect x="750" y="380" width="280" height="110" rx="16" fill="#FFF7ED" stroke="#F0C48A" stroke-width="2"/>
+  <text x="772" y="426" font-size="28" font-weight="700" fill="#14213D">CLAUDE.md</text>
+  <text x="772" y="464" font-size="20" fill="#4A5568">규칙, 지난 결정(memory)</text>
+
+  <rect x="1128" y="222" width="292" height="156" rx="18" fill="#1C2B4A" stroke="#7FB3E6" stroke-width="2"/>
+  <text x="1150" y="268" font-size="26" font-weight="700" fill="#F7F7F2">MCP 문헌 검색</text>
+  <text x="1150" y="308" font-size="20" fill="#BFD8F0">PubMed, bioRxiv</text>
+  <text x="1150" y="340" font-size="20" fill="#BFD8F0">Scholar Gateway</text>
+</svg>

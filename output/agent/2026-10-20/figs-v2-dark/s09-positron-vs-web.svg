@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 520" width="1440" height="520" font-family="'Noto Sans KR','Malgun Gothic',sans-serif">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0B5FA5"/><stop offset="1" stop-color="#2E8FE0"/></linearGradient>
+    <linearGradient id="gGrey" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5B6572"/><stop offset="1" stop-color="#8A94A1"/></linearGradient>
+    <linearGradient id="gNavy" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1C2B4A"/><stop offset="1" stop-color="#14213D"/></linearGradient>
+    <filter id="sh" x="-5%" y="-10%" width="110%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#14213D" flood-opacity="0.12"/></filter>
+  </defs>
+
+  <!-- headers -->
+  <g filter="url(#sh)">
+    <rect x="250" y="10" width="580" height="70" rx="18" fill="url(#gBlue)"/>
+    <rect x="850" y="10" width="580" height="70" rx="18" fill="url(#gGrey)"/>
+  </g>
+  <g transform="translate(286,30)" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="34" height="28" rx="5"/><path d="M0,9 h34 M12,9 v19"/></g>
+  <text x="340" y="55" font-size="26" font-weight="700" fill="#FFFFFF">Positron + Claude Code</text>
+  <g transform="translate(886,30)" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9,22 a8,8 0 0 1 0,-16 a11,11 0 0 1 21,-2 a8,8 0 0 1 1,18 z"/></g>
+  <text x="940" y="55" font-size="26" font-weight="700" fill="#FFFFFF">웹 Code 단독, 클라우드 VM</text>
+
+  <!-- row 1 -->
+  <rect x="20" y="100" width="210" height="88" rx="16" fill="url(#gNavy)"/>
+  <text x="125" y="152" font-size="24" font-weight="700" fill="#F7F7F2" text-anchor="middle">R 실행</text>
+  <g filter="url(#sh)"><rect x="250" y="100" width="580" height="88" rx="16" fill="#FFFFFF"/><rect x="850" y="100" width="580" height="88" rx="16" fill="#FFFFFF"/></g>
+  <rect x="250" y="100" width="8" height="88" rx="4" fill="#0B5FA5"/><rect x="850" y="100" width="8" height="88" rx="4" fill="#8A94A1"/>
+  <text x="280" y="138" font-size="21" font-weight="500" fill="#14213D">내가 보고 있는 R 세션에서 실행</text>
+  <text x="280" y="170" font-size="20" fill="#4A5568">만든 객체가 Variables 창에 바로 생김</text>
+  <text x="880" y="138" font-size="21" font-weight="500" fill="#14213D">별도 프로세스(Rscript)로 실행</text>
+  <text x="880" y="170" font-size="20" fill="#4A5568">매번 데이터 다시 읽기, 끝나면 객체 소멸</text>
+
+  <!-- row 2 -->
+  <rect x="20" y="204" width="210" height="88" rx="16" fill="url(#gNavy)"/>
+  <text x="125" y="256" font-size="24" font-weight="700" fill="#F7F7F2" text-anchor="middle">결과 확인</text>
+  <g filter="url(#sh)"><rect x="250" y="204" width="580" height="88" rx="16" fill="#FFFFFF"/><rect x="850" y="204" width="580" height="88" rx="16" fill="#FFFFFF"/></g>
+  <rect x="250" y="204" width="8" height="88" rx="4" fill="#0B5FA5"/><rect x="850" y="204" width="8" height="88" rx="4" fill="#8A94A1"/>
+  <text x="280" y="242" font-size="21" font-weight="500" fill="#14213D">Plots, Data Explorer, 콘솔에서 직접</text>
+  <text x="280" y="274" font-size="20" fill="#4A5568">모형 객체를 내가 열어 봄</text>
+  <text x="880" y="242" font-size="21" font-weight="500" fill="#14213D">채팅에 쓰인 요약 텍스트</text>
+  <text x="880" y="274" font-size="20" fill="#4A5568">숫자를 읽고 믿을지 판단</text>
+
+  <!-- row 3 -->
+  <rect x="20" y="308" width="210" height="88" rx="16" fill="url(#gNavy)"/>
+  <text x="125" y="360" font-size="24" font-weight="700" fill="#F7F7F2" text-anchor="middle">기록</text>
+  <g filter="url(#sh)"><rect x="250" y="308" width="580" height="88" rx="16" fill="#FFFFFF"/><rect x="850" y="308" width="580" height="88" rx="16" fill="#FFFFFF"/></g>
+  <rect x="250" y="308" width="8" height="88" rx="4" fill="#0B5FA5"/><rect x="850" y="308" width="8" height="88" rx="4" fill="#8A94A1"/>
+  <text x="280" y="346" font-size="21" font-weight="500" fill="#14213D">실행한 코드가 내 콘솔 기록에 남음</text>
+  <text x="280" y="378" font-size="20" fill="#4A5568">중간에 끊고 이어 가기 가능</text>
+  <text x="880" y="346" font-size="21" font-weight="500" fill="#14213D">대화 기록 안에만</text>
+  <text x="880" y="378" font-size="20" fill="#4A5568">끝날 때까지 기다림</text>
+
+  <!-- row 4 -->
+  <rect x="20" y="412" width="210" height="88" rx="16" fill="url(#gNavy)"/>
+  <text x="125" y="464" font-size="24" font-weight="700" fill="#F7F7F2" text-anchor="middle">고치는 방식</text>
+  <g filter="url(#sh)"><rect x="250" y="412" width="580" height="88" rx="16" fill="#FFFFFF"/><rect x="850" y="412" width="580" height="88" rx="16" fill="#FFFFFF"/></g>
+  <rect x="250" y="412" width="8" height="88" rx="4" fill="#0B5FA5"/><rect x="850" y="412" width="8" height="88" rx="4" fill="#8A94A1"/>
+  <text x="280" y="450" font-size="21" font-weight="500" fill="#14213D">에디터에서 직접 수정, 한 줄씩 재실행</text>
+  <text x="280" y="482" font-size="20" fill="#4A5568">Ctrl+Enter, 에이전트 코드도 내 코드</text>
+  <text x="880" y="450" font-size="21" font-weight="500" fill="#14213D">고칠 내용을 다시 말로 요청</text>
+  <text x="880" y="482" font-size="20" fill="#4A5568">한 번 더 왕복</text>
+</svg>

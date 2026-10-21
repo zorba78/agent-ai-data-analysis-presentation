@@ -1,0 +1,242 @@
+## 발표자 {.grey}
+
+- 구본초, 한국한의학연구원
+- **[여기에: 역할 한 줄]**
+- 오늘의 장면: 사례 레포 하나의 대화 로그, memory, qmd, code
+- 화면의 데이터: 변수명, 자료형, 단위와 집계값만
+
+<p class="src">출처: index.qmd YAML author, CLAUDE.md 화면 노출 규칙 1–3</p>
+
+::: {.notes}
+- 시간: 0.25분(표지는 YAML이 자동 생성, 아웃라인 S01 시간을 이 슬라이드에 배정)
+- 말할 내용
+  - 자기소개: **[여기에: 소속, 역할 한 줄]**
+  - 오늘 장면의 출처: 한 레포의 실제 대화 로그, memory, 코드
+  - 데이터 노출 원칙 먼저 고지: 구조와 집계만, 행 단위 출력 없음, 5명 미만 셀은 "5 미만"
+- 출처
+  - `slides/index.qmd` YAML `author`
+  - `CLAUDE.md` 화면 노출 규칙 1–3
+  - `slides/outline.md` S01 노트 초안
+:::
+
+## 1. 분석 판단보다 그 판단을 코드, 표, 원고로 옮기는 일에 시간이 더 든다
+
+<p class="eyebrow">1. 병목</p>
+
+<div class="pipeline"><span class="all">질문</span><span class="all">데이터 이해</span><span class="all">분석</span><span class="all">검증</span><span class="all">논문</span><span class="all">재현</span></div>
+
+<div class="cards">
+
+<div class="human">
+
+### 설계
+
+<span class="tag-human">판단</span>
+
+**[여기에: 체감 비율]**
+
+</div>
+
+<div>
+
+### 코드
+
+<span class="tag-agent">옮기는 일</span>
+
+**[여기에: 체감 비율]**
+
+</div>
+
+<div>
+
+### 표, 그림
+
+<span class="tag-agent">옮기는 일</span>
+
+**[여기에: 체감 비율]**
+
+</div>
+
+<div>
+
+### 원고
+
+<span class="tag-agent">옮기는 일</span>
+
+**[여기에: 체감 비율]**
+
+</div>
+
+<div>
+
+### 리뷰어 대응
+
+<span class="tag-human">판단</span> <span class="tag-agent">옮기는 일</span>
+
+**[여기에: 체감 비율]**
+
+</div>
+
+</div>
+
+- 논문 한 편 기준, 단계별 체감 시간
+- **[여기에: 시간이 가장 많이 샌 지점 1–2줄, 숫자는 체감치로 표기]**
+
+<p class="src">출처: 발표자 경험(발췌 없음)</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 메시지: 연구자의 병목은 판단이 아니라 판단을 옮기는 반복 노동
+- 말할 내용
+  - 발췌본이 없는 자리. 발표자 경험 1–2개로 채움
+  - 논문 한 편을 낼 때 시간이 샌 지점
+  - 숫자를 넣으면 체감치라고 명시
+- 확인 필요
+  - 제목은 아웃라인 후보. 발표자 경험에 맞게 확정
+  - 단계명(설계 / 코드 / 표, 그림 / 원고 / 리뷰어 대응)은 아웃라인 예시. 실제 경험에 맞게 교체 가능
+  - 카드별 체감 비율 5곳, 아래 경험 한 줄
+- 출처: 발표자 경험(발췌 없음), `slides/outline.md` S02
+:::
+
+## 같은 숫자를 네 번 옮기면 틀릴 기회도 네 번 생긴다 {.grey}
+
+<p class="eyebrow">1. 병목</p>
+
+<div class="cards">
+
+<div>
+
+### 옮김 1
+
+R 출력 → 표
+
+</div>
+
+<div>
+
+### 옮김 2
+
+표 → 원고 산문
+
+</div>
+
+<div>
+
+### 옮김 3
+
+원고 → 리뷰어 응답서
+
+</div>
+
+<div>
+
+### 옮김 4
+
+응답서 → 개정 원고
+
+</div>
+
+</div>
+
+- **[여기에: 수치를 옮기다 생긴 실제 사례 1건. 논문명, 수치 없이]**
+- 다시 나오는 곳: 9번 `verify-numbers.R`(옮김 4 직전 재계산), 11번 산문 숫자의 하드코딩
+
+<p class="src">출처: 발표자 경험(발췌 없음), 예고 대상: verify-numbers.R 헤더(2026-08-16), 11번 섹션</p>
+
+::: {.notes}
+- 시간: 0.75분
+- 메시지: 수치가 문서 사이를 옮겨 다닐 때마다 오류가 들어올 자리 발생
+- 말할 내용
+  - 발표자 경험 1건: **[여기에: 논문명, 수치 없이]**
+  - 사슬의 마지막: 응답서가 약속한 숫자를 원고에 넣기 전 재계산 → 9번 `verify-numbers.R`
+  - 근거 문구(스크립트 헤더): "Verify every number that the response letter promises to insert into the manuscript, before it is written into …"
+  - 산문 숫자의 하드코딩 문제 → 11번
+- 확인 필요
+  - 제목은 아웃라인 후보. 발표자 경험에 맞게 확정
+  - 아웃라인의 4단(R 출력 → 표 → 원고 산문 → 리뷰어 응답서)은 옮김이 3번. 제목의 "네 번"에 맞추려고 "응답서 → 개정 원고"를 넷째 옮김으로 추가(근거: 위 스크립트 헤더). 아웃라인대로 3단 화살표로 되돌릴지 결정 필요
+- 출처
+  - 발표자 경험(발췌 없음)
+  - `09-verify-numbers-script.md`(`code/agent_bot/2026-08-16/verify-numbers.R` 1–14행)
+  - `11-methods-draft-and-number-sourcing.md`(예고만)
+:::
+
+## 사례는 출판된 두 논문이고, 장면은 모두 실제 작업 로그에서 왔다
+
+<p class="eyebrow">1. 병목</p>
+
+<div class="cards">
+
+<div>
+
+### 논문 1, 2025
+
+Song DH, Ku B. *Aerosp Med Hum Perform*
+
+- 공군 1,044명
+- MAFLD 유병과 위험인자
+
+</div>
+
+<div>
+
+### 논문 2, 2026
+
+Ku B, Song DH. *BMJ Mil Health*
+
+- 조종사 2,604 vs KNHANES 1,093
+- 24–61세 남성, MetS 구성요소
+
+</div>
+
+<div>
+
+### 장면의 출처
+
+사례 레포 하나
+
+- 대화 로그 4개, memory, qmd, code
+- 2026년 3–8월
+
+</div>
+
+</div>
+
+<p class="src">출처: doi:10.3357/AMHP.6646.2025, doi:10.1136/military-2026-003444, 사례 레포 airforce-fatty-liver</p>
+
+::: {.notes}
+- 시간: 0.5분
+- 메시지: 연출이 아니라 출판까지 간 실제 작업의 로그
+- 말할 내용
+  - 두 논문 모두 출판 완료
+  - 장면의 출처: 대화 로그 4개(`conversation-finalize`, `conversation-add-analysis`, `conversation-probit-logit-prob`, 레포 루트의 `conversation-export`)와 memory, qmd, 코드
+  - 기간: 2026-03 분석, 2026-05 원고 개정, 2026-08 리뷰어 대응
+  - 오류 장면도 로그 문장 그대로
+- 질문 대비
+  - 논문 1 구성: 조종사 667, 비조종사 377, 40세 이상, 2020–2022(`CLAUDE.md` 29행)
+- 출처
+  - `CLAUDE.md` 사례 논문 28–31행: doi:10.3357/AMHP.6646.2025, doi:10.1136/military-2026-003444
+  - `memory/talk-scenes-from-repo.md` 3행(대화 로그의 에이전트), 36행(`conversation-export.json`은 레포 루트)
+  - 기간: 발췌본 날짜 2026-03-10(`06-script-audit-questions.md`)부터 2026-08-16(`09-verify-numbers-script.md`)까지
+:::
+
+## 판단은 연구자가, 그 판단을 끝까지 밀고 가는 반복 노동은 에이전트가 {.dark}
+
+<p class="eyebrow">1. 병목</p>
+
+- 분석 설계 판단: 연구자
+- 그 판단을 코드, 검증, 문서로 끝까지 밀고 가는 반복 노동: 에이전트
+- 에이전트가 틀린 장면: 로그 문장 그대로, 각색 없음
+- 이 주장이 지켜지지 않은 지점: 13번에서 먼저 공개
+
+<p class="src">출처: CLAUDE.md 목적 3, 행동 규칙 3</p>
+
+::: {.notes}
+- 시간: 0.5분
+- 메시지: 발표 전체의 주장 한 문장
+- 말할 내용
+  - 오늘의 주장은 하나
+  - 분석 설계 판단은 연구자, 그 판단을 코드, 검증, 문서로 끝까지 밀고 가는 반복 노동은 에이전트
+  - 에이전트가 틀린 장면도 각색 없이 공개
+  - 이 사례에서 주장이 완전히 지켜지지 않은 지점은 13번에서 발표자가 먼저 꺼냄
+- 출처: `CLAUDE.md` 목적 3, 행동 규칙 3
+:::

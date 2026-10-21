@@ -1,0 +1,152 @@
+## 부록 A1 표본크기 산출 하나를 여섯 스킬로 쪼갠다: description에 트리거 문구를 넣는다
+
+[부록, 질문 대비]{.eyebrow}
+
+```yaml
+# ref-extract
+description: … "IB에서 … 찾아", "프로토콜 어디에", "SAP의 MMRM 모형", "새 참고문헌 추가" 요청에 사용.
+# <indication>-benchmark
+description: … "다른 <indication> 3상은 몇 명", … 요청에 사용.
+# ss-continuous
+description: … "표본크기 계산", "군당 몇 명", "d=0.35로 다시", "2:1 배정이면" 같은 요청에 사용.
+# ss-mmrm-sim
+description: … "MMRM 기준 검정력", "시뮬레이션으로 확인", "탈락이 중간에 생기면" 요청에 사용.
+# ss-sensitivity
+description: … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 90%면" 요청에 사용.
+# ss-report
+description: … "보고서로 정리", "프로토콜 문구", "IND용 문서", "docx로" 요청에 사용.
+```
+
+[출처: 3상 표본크기 프로젝트 .claude/skills/*/SKILL.md frontmatter(마스킹 발췌: &lt;project-name&gt;, &lt;indication&gt;)]{.src}
+
+::: {.notes}
+- 시간: 미배정(질문이 나왔을 때만)
+- 말할 내용
+  - 다른 프로젝트(3상 표본크기 산출). 과제명, 적응증 마스킹(`<project-name>`, `<indication>`)
+  - 한 과업을 문헌 추출 / 벤치마크 / 공식 계산 / 시뮬레이션 / 민감도 / 보고서로 분리
+  - description에 사용자가 실제로 쓰는 말(트리거 문구)을 넣어 스킬 선택이 말에서 바로 일어나게 함
+  - 각 description 앞부분(무엇을 하는지)은 화면에서 생략, 트리거 문구만 표시
+- 메모: 벤치마크 스킬의 트리거 중 1차 변수명이 든 문구는 적응증 추정 가능성이 있어 화면에서 생략
+- 출처: `setup-skills-ss-bundle.md`
+:::
+
+## 부록 A2 임상 DB에 에이전트를 붙일 때의 규칙 일곱 개 {.grey}
+
+[부록, 질문 대비]{.eyebrow}
+
+- 1, 7 **읽기만 한다.** 세션 시작 시 `SET SESSION TRANSACTION READ ONLY`, 관리 권한 계정이라 DDL, DML 금지
+- 2 **집계값만 꺼낸다.** 행 단위 자료를 대화, `drafts/`, `output/`에 옮기지 않음
+- 3 **식별 가능 정보는 조회 결과에 넣지 않는다.** 5명 미만 칸은 "5 미만"
+- 4 **접속 정보를 옮겨 적지 않는다.** `<env-file>`을 `Read`로 열지 않음, 스크립트가 실행 중 직접 읽음
+- 5 **범위를 넓히지 않는다.** 같은 계정에 보이는 다른 데이터베이스는 조회하지 않음
+- 6 **무거운 조회는 피한다.** 모든 조회에 `/*+ MAX_EXECUTION_TIME(15000) */` 힌트
+
+[출처: 연차보고서 프로젝트 .claude/skills/&lt;db&gt;-db/SKILL.md "지킬 것"(마스킹 발췌)]{.src}
+
+::: {.notes}
+- 시간: 미배정
+- 말할 내용
+  - 원본: 연차보고서 프로젝트의 `<db>-db` 스킬 "지킬 것" 7개. 화면은 1번과 7번을 한 줄로 합침
+  - DB명, 테이블명, 열 이름, 접속 정보 파일 경로는 마스킹. 서버 정보 표와 접속 예시는 발췌하지 않음
+  - 본 발표 12번 ②에서 1, 2, 4번 사용
+  - 4번: 계정과 비밀번호는 접속 정보 파일에만. 문서, 초안, 메모리, 명령줄에 값 기재 금지
+  - 6번: 큰 테이블은 기본 키 조건 없이 집계하지 않음
+- 출처: `setup-skill-db-access-rules.md`
+:::
+
+## 부록 A3 점검 스킬은 지적만 하고 고치지 않는다
+
+[부록, 질문 대비]{.eyebrow}
+
+```markdown
+---
+name: lecture-review
+description: 완성된 강의자료(qmd, 슬라이드, R 예제)의 품질 점검. 검토, 리뷰, 점검, 확인해줘, review 요청 시 사용.
+argument-hint: <점검할 파일 경로>
+---
+대상 파일을 읽고 아래 체크리스트를 **전부** 점검한 뒤, 결과를 표로 보고한다.
+지적만 하고 수정은 하지 않는다. 수정은 사용자가 요청할 때 수행한다.
+- [ ] 유도 단계를 직접 따라가며 검산했을 때 오류가 없는가? (검산 과정을 보고에 포함)
+- [ ] 수치는 계산 과정과 함께 제시되는가?
+- [ ] qmd는 `quarto render`가 통과하는가?
+| # | 항목 | 판정 (Pass/Fail/N.A.) | 근거 (파일:줄) |
+```
+
+[출처: 회귀분석 강의 노트 프로젝트 .claude/skills/lecture-review/SKILL.md(원본 44행 중 발췌)]{.src}
+
+::: {.notes}
+- 시간: 미배정
+- 말할 내용
+  - 다른 프로젝트(회귀분석 강의 노트)의 점검 스킬
+  - "검토해줘" 같은 말이 트리거 → 5개 영역 체크리스트 전부 → 지적만, 수정은 사용자 요청 시
+  - 쓰는 쪽과 검토하는 쪽의 분리(11번)를 스킬 하나로 구현한 형태
+  - 보고 형식에 근거(파일:줄) 열 → 지적마다 위치 추적 가능
+  - 원본 체크리스트 15개 중 3개만 표시
+- 출처: `setup-skill-lecture-review.md`
+:::
+
+## 부록 A4 같은 연령 상호작용, 세 척도, 세 결론: probit 링크 / logit 재격자 OR ratio / 확률 {.grey}
+
+[부록, 질문 대비]{.eyebrow}
+
+| Age contrast (vs ≤ 29) | Probit link: estimate (p) | Logit regrid: OR ratio (p) | Probability: estimate (p) |
+|---|---|---|---|
+| 30–39 | 0.1779 (0.328) | 1.226 (0.5539) | 0.101 (0.019) |
+| 40–49 | 0.1116 (0.543) | 1.008 (0.9810) | 0.132 (0.003) |
+| ≥ 50 | 0.0977 (0.595) | 0.948 (0.8751) | 0.157 (0.001) |
+
+: Table A4. Interaction contrasts from one probit-binomial fit, (KHANES vs Pilot HE) in each age group relative to ≤ 29, 2026-03-17 exploratory values
+
+- 모두 같은 probit 적합값. 척도를 밝히지 않은 "상호작용 유의/비유의"는 정보 없음
+
+[출처: conversation-probit-logit-prob.json msg[2–13], 2026-03-17, Positron Assistant(Claude Sonnet 4.6)]{.src}
+
+::: {.notes}
+- 시간: 미배정
+- 말할 내용
+  - 같은 모형(`glm(..., family = binomial(link = "probit"))`)의 같은 적합값을 세 척도에서 대비
+  - probit 링크: 선형 예측값 척도의 이중 대비 → 비유의(p 0.33–0.60)
+  - logit 재격자: Φ로 확률 변환 후 logit으로 다시 표현한 OR의 비(KHANES / Pilot HE) → 비유의(p 0.55–0.98)
+  - 확률: 위험차의 차이(KHANES − Pilot HE) → 유의(p 0.001–0.019). 기저 유병률이 높은 고령층일수록 같은 probit 차이가 더 큰 확률 차이로 나타남
+  - 척도 선택은 질문이 정함: 링크 척도의 효과 수정 vs 유병률 차이의 변화. 위험차 척도의 상호작용도 의미 있는 효과 수정
+  - 에이전트의 권장("probit 스케일(int_cntr)이 상호작용 검정의 올바른 기준", 확률 척도 유의성은 "비선형 변환의 수학적 산물")은 한 척도만 옳다고 본 서술. 발표자 입장과 다름
+  - 에이전트의 "non-collapsibility" 명명은 오류, 척도 의존성(13번 약점 1)
+- 질문 대비: 출판본은 "Effect modification across age groups and pooled-sample quartiles of continuous risk factors was tested using probit-binomial models with interaction terms and likelihood-ratio tests (LRTs)." → 링크 척도 검정
+- 수치: 모두 2026-03-17 탐색 단계 값(probit p 0.328 / 0.543 / 0.595, OR ratio p 0.5539 / 0.9810 / 0.8751, 확률 척도 p 0.019 / 0.003 / 0.001)
+- 확인 필요: 출판본 LRT의 p값은 발췌에 없음
+- 출처: `08-probit-logit-probability-scale.md`(probit-logit-prob msg[2–9]), `09-hand-calculation-check.md`(msg[10–13]), `08-probit-choice-reason.md`(출판본 Statistical analysis), `memory/outline-decisions-2026-10-20.md` 결정 2(a)
+:::
+
+## 부록 A5 표 값이 도출되는 과정: tbl-dyslip 청크와 footnote
+
+[부록, 질문 대비]{.eyebrow}
+
+```r
+afhe_khanes_final |>
+  group_by(GROUP, DYSLIP) |>
+  summarise(n=n(), …, .groups="drop") |>
+  group_by(GROUP) |>
+  mutate(N=sum(n), Pct=sprintf("%.1f%%",n/N*100)) |>
+  …
+  lancet_gt(
+    title    = "Table 4. Dyslipidemia Medication Prevalence and Lipid Levels by Group",
+    footnote = paste0(
+      "KHANES medication users (n = 149, 13.6%) show markedly lower CHOL and LDL. ",
+      "Pilot HE has only 18 users (0.7%). This ~20-fold imbalance explains why ",
+      "CHOL/LDL group differences disappear after medication adjustment."
+```
+
+[출처: quarto/agent_bot/2026-03-10/02-afhe-khanes-analysis-report.qmd 428–455행, DataBot(모델 미기재)]{.src}
+
+::: {.notes}
+- 시간: 미배정
+- 말할 내용
+  - 2026-03-10 보고서 qmd. 계약서 규칙 7("직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김")의 실제 모습
+  - 대화에서 찾은 원인이 결론 문장이 아니라 표를 만든 청크와 footnote로 남음
+  - 화면은 `summarise()` 안의 CHOL, LDL 요약 두 줄과 subtitle 생략
+  - "~20-fold": 13.6% / 0.7% ≈ 19.4배. 셀 크기 18명, 149명
+  - footnote의 "유의성 소실"은 2026-03-10 Model 3 기준 중간 해석. 원고 최종값: LDL Δβ 0.24 (p = 0.022), TC Δβ 0.20 (p = 0.049), 완전 보정 후에도 유의
+  - 중간 해석을 원고에 그대로 옮기지 않음
+  - 약물 비율 자체는 2026-08-16 `verify-numbers.R` (1)절이 재계산
+- 출처: `08-medication-imbalance-report.md`(02-afhe-khanes-analysis-report.qmd 428–455행), `05-urate-origin.md`(출판본 Abstract), doi:10.1136/military-2026-003444
+:::

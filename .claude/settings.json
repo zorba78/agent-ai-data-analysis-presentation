@@ -1,0 +1,15 @@
+{
+  "model": "claude-fable-5-1",
+  "effortLevel": "medium",
+  "permissions": {
+    "allow": [
+      "Bash(powershell -File scripts/run-worker.ps1 *)",
+      "PowerShell(scripts/run-worker.ps1 *)"
+    ],
+    "deny": [
+      "Edit(/references/**)",
+      "Edit(G:/Projects/airforce-fatty-liver/**)"
+
+    ]
+  }
+}

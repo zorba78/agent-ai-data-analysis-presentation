@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" width="1440" height="600" font-family="'Noto Sans KR','Malgun Gothic',sans-serif">
+  <defs>
+    <linearGradient id="gRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B42318"/><stop offset="1" stop-color="#F0665B"/></linearGradient>
+    <linearGradient id="gNavy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14213D"/><stop offset="1" stop-color="#34507C"/></linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B5FA5"/><stop offset="1" stop-color="#38A0F0"/></linearGradient>
+    <linearGradient id="gCloud" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1F4F8"/><stop offset="1" stop-color="#D5DBE4"/></linearGradient>
+    <linearGradient id="gCardTop" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#F6F8FB"/></linearGradient>
+    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="50"/></filter>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#14213D" flood-opacity="0.16"/></filter>
+    <filter id="sh2" x="-15%" y="-20%" width="130%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#14213D" flood-opacity="0.14"/></filter>
+    <filter id="glowR" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#E05B5B" flood-opacity="0.6"/></filter>
+    <marker id="mR" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#B42318"/></marker>
+    <marker id="mN" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#14213D"/></marker>
+  </defs>
+
+  <!-- ambient -->
+  <circle cx="240" cy="520" r="150" fill="#E05B5B" opacity="0.18" filter="url(#blur)"/>
+  <circle cx="720" cy="80" r="150" fill="#38A0F0" opacity="0.22" filter="url(#blur)"/>
+  <circle cx="1220" cy="520" r="150" fill="#F59E0B" opacity="0.18" filter="url(#blur)"/>
+
+  <!-- ===== panel 1: security ===== -->
+  <g filter="url(#sh)"><rect x="20" y="30" width="440" height="550" rx="32" fill="url(#gCardTop)" stroke="#FFFFFF" stroke-width="2"/></g>
+  <rect x="20" y="30" width="440" height="10" rx="5" fill="url(#gRed)"/>
+  <g filter="url(#glowR)"><circle cx="86" cy="104" r="36" fill="url(#gNavy)"/></g>
+  <g transform="translate(68,84)" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18,2 l16,6 v12 c0,10 -7,17 -16,21 c-9,-4 -16,-11 -16,-21 v-12 z"/><path d="M12,20 l4,4 l8,-9"/>
+  </g>
+  <text x="140" y="116" font-size="32" font-weight="700" fill="#14213D">보안</text>
+  <rect x="356" y="84" width="76" height="34" rx="17" fill="#FDECEA"/>
+  <text x="394" y="108" font-size="18" font-weight="700" fill="#B42318" text-anchor="middle">위험</text>
+
+  <rect x="48" y="170" width="176" height="210" rx="20" fill="#DCEAF7"/>
+  <text x="136" y="204" font-size="19" font-weight="700" fill="#0B5FA5" text-anchor="middle">기관 내부</text>
+  <g filter="url(#sh2)"><rect x="92" y="226" width="88" height="110" rx="12" fill="#FFFFFF"/></g>
+  <rect x="92" y="226" width="88" height="32" rx="12" fill="url(#gBlue)"/><rect x="92" y="244" width="88" height="14" fill="url(#gBlue)"/>
+  <text x="136" y="249" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">CSV</text>
+  <g stroke="#B9C9DC" stroke-width="4" stroke-linecap="round"><line x1="106" y1="278" x2="166" y2="278"/><line x1="106" y1="296" x2="166" y2="296"/><line x1="106" y1="314" x2="144" y2="314"/></g>
+  <line x1="248" y1="160" x2="248" y2="390" stroke="#B42318" stroke-width="3.5" stroke-dasharray="4 10" stroke-linecap="round"/>
+  <rect x="226" y="396" width="44" height="26" rx="13" fill="#B42318"/>
+  <text x="248" y="414" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">경계</text>
+  <path d="M184,282 L302,282" stroke="#B42318" stroke-width="5" stroke-linecap="round" marker-end="url(#mR)"/>
+  <g filter="url(#sh2)">
+    <circle cx="346" cy="290" r="30" fill="url(#gCloud)"/><circle cx="384" cy="266" r="38" fill="url(#gCloud)"/><circle cx="422" cy="292" r="28" fill="url(#gCloud)"/><rect x="346" y="290" width="76" height="30" fill="#DDE3EC"/>
+  </g>
+  <text x="384" y="356" font-size="19" fill="#6A7179" text-anchor="middle">외부 서버</text>
+  <text x="48" y="460" font-size="26" font-weight="700" fill="#14213D">원자료가 외부 서버로</text>
+  <text x="48" y="502" font-size="21" fill="#4A5568">IRB 승인 범위</text>
+  <text x="48" y="536" font-size="21" fill="#4A5568">군 자료 반출 규정</text>
+
+  <!-- ===== panel 2: context ===== -->
+  <g filter="url(#sh)"><rect x="500" y="30" width="440" height="550" rx="32" fill="url(#gCardTop)" stroke="#FFFFFF" stroke-width="2"/></g>
+  <rect x="500" y="30" width="440" height="10" rx="5" fill="url(#gRed)"/>
+  <g filter="url(#glowR)"><circle cx="566" cy="104" r="36" fill="url(#gNavy)"/></g>
+  <g transform="translate(548,86)" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32,18 a14,14 0 1 1 -4,-10"/><path d="M30,2 v8 h-8"/>
+  </g>
+  <text x="620" y="116" font-size="32" font-weight="700" fill="#14213D">맥락</text>
+  <rect x="836" y="84" width="76" height="34" rx="17" fill="#FDECEA"/>
+  <text x="874" y="108" font-size="18" font-weight="700" fill="#B42318" text-anchor="middle">반복</text>
+
+  <g opacity="0.35"><rect x="530" y="166" width="290" height="160" rx="16" fill="#FFFFFF" stroke="#C9D0DB" stroke-width="2"/><rect x="530" y="166" width="290" height="36" rx="16" fill="#EEF1F5"/><rect x="530" y="184" width="290" height="18" fill="#EEF1F5"/><text x="548" y="191" font-size="17" fill="#6A7179">새 대화</text></g>
+  <g opacity="0.65"><rect x="562" y="200" width="290" height="160" rx="16" fill="#FFFFFF" stroke="#C9D0DB" stroke-width="2"/><rect x="562" y="200" width="290" height="36" rx="16" fill="#EEF1F5"/><rect x="562" y="218" width="290" height="18" fill="#EEF1F5"/><text x="580" y="225" font-size="17" fill="#6A7179">새 대화</text></g>
+  <g filter="url(#sh2)"><rect x="594" y="234" width="300" height="164" rx="16" fill="#FFFFFF" stroke="#8A94A1" stroke-width="2"/></g>
+  <rect x="594" y="234" width="300" height="36" rx="16" fill="#EEF1F5"/><rect x="594" y="252" width="300" height="18" fill="#EEF1F5"/>
+  <circle cx="614" cy="252" r="5" fill="#E05B5B"/><circle cx="630" cy="252" r="5" fill="#F0B640"/><circle cx="646" cy="252" r="5" fill="#5BC06A"/>
+  <text x="664" y="258" font-size="17" fill="#6A7179">새 대화</text>
+  <rect x="614" y="290" width="200" height="30" rx="15" fill="#DCEAF7"/>
+  <text x="628" y="311" font-size="18" fill="#0B5FA5">변수 정의부터 다시</text>
+  <rect x="614" y="332" width="150" height="30" rx="15" fill="#EEF1F5"/>
+  <text x="628" y="353" font-size="18" fill="#6A7179">제외 기준도 다시</text>
+  <text x="530" y="460" font-size="26" font-weight="700" fill="#14213D">대화마다 처음부터 설명</text>
+  <text x="530" y="502" font-size="21" fill="#4A5568">변수 정의, 제외 기준</text>
+  <text x="530" y="536" font-size="21" fill="#4A5568">지난 분석 결정</text>
+
+  <!-- ===== panel 3: reproducibility ===== -->
+  <g filter="url(#sh)"><rect x="980" y="30" width="440" height="550" rx="32" fill="url(#gCardTop)" stroke="#FFFFFF" stroke-width="2"/></g>
+  <rect x="980" y="30" width="440" height="10" rx="5" fill="url(#gRed)"/>
+  <g filter="url(#glowR)"><circle cx="1046" cy="104" r="36" fill="url(#gNavy)"/></g>
+  <g transform="translate(1026,88)" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14,22 a8,8 0 0 1 0,-11 l6,-6 a8,8 0 0 1 11,11 l-3,3"/><path d="M26,10 a8,8 0 0 1 0,11 l-6,6 a8,8 0 0 1 -11,-11 l3,-3"/><path d="M30,2 l4,-4 M6,30 l-4,4"/>
+  </g>
+  <text x="1100" y="116" font-size="32" font-weight="700" fill="#14213D">재현</text>
+  <rect x="1316" y="84" width="76" height="34" rx="17" fill="#FDECEA"/>
+  <text x="1354" y="108" font-size="18" font-weight="700" fill="#B42318" text-anchor="middle">단절</text>
+
+  <g filter="url(#sh2)">
+    <rect x="1010" y="236" width="110" height="80" rx="16" fill="url(#gBlue)"/>
+    <rect x="1156" y="236" width="110" height="80" rx="16" fill="#DCEAF7"/>
+    <rect x="1302" y="236" width="110" height="80" rx="16" fill="#FFFFFF" stroke="#8A94A1" stroke-width="2"/>
+  </g>
+  <text x="1065" y="286" font-size="23" font-weight="700" fill="#FFFFFF" text-anchor="middle">코드</text>
+  <text x="1211" y="286" font-size="23" font-weight="700" fill="#14213D" text-anchor="middle">결과</text>
+  <text x="1357" y="286" font-size="23" font-weight="700" fill="#14213D" text-anchor="middle">원고</text>
+  <path d="M1122,276 L1148,276" stroke="#14213D" stroke-width="5" stroke-linecap="round" marker-end="url(#mN)"/>
+  <path d="M1268,276 L1282,276 M1288,276 L1300,276" stroke="#B42318" stroke-width="5" stroke-linecap="round" stroke-dasharray="3 7"/>
+  <g filter="url(#glowR)"><circle cx="1284" cy="276" r="16" fill="url(#gRed)"/></g>
+  <path d="M1277,269 l14,14 M1291,269 l-14,14" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+  <text x="1284" y="350" font-size="19" font-weight="700" fill="#B42318" text-anchor="middle">손으로 복사</text>
+  <text x="1010" y="460" font-size="26" font-weight="700" fill="#14213D">코드, 결과, 원고가 끊김</text>
+  <text x="1010" y="502" font-size="21" fill="#4A5568">숫자를 옮기는 순간</text>
+  <text x="1010" y="536" font-size="21" fill="#4A5568">검증 경로가 끊김</text>
+</svg>

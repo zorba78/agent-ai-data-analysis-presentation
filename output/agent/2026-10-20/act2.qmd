@@ -1,0 +1,472 @@
+## 작업 환경 구성 {.dark}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.cards}
+
+::: {.box}
+[에디터]{.h3}
+
+Positron
+:::
+
+::: {.box}
+[에이전트]{.h3}
+
+Claude Code
+:::
+
+::: {.human}
+[CLAUDE.md]{.h3}
+
+CLAUDE.md = AGENTS.md
+:::
+
+::: {.box}
+[도구]{.h3}
+
+스킬, MCP
+:::
+
+::: {.box}
+[기억]{.h3}
+
+memory/
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 각 층 한 장씩. 그 밖에 프로젝트 구조, 권한, 오케스트레이션(간단히)도 이 막에서
+- 층이 빠지면 생기는 문제
+  - 에디터 없음: 에이전트가 무엇을 실행했는지 내가 못 봄
+  - 에이전트 없음: 다시 챗봇에 복사, 붙여넣기
+  - CLAUDE.md 없음: 정의와 규칙을 세션마다 다시 설명
+  - 도구 없음: 같은 지시 반복, 문헌은 손으로 검색
+  - 기억 없음: 지난 결정을 다음 세션이 모름
+- CLAUDE.md만 주황: 사람이 쓰는 층
+:::
+
+## Positron {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+![](assets/positron-layout.png){height="460"}
+
+- 에이전트가 쓰는 세션 = 내가 보는 세션
+- Positron MCP로 R 세션 연결
+- 데이터 뷰어는 열 선택 후만
+
+::: {.notes}
+- 시간: 1분
+- 사용자 캡처 필요: slides/assets/positron-layout.png
+- 캡처는 합성 데이터나 집계 화면만(화면 노출 규칙 1). 조종사 데이터는 데이터 뷰어 행 표시 금지
+- Positron MCP: 에이전트가 실행한 코드가 내 콘솔에 에이전트 실행으로 표시됨(Positron MCP 서버 안내문, 2026-10-20 기준)
+- 같은 세션 → 에이전트가 만든 객체를 내가 바로 확인
+- 도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)
+:::
+
+## Claude Code
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.codepanel}
+
+```powershell
+PS> cd <path>/airforce-fatty-liver
+PS> claude
+```
+
+:::
+
+::: {.cards}
+
+::: {.box}
+[읽기]{.h3}
+
+CLAUDE.md, 코드북, 스크립트
+
+`Read`, `Grep`, `Glob`
+:::
+
+::: {.box}
+[쓰기]{.h3}
+
+스크립트, qmd, 응답서 초안
+
+`Write`, `Edit`
+:::
+
+::: {.box}
+[실행]{.h3}
+
+쉘: `Bash`, `PowerShell`
+
+R: Positron MCP
+:::
+
+:::
+
+- 권한은 도구별 승인
+
+::: {.notes}
+- 시간: 1.5분
+- `claude` 한 줄로 시작. 시작할 때 CLAUDE.md를 읽음
+- 읽기, 쓰기, 실행: 챗봇과 갈리는 지점
+- 도구 이름이 레포 settings.local.json allow 항목에 그대로 남아 있음: `Bash(...)`, `PowerShell(...)`, `Read(...)`, `WebFetch(...)`
+- 권한은 도구별 승인 → 권한 장(S14)
+- 논문 작업 당시 2026-03 분석 대화는 Positron Assistant(Claude Sonnet 4.6). 지금은 Claude Code로 통일
+- 다음 장: 라이브 D3
+- 도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)
+:::
+
+## 시연: 데이터 구조 파악 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+[프롬프트]{.label}
+
+> 분석 데이터셋의 변수 구조와 결측을 집계로만 요약
+
+:::
+
+::: {.box}
+[에이전트가 할 일]{.label}
+
+변수명, 자료형, 단위, n, 결측 수
+:::
+
+::: {.human}
+[내가 확인할 것]{.label}
+
+행 데이터 출력 없음
+:::
+
+:::
+
+. . .
+
+{{< video ../demo/clips/D3-session-open.mp4 width="800" height="450" >}}
+
+::: {.notes}
+- 시간: 2분
+- 순서: Positron 터미널에서 `claude` 실행 → 프롬프트 입력 → 출력이 집계뿐인지 확인
+- 실패나 시간 초과 시 다음 클릭으로 백업 영상
+- 결측 수가 5 미만인 셀은 "5 미만"으로 말함(화면 노출 규칙 2)
+- 시작 전 체크리스트(화면 노출 규칙 5): 터미널 경로, 환경변수, 열린 탭, API 키
+- 다음 장 연결: 집계만 출력하는 규칙은 CLAUDE.md에 적어 둠
+- 확인 필요: 레포 airforce-fatty-liver CLAUDE.md에는 "집계만 출력" 규칙 없음(2026-10-20 검색). 데모 전 CLAUDE.md에 추가하거나 연결 멘트 수정
+- 확인 필요: demo/runbook.md, demo/clips/D3-session-open.mp4 아직 없음(2026-10-20 기준)
+:::
+
+## CLAUDE.md: 프로젝트 지침서
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.codepanel}
+
+```text
+  3  ## 프로젝트 개요
+  5  상태: 데이터 전처리 완료, 기초 및 최종 분석 완료, Quarto 분석 보고서 작성 완료
+  9  ## 목적
+ 20  ## 역할
+ 26  ## 행동 규칙
+ 39  9.  모든 수치 결과는 그 도출 과정을 문서에 포함
+ 41  ## 코딩 규칙
+ 95  ## 윤리적 제약
+129  ## 생성 파일 저장 공간
+```
+
+:::
+
+- 6블록: 목적과 상태 / 역할 / 행동 규칙 / 코딩 규칙 / 윤리 제약 / 저장 규칙
+- 같은 내용을 두 파일로: CLAUDE.md(Claude Code), AGENTS.md(Codex, Copilot)
+
+::: {.notes}
+- 시간: 1.5분
+- 프롬프트는 한 번 쓰고 사라짐. CLAUDE.md는 세션마다 읽힘
+- 상태 줄: 세션을 열면 에이전트가 프로젝트 단계를 바로 앎
+- 행동 규칙 7, 9: 표 값이 도출되는 과정을 문서에 남김 → 3막 숫자 검증과 연결
+- 교정이 생기면 여기에 적음
+- 사례 레포의 AGENTS.md는 CLAUDE.md보다 짧은 판: 목적, 코딩 규칙, 윤리적 제약 절 없음(2026-10-20 확인). 두 파일 동기화는 사람 몫
+:::
+
+## CLAUDE.md 예시: 대사증후군 정의 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.codepanel}
+
+```text
+253  8. 대사증후군 (Metabolic Syndrome, MeTS) 진단 기준
+255      - 복부비만 : 남성: ≥ 90cm / 여성: ≥ 85cm (허리둘레): mets_c1
+256      - 중성지방 : ≥ 150 mg/dL 또는 이상지질혈증 약물 복용 중 :mets_c2
+257      - HDL : 남성: < 40 mg/dL / 여성: < 50 mg/dL 또는 약물 복용 중 :mets_c3
+258      - 혈압 : 고혈압 약물 복용중 또는 수축기 혈압  ≥ 130 또는
+259               이완기 혈압  ≥ 85 :mets_c4
+260      - 공복혈당 : ≥ 100 mg/dL 또는 당뇨병 약물 복용 중 :mets_c5
+```
+
+:::
+
+- 변수명 `mets_c1`–`mets_c5`가 CLAUDE.md에서 코드로 그대로
+
+::: {.notes}
+- 시간: 1분
+- "사전 정보" 절의 MetS 정의 블록 원문 그대로
+- `mets_c1`–`mets_c5`: 전처리 스크립트(01), 분석 스크립트(02)에 같은 이름으로 등장
+- 대화 로그 3건(2026-03, Positron Assistant, Claude Sonnet 4.6) 어디에도 MetS 정의, 허리둘레 기준, 공복 여부를 묻는 장면 없음
+- 허리둘레 남 ≥ 90 cm(한국 복부비만 기준), 혈압 ≥ 130/85는 연구자가 정해 적은 기준. 에이전트는 바꾸지 않음
+- 반대 장면: 에이전트가 정의와 코드의 불일치를 먼저 짚음. "스크립트 감사: 포화모형 다중공선성 가능, MetS 기준 행 주석 처리 "의도적인지 확인 필요"" → 3막 S21
+:::
+
+## 프로젝트 폴더 구조
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.codepanel}
+
+```text
+airforce-fatty-liver/
+├── CLAUDE.md, AGENTS.md            # contract
+├── code/                           # researcher scripts
+│   └── agent_bot/2026-03-19/ ... 2026-08-16/
+├── quarto/user/                    # researcher reports, manuscript
+├── quarto/agent_bot/2026-03-10/ ... 2026-08-16/
+├── output/user/, output/agent_bot/YYYY-MM-DD/
+├── data/derived-data/              # analysis-ready datasets
+├── references/                     # literature, agent-downloaded/
+└── memory/agent_bot/2026-05-06/ ...
+```
+
+:::
+
+::: {.notes}
+- 시간: 1분
+- 레포 실제 트리. 파일명은 생략
+- 에이전트 산출물은 작업일 폴더에: 언제 무엇을 만들었는지 추적 가능
+- 사람 파일과 섞이지 않음: 덮어쓰기 방지
+- agent_bot = 레포 CLAUDE.md에서 에이전트(DataBot) 산출물 폴더 이름
+- 생성 규칙: 작업 시점 '년도-월일' 폴더를 만들어 저장(CLAUDE.md 136–137행)
+- 같은 규칙을 2026-05-06 에이전트가 memory에 feedback으로 저장 → S17 memory 장
+- 날짜 폴더만 봐도 흐름: 2026-03 분석 보고서 → 2026-05 문헌 요약, 원고 → 2026-08 리뷰어 대응
+- data/derived-data: 파일명, 내용은 화면에 띄우지 않음
+- 아웃라인의 `code/{user,agent}` 표기는 실제 폴더 이름(`code/` 최상위, `agent_bot`)으로 바꿈
+:::
+
+## 권한 설정 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.codepanel}
+
+```json
+"allow": [
+  "Bash(curl -sL \"https://europepmc.org/article/MED/30134584\" -A \"Mozilla/5.0\")",
+  "WebFetch(domain:europepmc.org)",
+  "mcp__claude_ai_PubMed__get_article_metadata",
+  "Read(<path>/airforce-fatty-liver/**)"
+],
+"additionalDirectories": ["<path>\\airforce-fatty-liver\\references\\agent-downloaded"]
+```
+
+:::
+
+- 도구별 allow 목록 / `additionalDirectories`: 프로젝트 밖 폴더는 명시
+- 읽기 전용 폴더: `"deny": ["Edit(/references/**)"]`
+- 파괴적 명령은 allow에 두지 않고 매번 승인
+
+::: {.notes}
+- 시간: 1분
+- settings.local.json: 승인할 때 허용한 항목이 쌓이는 파일
+- 남아 있는 것: 문헌 PDF 내려받기 때 허용한 curl, PowerShell Invoke-WebRequest, WebFetch(europepmc.org), PubMed MCP 2개(`lookup_article_by_citation`, `get_article_metadata`)
+- `additionalDirectories`: PDF 저장 폴더 references/agent-downloaded를 명시적으로 추가
+- 정리 대상도 있음: allow에 `Bash(rm -f *.pdf)`가 남아 있음. 한 번 허용하면 계속 유효 → 주기적 점검
+- deny 예시는 이 발표 프로젝트: references/ 편집 금지, 사례 레포 전체 편집 금지
+- 배열 줄바꿈만 줄임. 항목 문자열은 원문(경로 제외)
+- 마스킹: 드라이브와 작업 폴더 → `<path>`. 이메일 파라미터가 든 항목(unpaywall 2개)은 발췌에서 제외
+- 에이전트 표기: 2026-05 문헌 작업 = Claude Code
+:::
+
+## 스킬
+
+[2. 작업 환경]{.eyebrow}
+
+- SKILL.md = 트리거 문구(description) + 절차 + 출력 위치
+
+[점검 스킬: lecture-review]{.h3}
+
+::: {.codepanel}
+
+```markdown
+description: 완성된 강의자료(qmd, 슬라이드, R 예제)의 품질 점검. 검토, 리뷰, 점검, 확인해줘, review 요청 시 사용.
+대상 파일을 읽고 아래 체크리스트를 **전부** 점검한 뒤, 결과를 표로 보고한다.
+지적만 하고 수정은 하지 않는다. 수정은 사용자가 요청할 때 수행한다.
+| # | 항목 | 판정 (Pass/Fail/N.A.) | 근거 (파일:줄) |
+```
+
+:::
+
+[분석 묶음 스킬: 표본크기 산출을 스킬 6개로]{.h3}
+
+::: {.codepanel}
+
+```yaml
+# ss-continuous
+description: … "표본크기 계산", "군당 몇 명", "d=0.35로 다시", "2:1 배정이면" 같은 요청에 사용.
+# ss-sensitivity
+description: … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 90%면" 요청에 사용.
+```
+
+:::
+
+- 예: 점검 스킬, 세션 메모리 스킬, 분석 묶음 스킬
+
+::: {.notes}
+- 시간: 1.5분
+- 같은 지시를 세 번째 하게 되면 파일로
+- SKILL.md 구조: 머리(name, description) + 절차 + 출력
+- description에 사용자 말투를 넣어 자동 발동: "검토", "확인해줘", "군당 몇 명", "d=0.35로 다시"
+- 점검 스킬(lecture-review): 회귀 강의 프로젝트. 체크리스트 전부 점검, 지적만 하고 수정은 안 함, 표로 보고
+- 분석 묶음(ss-*): 3상 표본크기 프로젝트. 문헌 추출, 벤치마크, 공식 계산, MMRM 시뮬레이션, 민감도, 보고서 6개
+- 세션 메모리 스킬(session-memory): "기억해"가 트리거, 파일당 사실 1건, 절대 날짜 → S17
+- 사례 레포 airforce-fatty-liver에는 스킬 폴더 없음. 예시는 다른 두 프로젝트(마스킹 완료: `<project-name>`, `<indication>`)
+- 앞부분 생략 표시(…)는 발췌 시 줄임
+:::
+
+## MCP {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.cards}
+
+::: {.box}
+[Positron MCP]{.h3}
+
+R 세션 연결
+
+코드 실행, 객체 조회
+:::
+
+::: {.box}
+[claude.ai PubMed]{.h3}
+
+서지 메타데이터
+
+인용 문구로 논문 찾기
+:::
+
+::: {.box}
+[claude.ai bioRxiv]{.h3}
+
+bioRxiv, medRxiv 프리프린트
+
+동료심사 전 자료
+:::
+
+::: {.box}
+[claude.ai Clinical Trials]{.h3}
+
+c-trials
+
+ClinicalTrials.gov 등록 시험 검색
+:::
+
+::: {.box}
+[claude.ai Scholar Gateway]{.h3}
+
+학술 문헌 검색
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- MCP: 에이전트가 외부 도구를 함수처럼 부르는 연결 규격
+- Positron MCP는 내 R 세션, 나머지 넷은 문헌과 시험 등록 검색
+- 문헌 단계(3막 ⑤)에서 실제 사용. PubMed는 레포 settings.local.json allow 항목(`lookup_article_by_citation`, `get_article_metadata`)으로 확인
+- 확인 필요: bioRxiv, Clinical Trials, Scholar Gateway를 사례 논문에서 쓴 기록. Clinical Trials는 표본크기 프로젝트 벤치마크 스킬에서 사용(setup-skills-ss-bundle)
+- 확인 필요: Scholar Gateway 기능 설명 문구
+- 연결 상태 확인: `claude mcp list`
+- 데이터는 밖으로 나가지 않고 검색 질의만 나감(문헌 MCP 기준). 단, 에이전트가 읽은 내용은 모델 API로 전송됨(1막 S04 주의와 같은 말)
+- 도구 기능 설명은 발표 1주 전 재대조(행동 규칙 4)
+:::
+
+## memory
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.codepanel}
+
+```markdown
+- [User profile](user_profile.md) …
+- [Project status 2026-05-06](project_status_2026_05_06.md) …
+- [Authoritative project docs](reference_project_docs.md) …
+- [Output folder convention](feedback_output_folder_dates.md) …
+```
+
+:::
+
+- 파일당 사실 1건, `MEMORY.md`가 색인
+- 세션 시작 시 먼저 읽음
+- 예: 출력 폴더 규칙(feedback), 프로젝트 상태 스냅샷(project)
+
+::: {.notes}
+- 시간: 1분
+- 2026-05-06 세션(Claude Code)에서 에이전트가 만든 memory 4건과 색인
+- 계기: 사용자가 CLAUDE.md를 열고 진행 상태를 물은 세션(project_status 파일의 Why)
+- 원문은 각 줄 끝에 한 줄 요약이 붙음. 화면에서는 …로 생략
+- feedback_output_folder_dates: 에이전트 산출물은 작업일 YYYY-MM-DD 폴더에. 이유: 추적 가능, 사람 파일과 분리
+- project_status_2026_05_06: 분석 완료, 원고 작성이 진행 중인 작업
+- 이어받은 정황: 2026-05-09 세션 첫 요청 "현재까지 작업 상태 확인", 산출물은 quarto/agent_bot/2026-05-09/에 저장. 05-09 세션이 MEMORY.md를 읽었다는 직접 기록은 없음
+- "세션 시작 시 먼저 읽음"은 CLAUDE.md에 적어야 작동: 이 발표 프로젝트 CLAUDE.md 행동 규칙 7. 사례 레포 CLAUDE.md에는 저장 규칙만(133행)
+- 스킬로 만들면: session-memory("기억해" 트리거, S15)
+:::
+
+## 오케스트레이션 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.cards}
+
+::: {.human}
+[CLAUDE.md 하나]{.h3}
+
+CLAUDE.md = AGENTS.md
+
+공유 상태: `memory/`, `review/`, git
+:::
+
+::: {.box}
+[오케스트레이터 둘]{.h3}
+
+작성: Claude Code(Claude Fable 5.1)
+
+검토: Copilot CLI(GPT-6.0 Astra)
+:::
+
+::: {.box}
+[워커 둘]{.h3}
+
+작성, 검증: Claude Opus 5.5
+
+독립 검토: GPT-5.6 Terra(Codex CLI)
+:::
+
+:::
+
+- 검토는 다른 계열 모델: Opus가 쓴 것은 Terra 또는 Astra가
+- 디스패처 `run-worker.ps1`: Terra가 한도, 오류로 실패하면 Opus로 재실행, 실제 수행 모델 기록
+
+::: {.notes}
+- 시간: 1분
+- 이 발표자료 자체가 이 구조로 만들어짐: 이 장 초안 = Opus 5.5 워커(slide-writer), 검토 = Terra 또는 Astra
+- 공유 상태는 대화가 아니라 레포: CLAUDE.md = AGENTS.md, memory/, review/, git
+- Astra, Terra는 review/에만 씀. 작성 쪽(Fable, Opus)은 review/를 읽기만
+- 한도 소진: Terra 실패 → Opus(`claude -p`) 재실행, 결과 파일 머리에 실제 수행 모델. Claude 쪽 한도는 대기
+- 깊이 들어가지 않음. 질문 나오면 부록 A3
+:::

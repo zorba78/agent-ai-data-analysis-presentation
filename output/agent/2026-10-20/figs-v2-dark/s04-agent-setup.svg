@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 560" width="1440" height="560" font-family="'Noto Sans KR','Malgun Gothic',sans-serif">
+  <defs>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0B5FA5"/><stop offset="1" stop-color="#2E8FE0"/></linearGradient>
+    <linearGradient id="gNode" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF1F5"/></linearGradient>
+    <linearGradient id="gOrange" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF7ED"/><stop offset="1" stop-color="#FDE7C4"/></linearGradient>
+    <linearGradient id="gExt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#243556"/><stop offset="1" stop-color="#3A4F7A"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="0" stdDeviation="16" flood-color="#2E8FE0" flood-opacity="0.55"/></filter>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.35"/></filter>
+    <marker id="aL" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#BFD8F0"/></marker>
+    <marker id="aO" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#F59E0B"/></marker>
+    <marker id="aG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8FA3BF"/></marker>
+  </defs>
+
+  <!-- PC boundary -->
+  <rect x="10" y="20" width="980" height="520" rx="28" fill="#FFFFFF" fill-opacity="0.035" stroke="#7FB3E6" stroke-width="2" stroke-dasharray="12 8"/>
+  <rect x="34" y="4" width="300" height="32" rx="16" fill="#14213D"/>
+  <text x="184" y="27" font-size="20" fill="#7FB3E6" text-anchor="middle">내 PC, Positron 창 하나</text>
+
+  <!-- edges inside -->
+  <path d="M190,210 L190,380" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="206" y="302" font-size="19" fill="#BFD8F0">로드</text>
+  <path d="M390,275 L330,205" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="308" y="260" font-size="19" fill="#BFD8F0">실행</text>
+  <path d="M640,275 L700,205" stroke="#BFD8F0" stroke-width="3" marker-start="url(#aL)" marker-end="url(#aL)"/>
+  <text x="676" y="268" font-size="19" fill="#BFD8F0">읽기, 쓰기</text>
+  <path d="M700,385 L640,325" stroke="#F59E0B" stroke-width="3" marker-end="url(#aO)"/>
+  <text x="638" y="382" font-size="19" fill="#F59E0B">지침</text>
+
+  <!-- edges outside -->
+  <path d="M652,290 C820,290 900,190 1050,170" fill="none" stroke="#8FA3BF" stroke-width="3" marker-start="url(#aG)" marker-end="url(#aG)"/>
+  <path d="M652,310 C820,310 900,420 1050,425" fill="none" stroke="#8FA3BF" stroke-width="3" marker-end="url(#aG)"/>
+
+  <!-- inner nodes -->
+  <g filter="url(#sh)">
+    <rect x="50" y="100" width="270" height="110" rx="18" fill="url(#gNode)"/>
+    <rect x="50" y="380" width="270" height="110" rx="18" fill="url(#gNode)"/>
+    <rect x="700" y="100" width="270" height="110" rx="18" fill="url(#gNode)"/>
+    <rect x="700" y="380" width="270" height="110" rx="18" fill="url(#gOrange)" stroke="#F0C48A" stroke-width="2"/>
+  </g>
+  <rect x="50" y="100" width="8" height="110" rx="4" fill="#0B5FA5"/>
+  <text x="80" y="146" font-size="28" font-weight="700" fill="#14213D">R 세션</text>
+  <text x="80" y="184" font-size="20" fill="#4A5568">분석 실행, 결과 객체</text>
+  <rect x="50" y="380" width="8" height="110" rx="4" fill="#0B5FA5"/>
+  <text x="80" y="426" font-size="28" font-weight="700" fill="#14213D">데이터 파일</text>
+  <text x="80" y="464" font-size="20" fill="#4A5568">원자료는 PC 안에</text>
+  <rect x="700" y="100" width="8" height="110" rx="4" fill="#0B5FA5"/>
+  <text x="730" y="146" font-size="28" font-weight="700" fill="#14213D">프로젝트 파일</text>
+  <text x="730" y="184" font-size="20" fill="#4A5568">코드, 표, 원고</text>
+  <rect x="700" y="380" width="8" height="110" rx="4" fill="#D97706"/>
+  <text x="730" y="426" font-size="28" font-weight="700" fill="#14213D">CLAUDE.md</text>
+  <text x="730" y="464" font-size="20" fill="#4A5568">규칙, 지난 결정(memory)</text>
+
+  <!-- hub -->
+  <g filter="url(#glow)"><rect x="390" y="245" width="262" height="110" rx="22" fill="url(#gBlue)"/></g>
+  <g transform="translate(416,276)" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <rect x="0" y="0" width="46" height="36" rx="6"/><path d="M10,12 l8,6 l-8,6 M24,26 h12"/>
+  </g>
+  <text x="560" y="294" font-size="28" font-weight="700" fill="#FFFFFF" text-anchor="middle">Claude Code</text>
+  <text x="560" y="328" font-size="19" fill="#DCEAF7" text-anchor="middle">읽기, 쓰기, 실행</text>
+
+  <!-- external nodes -->
+  <g filter="url(#sh)">
+    <rect x="1050" y="90" width="370" height="160" rx="20" fill="url(#gExt)" stroke="#7FB3E6" stroke-width="1.5"/>
+    <rect x="1050" y="340" width="370" height="160" rx="20" fill="url(#gExt)" stroke="#7FB3E6" stroke-width="1.5"/>
+  </g>
+  <g transform="translate(1076,116)" fill="none" stroke="#7FB3E6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="0" y="0" width="40" height="12" rx="3"/><rect x="0" y="18" width="40" height="12" rx="3"/><circle cx="33" cy="6" r="1.8" fill="#7FB3E6"/><circle cx="33" cy="24" r="1.8" fill="#7FB3E6"/>
+  </g>
+  <text x="1132" y="140" font-size="25" font-weight="700" fill="#F7F7F2">Claude 모델</text>
+  <text x="1076" y="180" font-size="20" fill="#BFD8F0">Anthropic 서버에서 추론</text>
+  <text x="1076" y="208" font-size="20" fill="#BFD8F0">전송: 읽은 내용, 출력, 지시만</text>
+  <text x="1076" y="236" font-size="20" fill="#F0C48A">원자료 파일 업로드 없음</text>
+  <g transform="translate(1076,366)" fill="none" stroke="#7FB3E6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="14" cy="14" r="11"/><path d="M22,22 l12,12"/>
+  </g>
+  <text x="1132" y="390" font-size="25" font-weight="700" fill="#F7F7F2">MCP 문헌 검색</text>
+  <text x="1076" y="430" font-size="20" fill="#BFD8F0">PubMed, bioRxiv, Clinical Trials</text>
+  <text x="1076" y="458" font-size="20" fill="#BFD8F0">Scholar Gateway</text>
+  <text x="1076" y="486" font-size="20" fill="#F0C48A">전송: 검색 질의만</text>
+</svg>

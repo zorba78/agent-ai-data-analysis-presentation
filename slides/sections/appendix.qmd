@@ -1,0 +1,138 @@
+## 부록 A1. probit 상호작용의 척도 의존성
+
+[부록]{.eyebrow}
+
+[Double contrast by scale: user's hand calculation vs agent's qnorm reproduction]{.label}
+
+| Scale | ≤ 29 group difference | 30–39 group difference | Double contrast |
+|---|---|---|---|
+| Probability | 0.1458 − 0.0495 = 0.0963 | 0.2892 − 0.0920 = 0.1972 | 0.1009 |
+| Probit | Φ⁻¹(0.1458) − Φ⁻¹(0.0495) = 0.5951 | Φ⁻¹(0.2892) − Φ⁻¹(0.0920) = 0.7728 | 0.1777 ≈ int_cntr |
+
+[Interaction contrasts, same probit binomial GLM, two scales]{.label}
+
+| Age contrast | Probit scale estimate | p | Prob scale estimate | p |
+|---|---|---|---|---|
+| (30-39) − ≤29 | 0.1779 | 0.328 | 0.101 | 0.019 |
+| (40-49) − ≤29 | 0.1116 | 0.543 | 0.132 | 0.003 |
+| (≥50) − ≤29 | 0.0977 | 0.595 | 0.157 | 0.001 |
+
+::: {.excerpt}
+에이전트: "이는 통계학에서 잘 알려진 **"non-collapsibility"** 문제입니다." → 맞는 이름: 상호작용의 척도 의존성
+:::
+
+::: {.notes}
+- 부록. 질문 나올 때만
+- 모형: `glm(..., family = binomial(link = "probit"))`, `em1 <- emmeans(m1, ~ GROUP2 * AGE_GROUP, type = "response")`
+- 같은 모형, 같은 추정치. 상호작용 p가 probit 척도 0.328–0.595, 확률 척도 0.001–0.019
+- 첫 표 위 줄: 사용자 손계산(확률 척도). 아래 줄: 에이전트가 `qnorm`으로 `int_cntr` 0.1779를 재현
+- 사용자 메시지의 "1.009"는 0.1009의 오타. 에이전트는 지적 없이 0.1009로 받아 계산
+- 에이전트 설명 원문: "확률 스케일에서는 비선형 변환($\Phi$) 때문에 유병률이 높은 구간(고령)일수록 확률 차이가 자동으로 커짐"
+- 에이전트 권장 원문: "probit 모델에서는 probit 스케일(int_cntr)이 상호작용 검정의 올바른 기준입니다." → 그대로 받지 않음
+- 척도 선택은 질문이 정함: 효과 수정이 있는가(링크 척도) vs 유병률 차이가 커지는가(위험차 척도). 위험차 척도의 상호작용도 의미 있는 효과 수정
+- 출판본 원문: "Effect modification across age groups and pooled-sample quartiles of continuous risk factors was tested using probit-binomial models with interaction terms and likelihood-ratio tests (LRTs)."
+- 연령층화 OR(regrid logit): 0.305, 0.249, 0.303, 0.322. 원고 최종값 0.25–0.32와 일치
+:::
+
+## 부록 A2. Δβ 부호 해석과 손계산 검증 {.grey}
+
+[부록]{.eyebrow}
+
+::: {.cards}
+
+::: {.box}
+[부호 오독, 2026-03-10]{.h3}
+
+그림 부제(에이전트 작성): `difference in log-OR slope between Pilot HE and KHANES`
+
+같은 메시지의 해석: "KHANES에서 GLUC 1 SD 증가 시 대사증후군 위험 증가폭이 Pilot HE보다 유의하게 큼"
+
+원고 산문(2026-03-21): Pilot HE OR 5.80 vs KHANES 2.17, Δβ 0.98
+:::
+
+::: {.box}
+[손계산 재현, 2026-03-17]{.h3}
+
+| AGE | logit(Pilot) | logit(KHANES) | log(OR) | OR | emmeans OR |
+|---|---|---|---|---|---|
+| ≤ 29 | −2.9543 | −1.7677 | −1.1866 | 0.305 | 0.305 ✓ |
+| 30–39 | −2.2896 | −0.8996 | −1.3900 | 0.249 | 0.249 ✓ |
+| 40–49 | −1.6373 | −0.4424 | −1.1949 | 0.303 | 0.303 ✓ |
+| ≥ 50 | −1.1820 | −0.0493 | −1.1327 | 0.322 | 0.322 ✓ |
+
+OR ratio vs ≤ 29: 1.226, 1.008, 0.948 (p 0.5539, 0.9810, 0.8751)
+
+검산 요청은 연구자, 계산은 에이전트
+:::
+
+:::
+
+::: {.notes}
+- 부록. 질문 나올 때만
+- 부호 오독(2026-03-10): β 정의는 Pilot − KHANES. 스크립트 주석 원문 "차이 β : Pilot 기울기(log-OR) - KHANES 기울기(log-OR)"
+- 에이전트 원문: "상호작용 $\beta$ = 1.010 (95% CI: 0.695–1.325, p<0.001): **KHANES에서 GLUC 1 SD 증가 시 대사증후군 위험 증가폭이 Pilot HE보다 유의하게 큼**"
+- β = +1.010이면 조종사의 GLUC 1-SD 기울기가 더 큼. 그림의 평균 혈당 차이(+19 vs +9, 원 척도)를 보고 부호를 반대로 읽은 것으로 보임
+- 같은 메시지 안에서 URATE는 "Pilot HE의 기울기가 더 가파름". 부호 해석이 일관되지 않음
+- 채팅에서는 아무도 지적하지 않음. 원고 산문(finalize msg[27])은 맞는 방향: 완전 보정 후 per-SD OR 5.80 vs 2.17, Δβ 0.98. 재계산 단계 덕이지 채팅에서 잡힌 것 아님
+- 1.010은 비보정 모형의 중간값, 원고 최종값 아님
+- 확인 필요: 5.80, 2.17, 0.98은 2026-03-21 qmd 산문 값. 출판본, `verify-numbers.R` 출력과 대조(행동 규칙 2)
+- 손계산(2026-03-17): 사용자 요청 원문 "regrid(em1, \"logit\")인 경우 odds ratio가 계산되는데 어떤 과정을 통해 계산되는지 위와 같이 상세히 설명." → `pnorm`, `log(p/(1-p))`, 집단 차이, `exp` 네 줄로 재현, emmeans와 일치
+- 에이전트 원문: "따라서 이 OR은 **probit 모델에서 도출된 근사 OR**이며, logit 모델의 OR과 개념은 같지만 **모델 계수와 직접 대응하지 않습니다.**"
+- OR ratio는 "OR의 OR". 연령대가 바뀌어도 OR 차이 유의하지 않음. 이 정의가 Methods RQ2 절 "OR ratio = exp(δ_j)"로 들어감
+:::
+
+## 부록 A3. 오케스트레이션 구성
+
+[부록]{.eyebrow}
+
+| 역할 | 모델, effort | 실행 |
+|---|---|---|
+| 오케스트레이터 A: 작성 허브 | Claude Fable 5.1, medium | Claude Code 메인 세션 |
+| 오케스트레이터 B: 검토 허브 | GPT-6.0 Astra, medium | `copilot --model gpt-6-astra --reasoning-effort medium` |
+| 워커: 슬라이드 작성 | Claude Opus 5.5, xhigh | Agent 도구 `slide-writer` |
+| 워커: 수치, 인용 검증 | Claude Opus 5.5, xhigh | Agent 도구 `fact-checker` |
+| 워커: 독립 검토 | GPT-5.6 Terra, high | `scripts/run-worker.ps1 -Worker terra` |
+
+::: {.excerpt}
+규칙 2: "쓰는 모델과 검토하는 모델은 계열을 다르게 한다. Opus가 쓴 것은 Terra 또는 Astra가, Terra가 쓴 것은 Opus가 검토한다"
+
+다른 프로젝트(`<project-name>`, 마스킹) 워커 정의: "근거표에 없는 내용은 보고서에 들어가지 못하고, 근거표에 틀린 내용이 있으면 그대로 평가 문서에 실린다."
+:::
+
+::: {.notes}
+- 부록. S18에서 질문 나올 때
+- 공유 상태는 대화가 아니라 레포: "이 파일 = AGENTS.md, `memory/`, `review/`, git"
+- 표는 원본의 정의 열을 뺀 3열. 원본은 이 프로젝트 `CLAUDE.md` 오케스트레이션 절 표
+- 규칙 1 원문: "작업마다 주 오케스트레이터는 하나다. 상대 오케스트레이터는 워커로만 부른다"
+- 규칙 3: Astra와 Terra는 `review/`에만 씀
+- 규칙 4: Terra가 실패하면 같은 작업을 Opus 5.5(`claude -p`)로 재실행, 결과 파일 머리에 실제 수행 모델 기록
+- 디스패처 머리 주석 원문: "If Codex exits non-zero or prints a usage/rate-limit message, the same task is re-run with -Worker opus and the header says \"fallback from terra\"."
+- 다른 프로젝트(연차보고서): 오케스트레이터는 보고서 문장을 쓰지 않음. 원문 "보고서 문장은 워커가 쓴다."
+- 같은 프로젝트 검토 단계 원문: "넘길 것은 검토할 파일 경로뿐이다. 오케스트레이터의 평가나 작성 워커의 설명을 붙이지 않는다."
+- 역할 나눔: 오케스트레이터 Fable 5.1, 워커 셋(근거 분석, 초안 작성, 검토) Opus 5.5
+- 이 발표 슬라이드도 이 구조로 작성(slide-writer 워커)
+- 표기 메모: 발췌본 `setup-orchestration-this-project.md`는 가운뎃점 제거 전 표기(2026-10-19). 표와 규칙 문장은 현재 `CLAUDE.md` 기준, 내용 같음
+:::
+
+## 부록 A4. 임상 DB 접근 규칙 스킬 {.grey .smaller}
+
+[부록]{.eyebrow}
+
+::: {.excerpt}
+`.claude/skills/<db>-db/SKILL.md` "지킬 것" 발췌(마스킹)
+
+1. **읽기만 한다.** `SELECT`, `SHOW`, `DESCRIBE` 만 실행한다. … 세션을 열면 먼저 `SET SESSION TRANSACTION READ ONLY` 를 실행한다.
+2. **집계값만 꺼낸다.** … 행 단위 자료를 대화, `drafts/`, `output/` 에 옮기지 않는다.
+3. **식별 가능 정보는 조회 결과에 넣지 않는다.** … 집계할 때 5명 미만인 칸은 "5 미만"으로 적는다.
+4. **접속 정보를 옮겨 적지 않는다.** 계정과 비밀번호는 `<env-file>` 에만 둔다. 이 파일을 `Read` 로 열지 않고, …
+5. **범위를 넓히지 않는다.** … `<db>`, `<db>` 만 조회한다.
+:::
+
+::: {.notes}
+- 부록. 임상 DB에 에이전트를 붙일 때의 규칙 예
+- 다른 프로젝트(`<project-name>`)의 스킬. DB명, 테이블명, 열 이름, 접속정보 파일, 행 수는 마스킹
+- 슬라이드에 없는 규칙: 6 무거운 조회 피하기(모든 조회에 `/*+ MAX_EXECUTION_TIME(15000) */` 힌트), 7 서버 전체 관리 권한 계정이라 더 조심, 구조 변경 문장 금지
+- 이 발표 화면 노출 규칙과 같은 원칙: 집계값만, 5 미만, 접속정보 비노출
+- 이 스킬은 연차보고서 근거 분석 워커 정의의 `skills:` 항목으로 연결(`skills: <db>-db`)
+- 스킬은 description의 트리거 문구로 자동 발동(S15)
+:::

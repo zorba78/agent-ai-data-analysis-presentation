@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 520" width="1440" height="520" font-family="'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <!-- five layers, base (Positron) at the bottom -->
+  <g>
+    <rect x="40" y="10" width="1360" height="88" rx="14" fill="#1C2B4A" stroke="#3D4F6E" stroke-width="2"/>
+    <rect x="40" y="10" width="14" height="88" rx="7" fill="#3D4F6E"/>
+    <text x="80" y="66" font-size="30" font-weight="700" fill="#F7F7F2">memory</text>
+    <text x="340" y="64" font-size="22" fill="#7FB3E6">기억</text>
+    <text x="460" y="66" font-size="26" fill="#BFD8F0">지난 결정과 교정을 파일로 남김</text>
+  </g>
+  <g>
+    <rect x="40" y="112" width="1360" height="88" rx="14" fill="#1C2B4A" stroke="#3D4F6E" stroke-width="2"/>
+    <rect x="40" y="112" width="14" height="88" rx="7" fill="#3D4F6E"/>
+    <text x="80" y="168" font-size="30" font-weight="700" fill="#F7F7F2">스킬, MCP</text>
+    <text x="340" y="166" font-size="22" fill="#7FB3E6">도구</text>
+    <text x="460" y="168" font-size="26" fill="#BFD8F0">반복 절차는 스킬, 외부 검색과 R 세션 연결은 MCP</text>
+  </g>
+  <g>
+    <rect x="40" y="214" width="1360" height="88" rx="14" fill="#1C2B4A" stroke="#F0C48A" stroke-width="2"/>
+    <rect x="40" y="214" width="14" height="88" rx="7" fill="#F59E0B"/>
+    <text x="80" y="270" font-size="30" font-weight="700" fill="#F7F7F2">CLAUDE.md</text>
+    <text x="340" y="268" font-size="22" fill="#F59E0B">지침</text>
+    <text x="460" y="270" font-size="26" fill="#BFD8F0">목적, 규칙, 저장 위치. 사람이 쓰고 에이전트가 매번 읽음</text>
+  </g>
+  <g>
+    <rect x="40" y="316" width="1360" height="88" rx="14" fill="#0B5FA5" stroke="#7FB3E6" stroke-width="2"/>
+    <rect x="40" y="316" width="14" height="88" rx="7" fill="#7FB3E6"/>
+    <text x="80" y="372" font-size="30" font-weight="700" fill="#FFFFFF">Claude Code</text>
+    <text x="340" y="370" font-size="22" fill="#DCEAF7">에이전트</text>
+    <text x="460" y="372" font-size="26" fill="#FFFFFF">파일 읽기, 쓰기, 코드 실행</text>
+  </g>
+  <g>
+    <rect x="40" y="418" width="1360" height="88" rx="14" fill="#F7F7F2"/>
+    <rect x="40" y="418" width="14" height="88" rx="7" fill="#6A7179"/>
+    <text x="80" y="474" font-size="30" font-weight="700" fill="#14213D">Positron</text>
+    <text x="340" y="472" font-size="22" fill="#0B5FA5">에디터</text>
+    <text x="460" y="474" font-size="26" fill="#14213D">R 콘솔, 데이터 뷰어, Quarto, 터미널</text>
+  </g>
+</svg>

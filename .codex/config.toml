@@ -1,0 +1,4 @@
+# Project-level Codex config for the talk project.
+# Terra is used only as a worker (independent review), called through scripts/run-worker.ps1.
+# Codex ignores project-level [profiles], so the worker settings (gpt-5.6-terra, effort high,
+# read-only sandbox) are passed as flags by the script. This file is kept for the record only.

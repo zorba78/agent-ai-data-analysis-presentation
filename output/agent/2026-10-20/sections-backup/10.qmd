@@ -1,0 +1,129 @@
+## 10. 표와 그림은 코드에서 나온다: 양식은 연구자가 정의했고 에이전트는 그 양식을 따랐다
+
+<p class="eyebrow">10. 표, 그림</p>
+
+<div class="pipeline"><span>질문</span><span>데이터 이해</span><span>분석</span><span>검증</span><span class="active">논문</span><span>재현</span></div>
+
+<div class="stage3">
+<div>
+<p class="label">맥락(프롬프트 원문 없음)</p>
+
+- 계약서 규칙 "8. 테이블은 Lancet 논문 포맷 적용"
+- 사용자 함수 `lancet_ft()`, `lancet_gt()` (`code/funs/helpers.R`)
+
+</div>
+<div style="flex: 1.6;">
+<p class="label">에이전트가 한 일</p>
+
+- `demo_tbl` = `tbl_summary(by = GROUP, …)`
+
+```r
+demo_lancet_ft <- demo_tbl %>%
+  as_flex_table() %>%
+  border_remove() %>%
+  hline_top(border = fp_border(width = 2), part = "all") %>%
+  …
+  flextable::font(fontname = "Arial", part = "all") %>%
+```
+
+</div>
+<div class="human">
+<p class="label">연구자가 확인한 것</p>
+
+- 선 굵기, 서체 양식은 사용자가 `helpers.R`에 먼저 정의
+- 소수점 규칙 `|x| >= 10 -> 1 dp; |x| < 10 -> 2 dp`가 표와 산문에서 같은지
+
+</div>
+</div>
+
+<p class="src">출처: manuscript-minor-revision-r2.qmd 493–527, 579–599행, code/funs/helpers.R 9–17, 93행, 2026-08-16, DataBot(모델 미기재)</p>
+
+::: {.notes}
+- 시간: 0.75분
+- 말할 내용
+  - `helpers.R` = 사용자 작성 함수(`code/funs/`, agent_bot 폴더 아님). 에이전트는 그 양식을 따름
+  - 사용자 함수 시그니처: `lancet_ft(df, caption, footnote, bold_rows, fill_rows, span_cols, center_cols)`
+  - Lancet 양식: 상단 2pt, 헤더 아래 1pt, 하단 2pt 선, Arial
+  - 소수점 규칙의 근거: 같은 청크 주석 "Magnitude-aware decimal placement matching the tbl-reg-urate-gluc rule"
+  - 표 값은 청크 안에서 도출(계약서 규칙 7)
+  - 메시지 범위: "모든 숫자가 코드에서 나온다"가 아님. 표, 그림은 코드에서, 산문 숫자는 스크립트로 검증(11번)
+  - 바로 이어 라이브로 Table 1 렌더
+- 출처: `10-table-figure-automation.md`(r2 qmd 493–527, 579–599행, helpers.R 9–17, 93행), `06-contract-mets-definition.md`(규칙 7, 8), `memory/talk-scenes-from-repo.md` 31행
+:::
+
+## Quarto 청크 하나에서 Table 1을 렌더한다 {.grey}
+
+<p class="eyebrow">10. 표, 그림, 라이브 D3</p>
+
+- 라이브: Quarto 청크에서 `gtsummary` Table 1 렌더
+- 볼 것: ① 행 출력 없이 구조만 확인 ② `tbl_summary` → Lancet 양식 ③ 표 값이 청크 안에서 도출
+
+::: {.fragment}
+백업 녹화
+
+{{< video ../demo/clips/D3-table1-backup.mp4 width="800" height="450" >}}
+:::
+
+<p class="src">출처: .claude/skills/demo-runbook/SKILL.md(D3), manuscript-minor-revision-r2.qmd 507–527행</p>
+
+::: {.notes}
+- 시간: 2.75분(라이브)
+- 말할 내용
+  - 짚을 점 ①: 에이전트가 데이터 행을 출력하지 않고 구조만 확인하는지
+  - 짚을 점 ②: `tbl_summary` 결과가 `as_flex_table()`을 거쳐 Lancet 양식으로 이어지는지
+  - 짚을 점 ③: 표 값이 청크 안에서 도출되는지(계약서 규칙 7)
+  - 데이터뷰어와 `head()`는 열지 않음
+  - 실패 시 설명 없이 다음 클릭(fragment)으로 백업 녹화 전환
+- 확인 필요
+  - 렌더 전 Table 1의 5명 미만 셀 여부(조종사 약물 변수 등). 있으면 "5 미만"으로 바꾸거나 해당 행 제외(`CLAUDE.md` 화면 노출 규칙 2)
+  - 런북 스킬은 D3를 3분으로, 이 슬라이드는 2.75분
+  - `demo/runbook.md` 미작성. 백업 클립 파일명 가칭
+- 출처: `.claude/skills/demo-runbook/SKILL.md`(D3), `10-table-figure-automation.md`, `CLAUDE.md` 화면 노출 규칙 1–2
+:::
+
+## 리뷰어가 그림을 고치라 해도 모형은 건드리지 않는다: 바뀌는 것은 표시뿐이다
+
+<p class="eyebrow">10. 표, 그림</p>
+
+<div class="stage3">
+<div>
+<p class="label">맥락(프롬프트 원문 없음)</p>
+
+- Reviewer 2 item 14: Figure 2 다시 그리기
+- Reviewer 2 comment 12: 중복 범례
+
+</div>
+<div style="flex: 1.6;">
+<p class="label">에이전트가 한 일</p>
+
+> The underlying models, estimates and contrasts are untouched; only the display changes.
+
+```r
+  plot_layout(heights = c(1, 1), guides = "collect") +
+```
+
+- 제출용 내보내기: PNG 600 dpi, TIFF 300 dpi
+
+</div>
+<div class="human">
+<p class="label">연구자가 확인한 것</p>
+
+- 그림 개수와 캡션 번호(9번의 렌더 교훈)
+- 내용은 같고 출력 장치, 해상도만 다른지
+
+</div>
+</div>
+
+<p class="src">출처: figure2-stratified-3col.R 헤더(2026-08-15), manuscript-minor-revision-r2.qmd 1815–1830행, export-submission-figures.R 1–7, 22–25, 48행, DataBot(모델 미기재)</p>
+
+::: {.notes}
+- 시간: 0.5분
+- 말할 내용
+  - 그림 요청에 모형 재적합 없이 표시 계층만 수정. 그 사실을 스크립트 머리에 기록(`figure2-stratified-3col.R`)
+  - 중복 범례 7개 → 공통 범례 1개(`guides = "collect"`, comment 12)
+  - 내보내기 스크립트 헤더: "The figures are identical in content … only the output device and resolution differ."
+  - Figure 1 CONSORT는 `DiagrammeR::grViz()` → 9번에서 렌더 실패했던 그 그림
+  - 메시지: 그림 수정과 재분석을 스크립트 머리에서부터 구분
+- 확인 필요: r2 qmd 조립 코드 주석은 "Layout is unchanged: 4 columns x 2 rows". 2026-08-15의 3열 재배치본(`figure2-stratified-3col.R`)과 제출본 중 어느 쪽이 최종인지 발췌로는 불분명
+- 출처: `10-table-figure-automation.md`(figure2-stratified-3col.R 헤더, export-submission-figures.R 1–7, 22–25, 48행, r2 qmd 1264–1273, 1815–1830행)
+:::

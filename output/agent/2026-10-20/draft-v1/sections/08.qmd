@@ -1,0 +1,449 @@
+## 8. 주 분석은 logistic, 효과 수정 검정은 probit 상호작용 모형: 두 모형은 역할이 다르다
+
+[8. 분석 설계, probit]{.eyebrow}
+
+<div class="pipeline"><span>질문</span><span>데이터 이해</span><span class="active">분석</span><span>검증</span><span>논문</span><span>재현</span></div>
+
+::: {.cards}
+
+::: {.box}
+
+[주 분석: logistic]{.h3}
+
+- MetS 유병, 구성요소, 보정 연관성
+- 보정: age, smoking, alcohol, physical activity → aOR
+
+:::
+
+::: {.box}
+
+[효과 수정: probit + LRT]{.h3}
+
+$$\Phi^{-1}\left[P(\text{MetS}_i = 1)\right] = \beta_0 + \beta_1 \text{GROUP2}_i + \beta_2 V_i + \beta_3 (\text{GROUP2}_i \times V_i)$$
+
+- V: age group, pooled-sample quartiles of WC, SBP, DBP, HDL, TRIG, GLUC
+- Stratum OR: `regrid(..., "logit")` → `contrast(..., method = "revpairwise", by = V)`
+
+:::
+
+:::
+
+[출처: 논문 2 Statistical analysis, 수식은 DataBot(모델 미기재) Methods 초안 2026-03-21, 05_statistical_analysis_methods.qmd 86–120행]{.src}
+
+::: {.notes}
+**시간** 0.75분, **에이전트** 수식: DataBot(모델 미기재), Methods 초안 2026-03-21
+
+**말할 내용**
+
+- 이 사례의 링크 함수는 둘: 주 분석 logistic, 효과 수정 검정 probit + LRT
+- 출판본 원문: "MetS prevalence, components and adjusted associations were compared using logistic regression …" / "Effect modification … was tested using probit-binomial models with interaction terms and likelihood-ratio tests (LRTs)."
+- 사분위 절단값: 병합 표본 3,697명에서 산출 → 층 안 비교는 리뷰어 대응안 표현대로 "동일 절대 수준의 남성끼리"
+- 층별 OR: probit 적합 확률을 logit으로 옮긴 값 → logistic 계수의 OR과 다름. 9번에서 에이전트 스스로 "근사 OR"이라 부름
+- 다음 두 장: 이 구조에서 생긴 척도 문제
+
+**출처**
+
+- `slides/excerpts/08-probit-choice-reason.md` (`quarto/agent_bot/2026-03-19/05_statistical_analysis_methods.qmd` 86–120행, 논문 2 Statistical analysis 4쪽)
+- `slides/excerpts/08-waist-adjustment-circularity.md` (`output/agent_bot/2026-08-14/reviewer2-response-plan.md` 406–414행, pooled 사분위)
+- `slides/excerpts/09-hand-calculation-check.md` (probit-logit-prob msg[10–13], "근사 OR")
+- doi:10.1136/military-2026-003444
+:::
+
+## 연구자의 손계산 0.1009와 emmeans의 0.1779는 서로 다른 척도에서 잰 값이었다 {.grey}
+
+[8. 분석 설계, probit]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+> … 30세 이하의 KHANES - Pilot = 0.1458 - 0.0495 = 0.0963, 30세 이상 40세 이하 KHANES - Pilot = 0.2892 - 0.0920 = 0.1972.  두 값의 차이는 1.009 정도인데 int_cntr의 (30-39) - (20-29)는 0.1779 임.
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+> 핵심을 정확히 짚으셨습니다. **스케일 차이** 때문입니다.
+
+- `probit_vals <- qnorm(probs)`로 재현
+
+> int_cntr (30-39) - (≤29) on PROBIT scale = 0.1777\
+> int_cntr reported value = 0.1779
+
+:::
+
+::: {.human}
+
+[연구자가 확인한 것]{.label}
+
+- `int_cntr` = probit(선형 예측) 척도의 이중 대비
+- 확률 척도: 0.1972 − 0.0963 = 0.1009
+- probit 척도: 0.7728 − 0.5951 = 0.1777
+
+:::
+
+:::
+
+[출처: Positron Assistant(Claude Sonnet 4.6), 2026-03-17, conversation-probit-logit-prob.json msg[6–7]]{.src}
+
+::: {.notes}
+**시간** 1.0분, **에이전트** Positron Assistant(Claude Sonnet 4.6), 2026-03-17
+
+**말할 내용**
+
+- 출발점: 연구자의 손계산. emmeans 추정 유병률 KHANES ≤29 0.1458, Pilot HE ≤29 0.0495, KHANES 30-39 0.2892, Pilot HE 30-39 0.0920
+- 사용자의 "1.009": 0.1009의 오타. 에이전트는 지적 없이 0.1009로 받아 계산
+- 에이전트 설명 원문: "`em1`의 확률값은 **probit → 확률**로 back-transform된 값이고, `int_cntr`는 back-transform **이전**, 즉 **probit(선형 예측값) 스케일**에서 대비를 계산합니다."
+- 재현: `qnorm()`으로 probit 척도 집단 차이 0.5951(≤29), 0.7728(30-39) → 이중 대비 0.1777
+- 0.1777 vs 0.1779: 네 자리로 반올림한 확률에서 재계산한 차이로 보임(추정)
+- 교훈: 패키지 출력이 손계산과 다르면 먼저 척도부터 의심
+
+**수치**
+
+- 2026-03-17 탐색 단계 값. 원고 보고값 아님
+
+**출처**
+
+- `slides/excerpts/08-probit-logit-probability-scale.md` (`agent-conversation/conversation-probit-logit-prob.json` msg[6–7])
+:::
+
+## 같은 모형, 같은 추정치인데 상호작용의 p는 probit 척도에서 0.33–0.60, 확률 척도에서 0.001–0.019다
+
+[8. 분석 설계, probit]{.eyebrow}
+
+| Interaction contrast | Probit scale | p | Probability scale | p |
+|---|---|---|---|---|
+| (30-39) − ≤29 | 0.1779 | 0.328 | 0.101 | 0.019 |
+| (40-49) − ≤29 | 0.1116 | 0.543 | 0.132 | 0.003 |
+| (≥50) − ≤29 | 0.0977 | 0.595 | 0.157 | 0.001 |
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+> 확률 스케일에서 상호작용을 검정
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+- `regrid(em1, transform = "response")`
+
+> 이는 통계학에서 잘 알려진 **"non-collapsibility"** 문제입니다.
+
+:::
+
+::: {.human}
+
+[연구자가 확인한 것]{.label}
+
+- 계산은 맞고 이름이 틀림
+- 상호작용의 척도 의존성(scale dependence of interaction)
+
+:::
+
+:::
+
+[출처: Positron Assistant(Claude Sonnet 4.6), 2026-03-17, conversation-probit-logit-prob.json msg[2–3], msg[8–9], p는 Wald z 탐색 단계 값]{.src}
+
+::: {.notes}
+**시간** 1.5분, **에이전트** Positron Assistant(Claude Sonnet 4.6), 2026-03-17
+
+**말할 내용**
+
+- 표: 같은 probit 모형, 같은 추정치. 다른 것은 대비를 잰 척도뿐
+- probit 척도: 집단 차이가 연령대 사이에 거의 일정 → 상호작용 비유의
+- Φ의 비선형성: 기저 유병률이 높은 연령대일수록 같은 probit 차이가 더 큰 위험차로 변환 → 확률 척도 상호작용 유의
+- "링크 척도에서 상호작용 없음"과 "가법(위험차) 척도에서 상호작용 있음"이 동시에 참
+- 이름은 오류: non-collapsibility는 교란이 없어도 공변량에 대해 주변화한 OR(또는 probit 계수)이 조건부 값과 달라지는 성질. 여기서 일어난 일은 주변화가 아니라 같은 모형 안의 척도 변환
+- 에이전트 권고 원문: "probit 모델에서는 **probit 스케일(int_cntr)**이 상호작용 검정의 올바른 기준입니다." → 그대로 받지 않음
+- 입장: 어느 척도가 맞는지는 질문이 정함. 위험차 척도의 상호작용도 공중보건적으로 의미 있는 효과 수정
+
+**질문 대비**
+
+- "확률 척도 유의는 비선형 변환의 산물 아닌가?": 에이전트도 "확률 스케일의 유의성(p < 0.05)은 **비선형 변환의 수학적 산물**로, 실제 그룹 간 효과 수정(effect modification)의 증거로 보기 어렵습니다."라고 씀. 반론: "유병률 격차가 나이가 들수록 커지는가"가 질문이면 확률 척도가 맞는 척도
+- 출판본의 보고 방식(사실): 효과 수정을 링크 척도(probit) + LRT로 보고. 원문 "Effect modification … was tested using probit-binomial models with interaction terms and likelihood-ratio tests (LRTs)."
+- 표의 probit 값 방향: KHANES − Pilot. glm 계수(`GROUP2Pilot HE:AGE_GROUP30-39 -0.1779`)는 부호 반대
+- 세 번째 척도: logit 재격자 OR ratio의 p 0.5539 / 0.9810 / 0.8751(9번 S35, 부록 A4)
+
+**수치**
+
+- 표의 p: Wald z 기반 탐색 단계 값(2026-03-17). 중간값, 원고 최종값은 출판본 LRT p(확인 필요)
+
+**확인 필요**
+
+- 출판본 LRT p값(발췌에 없음)
+- 출판본에 "non-collapsibility" 표현이 들어갔는지(PDF 미확인)
+
+**출처**
+
+- `slides/excerpts/08-probit-logit-probability-scale.md` (`agent-conversation/conversation-probit-logit-prob.json` msg[2–3], msg[8–9])
+- `slides/excerpts/08-probit-choice-reason.md` (논문 2 Statistical analysis 4쪽), doi:10.1136/military-2026-003444
+- `slides/excerpts/09-hand-calculation-check.md` (probit-logit-prob msg[12–13], OR ratio p)
+- `memory/talk-scenes-from-repo.md` 19행, 31행, `memory/outline-decisions-2026-10-20.md` 결정 2(a)
+:::
+
+## 모형 선택 이유를 에이전트가 쓰면 "그림과 맞추려고"가 된다 {.grey}
+
+[8. 분석 설계, probit]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[맥락(프롬프트 원문 없음)]{.label}
+
+- Methods의 RQ2 Statistical Analysis 절 초안
+- 수식, EMM, OR 도출 방법까지 포함
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+> The probit link was chosen to match the visual representation conventions used in the companion figure (forest plot of EMM-based prevalence).
+
+:::
+
+::: {.human}
+
+[연구자가 확인한 것]{.label}
+
+- 출판본: 이유는 지우고 방법만 남김
+
+> Effect modification across age groups and pooled-sample quartiles of continuous risk factors was tested using probit-binomial models with interaction terms and likelihood-ratio tests (LRTs).
+
+:::
+
+:::
+
+[출처: DataBot(모델 미기재), 2026-03-21, 05_statistical_analysis_methods.qmd 96–112행, 논문 2 Statistical analysis]{.src}
+
+::: {.notes}
+**시간** 0.75분, **에이전트** DataBot(모델 미기재), Methods 초안 2026-03-21
+
+**말할 내용**
+
+- 계약서가 말하지 않은 자리에 에이전트가 이유를 지어 넣은 사례(4번 S14의 "없을 때" 행)
+- 그림 관례: 링크 함수 선택의 이유가 될 수 없음
+- 출판본: 이유를 지우고 무엇을 했는지만 남김
+- 결과: "왜 probit인가"에 원고는 지금도 답하지 않음 → 13번에서 발표자가 먼저 꺼냄
+- 이 근거를 옹호하지 않음
+
+**질문 대비**
+
+- "logit으로 적합했어도 결론이 같았나?": 레포의 logit 재적합 비교 존재 여부 확인 필요
+- 층별 OR을 probit 적합 후 `regrid(..., "logit")`로 얻은 구조도 같은 질문을 부름
+
+**확인 필요**
+
+- 첫 줄의 "계약서가 말하지 않은 자리": 레포 CLAUDE.md(381행)에 모형 선택 근거 규칙이 정말 없었는지. S14 확인 필요 항목과 같음
+
+**출처**
+
+- `slides/excerpts/08-probit-choice-reason.md` (`quarto/agent_bot/2026-03-19/05_statistical_analysis_methods.qmd` 96–112행, 논문 2 Statistical analysis 4쪽), doi:10.1136/military-2026-003444
+- `memory/talk-scenes-from-repo.md` 16행, 31행
+:::
+
+## 가중치를 쓰지 않은 것은 연구자의 설계 판단이고, 에이전트는 그 판단을 Limitations 두 문장까지 밀고 갔다
+
+[8. 분석 설계, probit]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[맥락(프롬프트 원문 없음)]{.label}
+
+- 데이터에 `wt_itvex`, `psu`, `kstrata` 있음
+- memory의 사용자 지시: "저자 문체 유지", "압축 우선"
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+- 5월 초안: Sixth limitation, 압축 후 약 95단어
+- 8월 r2: 두 문장으로 압축
+
+> … we therefore conducted unweighted analyses, as our aim was comparative rather than absolute, and weighting only one group would target incompatible populations.
+
+:::
+
+::: {.human}
+
+[연구자가 확인한 것]{.label}
+
+- 선택의 대가가 원고에 남았는지
+
+> Accordingly, the KNHANES prevalences reported here are not nationally representative, and the ORs reflect contrasts between the two sampled cohorts rather than population-level estimates.
+
+:::
+
+:::
+
+[출처: DataBot(모델 미기재), session-summary 2026-05-09 §5, §7, manuscript-minor-revision-r2.qmd 422행 (2026-08-16)]{.src}
+
+::: {.notes}
+**시간** 1.0분, **에이전트** DataBot(모델 미기재), 2026-05-09 초안 / 2026-08-16 r2
+
+**말할 내용**
+
+- 가중 여부 = 추정 대상(estimand) 선택 → 연구자의 설계 판단
+- 두 표본의 성격: KNHANES는 층화, 다단계 집락 확률표본 + 개인 가중치, 조종사 자료는 5월 초안 표현대로 "a near-census of active-duty male ROKAF pilots"
+- 저자 논거(5월 초안 원문): "applying KNHANES weights to only one side of the comparison would weight the two samples to incompatible target populations and complicate the interpretation of the resulting odds ratios"
+- 에이전트 몫: 이 논거를 Limitations 문장으로 작성, 사용자 지시("압축 우선")에 따라 약 95단어 → 두 문장
+- 대가: KNHANES 유병률 37.1%를 국가 대표값으로 읽지 말라는 단서를 원고에 남김
+
+**질문 대비**
+
+- "KNHANES를 가중해 '한국 남성 모집단 대비 조종사'를 추정하는 것도 정당한 추정 대상 아닌가?": 맞음. 저자는 두 표본 코호트의 대비를 택하고, 그 선택과 한계를 Limitations에 기록
+- "가중치를 안 쓰더라도 `psu`, `kstrata`를 무시하면 분산이 과소추정될 수 있지 않나?": 설계 기반 분산 민감도 분석의 레포 존재 여부 확인 필요(발췌에 없음)
+
+**출처**
+
+- `slides/excerpts/08-unweighted-decision.md` (`memory/agent_bot/2026-05-09/session-summary.md` §5 52–60행, §7 72–78행, `quarto/agent_bot/2026-08-16/manuscript-minor-revision-r2.qmd` 422행)
+- `slides/excerpts/07-data-structure.md` (설계변수 3개)
+- `CLAUDE.md` 31행(37.1%), doi:10.1136/military-2026-003444
+:::
+
+## "왜 보정하면 사라지나"에 에이전트는 복약률 차이로 답했고, 그 해석은 원고에 가지 않았다 {.grey}
+
+[8. 분석 설계, probit]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[프롬프트]{.label}
+
+> CHOL, LDL의 조정3 유의성 소실 원인을 복약력 분포 비교로 확인하기
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+- `count(GROUP, DYSLIP)`: 이상지질혈증 약 Pilot HE 18/2,604 (0.7%) vs KHANES 149/1,093 (13.6%)
+- 복약 여부별 평균 → t-test → violin plot
+
+> 조정3의 유의성 소실은 **방법론적으로 타당하며**, 복약 보정 후 실질적 그룹 차이는 존재하지 않음을 시사합니다.
+
+:::
+
+::: {.human}
+
+[연구자가 확인한 것]{.label}
+
+- 최종 원고(완전 보정): LDL Δβ 0.24 (p = 0.022), total cholesterol Δβ 0.20 (p = 0.049) 유의
+- 3월의 "소실" 해석은 원고에 미반영
+
+:::
+
+:::
+
+[출처: Positron Assistant(Claude Sonnet 4.6), 2026-03-10, conversation-add-analysis.json msg[6–7], 논문 2 Abstract]{.src}
+
+::: {.notes}
+**시간** 1.0분, **에이전트** Positron Assistant(Claude Sonnet 4.6), 2026-03-10
+
+**말할 내용**
+
+- 원인 탐색 순서: 분포 → 층별 평균 → 검정 → 그림. 연구자가 할 순서와 같음
+- 결론은 과함: 비복약자 CHOL 196.5 vs 200.9(p = 0.002)인데 "두 그룹의 수치가 거의 동일"
+- 도구 출력의 `cat()` 서식: p = 0.002를 "p < 0.001"로 출력(원문 "p < 0.001 (p = 0.002075)"). 다음 요약에서는 p=0.002로 바르게 적음
+- 최종 모형의 답은 다름: 완전 보정 후에도 LDL, TC 기울기 차이 유의 → 3월의 "소실" 해석은 원고로 옮기지 않음
+- 같은 발견의 기록: 보고서 qmd의 `tbl-dyslip` 청크와 footnote(부록 A5)
+
+**수치**
+
+- 3월 "유의성 소실"(조정3 기준): 중간값, 원고 최종값 LDL Δβ 0.24 (p = 0.022), TC Δβ 0.20 (p = 0.049) 유의
+- 복약률 0.7%, 13.6%: 데이터 사실. 2026-08-16 `verify-numbers.R` (1)절이 재계산("약물/유병률 12개 … 전부 일치")
+- 복약자 셀 n = 18: 5 미만 아님, 화면 노출 규칙 2 해당 없음
+
+**출처**
+
+- `slides/excerpts/08-medication-imbalance.md` (`agent-conversation/conversation-add-analysis.json` msg[6–7])
+- `slides/excerpts/08-medication-imbalance-report.md` (`quarto/agent_bot/2026-03-10/02-afhe-khanes-analysis-report.qmd` 428–455, 698–705, 737행)
+- `slides/excerpts/05-urate-origin.md` (출판본 Abstract Δβ), doi:10.1136/military-2026-003444
+- `slides/excerpts/09-verify-numbers-script.md` (verify-numbers.R 22–36행, session-summary 2026-08-16 §5 39행)
+:::
+
+## 허리둘레를 보정하면 집단 차이가 사라진다. 그런데 허리둘레는 MetS 정의의 일부다
+
+[8. 분석 설계, probit]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+
+[맥락(프롬프트 원문 없음)]{.label}
+
+- 2026-03-10 보고서의 연령층별 순차 보정 표
+- "Table 6. Age-stratified MeTS OR: Testing the Healthy Worker Effect"
+
+:::
+
+::: {.box}
+
+[에이전트가 한 일]{.label}
+
+- 3월 footnote
+
+> Key finding: WAISTCIR alone eliminates OR in all age strata.
+
+- 8월 리뷰어 대응안
+
+> 층화변수 자체가 MetS 구성요소라 **부분적 순환성은 어떤 절단값을 써도 남음**
+
+:::
+
+::: {.human}
+
+[연구자가 확인한 것]{.label}
+
+- 최종 주 모형: 연령, 생활습관만 보정
+- 바이오마커 모형: + BMI, 약물
+- MetS 구성요소: 보정 변수가 아니라 pooled 사분위 층화 변수로만
+
+:::
+
+:::
+
+[출처: DataBot(모델 미기재), 02-afhe-khanes-analysis-report.qmd 563–572행 (2026-03-10), reviewer2-response-plan.md 421행 (2026-08-14), 논문 2 Statistical analysis]{.src}
+
+::: {.notes}
+**시간** 1.0분, **에이전트** DataBot(모델 미기재), 2026-03-10 보고서 / 2026-08-14 리뷰어 대응안
+
+**말할 내용**
+
+- `mets_c1` = 허리둘레 ≥ 90 cm → 허리둘레 보정 = 결과 정의의 일부를 공변량으로 투입
+- 인과 구조: 허리둘레는 집단 → MetS 경로 위에 있을 수 있음 → 보정 시 총효과가 아니라 그 경로를 막은 효과 추정
+- 따라서 "보정하면 사라진다"는 집단 차이가 가짜라는 증거가 아님
+- 무엇을 보정할지 = 추정 대상과 인과 구조의 문제, 통계 검정의 문제 아님
+- 최종 원고: 주 모형은 연령, 생활습관만 보정, MetS 구성요소는 pooled 사분위 층화 변수로만 사용
+- 순환성 논점: 리뷰어가 묻지 않아 응답서에 먼저 넣지 않기로 함 → 12번. 대응안 원문 "먼저 꺼내면 오히려 이 지점을 파고들 빌미가 됨. 리뷰어가 후속으로 제기할 경우에만 대응."
+
+**질문 대비**
+
+- Model 2의 BMI 보정도 허리둘레와 상관이 높아 같은 질문을 받을 수 있음
+- 3월 보고서의 허리둘레 집단 차이 수치: 중간 보고서 값이라 화면 미사용
+
+**출처**
+
+- `slides/excerpts/08-waist-adjustment-circularity.md` (`quarto/agent_bot/2026-03-10/02-afhe-khanes-analysis-report.qmd` 563–572, 641, 673, 703행, `output/agent_bot/2026-08-14/reviewer2-response-plan.md` 406–414, 421행)
+- `slides/excerpts/08-probit-choice-reason.md` (출판본 Statistical analysis), doi:10.1136/military-2026-003444
+- `slides/excerpts/06-contract-mets-definition.md` (`mets_c1` 정의, 레포 CLAUDE.md 252–260행)
+- `memory/talk-scenes-from-repo.md` 35행(출처 정정)
+:::

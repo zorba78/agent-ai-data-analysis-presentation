@@ -1,0 +1,43 @@
+---
+title: "연구 생산성 향상을 위한 Agent AI 기반 워크플로우: 데이터 분석에서 논문 작성까지"
+subtitle: "국민건강영양조사 vs 공군 조종사 건강검진: 대사증후군, 지방간 위험 비교 사례"
+author: "구본초, 한국한의학연구원"
+date: last-modified
+lang: ko
+format:
+  revealjs:
+    theme: [default, theme.scss]
+    slide-number: c/t
+    width: 1600
+    height: 900
+    margin: 0.08
+    code-line-numbers: false
+    code-overflow: scroll
+    highlight-style: github
+    footer: "Positron + Agentic AI 2026"
+    menu: true
+    chalkboard: false
+    preview-links: false
+    embed-resources: false
+    transition: none
+    fig-cap-location: bottom
+    auto-stretch: false
+    title-slide-attributes:
+      data-background-color: "#14213D"
+execute:
+  echo: true
+  eval: false
+---
+
+
+{{< include sections/act1.qmd >}}
+
+{{< include sections/act2.qmd >}}
+
+{{< include sections/act3a.qmd >}}
+
+{{< include sections/act3b.qmd >}}
+
+{{< include sections/act4.qmd >}}
+
+{{< include sections/appendix.qmd >}}

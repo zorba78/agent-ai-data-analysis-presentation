@@ -1,0 +1,11 @@
+demo/clips/
+output/agent/**/*.txt
+_site/
+*.html
+!slides/assets/**
+.quarto/
+
+# 2026-10-21: render output, copyrighted PDFs, local editor state
+slides/index_files/
+references/*.pdf
+.vscode/

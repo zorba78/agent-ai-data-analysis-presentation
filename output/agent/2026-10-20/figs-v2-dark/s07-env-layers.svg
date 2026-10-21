@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 520" width="1440" height="520" font-family="'Noto Sans KR','Malgun Gothic',sans-serif">
+  <defs>
+    <linearGradient id="gL" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1C2B4A"/><stop offset="1" stop-color="#2A3F66"/></linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0B5FA5"/><stop offset="1" stop-color="#2E8FE0"/></linearGradient>
+    <linearGradient id="gBase" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F7F7F2"/><stop offset="1" stop-color="#E9ECEF"/></linearGradient>
+    <linearGradient id="gOr" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D97706"/><stop offset="1" stop-color="#F59E0B"/></linearGradient>
+    <filter id="sh" x="-5%" y="-10%" width="110%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.35"/></filter>
+  </defs>
+
+  <!-- layer 5: memory -->
+  <g filter="url(#sh)"><rect x="200" y="10" width="1040" height="86" rx="18" fill="url(#gL)" stroke="#3D4F6E" stroke-width="1.5"/></g>
+  <circle cx="250" cy="53" r="26" fill="#FFFFFF" fill-opacity="0.08" stroke="#7FB3E6" stroke-width="2"/>
+  <g transform="translate(236,39)" fill="none" stroke="#7FB3E6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="12"/><path d="M14,7 v7 l5,3"/></g>
+  <text x="300" y="63" font-size="28" font-weight="700" fill="#F7F7F2">memory</text>
+  <text x="520" y="61" font-size="20" fill="#7FB3E6">기억</text>
+  <text x="620" y="63" font-size="24" fill="#BFD8F0">지난 결정과 교정을 파일로 남김</text>
+
+  <!-- layer 4: skills, MCP -->
+  <g filter="url(#sh)"><rect x="160" y="110" width="1120" height="86" rx="18" fill="url(#gL)" stroke="#3D4F6E" stroke-width="1.5"/></g>
+  <circle cx="210" cy="153" r="26" fill="#FFFFFF" fill-opacity="0.08" stroke="#7FB3E6" stroke-width="2"/>
+  <g transform="translate(197,140)" fill="none" stroke="#7FB3E6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8,2 v7 M18,2 v7 M4,9 h18 v6 a9,9 0 0 1 -18,0 z M13,24 v4"/></g>
+  <text x="260" y="163" font-size="28" font-weight="700" fill="#F7F7F2">스킬, MCP</text>
+  <text x="520" y="161" font-size="20" fill="#7FB3E6">도구</text>
+  <text x="620" y="163" font-size="24" fill="#BFD8F0">반복 절차는 스킬, 외부 검색과 R 세션 연결은 MCP</text>
+
+  <!-- layer 3: CLAUDE.md -->
+  <g filter="url(#sh)"><rect x="120" y="210" width="1200" height="86" rx="18" fill="url(#gL)" stroke="#F0C48A" stroke-width="2"/></g>
+  <rect x="120" y="210" width="10" height="86" rx="5" fill="url(#gOr)"/>
+  <circle cx="170" cy="253" r="26" fill="#FFFFFF" fill-opacity="0.08" stroke="#F59E0B" stroke-width="2"/>
+  <g transform="translate(158,239)" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3,0 h12 l8,8 v18 a2,2 0 0 1 -2,2 h-18 a2,2 0 0 1 -2,-2 v-24 a2,2 0 0 1 2,-2 z M15,0 v8 h8 M7,15 h10 M7,21 h10"/></g>
+  <text x="220" y="263" font-size="28" font-weight="700" fill="#F7F7F2">CLAUDE.md</text>
+  <text x="520" y="261" font-size="20" fill="#F59E0B">지침</text>
+  <text x="620" y="263" font-size="24" fill="#BFD8F0">목적, 규칙, 저장 위치. 사람이 쓰고 에이전트가 매번 읽음</text>
+
+  <!-- layer 2: Claude Code -->
+  <g filter="url(#sh)"><rect x="80" y="310" width="1280" height="86" rx="18" fill="url(#gBlue)" stroke="#7FB3E6" stroke-width="1.5"/></g>
+  <circle cx="130" cy="353" r="26" fill="#FFFFFF" fill-opacity="0.15" stroke="#FFFFFF" stroke-width="2"/>
+  <g transform="translate(115,341)" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="30" height="24" rx="4"/><path d="M7,8 l5,4 l-5,4 M16,17 h8"/></g>
+  <text x="180" y="363" font-size="28" font-weight="700" fill="#FFFFFF">Claude Code</text>
+  <text x="520" y="361" font-size="20" fill="#DCEAF7">에이전트</text>
+  <text x="620" y="363" font-size="24" fill="#FFFFFF">파일 읽기, 쓰기, 코드 실행</text>
+
+  <!-- layer 1: Positron -->
+  <g filter="url(#sh)"><rect x="40" y="410" width="1360" height="86" rx="18" fill="url(#gBase)"/></g>
+  <circle cx="90" cy="453" r="26" fill="#14213D" fill-opacity="0.06" stroke="#14213D" stroke-width="2"/>
+  <g transform="translate(75,441)" fill="none" stroke="#14213D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="30" height="24" rx="4"/><path d="M0,8 h30 M11,8 v16"/></g>
+  <text x="140" y="463" font-size="28" font-weight="700" fill="#14213D">Positron</text>
+  <text x="520" y="461" font-size="20" fill="#0B5FA5">에디터</text>
+  <text x="620" y="463" font-size="24" fill="#14213D">R 콘솔, 데이터 뷰어, Quarto, 터미널</text>
+</svg>

@@ -1,0 +1,237 @@
+## 11. 원고 초안은 에이전트가 쓰되, 문체와 길이의 기준은 연구자가 memory에 남겼다 {.grey}
+
+<p class="eyebrow">11. 원고 + 역할 분리 에이전트</p>
+
+<div class="pipeline"><span>질문</span><span>데이터 이해</span><span>분석</span><span>검증</span><span class="active">논문</span><span>재현</span></div>
+
+<div class="stage3">
+<div>
+<p class="label">프롬프트(memory에 기록된 사용자 지시)</p>
+
+> 저자의 문맥, 문체, 주장 등을 유지하면서 초안의 부족한 부분을 수정
+
+> qmd 파일에 결과 테이블 및 그림은 포함시키지 않고 논문 내용만 작성
+
+</div>
+<div>
+<p class="label">에이전트가 한 일</p>
+
+- Methods Overview 초안, author "Databot (Agent Analysis)"
+
+> All statistical analyses were performed in R (version 4.5.2; R Core Team, 2025) using the tidyverse suite (Wickham et al., 2019) …
+
+</div>
+<div class="human">
+<p class="label">연구자가 확인한 것</p>
+
+- 출판본: "R (V.4.5.3)"
+- Abstract, Limitations 길이 압축 요청 두 차례
+- em-dash 지양: "사용자 명시"로 memory 기록
+
+</div>
+</div>
+
+<p class="src">출처: 05_statistical_analysis_methods.qmd 1–5, 21–34행(2026-03-21), memory/agent_bot/2026-05-09/session-summary.md §7, DataBot(모델 미기재)</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 말할 내용
+  - 표준 문단(소프트웨어, 기술통계, 집단 비교 검정)은 패키지 인용까지 에이전트가 채움
+  - 예: Welch's t-test, Pearson's χ² 또는 Fisher's exact test(기대 빈도 5 미만), 양측 α = 0.05
+  - 기준은 연구자: 문체 유지, 표, 그림 분리, em-dash 지양, 압축 우선 → 2026-05-09 session-summary §7에 "사용자 명시"로 기록
+  - R 버전 같은 작은 사실도 초안(4.5.2)과 출판본(V.4.5.3) 사이에 바뀜 → 출판본 대조가 필요한 이유
+  - 에이전트 표기: DataBot(모델 미기재). 2026-03-21 Methods 초안, 2026-05-09 원고 개정
+- 출처: `11-methods-draft-and-number-sourcing.md`(05_statistical_analysis_methods.qmd 1–5, 21–34행), `08-unweighted-decision.md`(session-summary 2026-05-09 §7), `08-probit-choice-reason.md`(출판본 "R (V.4.5.3)"), doi:10.1136/military-2026-003444
+:::
+
+## 원고 산문의 숫자는 R 객체가 아니라 글자다: 그래서 표와 스크립트로 따로 대조한다
+
+<p class="eyebrow">11. 원고 + 역할 분리 에이전트</p>
+
+<div class="stage3">
+<div>
+<p class="label">맥락(프롬프트 원문 없음)</p>
+
+- 리뷰어 응답서 작성
+- 2026-08-15~16
+
+</div>
+<div style="flex: 1.5;">
+<p class="label">에이전트가 한 일</p>
+
+> … the Results sentence now ends **"(adjusted ORs 0.18-0.79, all p ≤ 0.009)"**. The added p value is the largest adjusted p among those components, taken from Table 2; no reanalysis was required.
+
+</div>
+<div class="human">
+<p class="label">연구자가 확인한 것</p>
+
+- "all p ≤ 0.009"가 해당 구성요소의 최대 보정 p인지(Table 2)
+- 기록: "답변서의 원고 인용문 전부 r2 qmd/docx와 대조 → 일치"
+- `verify-numbers.R` 재실행: 전부 일치
+
+</div>
+</div>
+
+<p class="src">출처: responses-to-reviewers.qmd 128행, responses-to-reviewers-v2.qmd 174행, memory/agent_bot/2026-08-16/session-summary.md §5, DataBot(모델 미기재)</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 말할 내용
+  - 표와 그림은 코드에서 나옴. 산문의 "0.18-0.79"는 누군가 표에서 옮겨 적은 글자
+  - 이 레포: 산문 수치 하드코딩
+  - 대신 출처를 응답서에 문장으로 기록("taken from Table 2; no reanalysis was required")
+  - 그리고 표, 렌더된 docx, 검증 스크립트와 대조하는 절차를 따로 둠
+  - 13번에서 먼저 꺼낼 한계 2와 연결
+- 확인 필요
+  - "adjusted ORs 0.18-0.79, all p ≤ 0.009" 출판본 대조(PDF 암호 보호로 미확인)
+  - 0.18–0.79가 가리키는 구성요소 범위(혈압 구성요소 aOR 2.12는 범위 밖)를 Table 2에서 확인
+  - 교차검증 수행 주체(에이전트 또는 사용자)는 session-summary에 명시 없음
+- 출처: `11-methods-draft-and-number-sourcing.md`(responses-to-reviewers.qmd 128행, responses-to-reviewers-v2.qmd 174행, session-summary 2026-08-16 §5 39–40행), `memory/talk-scenes-from-repo.md` 23행
+:::
+
+## "완료되었습니다!"와 올바름은 다르다: 쓰는 에이전트와 검토하는 에이전트를 나누는 이유 {.grey}
+
+<p class="eyebrow">11. 원고 + 역할 분리 에이전트</p>
+
+<div class="stage3">
+<div>
+<p class="label">프롬프트</p>
+
+> 현재 작업공간 contrast(emm1, "revpairwise", by = c("GROUP2", "C_ABOBESE"))의 결과에서 각 집단의 contrast 간 차이 검정
+
+</div>
+<div style="flex: 1.6;">
+<p class="label">에이전트가 한 일</p>
+
+- 시도 4: 두 추정치 차이를 손계산
+
+```r
+est_diff <- cont_df$estimate[1] - cont_df$estimate[2]
+se_diff  <- sqrt(cont_df$SE[1]^2 + cont_df$SE[2]^2)
+```
+
+- 시도 5 뒤 주석 `# METS_new is the outcome (binary), not a predictor` → "완료되었습니다!"
+
+</div>
+<div class="human">
+<p class="label">연구자가 확인한 것</p>
+
+- 로그에 확인 흔적 없음(대화 종료)
+- 확인했어야 할 것: Var(a − b)의 −2Cov(a, b) 항
+- 확인했어야 할 것: 두 대비가 어느 모형에서 왔는지
+
+</div>
+</div>
+
+<p class="src">출처: conversation-export.json(레포 루트) msg[32–33], 2026-03-12, Positron Assistant(Claude Sonnet 4.6)</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 말할 내용
+  - 두 대비는 같은 모형에서 나온 추정치 → 공분산이 0이 아닐 수 있음
+  - `sqrt(SE1^2 + SE2^2)` = Var(a − b) = Var(a) + Var(b) − 2Cov(a, b)의 마지막 항 누락
+  - `emm1`(t-ratio와 df = 3681로 보아 METS_new를 예측변수로 둔 모형으로 추정)과 MetS를 결과로 둔 로지스틱 모형(`METS_new ~ GROUP2 * C_ABOBESE * URATE + AGE + SMOKING + ALCOHOL + EXERCISE`) 사이를 오가며 "URATE-MeTS 연관성"으로 결론
+  - 시도 1–3: `nonEst NA`, "Nonconforming number of contrast coefficients", 2원 대비만 산출
+  - 결과는 그럴듯함, 산출 경로는 틀림, 검토한 사람 없음
+  - 수치는 출판 원고에 없는 탐색 결과 → 화면에는 코드 패턴만
+  - 다음 장: 쓴 쪽이 스스로 끝내지 않게 역할을 가르는 구성
+- 확인 필요
+  - `emm1`의 모형식은 로그에 없음(t-ratio와 df로 추정)
+  - 이 결과의 원고 반영 여부는 레포 qmd에서 확인 후 언급
+- 출처: `11-mets-new-outcome-not-predictor.md`(레포 루트 `conversation-export.json` msg[32–33])
+:::
+
+## 보고서 문장은 오케스트레이터가 쓰지 않는다: 근거 분석, 초안, 검토를 다른 에이전트에 나눈다
+
+<p class="eyebrow">11. 원고 + 역할 분리 에이전트</p>
+
+- 오케스트레이터(Fable 5.1): 근거 수집, 분배, 통합, 보고. "보고서 문장은 워커가 쓴다."
+
+<div class="cards">
+<div>
+<h3>1 근거 분석</h3>
+<p><code>evidence-analyst</code>, 근거표</p>
+<p class="tag-agent">Opus 5.5</p>
+</div>
+<div>
+<h3>2 초안 작성</h3>
+<p><code>report-writer</code>, 초안</p>
+<p class="tag-agent">Opus 5.5</p>
+</div>
+<div>
+<h3>3 검토</h3>
+<p><code>report-reviewer</code>, 초안마다 새로 띄움</p>
+<p class="tag-agent">Opus 5.5</p>
+</div>
+</div>
+
+<div class="excerpt" style="margin-top: 0.6em;">
+
+근거표에 없는 내용은 보고서에 들어가지 못하고, 근거표에 틀린 내용이 있으면 그대로 평가 문서에 실린다. 그래서 자료에서 직접 확인한 것만 적는다.
+
+넘길 것은 검토할 파일 경로뿐이다. 오케스트레이터의 평가나 작성 워커의 설명을 붙이지 않는다.
+
+</div>
+
+<p class="src">출처: 연차보고서 프로젝트 .claude/skills/annual-report/SKILL.md(역할 표, 3단계), .claude/agents/evidence-analyst.md 14–15행, 마스킹 발췌</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 말할 내용
+  - 다른 프로젝트(연차보고서 작성)의 구성. 프로젝트 폴더명은 비공개
+  - 앞 장의 "완료되었습니다!"처럼 쓴 쪽이 스스로 끝내지 않도록 역할 분리
+  - 검토자에게는 파일 경로만 전달: 작성자의 설명이 검토를 끌고 가지 않게
+  - 같은 스킬 "지킬 것": 달성 여부와 달성도는 사용자가 확인한 값만, 워커 추정치는 제안으로만 보고
+  - 한계: 워커 셋 모두 Opus 5.5 → 쓰는 모델과 검토하는 모델이 같은 계열. 다음 장의 구성에서 변경
+- 질문 대비
+  - DB 접근은 `<db>-db` 스킬 규칙대로만, 워커 지시문에 계정, 비밀번호 기재 금지(부록 A2)
+  - 강의 노트 프로젝트의 점검 스킬("지적만 하고 수정은 하지 않는다.")은 부록 A3
+- 출처: `setup-orchestration-annual-report.md`(annual-report SKILL.md 역할 표, 3단계, evidence-analyst.md 14–15행), `setup-skill-lecture-review.md`
+:::
+
+## 계약서 하나, 오케스트레이터 둘, 모델 다양성: 쓰는 모델과 검토하는 모델의 계열을 다르게 한다 {.grey}
+
+<p class="eyebrow">11. 원고 + 역할 분리 에이전트</p>
+
+<div class="cards">
+<div>
+<h3>오케스트레이터 A, 작성 허브</h3>
+<p class="tag-agent">Claude Fable 5.1</p>
+<p>워커 <code>slide-writer</code>, <code>fact-checker</code>: Claude Opus 5.5</p>
+</div>
+<div>
+<h3>공유 상태 = 레포</h3>
+<p>CLAUDE.md = AGENTS.md, <code>memory/</code>, <code>review/</code>, git</p>
+<p>"공유 상태는 대화가 아니라 레포다"</p>
+</div>
+<div>
+<h3>오케스트레이터 B, 검토 허브</h3>
+<p class="tag-agent">GPT-6.0 Astra</p>
+<p>독립 검토 워커: GPT-5.6 Terra</p>
+</div>
+</div>
+
+<div class="excerpt" style="margin-top: 0.6em;">
+
+규칙 2: 쓰는 모델과 검토하는 모델은 계열을 다르게 한다.
+
+`run-worker.ps1`: … the same task is re-run with -Worker opus and the header says "fallback from terra".
+
+</div>
+
+<p class="src">출처: 이 발표 프로젝트 CLAUDE.md 오케스트레이션 절(66–83행), scripts/run-worker.ps1 1–16행</p>
+
+::: {.notes}
+- 시간: 1.0분
+- 말할 내용
+  - 지금 이 슬라이드가 이 구조로 제작 중
+  - 이 덱 초안: Opus 작성 → Terra 또는 Astra 검토
+  - Terra가 한도, 오류로 실패하면 같은 작업을 Opus로 재실행, 결과 파일 머리에 실제 수행 모델 기록 → 같은 계열 검토가 된 사실을 숨기지 않기 위함
+  - 규칙 1: 작업마다 주 오케스트레이터는 하나, 상대 오케스트레이터는 워커로만
+  - 규칙 3: Astra와 Terra는 `review/`에만 씀. Fable과 Opus는 `review/` 읽기만
+  - 앞 장(연차보고서)과의 차이: 검토를 다른 계열 모델로
+- 확인 필요
+  - 도구 기능(Claude Code, Codex, Copilot CLI)은 발표 1주 전 최신 버전과 재대조(`CLAUDE.md` 행동 규칙 4)
+  - `memory/orchestration-decisions.md`의 미확인 항목은 발표에서 언급하지 않음
+- 출처: `setup-orchestration-this-project.md`(CLAUDE.md 66–83행, `scripts/run-worker.ps1` 1–16행)
+:::

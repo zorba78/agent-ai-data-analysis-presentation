@@ -1,0 +1,130 @@
+/*-- scss:defaults --*/
+// Palette fixed from the design mock-up (2026-10-20).
+// navy = dark tone / statement slides, beige and grey = alternating light backgrounds,
+// blue = agent, orange = researcher decision. Keep this mapping across the deck.
+$navy:   #14213D;
+$navy2:  #1C2B4A;
+$beige:  #F7F7F2;
+$grey:   #EEF1F5;
+$blue:   #0B5FA5;
+$blue2:  #7FB3E6;
+$orange: #D97706;
+$orange-bg: #FFF7ED;
+$orange-line: #F0C48A;
+$ink:    #14213D;
+$ink2:   #4A5568;
+$muted:  #6A7179;
+$line:   #D9DEE7;
+
+$font-family-sans-serif: "Noto Sans KR", "IBM Plex Sans", "Pretendard", Arial, sans-serif;
+$font-family-monospace: "JetBrains Mono", "D2Coding", "Courier New", monospace;
+$presentation-font-size-root: 28px;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $ink;
+$presentation-heading-font-weight: 700;
+$presentation-h2-font-size: 1.9em;
+$presentation-h3-font-size: 1.15em;
+$body-bg: $beige;
+$body-color: $ink;
+$link-color: $blue;
+$code-block-font-size: 0.62em;
+$code-color: $ink;
+
+/*-- scss:rules --*/
+.reveal .slides section { text-align: left; }
+.reveal h2 { line-height: 1.2; margin-bottom: 0.5em; }
+.reveal p, .reveal li { color: $ink2; line-height: 1.45; }
+.reveal ul { margin-left: 0.8em; }
+
+// Section eyebrow. In revealjs the ## title is always the first element, so the eyebrow
+// paragraph comes after it in the source and is pinned to the top edge; titles get a top margin.
+.reveal .eyebrow { position: absolute; top: 0; left: 0; font-size: 0.82em; font-weight: 500; color: $blue; margin: 0; }
+.reveal .eyebrow.human { color: $orange; }
+.reveal .slides section > h2:first-child { margin-top: 0.9em; }
+
+// Pipeline progress bar (6 stages). Put on the first slide of each section.
+.reveal .pipeline { display: flex; gap: 0.35em; font-size: 0.6em; margin: 0 0 0.8em 0; }
+.reveal .pipeline span { padding: 0.15em 0.7em; border: 1px solid #C9D0DB; border-radius: 999px; color: $muted; }
+.reveal .pipeline span.active { background: $blue; color: $beige; border-color: $blue; }
+.reveal .pipeline span.all { background: $blue; color: $beige; border-color: $blue; }
+
+// Layout 3: three-stage columns (prompt / agent / researcher)
+.reveal .stage3 { display: flex; gap: 0.7em; align-items: stretch; }
+.reveal .stage3 > div { flex: 1; background: #FFFFFF; border: 1px solid $line; border-radius: 0.6em; padding: 0.9em 1em; font-size: 0.8em; }
+.reveal .stage3 > div.human { background: $orange-bg; border-color: $orange-line; }
+.reveal .stage3 .label { font-size: 0.85em; font-weight: 500; color: $blue; margin-bottom: 0.3em; }
+.reveal .stage3 .human .label { color: $orange; }
+.reveal .stage3 blockquote { border-left: 4px solid $blue; margin: 0.3em 0; padding: 0.1em 0 0.1em 0.6em; font-style: italic; color: $ink2; font-size: 0.95em; }
+
+// Cards row (layout 1) and 2x2 cards (control points)
+.reveal .cards { display: flex; gap: 0.6em; }
+.reveal .cards > div { flex: 1; background: #FFFFFF; border: 1px solid $line; border-radius: 0.6em; padding: 0.9em 1em; font-size: 0.8em; }
+.reveal .cards > div.human { border-top: 6px solid $orange; }
+.reveal .cards h3 { font-size: 1.05em; margin: 0 0 0.3em 0; }
+.reveal .tag-human { color: $orange; font-weight: 500; font-size: 0.85em; }
+.reveal .tag-agent { color: #8FA3BF; font-size: 0.85em; }
+
+// Layout 4: code panel + numbered cards. Light panel so Quarto's github highlight colours stay readable.
+.reveal .codepanel pre { background: #FFFFFF; border: 1px solid $line; border-radius: 0.5em; padding: 0.5em 0.7em; margin: 0; }
+.reveal .codepanel pre code { font-size: 0.85em; line-height: 1.35; }
+.reveal .codepanel .err { color: #B42318; }
+.reveal pre code { max-height: none; }
+
+// Dark statement slide
+.reveal section.dark { background: $navy; color: $beige; }
+.reveal section.dark h2, .reveal section.dark h3 { color: $beige; }
+.reveal section.dark p, .reveal section.dark li { color: #BFD8F0; }
+.reveal section.dark .eyebrow { color: $blue2; }
+.reveal section.dark .eyebrow.human { color: #F59E0B; }
+// Inline-style replacements used by section writers
+.reveal .stage3 > div.wide { flex: 1.6; }
+.reveal .cards + .cards { margin-top: 0.6em; }
+.reveal section.dark .chat { background: $navy2; border-left: 6px solid #8FA3BF; border-radius: 0.5em; padding: 0.5em 0.8em; margin-bottom: 0.5em; font-size: 0.8em; }
+.reveal section.dark .chat.user { border-left-color: $blue2; }
+.reveal section.dark .chat.catch { border-left-color: #F59E0B; }
+.reveal section.dark .chat .who { font-size: 0.8em; color: #8FA3BF; }
+.reveal section.dark .bignum { background: $beige; color: $ink; border-radius: 0.5em; padding: 0.8em; }
+.reveal section.dark .bignum .n { font-size: 2.1em; font-weight: 700; line-height: 1; }
+.reveal section.dark .bignum p { color: $muted; }
+.reveal section.dark .src { color: #8FA3BF; }
+.reveal section.dark .cards > div, .reveal section.dark .stage3 > div, .reveal section.dark .excerpt { color: $ink; }
+.reveal section.dark .cards > div p, .reveal section.dark .cards > div li,
+.reveal section.dark .stage3 > div p, .reveal section.dark .stage3 > div li,
+.reveal section.dark .excerpt p { color: $ink2; }
+
+// Grey alternate background
+.reveal section.grey { background: $grey; }
+
+// Excerpt block (layout 2) and tables
+.reveal .excerpt { background: #FFFFFF; border: 1px solid $line; border-radius: 0.5em; padding: 0.6em 0.9em; font-size: 0.75em; }
+.reveal table { font-size: 0.75em; }
+.reveal table th { background: $navy; color: $beige; }
+
+// Source footer: sits above the Quarto footer band (which is centred at the very bottom)
+.reveal .src { position: absolute; bottom: 1.6em; left: 0; font-size: 0.55em; color: $muted; margin: 0; }
+.reveal .footer { font-size: 0.5em; }
+
+// Classes that section files now apply to bracketed spans ([text]{.label}) need block display
+.reveal span.label, .reveal span.who, .reveal span.n, .reveal span.tag-human, .reveal span.tag-agent { display: block; }
+.reveal span.eyebrow, .reveal span.src { display: block; white-space: nowrap; }
+// Card titles: a span, not ###, because ### inside a slide becomes a nested (vertical) slide
+.reveal span.h3 { display: block; font-size: 1.05em; font-weight: 700; color: $ink; margin-bottom: 0.2em; }
+.reveal section.dark span.h3 { color: $beige; }
+.reveal section.dark .cards > div span.h3, .reveal section.dark .stage3 > div span.h3 { color: $ink; }
+.reveal .stage3 > div > p, .reveal .cards > div > p { margin: 0.25em 0; }
+.reveal .columns .column > p:first-child { margin-top: 0; }
+
+// Figure slides: centre the figure in the space under the title instead of pinning it to the top
+.reveal .figfill { display: flex; align-items: center; justify-content: center; min-height: 640px; margin: 0; }
+.reveal .figfill p { margin: 0; }
+
+// Speaker-note-only text never renders
+.reveal .notes-only { display: none; }
+
+// Title slide: navy background, light text, like the design mock-up
+.reveal .slides section#title-slide, .reveal .slides section.title-slide { background: $navy; color: $beige; text-align: left; padding-left: 1.2em; }
+.reveal #title-slide h1.title { color: $beige; font-size: 1.9em; line-height: 1.25; margin-top: 2.2em; }
+.reveal #title-slide p.subtitle { color: #BFD8F0; font-size: 0.95em; margin-top: 1em; }
+.reveal #title-slide .quarto-title-authors, .reveal #title-slide p.author, .reveal #title-slide p.date { color: #8FA3BF; font-size: 0.8em; }
+.reveal #title-slide .quarto-title-authors { justify-content: flex-start; }
+.reveal #title-slide::before { content: "POSITRON + CLAUDE CODE"; display: block; position: absolute; top: 1.4em; left: 1.2em; font-size: 0.75em; letter-spacing: 2px; color: $blue2; font-weight: 500; }

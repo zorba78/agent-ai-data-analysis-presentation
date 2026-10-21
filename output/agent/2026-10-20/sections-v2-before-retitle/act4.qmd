@@ -1,0 +1,198 @@
+## 4. 빨라진 것과 그대로인 것 {.grey}
+
+[4. 효과와 팁]{.eyebrow .human}
+
+::: {.cards}
+
+::: {.box}
+[에이전트에게 간 것]{.h3}
+
+코드 작성과 실행
+
+표와 그림
+
+문헌 정리
+
+숫자 검증 스크립트
+
+초안
+:::
+
+::: {.human}
+[사람에게 남은 것]{.h3}
+
+질문
+
+설계 선택
+
+해석
+
+인용 판단
+
+최종 검토
+:::
+
+:::
+
+[출처: 3막 각 장(S20–S37)의 발췌본]{.src}
+
+::: {.notes}
+- 1.5분
+- 왼쪽 항목별 사례: 코드 작성과 실행(S24–S26), 표와 그림(S27), 문헌 정리(S31), 숫자 검증 스크립트(S30), 초안(S34, S35)
+- 오른쪽 항목별 사례: 질문(S22 RQ 확정), 설계 선택(S23 설계안 중 선택), 해석(S29 "오즈비"가 가리킨 두 표), 인용 판단(S33, S35 HWE 인용 복원), 최종 검토(S36, S37)
+- `[여기에: 체감 효과, 예: 리뷰어 대응 기간]`
+- 시간 절감 수치는 발췌본에 없음. 체감은 발표자 경험으로만 말하고 숫자로 일반화하지 않음
+- 출처: `slides/outline.md` S38, 3막 각 장의 발췌본
+:::
+
+## 내일 바로 할 수 있는 설정 3가지
+
+[4. 효과와 팁]{.eyebrow .human}
+
+::: {.cards}
+
+::: {.human}
+[1. CLAUDE.md 한 장]{.h3}
+
+6블록: 목적과 상태, 역할, 행동 규칙, 코딩 규칙, 윤리 제약, 저장 규칙
+
+교정이 생기면 한 줄씩 추가
+:::
+
+::: {.human}
+[2. 산출물 폴더 나누기]{.h3}
+
+`code/{user,agent}`, `output/{user,agent}/YYYY-MM-DD`
+
+에이전트가 언제 무엇을 만들었는지 추적
+:::
+
+::: {.human}
+[3. 숫자 검증 스크립트 하나]{.h3}
+
+원고의 숫자를 같은 데이터에서 다시 계산
+
+예: `verify-numbers.R`
+:::
+
+:::
+
+[출처: setup-claude-md-six-blocks, 07-user-cancels-tool-call, 09-verify-numbers-script]{.src}
+
+::: {.notes}
+- 1.5분
+- 셋 다 사례 레포에 실제로 있는 것
+- CLAUDE.md: 사례 레포 원본 381행, 6블록. 행동 규칙 7 원문 "직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김", 9 원문 "모든 수치 결과는 그 도출 과정을 문서에 포함"
+- 한 장부터 시작. 에이전트를 교정할 일이 생길 때마다 한 줄
+- 폴더: 사람과 에이전트 산출물 분리, 날짜 폴더. 실례: 에이전트가 "AGENTS.md 규칙에 따라 `code/agent_bot/2026-03-19/` 폴더에" 저장(07), 검증 스크립트 위치 `code/agent_bot/2026-08-16/`
+- 검증 스크립트 헤더 원문: "Nothing here changes any analysis; it recomputes from the same analysis dataset the manuscript already uses."
+- 검증 기준은 미리 정함: SI 변환 후 OR, Δβ, 95% CI, p가 기존 값과 완전히 같아야 함(reviewer2-response-plan §D)
+- 스타터킷에 템플릿(다음 장)
+- 출처: `slides/excerpts/setup-claude-md-six-blocks.md`, `slides/excerpts/07-user-cancels-tool-call.md`, `slides/excerpts/09-verify-numbers-script.md`
+:::
+
+## 한계: 묻지 않고 고르고, 그럴듯한 용어를 붙이고, "완료"라고 말한다 {.grey}
+
+[4. 효과와 팁]{.eyebrow .human}
+
+::: {.cards}
+
+::: {.box}
+[묻지 않고 고른다]{.h3}
+
+"오즈비"가 가리킨 두 표 중 하나를 골라 서사까지 작성
+
+"이전 해석에 오류가 있었습니다"
+:::
+
+::: {.box}
+[그럴듯한 용어]{.h3}
+
+척도 의존성을 이렇게 부름
+
+"이는 통계학에서 잘 알려진 **"non-collapsibility"** 문제입니다."
+:::
+
+::: {.box}
+[완료 선언]{.h3}
+
+공분산을 뺀 SE 손계산 뒤
+
+"완료되었습니다!"
+:::
+
+:::
+
+[출처: 09-two-odds-ratios-confused, 08-probit-logit-probability-scale, 11-mets-new-outcome-not-predictor, Positron Assistant(Claude Sonnet 4.6), 2026-03]{.src}
+
+::: {.notes}
+- 1분
+- 세 장면 모두 3월 분석 대화, Positron Assistant(Claude Sonnet 4.6)
+- 묻지 않고 고름(2026-03-10): 탐색적 질문의 "오즈비"는 집단 내 1-SD OR 표(`tbl_result_mets_lbtest`)였는데 에이전트는 집단 간 유병 OR로 받아 HWE 서사와 논문 문장까지 작성. 사용자 "결과 해석이 이상한데?" → 에이전트 "확인했습니다. 이전 해석에 오류가 있었습니다." 이 연결 시도는 원고에 들어가지 않음
+- 그럴듯한 용어(2026-03-17): probit 척도에서 비유의, 확률 척도에서 유의로 갈린 상호작용을 "non-collapsibility"라 부름. 맞는 이름은 상호작용의 척도 의존성. 계산 재현은 정확(부록 A1)
+- 완료 선언(2026-03-12): 3원 상호작용 SE를 `sqrt(cont_df$SE[1]^2 + cont_df$SE[2]^2)`로 손계산(공분산 무시). 주석 "METS_new is the outcome (binary), not a predictor"를 남긴 채 "완료되었습니다!". 사용자 확인 흔적 없음
+- 출판 원고에 없는 탐색 결과라 수치는 올리지 않음
+- 질문 나오면: Δβ 부호를 같은 메시지 안에서 반대로 읽은 장면(부록 A2)
+- 대응: 계약서(이 프로젝트 `CLAUDE.md` 행동 규칙 6 "여러 해석이 가능하면 고르지 말고 묻는다"), 검증 스크립트(S30), 다른 계열 모델 검토(S18)
+- 출처: `slides/excerpts/09-two-odds-ratios-confused.md`(레포 `agent-conversation/conversation-add-analysis.json` msg[18–21]); `slides/excerpts/08-probit-logit-probability-scale.md`(`conversation-probit-logit-prob.json` msg[8–9]); `slides/excerpts/11-mets-new-outcome-not-predictor.md`(레포 루트 `conversation-export.json` msg[32–33])
+:::
+
+## 스타터킷 {.dark}
+
+[4. 효과와 팁]{.eyebrow .human}
+
+[여기에: 스타터킷 주소] QR
+
+CLAUDE.md 템플릿 / 폴더 구조 / 검증 체크리스트 / 프롬프트 치트시트
+
+::: {.cards}
+
+::: {.human}
+[1. 실행 전 승인]{.h3}
+
+"User declined to execute tool." → 범위 다시 지정
+
+[2026-03-19, Positron Assistant]{.tag-human}
+:::
+
+::: {.human}
+[2. 데이터 노출]{.h3}
+
+행 단위 출력 금지, 집계값만, 5명 미만은 "5 미만"
+
+[이 발표의 CLAUDE.md 화면 노출 규칙]{.tag-human}
+:::
+
+:::
+
+::: {.cards}
+
+::: {.human}
+[3. 빼는 결정]{.h3}
+
+"응답서에 넣으면 사후 정당화로 읽힘"
+
+[2026-08-14, Claude Code]{.tag-human}
+:::
+
+::: {.human}
+[4. 저자 검토]{.h3}
+
+"해석 틀을 도입하는 문장에 근거가 없어지는 것은 중복 제거가 아님"
+
+[2026-08-16, Claude Code]{.tag-human}
+:::
+
+:::
+
+[출처: S37과 같음; 이 프로젝트 CLAUDE.md 저장 공간(starter-kit)]{.src}
+
+::: {.notes}
+- 1분
+- 스타터킷 구성: CLAUDE.md 템플릿, 폴더 구조, 검증 체크리스트, 프롬프트 치트시트
+- `[여기에: 스타터킷 주소]`, QR 이미지 자리
+- `starter-kit/` 폴더 미작성(2026-10-20 기준)
+- 닫는 그림: 3막의 통제 지점 네 곳. 에이전트에게 넘기는 일이 늘어도 이 네 곳은 사람 자리
+- Q&A로 넘어감(7분)
+- 출처: `slides/excerpts/07-user-cancels-tool-call.md`, 이 프로젝트 `CLAUDE.md` 화면 노출 규칙, `slides/excerpts/12-posthoc-argument-dropped.md`, `slides/excerpts/12-hwe-citations-restored.md`
+:::
