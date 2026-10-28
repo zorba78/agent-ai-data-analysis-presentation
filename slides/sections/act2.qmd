@@ -247,12 +247,16 @@ Extensions에서 설치 → ✻ 아이콘으로 패널 열기
 :::
 
 ::: {.vidcenter}
-{{< video ../demo/clips/install-positron-claude.mp4 width="960" height="540" >}}
+<video controls preload="metadata" width="960" height="540">
+<source src="../demo/clips/install-positron-claude.mp4" type="video/mp4">
+<source src="https://github.com/zorba78/agent-ai-data-analysis-presentation/releases/download/v0.1-demo/install-positron-claude.mp4" type="video/mp4">
+</video>
 :::
 
 ::: {.notes}
 - 시간: 2분
-- 영상: 사용자 직접 제작, Hyper-V Windows 11 VM에서 녹화. 깨끗한 Windows에서 시작. 2026-10-22 기준 파일 없음(demo/clips/install-positron-claude.mp4)
+- 영상: 사용자 제작, Hyper-V Windows 11 VM에서 녹화(2026-10-23). 원본 20분 538MB → 1080p 2배속 10분 19MB. 로컬 demo/clips/install-positron-claude.mp4가 없으면 GitHub Release v0.1-demo 첨부 파일을 재생(Pages용)
+- 편집 후보: Codex 설치 구간, 바탕화면과 탐색기의 계정명 폴더 노출 구간, 설치 진행 바 대기 구간. 2분 목표
 - 녹화 순서
   1. Positron 설치 파일 실행 → 첫 실행 → 폴더 열기 → R 콘솔 자동 시작 → 패널 소개(에디터, 콘솔, Variables, Plots, 터미널)
   2. Positron 터미널에서 `irm https://claude.ai/install.ps1 | iex` → 새 터미널 → `claude --version` → `claude` → 브라우저 로그인

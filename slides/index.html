@@ -735,12 +735,16 @@
 </div>
 </div>
 <div class="vidcenter">
-<video id="video_shortcode_videojs_video1" width="960" height="540" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/install-positron-claude.mp4"></video>
-</div>
+<video controls="" preload="metadata" width="960" height="540">
+<source src="../demo/clips/install-positron-claude.mp4" type="video/mp4">
+<source src="https://github.com/zorba78/agent-ai-data-analysis-presentation/releases/download/v0.1-demo/install-positron-claude.mp4" type="video/mp4">
+</video>
+<p>:::</p>
 <aside class="notes">
 <ul>
 <li>시간: 2분</li>
-<li>영상: 사용자 직접 제작, Hyper-V Windows 11 VM에서 녹화. 깨끗한 Windows에서 시작. 2026-10-22 기준 파일 없음(demo/clips/install-positron-claude.mp4)</li>
+<li>영상: 사용자 제작, Hyper-V Windows 11 VM에서 녹화(2026-10-23). 원본 20분 538MB → 1080p 2배속 10분 19MB. 로컬 demo/clips/install-positron-claude.mp4가 없으면 GitHub Release v0.1-demo 첨부 파일을 재생(Pages용)</li>
+<li>편집 후보: Codex 설치 구간, 바탕화면과 탐색기의 계정명 폴더 노출 구간, 설치 진행 바 대기 구간. 2분 목표</li>
 <li>녹화 순서
 <ol type="1">
 <li>Positron 설치 파일 실행 → 첫 실행 → 폴더 열기 → R 콘솔 자동 시작 → 패널 소개(에디터, 콘솔, Variables, Plots, 터미널)</li>
@@ -763,7 +767,6 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
-</section>
 <section id="지침-파일의-역할" class="slide level2 grey">
 <h2>지침 파일의 역할</h2>
 <p><span class="eyebrow">2. 작업 환경</span></p>
@@ -1600,7 +1603,7 @@
 </div>
 <div class="fragment">
 <div class="vidcenter">
-<video id="video_shortcode_videojs_video2" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D3-session-open.mp4"></video>
+<video id="video_shortcode_videojs_video1" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D3-session-open.mp4"></video>
 </div>
 <aside class="notes">
 <ul>
@@ -1852,7 +1855,7 @@
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="columns">
 <div class="column" style="width:62%;">
-<video id="video_shortcode_videojs_video3" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D1-error-fix.mp4"></video>
+<video id="video_shortcode_videojs_video2" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D1-error-fix.mp4"></video>
 </div><div class="column" style="width:38%;">
 <p><span class="h3">시도 1</span></p>
 <p><code>mediate()</code> 호출 → <code>object 'fm_med' not found</code></p>
@@ -2207,7 +2210,7 @@
 <section id="시연-pubmed-scholar-gateway-검색" class="slide level2 grey">
 <h2>⑤ 시연: PubMed, Scholar Gateway 검색</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<video id="video_shortcode_videojs_video4" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D2-literature.mp4"></video>
+<video id="video_shortcode_videojs_video3" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D2-literature.mp4"></video>
 <p><span class="label">프롬프트</span></p>
 <p>“조종사 집단의 요산과 대사증후군 연관 선행 연구 검색, DOI와 함께”</p>
 <div class="cards">
@@ -2983,6 +2986,8 @@
       }</style></aside>
 
 </section>
+</div>
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -3369,7 +3374,6 @@
     <script>videojs(video_shortcode_videojs_video1);</script>
     <script>videojs(video_shortcode_videojs_video2);</script>
     <script>videojs(video_shortcode_videojs_video3);</script>
-    <script>videojs(video_shortcode_videojs_video4);</script>
     
 
 </body></html>
