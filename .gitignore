@@ -1,11 +1,13 @@
 demo/clips/
 output/agent/**/*.txt
 _site/
+# rendered deck is committed so GitHub Pages can serve slides/index.html (2026-10-28)
 *.html
+!slides/index.html
 !slides/assets/**
 .quarto/
 
 # 2026-10-21: render output, copyrighted PDFs, local editor state
-slides/index_files/
 references/*.pdf
 .vscode/
+mp4/

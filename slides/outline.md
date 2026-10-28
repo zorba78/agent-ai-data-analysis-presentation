@@ -9,12 +9,12 @@
 | 막 | 장 | 분 |
 |---|---|---|
 | 1 왜 다른가 | 7 | 8.5 |
-| 2 환경 | 12 | 16 |
+| 2 환경 | 15 | 20 |
 | 3 사례 한 바퀴 | 17 | 25 |
 | 4 효과와 팁 | 4 | 5 |
-| 합계(표지 제외) | 40 | 54.5 |
+| 합계(표지 제외) | 43 | 58.5 |
 
-2026-10-20 S02(AI 활용 방식 4가지), S08b(Positron + Claude Code vs 웹 Code) 추가로 1.5분 초과. 3막 또는 Q&A에서 조정 필요.
+2026-10-20 S02, S08b 추가로 1.5분 초과. 2026-10-22 S08c Quarto, S08d TinyTeX 추가로 총 5.5분 초과(58.5분, S09b 시연 2분 포함). 3막 또는 Q&A에서 조정 필요.
 | Q&A | | 7 |
 
 시연: 녹화 D1(3막 ③ 분석 실행, 90초), 녹화 D2(3막 ⑤ 문헌 탐색, 60초), 라이브 D3(2막 Claude Code 세션 열기 + 데이터 구조 질문, 2분). 백업 녹화 필수.
@@ -66,10 +66,20 @@
 - 노트: 각 층 한 장씩. 층이 빠지면 생기는 문제를 같이 말함
 
 ### S08 Positron: 설치와 구동 (1) [2026-10-21 개정]
-- 유형: 그림(`assets/figs/s09-positron-install.svg`, 내려받기 / R 연결 / 첫 화면) + 사용자 제작 영상(`demo/clips/positron-first-run.mp4`)
+- 유형: 그림(`assets/figs/s09-positron-install.svg`, 내려받기 / R 연결 / 첫 화면) + 3칸(설치 직후 설정: 인터프리터 / RStudio 단축키 / 확장). 영상은 S09b로 이동(2026-10-22)
 - 출처: positron.posit.co/download(2026-10-21 확인, 버전 2026.10.1-2)
 - 본문: 에이전트가 쓰는 R 세션 = 내가 보는 R 세션 / Positron MCP로 연결, 실행 코드가 내 콘솔에 표시 / 결과 객체, 그림, 데이터는 Positron 창에서 직접 확인
 - 노트: 메시지 한 줄 "에이전트와 내가 같은 R 세션을 본다". 화면 노출 규칙. 스크린샷은 합성 데이터나 집계 화면
+
+### S08c Quarto: 문서 생성 (1) [2026-10-22 추가]
+- 유형: 그림(`assets/figs/s10-quarto-flow.svg`, qmd → Quarto → docx/pdf/html/revealjs) + 3칸
+- 본문: 한 원고, 여러 형식 / 숫자는 코드에서 / 에이전트와 궁합
+- 출처: quarto.org/docs/get-started, docs/download(2026-10-22 확인, Positron 번들 1.10.18)
+
+### S08d TinyTeX: LaTeX 설치 (1) [2026-10-22 추가]
+- 유형: 그림(`assets/figs/s10-tinytex-install.svg`, 설치 A quarto / B R / TinyTeX 설명) + `quarto check` 출력
+- 본문: pdf 출력 전 확인 한 줄
+- 출처: quarto.org/docs/output-formats/pdf-engine.html, yihui.org/tinytex(2026-10-22 확인). codepanel은 이 PC 실제 출력
 
 ### S08b Positron + Claude Code vs 웹 Code (1) [2026-10-20 추가]
 - 유형: 그림(`assets/figs/s09-positron-vs-web.svg`, 4행 2열 비교)
@@ -84,7 +94,15 @@
 - 본문: `claude` 한 줄로 시작 / 파일 읽기, 편집, 쉘 실행, R 실행(Positron MCP) / 권한은 도구별 승인
 - 노트: 논문 작업 당시 일부는 Positron Assistant. 지금은 Claude Code로 통일. 라이브 D3 예고
 
-### S10 라이브 D3: 세션을 열고 "이 데이터가 어떻게 생겼는지" 묻는다 (2)
+### S09b 시연: 설치와 첫 실행 (2) [2026-10-22 추가]
+- 유형: 3칸(Positron / Claude Code CLI / 확장) + 사용자 제작 영상 `demo/clips/install-positron-claude.mp4`(Hyper-V VM 녹화)
+- 노트: 로그인 화면 편집, 전체 3~4분 녹화 후 2분 편집
+
+### S10 (삭제, 2026-10-23) 라이브 D3는 3막 ① 데이터 탐색(S20)으로 이동. 2막 후반은 "개념과 역할 / 작성 요점 / 예시" 구조로 재작성(2026-10-23)
+- 새 장: 지침 파일의 역할(1.5) / CLAUDE.md 개념(1.5) + 예시 2장 / 폴더 구조와 권한 개념(1.5) + 예시 2장 / 스킬 개념(1.5) + 예시 / MCP 개념(1.5) + 구성 / memory 개념(1) + 예시 / 오케스트레이션 개념(1) + 구성 / 에이전트 연구의 이득과 조건(1.5)
+- 시간 재계산 필요. 2막 약 29분, 전체 약 68분. 3막 또는 2막 예시 장 축소로 조정
+
+### (구) S10 라이브 D3: 세션을 열고 "이 데이터가 어떻게 생겼는지" 묻는다 (2)
 - 유형: 라이브(백업 녹화 `../demo/clips/D3-session-open.mp4`)
 - 본문: 프롬프트 "분석 데이터셋의 변수 구조와 결측을 집계로만 요약" / 기대: 변수명, 자료형, 단위, n, 결측 수 / 행 데이터 출력 없음
 - 노트: 집계만 출력하는 규칙이 계약서에 있음을 다음 장에서 연결

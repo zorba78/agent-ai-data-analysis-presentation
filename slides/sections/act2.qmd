@@ -24,17 +24,124 @@
 
 ![](assets/figs/s09-positron-install.svg){width="1440" height="300" fig-alt="Positron 설치 3단계: 내려받기, R 연결, 첫 화면"}
 
-{{< video ../demo/clips/positron-first-run.mp4 width="640" height="360" >}}
+::: {.cards}
+
+::: {.box}
+[R 인터프리터 선택]{.h3}
+
+오른쪽 위 인터프리터 메뉴에서 R 버전 지정
+
+콘솔이 그 버전으로 시작
+:::
+
+::: {.box}
+[RStudio 사용자 설정]{.h3}
+
+RStudio 단축키 켜기, 테마 선택
+
+Ctrl+Enter 실행, Ctrl+Shift+M 파이프
+:::
+
+::: {.box}
+[확장 설치]{.h3}
+
+Claude Code 확장 (다음 장)
+
+Quarto, Jupyter는 이미 내장
+:::
+
+:::
 
 ::: {.notes}
 - 시간: 1분
 - 메시지 한 줄: 설치는 10분, R만 있으면 바로 시작
+- 아래 카드: 설치 직후 한 번만 하는 설정 3가지
+  - 인터프리터: 창 오른쪽 위 메뉴에서 R 버전 선택. 여러 버전이 있으면 여기서 고름. Python도 같은 메뉴
+  - RStudio 단축키: 설정에서 "RStudio keybindings" 켜면 Ctrl+Enter, Ctrl+Shift+M 등 그대로. 테마는 밝은 것 권장(녹화, 발표 화면)
+  - 확장: Extensions 창(Ctrl+Shift+X). Claude Code 확장은 Claude Code 장에서. Quarto, Jupyter, Python 도구는 내장
+- 설치와 첫 설정 영상은 Claude Code 장 뒤 "시연: 설치와 첫 실행"에서 한 번에
 - 내려받기: positron.posit.co/download. Windows 10+, macOS 11+, Linux(Ubuntu 20+, RHEL 9). 2026-10-21 확인 버전 2026.10.1-2, Windows 설치 파일 506MB. 무료, 오픈소스
 - R 연결: R 4.2 이상 별도 설치. Positron이 설치된 R을 자동 탐지. Windows는 Rtools, Visual C++ 재배포 패키지 따로. 여러 버전은 rig로 관리
 - 첫 화면: 폴더 열기 → R 콘솔 자동 시작. 에디터, 콘솔, Variables, Plots, 터미널이 한 창. Quarto, Jupyter 내장. RStudio 단축키 설정 가능
-- 영상: 사용자 직접 제작. 설치 완료 후 첫 실행, 폴더 열기, R 콘솔 시작, 패널 소개 순. 30초 내외. 파일 demo/clips/positron-first-run.mp4(2026-10-21 기준 없음)
-- 녹화 전 체크리스트(화면 노출 규칙 5): Welcome 탭의 Recent 목록에 서버명, 프로젝트명이 보임 → 탭 닫고 녹화
 - 다음 장: 에이전트와 같은 R 세션을 본다는 것이 웹 Code와 다른 점
+- 도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)
+:::
+
+## Quarto: 문서 생성
+
+[2. 작업 환경]{.eyebrow}
+
+![](assets/figs/s10-quarto-flow.svg){width="1440" height="330" fig-alt="qmd 원고 하나가 Quarto를 거쳐 docx, pdf, html, revealjs로 렌더되는 흐름"}
+
+::: {.cards}
+
+::: {.box}
+[R Markdown의 후속]{.h3}
+
+같은 팀(Posit)이 만든 다음 세대, Rmd 대부분 그대로 렌더
+:::
+
+::: {.box}
+[R에 묶이지 않음]{.h3}
+
+Python, Julia도 같은 문서. 렌더 엔진이 R 패키지가 아니라 독립 프로그램
+:::
+
+::: {.box}
+[확장이 내장]{.h3}
+
+revealjs, 책, 웹사이트, 상호참조, 탭이 패키지 없이 기본
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1분
+- 메시지 한 줄: 원고도 코드처럼. 숫자가 코드에서 나오면 검증 경로가 끊기지 않음(1막 "재현" 한계의 답)
+- R Markdown과의 차이(청중 다수가 Rmd 사용자일 때)
+  - 계보: R Markdown(2012)은 R 패키지 rmarkdown + knitr. Quarto(2022)는 같은 팀이 만든 독립 실행 프로그램. Rmd 파일을 qmd로 바꾸지 않아도 Quarto가 그대로 렌더
+  - 언어: Rmd는 R 중심. qmd는 R(knitr), Python(Jupyter), Julia, Observable JS 엔진을 문서마다 고름
+  - 확장: Rmd에서 bookdown, xaringan, blogdown, distill로 나뉘던 기능이 Quarto 하나에 내장(책, 발표, 웹사이트, 상호참조, 탭, 콜아웃)
+  - 문법: 청크 옵션을 `#| echo: false` 형식으로 청크 안에 YAML로 씀. 출력 형식별 옵션도 YAML 통일
+  - 계속 지원: R Markdown도 유지보수는 계속됨. 새 기능은 Quarto에만 추가
+  - 이 사례: 2026-03 분석 보고서부터 qmd. 발표자료도 qmd
+- 그림의 Quarto 아이콘은 공식 로고가 아니라 직접 그린 대체 아이콘(상표 사용 회피)
+- Quarto: Posit이 만든 과학 기술 문서 도구. Markdown + 코드 청크(R, Python, Julia) → Pandoc으로 변환
+- Positron에 내장. 이 PC 번들 1.10.18(2026-10-22 확인). 단독 설치는 quarto.org/docs/download(Windows msi, macOS pkg, Linux deb). RStudio에도 내장
+- 사례: 논문 원고 qmd → docx 렌더(3막 ⑥), 응답서, 이 발표자료(revealjs). 발표자료 소스도 qmd
+- 인용: references.bib + CSL 스타일. 저널 양식(Lancet 등) 표는 flextable로
+- 다음 장: pdf를 만들려면 LaTeX가 필요 → TinyTeX
+- 도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)
+:::
+
+## TinyTeX: LaTeX 설치 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+![](assets/figs/s10-tinytex-install.svg){width="1440" height="300" fig-alt="TinyTeX 설치 경로 두 가지(quarto install tinytex, R tinytex 패키지)와 TinyTeX 설명"}
+
+::: {.codepanel}
+
+```powershell
+PS> quarto check
+      Typst version 0.15.1: OK
+      TinyTeX: (not installed)
+```
+
+:::
+
+- pdf 출력 전 확인 한 줄. "not installed"면 위 A 또는 B
+
+::: {.notes}
+- 시간: 1분
+- 메시지 한 줄: LaTeX 전체 설치 없이 pdf. 명령 한 줄, 100MB
+- TinyTeX: Yihui Xie가 만든 TeX Live 경량 배포판. 관리자 권한 불필요, 없는 패키지는 렌더 중 tlmgr로 자동 설치. 전체 TeX Live는 수 GB
+- 설치 A: Positron 터미널 `quarto install tinytex`. PATH를 건드리지 않아 다른 프로그램에 영향 없음. 다른 앱에서도 쓰려면 `--update-path`
+- 설치 B: R 콘솔 `install.packages("tinytex"); tinytex::install_tinytex()`. R Markdown PDF와 공용. Windows 경로 %APPDATA%\TinyTeX, 백신이 dll 경고를 띄울 수 있음
+- 둘 중 하나만. 확인 `quarto check` 또는 `quarto list tools`. 갱신 `quarto update tinytex`(TeX Live가 매년 4월 저장소를 바꾸므로 1년 지나면 갱신 필요)
+- 위 codepanel은 이 PC의 실제 출력(2026-10-22). TinyTeX 미설치, Typst 내장
+- 대안 Typst: Quarto 내장, LaTeX 없이 pdf, 빠름. 저널 투고 양식(elsarticle 등)은 LaTeX 필요
+- 사례에서는 투고가 docx라 LaTeX 미사용. pdf 보고서나 LaTeX 저널에 투고할 때 필요
 - 도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)
 :::
 
@@ -113,49 +220,169 @@ CLAUDE.md, 코드북, 스크립트
 - 도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)
 :::
 
-## 시연: 데이터 구조 파악 {.grey}
+## 시연: 설치와 첫 실행 {.grey}
 
 [2. 작업 환경]{.eyebrow}
 
 ::: {.stage3}
 
 ::: {.box}
-[프롬프트]{.label}
+[1. Positron]{.label}
 
-> 분석 데이터셋의 변수 구조와 결측을 집계로만 요약
-
+설치 → 첫 실행 → 폴더 열기 → R 콘솔
 :::
 
 ::: {.box}
-[에이전트가 할 일]{.label}
+[2. Claude Code CLI]{.label}
 
-변수명, 자료형, 단위, n, 결측 수
+PowerShell 설치 한 줄 → `claude` → 로그인
 :::
 
-::: {.human}
-[내가 확인할 것]{.label}
+::: {.box}
+[3. 확장]{.label}
 
-행 데이터 출력 없음
+Extensions에서 설치 → ✻ 아이콘으로 패널 열기
 :::
 
 :::
 
-. . .
-
-{{< video ../demo/clips/D3-session-open.mp4 width="800" height="450" >}}
+::: {.vidcenter}
+{{< video ../demo/clips/install-positron-claude.mp4 width="960" height="540" >}}
+:::
 
 ::: {.notes}
 - 시간: 2분
-- 순서: Positron 터미널에서 `claude` 실행 → 프롬프트 입력 → 출력이 집계뿐인지 확인
-- 실패나 시간 초과 시 다음 클릭으로 백업 영상
-- 결측 수가 5 미만인 셀은 "5 미만"으로 말함(화면 노출 규칙 2)
-- 시작 전 체크리스트(화면 노출 규칙 5): 터미널 경로, 환경변수, 열린 탭, API 키
-- 다음 장 연결: 집계만 출력하는 규칙은 CLAUDE.md에 적어 둠
-- 확인 필요: 레포 airforce-fatty-liver CLAUDE.md에는 "집계만 출력" 규칙 없음(2026-10-20 검색). 데모 전 CLAUDE.md에 추가하거나 연결 멘트 수정
-- 확인 필요: demo/runbook.md, demo/clips/D3-session-open.mp4 아직 없음(2026-10-20 기준)
+- 영상: 사용자 직접 제작, Hyper-V Windows 11 VM에서 녹화. 깨끗한 Windows에서 시작. 2026-10-22 기준 파일 없음(demo/clips/install-positron-claude.mp4)
+- 녹화 순서
+  1. Positron 설치 파일 실행 → 첫 실행 → 폴더 열기 → R 콘솔 자동 시작 → 패널 소개(에디터, 콘솔, Variables, Plots, 터미널)
+  2. Positron 터미널에서 `irm https://claude.ai/install.ps1 | iex` → 새 터미널 → `claude --version` → `claude` → 브라우저 로그인
+  3. Extensions(Ctrl+Shift+X) → "Claude Code" 검색 → 설치 → 에디터 오른쪽 위 ✻ 아이콘 → 패널 열림
+- 로그인 화면은 계정 정보가 찍히므로 편집에서 자르거나 흐리게
+- 녹화 전 체크리스트(화면 노출 규칙 5): Welcome 탭 Recent 목록, 터미널 경로, 브라우저 탭
+- 전체 3~4분 녹화 후 2분으로 편집. 설치 진행 바는 빨리 감기
+- 실패나 재생 문제 시 앞 두 장(설치 그림)으로 설명
 :::
 
-## CLAUDE.md: 프로젝트 지침서
+## 지침 파일의 역할 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+- 프롬프트는 한 번 읽히고 사라짐. 파일은 세션마다 읽힘
+- 챗봇에서 매번 사람이 하던 일을 파일이 대신함
+
+::: {.cards}
+
+::: {.human}
+[CLAUDE.md]{.h3}
+
+문제: 정의, 규칙을 세션마다 다시 설명
+
+해법: 프로젝트 지침을 한 파일에, 자동으로 읽힘
+:::
+
+::: {.box}
+[스킬]{.h3}
+
+문제: 같은 절차를 매번 말로 지시
+
+해법: 절차를 파일로, 말투로 자동 발동
+:::
+
+::: {.box}
+[MCP]{.h3}
+
+문제: 외부 검색 결과를 손으로 복사
+
+해법: 에이전트가 도구를 직접 호출
+:::
+
+:::
+
+::: {.cards}
+
+::: {.box}
+[memory]{.h3}
+
+문제: 지난 결정을 다음 세션이 모름
+
+해법: 결정과 교정을 파일로, 시작 때 읽힘
+:::
+
+::: {.box}
+[권한]{.h3}
+
+문제: 에이전트가 무엇이든 할 수 있음
+
+해법: 도구별 허용, 읽기 전용 폴더, 매번 승인
+:::
+
+::: {.box}
+[오케스트레이션]{.h3}
+
+문제: 쓴 모델이 자기 글을 검토
+
+해법: 작성과 검토를 다른 모델에, 공유 상태는 파일
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 메시지 한 줄: 에이전트의 성능은 모델보다 지침 파일이 정함
+- 챗봇 한계(1막) 세 가지가 각 파일로 풀림: 맥락 → CLAUDE.md, memory / 재현 → 폴더 구조, 권한 / 반복 → 스킬, MCP
+- 주황 = 사람이 쓰는 파일(CLAUDE.md). 나머지는 사람이 틀을 정하고 에이전트가 채우기도 함
+- 이후 요소마다 두 장: 개념과 역할, 작성 요점 / 사례 레포 예시
+:::
+
+## CLAUDE.md: 개념과 역할
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+[개념]{.label}
+
+- 프로젝트 폴더 맨 위의 Markdown 파일
+- 세션을 열 때마다 에이전트가 먼저 읽음
+- 사람이 쓰고 사람이 고침
+- 같은 내용을 AGENTS.md로 두면 Codex, Copilot도 읽음
+:::
+
+::: {.box}
+[역할과 효과]{.label}
+
+- 목적과 현재 상태: 세션 첫 질문이 사라짐
+- 정의 고정: MetS 기준, 변수명을 코드와 같은 이름으로
+- 행동 규칙: 집계만 출력, 수치 도출 과정 기록
+- 저장 규칙: 산출물이 날짜 폴더에 쌓여 추적 가능
+:::
+
+::: {.human}
+[작성 요점]{.label}
+
+- 짧고 구체적으로. 긴 문서는 끝까지 안 읽힘
+- 금지 목록보다 기본값을 적음
+- 정의는 코드에서 쓰는 이름 그대로
+- 상태 줄은 단계가 바뀔 때 갱신
+- 교정이 생기면 그 자리에서 한 줄 추가
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 메시지 한 줄: 프롬프트가 아니라 프로젝트 지침서. 한 번 쓰면 모든 세션에 적용
+- 개념: 레포 루트의 CLAUDE.md. Claude Code가 시작할 때 자동으로 컨텍스트에 넣음. 하위 폴더에도 둘 수 있음
+- 효과의 근거(사례): 대화 로그 3건 어디에도 MetS 정의, 허리둘레 기준을 묻는 장면 없음. 정의가 파일에 있었기 때문
+- 효과: 에이전트 산출물이 agent_bot/YYYY-MM-DD/에 쌓임. 저장 규칙이 CLAUDE.md 136행에 있어서
+- 작성 요점 근거: 규칙이 길면 뒤쪽 규칙이 무시되는 경우가 생김. 이 발표 프로젝트도 행동 규칙 8개로 제한
+- "금지보다 기본값": "head() 쓰지 마"보다 "요약은 집계 함수로". 금지는 빠져나갈 길이 많음
+- 교정 예: 이 발표 CLAUDE.md 행동 규칙 5(가운뎃점 금지)는 사용자 지적 직후 추가된 줄
+- 다음 두 장: 사례 레포의 실제 구조와 정의 블록
+:::
+
+## CLAUDE.md 예시: 구조 {.grey}
 
 [2. 작업 환경]{.eyebrow}
 
@@ -187,7 +414,7 @@ CLAUDE.md, 코드북, 스크립트
 - 사례 레포의 AGENTS.md는 CLAUDE.md보다 짧은 판: 목적, 코딩 규칙, 윤리적 제약 절 없음(2026-10-20 확인). 두 파일 동기화는 사람 몫
 :::
 
-## CLAUDE.md 예시: 대사증후군 정의 {.grey}
+## CLAUDE.md 예시: 대사증후군 정의
 
 [2. 작업 환경]{.eyebrow}
 
@@ -216,7 +443,51 @@ CLAUDE.md, 코드북, 스크립트
 - 반대 장면: 에이전트가 정의와 코드의 불일치를 먼저 짚음. "스크립트 감사: 포화모형 다중공선성 가능, MetS 기준 행 주석 처리 "의도적인지 확인 필요"" → 3막 S21
 :::
 
-## 프로젝트 폴더 구조
+## 폴더 구조와 권한: 개념과 역할 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+[개념]{.label}
+
+- 폴더 구조: 사람 파일과 에이전트 파일의 자리를 미리 나눔
+- 권한: 에이전트가 쓸 수 있는 도구와 폴더의 경계
+- 설정 파일 settings.json에 allow, deny, additionalDirectories
+:::
+
+::: {.box}
+[역할과 효과]{.label}
+
+- 날짜 폴더: 언제 무엇을 만들었는지 추적, 덮어쓰기 방지
+- 읽기 전용 폴더: 원자료, 논문 PDF 보호
+- 매번 승인: 삭제, 외부 전송은 사람이 결정
+- 반복 승인이 쌓이면 allow로: 속도와 안전의 균형
+:::
+
+::: {.human}
+[작성 요점]{.label}
+
+- 에이전트 산출물 폴더를 CLAUDE.md에 명시
+- deny는 데이터, 참고문헌, 다른 프로젝트
+- allow는 좁게: 명령 전체 문자열, 도메인 단위
+- allow 목록을 주기적으로 점검, 남은 위험 항목 제거
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 메시지 한 줄: 경계를 먼저 그으면 에이전트에게 더 많이 맡길 수 있음
+- 폴더 구조 근거: 사례 레포 code/agent_bot/2026-03-19 … 2026-08-16. 날짜만 봐도 분석 → 문헌 → 리뷰어 대응 흐름이 보임
+- 권한 근거: settings.local.json의 allow 항목이 문헌 작업 때 허용한 curl, WebFetch, PubMed MCP로 남아 있음
+- 점검 필요 예: allow에 `Bash(rm -f *.pdf)`가 남아 있었음. 한 번 허용하면 계속 유효
+- deny 예: 이 발표 프로젝트 settings.json. references/ 편집 금지, 사례 레포 전체 편집 금지
+- 다음 두 장: 실제 폴더 트리, 실제 allow 목록
+:::
+
+## 폴더 구조 예시 {.grey}
 
 [2. 작업 환경]{.eyebrow}
 
@@ -250,7 +521,7 @@ airforce-fatty-liver/
 - 아웃라인의 `code/{user,agent}` 표기는 실제 폴더 이름(`code/` 최상위, `agent_bot`)으로 바꿈
 :::
 
-## 권한 설정 {.grey}
+## 권한 설정 예시
 
 [2. 작업 환경]{.eyebrow}
 
@@ -284,11 +555,55 @@ airforce-fatty-liver/
 - 에이전트 표기: 2026-05 문헌 작업 = Claude Code
 :::
 
-## 스킬
+## 스킬: 개념과 역할
 
 [2. 작업 환경]{.eyebrow}
 
-- SKILL.md = 트리거 문구(description) + 절차 + 출력 위치
+::: {.stage3}
+
+::: {.box}
+[개념]{.label}
+
+- 반복하는 절차를 SKILL.md 한 파일로
+- 머리: 이름, 발동 문구(description)
+- 본문: 순서, 체크리스트, 출력 위치와 형식
+- 사용자 말이 발동 문구와 맞으면 자동 적용
+:::
+
+::: {.box}
+[역할과 효과]{.label}
+
+- 같은 지시 세 번째부터 0회
+- 출력 형식이 매번 같음: 표, 파일명, 폴더
+- 점검 절차를 빠뜨리지 않음
+- 다른 프로젝트, 다른 사람에게 복사해 재사용
+:::
+
+::: {.human}
+[작성 요점]{.label}
+
+- 발동 문구에 내가 실제로 쓰는 말을 넣음
+- 스킬 하나에 일 하나. 표본크기 계산은 6개로 쪼갬
+- 수정 권한을 적음: 지적만, 또는 수정까지
+- 출력 위치를 고정: 어디에 무슨 이름으로
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 메시지 한 줄: 프롬프트를 잘 쓰는 법이 아니라 다시 쓰지 않는 법
+- 개념: .claude/skills/<이름>/SKILL.md. Claude Code가 description을 보고 요청과 맞으면 본문을 읽어 따름
+- 효과 근거: 점검 스킬(lecture-review)은 체크리스트 전부 점검, 지적만 하고 수정 안 함, 표로 보고. 매번 같은 형식
+- 쪼개기 근거: 표본크기 프로젝트는 문헌 추출, 벤치마크, 공식 계산, 시뮬레이션, 민감도, 보고서 6개 스킬. 하나로 만들면 발동 조건이 흐려짐
+- 발동 문구 예: "검토", "확인해줘", "군당 몇 명", "d=0.35로 다시". 사용자 말투 그대로
+- 이 발표자료도 스킬로 만듦: talk-orchestration, repo-excerpt, revealjs-deck
+- 다음 장: 실제 SKILL.md 발췌
+:::
+
+## 스킬 예시 {.grey}
+
+[2. 작업 환경]{.eyebrow}
 
 [점검 스킬: lecture-review]{.h3}
 
@@ -330,7 +645,51 @@ description: … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 
 - 앞부분 생략 표시(…)는 발췌 시 줄임
 :::
 
-## MCP {.grey}
+## MCP: 개념과 역할 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+[개념]{.label}
+
+- Model Context Protocol: 에이전트가 외부 도구를 함수처럼 부르는 규격
+- 서버 하나 = 도구 묶음 하나 (PubMed, R 세션)
+- 설정 한 번이면 모든 세션에서 사용
+:::
+
+::: {.box}
+[역할과 효과]{.label}
+
+- Positron MCP: 내 R 세션에서 실행, 객체 조회
+- 문헌 MCP: 검색, 서지 조회, PDF 확보를 에이전트가 직접
+- 복사, 붙여넣기 단계가 없어짐
+- 결과에 DOI, 출처가 붙어 검증 가능
+:::
+
+::: {.human}
+[작성 요점]{.label}
+
+- 무엇이 밖으로 나가는지 확인: 검색 질의만
+- 쓰는 도구만 연결. 많으면 선택이 흐려짐
+- 권한 allow에 도구 이름 단위로
+- 연결 상태 확인: claude mcp list
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 메시지 한 줄: 에이전트의 손을 늘리는 규격. 데이터는 안 나가고 질의만 나감
+- 개념: Anthropic이 공개한 규격, 다른 에이전트도 지원. 서버는 로컬 프로세스 또는 원격
+- 사례: 문헌 단계(3막 ⑤)에서 PubMed MCP로 24편 서지 조회, Europe PMC로 PDF. allow 항목에 `lookup_article_by_citation`, `get_article_metadata`
+- Positron MCP: 에이전트가 돌린 코드가 내 콘솔에 표시됨. 같은 세션을 본다는 것의 기술적 근거
+- 전송 범위: 문헌 MCP는 질의와 결과. 에이전트가 읽은 결과는 모델 서버로 감(1막 에이전트 방식 그림)
+- 다음 장: 이 사례의 MCP 구성 그림
+:::
+
+## MCP 구성
 
 [2. 작업 환경]{.eyebrow}
 
@@ -350,7 +709,51 @@ description: … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 
 - 도구 기능 설명은 발표 1주 전 재대조(행동 규칙 4)
 :::
 
-## memory
+## memory: 개념과 역할
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+[개념]{.label}
+
+- 세션에서 생긴 결정, 교정, 상태를 파일로 남김
+- 파일당 사실 1건, 색인 파일 하나
+- CLAUDE.md에 "시작 때 읽어라"를 적어야 작동
+:::
+
+::: {.box}
+[역할과 효과]{.label}
+
+- 다음 세션이 지난 결정을 앎: 같은 질문 반복 없음
+- 교정이 쌓임: 같은 실수가 줄어듦
+- 상태 스냅샷: 몇 주 뒤 돌아와도 바로 이어감
+- CLAUDE.md와 분업: 규칙은 CLAUDE.md, 이력은 memory
+:::
+
+::: {.human}
+[작성 요점]{.label}
+
+- 사실과 이유를 같이: 무엇을, 왜
+- 상대 날짜 대신 절대 날짜
+- 틀린 것으로 밝혀지면 지움
+- 에이전트가 쓰게 하되 사람이 가끔 정리
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1분
+- 메시지 한 줄: CLAUDE.md가 헌법이면 memory는 판례
+- 사례: 2026-05-06 세션에서 에이전트가 memory 4건 작성(사용자 프로필, 프로젝트 상태, 참조 문서, 출력 폴더 규칙). 계기는 사용자가 진행 상태를 물은 것
+- 효과 근거: 2026-05-09 세션 첫 요청 "현재까지 작업 상태 확인" → 바로 이어감
+- 이 발표 프로젝트: memory/ 폴더에 결정 파일 10여 건, MEMORY.md 색인. 세션 시작 규칙은 CLAUDE.md 행동 규칙 7
+- 스킬로: session-memory("기억해" 트리거)
+- 다음 장: 실제 색인 발췌
+:::
+
+## memory 예시 {.grey}
 
 [2. 작업 환경]{.eyebrow}
 
@@ -381,7 +784,52 @@ description: … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 
 - 스킬로 만들면: session-memory("기억해" 트리거, S15)
 :::
 
-## 오케스트레이션 {.grey}
+## 오케스트레이션: 개념과 역할 {.grey}
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.stage3}
+
+::: {.box}
+[개념]{.label}
+
+- 에이전트 여럿에 역할을 나눔: 작성, 검토, 검증
+- 오케스트레이터가 일을 나누고 결과를 모음
+- 공유 상태는 대화가 아니라 파일: CLAUDE.md, memory, git
+:::
+
+::: {.box}
+[역할과 효과]{.label}
+
+- 쓴 모델과 검토 모델을 다른 계열로: 자기 검토의 맹점 회피
+- 긴 작업을 병렬로: 섹션별 초안 동시 작성
+- 한도, 오류 시 대체 모델로 자동 전환
+- 누가 무엇을 했는지 파일 머리에 기록
+:::
+
+::: {.human}
+[작성 요점]{.label}
+
+- 작업마다 주 오케스트레이터는 하나
+- 검토 결과는 별도 폴더에, 작성 쪽은 읽기만
+- 반영 여부는 사람이 지적마다 결정
+- 처음에는 하나로 충분. 둘 이상은 검토가 필요할 때
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1분
+- 메시지 한 줄: 연구에서 쓰는 이유는 속도보다 독립 검토
+- 이 발표자료가 이 구조로 만들어짐: 초안 Opus 5.5 워커, 검토 Terra(Codex) 또는 Astra(Copilot), 지휘 Fable
+- 규칙 근거: 이 발표 CLAUDE.md 오케스트레이션 절 규칙 1–7
+- 대체 전환: run-worker.ps1. Terra 실패 → Opus 재실행, 결과 파일 머리에 실제 수행 모델
+- 논문 사례에서는 에이전트 하나(Claude Code)로 충분했음. 오케스트레이션은 이 발표자료 제작에서 사용
+- 깊이 들어가지 않음. 질문 나오면 부록 A3
+- 다음 장: 구성 그림
+:::
+
+## 오케스트레이션 구성
 
 [2. 작업 환경]{.eyebrow}
 
@@ -423,4 +871,68 @@ CLAUDE.md = AGENTS.md
 - Astra, Terra는 review/에만 씀. 작성 쪽(Fable, Opus)은 review/를 읽기만
 - 한도 소진: Terra 실패 → Opus(`claude -p`) 재실행, 결과 파일 머리에 실제 수행 모델. Claude 쪽 한도는 대기
 - 깊이 들어가지 않음. 질문 나오면 부록 A3
+:::
+## 에이전트 연구의 이득과 조건
+
+[2. 작업 환경]{.eyebrow}
+
+::: {.cards}
+
+::: {.box}
+[재현]{.h3}
+
+숫자가 코드에서 나옴. 원고 수치를 스크립트로 재계산
+:::
+
+::: {.box}
+[추적]{.h3}
+
+날짜 폴더, 대화 로그, memory. 몇 달 뒤에도 왜 그렇게 했는지 확인
+:::
+
+::: {.box}
+[속도]{.h3}
+
+문헌 24편 서지와 PDF, Methods 초안, 응답서 초안을 세션 안에
+:::
+
+::: {.box}
+[일관성]{.h3}
+
+정의와 규칙이 파일에 있어 세션이 바뀌어도 같은 기준
+:::
+
+:::
+
+::: {.cards}
+
+::: {.human}
+[조건 1: 지침 파일]{.h3}
+
+CLAUDE.md, 스킬, memory가 없으면 매 세션이 첫 세션
+:::
+
+::: {.human}
+[조건 2: 경계]{.h3}
+
+읽기 전용 폴더, 집계만 출력, 매번 승인하는 명령
+:::
+
+::: {.human}
+[조건 3: 확인 지점]{.h3}
+
+수치 대조, 해석 의심, 채택 결정은 사람. 3막에서 하나씩
+:::
+
+:::
+
+::: {.notes}
+- 시간: 1.5분
+- 2막 정리. 위 줄은 이득, 아래 줄(주황)은 그 이득이 성립하는 조건
+- 재현 근거: verify-numbers.R(3막 ④ 수치 검증). 원고에 넣을 숫자를 같은 데이터에서 다시 계산
+- 추적 근거: agent_bot/YYYY-MM-DD 폴더, agent-conversation/*.json 로그, memory/agent_bot/
+- 속도 근거: 2026-05-06 하루에 references-summary.md 24편, PDF 20편. Methods 초안 2026-03-21, 응답서 v1 2026-08-15
+- 일관성 근거: MetS 정의를 묻는 장면이 로그에 없음
+- 조건 3이 3막의 축: 단계마다 "내가 확인한 것" 칸
+- 다음: 3막, 이 논문으로 7단계를 따라감
 :::
