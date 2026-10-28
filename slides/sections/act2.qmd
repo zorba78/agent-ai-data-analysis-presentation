@@ -247,10 +247,14 @@ Extensions에서 설치 → ✻ 아이콘으로 패널 열기
 :::
 
 ::: {.vidcenter}
+
+```{=html}
 <video controls preload="metadata" width="960" height="540">
 <source src="../demo/clips/install-positron-claude.mp4" type="video/mp4">
 <source src="https://github.com/zorba78/agent-ai-data-analysis-presentation/releases/download/v0.1-demo/install-positron-claude.mp4" type="video/mp4">
 </video>
+```
+
 :::
 
 ::: {.notes}
