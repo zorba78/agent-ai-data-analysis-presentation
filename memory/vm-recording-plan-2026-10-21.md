@@ -8,3 +8,4 @@
 - 슬라이드 9(Positron: 설치와 구동), 11(Claude Code: 설치와 구동)로 개정. 설치 정보는 2026-10-21 공식 문서 확인. 영상 자리: demo/clips/positron-first-run.mp4(사용자 제작). Claude Code 설치 영상도 추가 예정(11번)
 - 11번 하단 카드(읽기/쓰기/실행/권한): 설치 후 에이전트가 할 수 있는 일. 사용자가 목적을 물었고 유지 여부 미결
 - 다음: VM용 설정 묶음(CLAUDE.md, 폴더 구조, 합성 데이터, 코드북) + 녹화 런북(demo-runbook 스킬)
+- 2026-10-28: 저장소 공개 전환(사용자 결정), GitHub Pages 켬. 주소 https://zorba78.github.io/agent-ai-data-analysis-presentation/slides/ (루트는 slides/로 리다이렉트). 렌더 결과(slides/index.html, index_files)를 커밋해야 Pages가 갱신됨. 영상(demo/clips)은 git 제외라 Pages에서는 재생 안 됨 → Release 첨부 또는 별도 호스팅 필요

@@ -4,6 +4,7 @@ _site/
 # rendered deck is committed so GitHub Pages can serve slides/index.html (2026-10-28)
 *.html
 !slides/index.html
+!/index.html
 !slides/assets/**
 .quarto/
 
