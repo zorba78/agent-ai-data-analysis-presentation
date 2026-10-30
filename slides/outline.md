@@ -129,6 +129,8 @@
 - 유형: 설정 발췌(setup-skill-lecture-review, setup-skill-session-memory, setup-skills-ss-bundle 중 2개)
 - 본문: SKILL.md = 트리거 문구(description) + 절차 + 출력 위치 / 예: 점검 스킬, 세션 메모리 스킬, 분석 묶음 스킬
 - 노트: description에 사용자 말투를 넣어 자동 발동
+- 2026-10-30 변경: 개념 장 본문은 원칙만(예시는 노트). 예시 장은 타 프로젝트(lecture-review, ss 묶음) 발췌 대신 사례 기반 가상 스킬 verify-numbers로 교체. 사례 레포에 스킬이 없으므로 "가상 예, 실제 파일 아님"을 label로 명시
+  - 출처: 09-verify-numbers-script(스크립트 헤더, 실행 결과), 11-methods-draft-and-number-sourcing(§D 절차). description 발동 문구는 발표 전 로그 원문 확인
 
 ### S15b CLAUDE.md와 스킬의 차이 (1.5) (2026-10-30 추가, 스킬 개념과 예시 뒤. 스킬을 본 다음 비교)
 - 유형: 비교표 4행(읽히는 때 / 담는 것 / 개수 / 넣는 기준) + 예 1줄

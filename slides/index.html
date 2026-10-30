@@ -1157,37 +1157,40 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="스킬-예시" class="slide level2 grey">
-<h2>스킬 예시</h2>
+<section id="스킬-예시-수치-검증" class="slide level2 grey">
+<h2>스킬 예시: 수치 검증</h2>
 <p><span class="eyebrow">2. 작업 환경</span></p>
-<p><span class="h3">점검 스킬: lecture-review</span></p>
+<p><span class="label">사례 레포의 2026-08-16 검증 절차를 SKILL.md로 옮기면 (가상 예, 실제 파일 아님)</span></p>
 <div class="codepanel">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> 완성된 강의자료(qmd, 슬라이드, R 예제)의 품질 점검. 검토, 리뷰, 점검, 확인해줘, review 요청 시 사용.</span></span>
-<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>대상 파일을 읽고 아래 체크리스트를 **전부** 점검한 뒤, 결과를 표로 보고한다.</span>
-<span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a>지적만 하고 수정은 하지 않는다. 수정은 사용자가 요청할 때 수행한다.</span>
-<span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> # <span class="pp">|</span> 항목 <span class="pp">|</span> 판정 (Pass/Fail/N.A.) <span class="pp">|</span> 근거 (파일:줄) <span class="pp">|</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><span class="h3">분석 묶음 스킬: 표본크기 산출을 스킬 6개로</span></p>
-<div class="codepanel">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ss-continuous</span></span>
-<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> … "표본크기 계산", "군당 몇 명", "d=0.35로 다시", "2:1 배정이면" 같은 요청에 사용.</span></span>
-<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># ss-sensitivity</span></span>
-<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 90%면" 요청에 사용.</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>---
+name: verify-numbers
+description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다시 계산해 대조.
+  "수치 확인", "숫자 맞는지", "검증 돌려", "답변서 숫자" 요청 시 사용.
+---
+1. 대조할 수치를 문서에서 뽑아 표로: 문서 / 위치 / 값
+2. `Rscript code/agent_bot/&lt;날짜&gt;/verify-numbers.R` 실행
+   분석은 바꾸지 않고 같은 데이터셋에서 재계산
+3. 판정: 일치 / 불일치 / 확인 불가. 불일치는 고치지 않고 보고만
+4. 결과: `output/agent_bot/&lt;날짜&gt;/verify-numbers.md`</code></pre>
 </div>
 <ul>
-<li>예: 점검 스킬, 세션 메모리 스킬, 분석 묶음 스킬</li>
+<li>실제로는 사람이 매번 지시: “답변서 숫자 다시 계산해서 대조”. 스킬이면 “수치 확인” 한마디</li>
+<li>작성 요점 네 가지가 각 줄에: 발동 문구 / 작업 하나 / 범위(보고만) / 출력 위치</li>
 </ul>
 <aside class="notes">
 <ul>
 <li>시간: 1.5분</li>
-<li>같은 지시를 세 번째 하게 되면 파일로</li>
-<li>SKILL.md 구조: 머리(name, description) + 절차 + 출력</li>
-<li>description에 사용자 말투를 넣어 자동 발동: “검토”, “확인해줘”, “군당 몇 명”, “d=0.35로 다시”</li>
-<li>점검 스킬(lecture-review): 회귀 강의 프로젝트. 체크리스트 전부 점검, 지적만 하고 수정은 안 함, 표로 보고</li>
-<li>분석 묶음(ss-*): 3상 표본크기 프로젝트. 문헌 추출, 벤치마크, 공식 계산, MMRM 시뮬레이션, 민감도, 보고서 6개</li>
-<li>세션 메모리 스킬(session-memory): “기억해”가 트리거, 파일당 사실 1건, 절대 날짜 → S17</li>
-<li>사례 레포 airforce-fatty-liver에는 스킬 폴더 없음. 예시는 다른 두 프로젝트(마스킹 완료: <code>&lt;project-name&gt;</code>, <code>&lt;indication&gt;</code>)</li>
-<li>앞부분 생략 표시(…)는 발췌 시 줄임</li>
+<li>메시지 한 줄: 앞 장 원칙 네 가지를 사례의 실제 절차에 적용하면 이 파일이 됨</li>
+<li>가상 예임을 청중에게 분명히: 사례 레포에는 스킬 폴더가 없음(2026-03 Positron Assistant, 2026-08 Claude Code). 이 SKILL.md는 발표용으로 쓴 것</li>
+<li>바탕이 된 실제 절차: 레포 <code>code/agent_bot/2026-08-16/verify-numbers.R</code>. 헤더 원문 “Verify every number that the response letter promises to insert into the manuscript, before it is written into … Nothing here changes any analysis; it recomputes from the same analysis dataset the manuscript already uses.”</li>
+<li>실행 결과 원문(2026-08-16 session-summary §5): “verify-numbers.R 재실행: 약물/유병률 12개, BMI 6단계, Table 4 SI 계수 전부 일치”</li>
+<li>1번(대조표): 리뷰어 답변서 §D의 절차. 답변서가 약속한 수치를 원고에 쓰기 전에 대조</li>
+<li>2번(재계산): 원고 산문의 숫자는 R 객체가 아니라 글자. 그래서 같은 데이터셋에서 다시 계산하는 단계가 필요(3막 ⑦)</li>
+<li>3번(보고만): 앞 장 원칙 3. 불일치를 에이전트가 임의로 고치면 분석과 원고가 어긋남. 이 발표 프로젝트 fact-checker 에이전트 정의도 같은 원칙</li>
+<li>4번(출력 위치): 레포 CLAUDE.md 저장 규칙(날짜 폴더)과 일치</li>
+<li>description의 발동 문구는 사례 대화 로그에서 사용자가 실제로 쓴 표현에 가깝게 씀. 발표 전 로그에서 원문 확인 권장</li>
+<li>이 발표의 사례 수치도 같은 스크립트 출력과 대조(이 프로젝트 CLAUDE.md 행동 규칙 2)</li>
+<li>다음 장: CLAUDE.md와 스킬의 차이</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1243,7 +1246,7 @@
 </table>
 </div>
 <ul>
-<li>같은 프로젝트에서: “집계값만 출력” → CLAUDE.md / “표본크기 민감도 표 작성” → 스킬</li>
+<li>사례에서: “집계값만 출력, 행 단위 출력 금지” → CLAUDE.md / “원고 수치를 데이터에서 다시 계산해 대조” → 스킬</li>
 </ul>
 <aside class="notes">
 <ul>
@@ -1253,7 +1256,7 @@
 <li>CLAUDE.md는 세션 시작 때 통째로 컨텍스트에 들어감. 스킬은 description만 먼저 보이고, 요청과 맞을 때 본문을 읽음</li>
 <li>잘못 넣으면: 규칙을 스킬에 넣으면 그 작업에서만 지켜짐(다른 작업에서 집계 규칙이 빠짐). 절차를 CLAUDE.md에 넣으면 매 세션 읽혀 파일이 길어지고 뒤쪽 규칙이 무시됨</li>
 <li>비유(구두로만): CLAUDE.md는 연구실 운영 규정, 스킬은 실험 프로토콜 문서</li>
-<li>예시 출처: “집계값만 출력”은 사례 레포 CLAUDE.md 윤리적 제약 절과 이 발표 CLAUDE.md 화면 노출 규칙 / “표본크기 민감도 표”는 다른 프로젝트 ss-sensitivity 스킬(앞 장)</li>
+<li>예시 출처: “집계값만 출력”은 사례 레포 CLAUDE.md 윤리적 제약 절과 이 발표 CLAUDE.md 화면 노출 규칙 / “수치 대조”는 앞 장의 verify-numbers 가상 스킬(실제 절차는 2026-08-16 스크립트)</li>
 <li>이 발표 프로젝트 예: 가운뎃점 금지는 CLAUDE.md(모든 글에 적용), 렌더와 넘침 점검 절차는 revealjs-deck 스킬(렌더할 때만)</li>
 <li>다음 장: MCP</li>
 </ul>
@@ -1409,10 +1412,10 @@
 <h2>memory 예시</h2>
 <p><span class="eyebrow">2. 작업 환경</span></p>
 <div class="codepanel">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">User profile</span><span class="co">](user_profile.md)</span> …</span>
-<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Project status 2026-05-06</span><span class="co">](project_status_2026_05_06.md)</span> …</span>
-<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Authoritative project docs</span><span class="co">](reference_project_docs.md)</span> …</span>
-<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Output folder convention</span><span class="co">](feedback_output_folder_dates.md)</span> …</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">User profile</span><span class="co">](user_profile.md)</span> …</span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Project status 2026-05-06</span><span class="co">](project_status_2026_05_06.md)</span> …</span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Authoritative project docs</span><span class="co">](reference_project_docs.md)</span> …</span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Output folder convention</span><span class="co">](feedback_output_folder_dates.md)</span> …</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>파일당 사실 1건, <code>MEMORY.md</code>가 색인</li>

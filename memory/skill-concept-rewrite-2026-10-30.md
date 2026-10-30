@@ -6,3 +6,5 @@
 - 출처: slides/excerpts/setup-skill-lecture-review, setup-skills-ss-bundle, setup-skill-session-memory
 - 2차 수정(같은 날): 사용자 지적 2건. ① 작성 요점은 원칙이지 예시가 아님 ② 예시(강의 점검, 표본크기)가 사례(조종사 vs KNHANES)와 맞지 않음. 본문은 원칙만, 다른 프로젝트 예시는 모두 노트로. 사례 레포에는 스킬 폴더가 없다는 사실을 노트에 명시하고, "사례였다면 verify-numbers.R 실행 절차를 스킬로"를 구두 연결로 둠
 - 원칙(이후 2막 개념 장 공통): 본문 "작성 요점" 칸에는 원칙만. 예시는 다음 예시 장 또는 노트
+- 3차(같은 날): 스킬 예시 장도 사례 기준으로. 타 프로젝트 발췌(lecture-review, ss 묶음) 대신 사례의 2026-08-16 수치 검증 절차를 SKILL.md로 옮긴 가상 예 verify-numbers. label에 "가상 예, 실제 파일 아님" 명시. 비교 장 예시 줄도 "수치 대조 → 스킬"로. description 발동 문구는 발표 전 사례 로그 원문 확인 필요
+- 렌더 메모: ```markdown 하이라이트 코드 패널은 가로 스크롤바가 생김. 같은 내용을 ```text로 두면 사라짐
