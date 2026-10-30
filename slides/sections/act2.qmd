@@ -833,7 +833,7 @@ description: … "민감도 표", "시나리오별", "d를 0.25~0.5로", "power 
 - 규칙 근거: 이 발표 CLAUDE.md 오케스트레이션 절 규칙 1–7
 - 대체 전환: run-worker.ps1. Terra 실패 → Opus 재실행, 결과 파일 머리에 실제 수행 모델
 - 논문 사례에서는 에이전트 하나(Claude Code)로 충분했음. 오케스트레이션은 이 발표자료 제작에서 사용
-- 깊이 들어가지 않음. 질문 나오면 부록 A3
+- 깊이 들어가지 않음. 질문 나오면 이 프로젝트 `CLAUDE.md` 오케스트레이션 표로 구두 보충
 - 다음 장: 구성 그림
 :::
 
@@ -878,7 +878,7 @@ CLAUDE.md = AGENTS.md
 - 공유 상태는 대화가 아니라 레포: CLAUDE.md = AGENTS.md, memory/, review/, git
 - Astra, Terra는 review/에만 씀. 작성 쪽(Fable, Opus)은 review/를 읽기만
 - 한도 소진: Terra 실패 → Opus(`claude -p`) 재실행, 결과 파일 머리에 실제 수행 모델. Claude 쪽 한도는 대기
-- 깊이 들어가지 않음. 질문 나오면 부록 A3
+- 깊이 들어가지 않음. 질문 나오면 이 프로젝트 `CLAUDE.md` 오케스트레이션 표로 구두 보충
 :::
 ## 에이전트 연구의 이득과 조건
 

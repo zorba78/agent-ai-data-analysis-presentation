@@ -39,5 +39,3 @@ execute:
 {{< include sections/act3b.qmd >}}
 
 {{< include sections/act4.qmd >}}
-
-{{< include sections/appendix.qmd >}}
