@@ -814,7 +814,7 @@
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 에이전트의 성능은 모델보다 지침 파일이 정함</li>
 <li>챗봇 한계(1막) 세 가지가 각 파일로 풀림: 맥락 → CLAUDE.md, memory / 재현 → 폴더 구조, 권한 / 반복 → 스킬, MCP</li>
-<li>주황 = 사람이 쓰는 파일(CLAUDE.md). 나머지는 사람이 틀을 정하고 에이전트가 채우기도 함</li>
+<li>주황 = 사람이 책임지는 파일(CLAUDE.md). 초안은 에이전트가 쓰기도 하지만 확정은 사람. 나머지는 사람이 틀을 정하고 에이전트가 채우기도 함</li>
 <li>이후 요소마다 두 장: 개념과 역할, 작성 요점 / 사례 레포 예시</li>
 </ul>
 <style type="text/css">
@@ -838,7 +838,7 @@
 <ul>
 <li>프로젝트 폴더 맨 위의 Markdown 파일</li>
 <li>세션을 열 때마다 에이전트가 먼저 읽음</li>
-<li>사람이 쓰고 사람이 고침</li>
+<li>사람이 쓰거나, 에이전트가 초안을 쓰고 사람이 확정</li>
 <li>같은 내용을 AGENTS.md로 두면 Codex, Copilot도 읽음</li>
 </ul>
 </div>
@@ -854,10 +854,11 @@
 <div class="human">
 <p><span class="label">작성 요점</span></p>
 <ul>
+<li>목적과 역할을 먼저. 무엇을 끝내려는 프로젝트인지, 에이전트가 누구인지</li>
+<li>행동 규칙은 에이전트의 실패 양상을 겨눈 문장으로</li>
 <li>짧고 구체적으로. 긴 문서는 끝까지 안 읽힘</li>
 <li>금지 목록보다 기본값을 적음</li>
 <li>정의는 코드에서 쓰는 이름 그대로</li>
-<li>상태 줄은 단계가 바뀔 때 갱신</li>
 <li>교정이 생기면 그 자리에서 한 줄 추가</li>
 </ul>
 </div>
@@ -869,9 +870,83 @@
 <li>개념: 레포 루트의 CLAUDE.md. Claude Code가 시작할 때 자동으로 컨텍스트에 넣음. 하위 폴더에도 둘 수 있음</li>
 <li>효과의 근거(사례): 대화 로그 3건 어디에도 MetS 정의, 허리둘레 기준을 묻는 장면 없음. 정의가 파일에 있었기 때문</li>
 <li>효과: 에이전트 산출물이 agent_bot/YYYY-MM-DD/에 쌓임. 저장 규칙이 CLAUDE.md 136행에 있어서</li>
+<li>작성자: 사람이 직접 쓰는 경우와 에이전트에게 초안을 맡기는 경우(Claude Code <code>/init</code>) 둘 다 흔함. 어느 쪽이든 목적, 역할, 행동 규칙 세 블록은 사람이 읽고 확정</li>
+<li>목적과 역할이 먼저인 이유: 같은 질문에도 “생물통계 분석자”와 “코딩 도우미”는 다른 답을 냄. 사례 레포 CLAUDE.md도 목적(9행), 역할(20행)이 행동 규칙(26행) 앞에 있음</li>
 <li>작성 요점 근거: 규칙이 길면 뒤쪽 규칙이 무시되는 경우가 생김. 이 발표 프로젝트도 행동 규칙 8개로 제한</li>
+<li>상태 줄은 단계가 바뀔 때 갱신(본문에서 뺀 항목, 구두로)</li>
+<li>다음 장: 행동 규칙을 어떤 문장으로 쓰는지, 널리 쓰이는 예 하나</li>
 <li>“금지보다 기본값”: “head() 쓰지 마”보다 “요약은 집계 함수로”. 금지는 빠져나갈 길이 많음</li>
 <li>교정 예: 이 발표 CLAUDE.md 행동 규칙 5(가운뎃점 금지)는 사용자 지적 직후 추가된 줄</li>
+<li>이후 두 장: 사례 레포의 실제 구조와 정의 블록</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="행동-규칙-예시-네-가지-실패-양상" class="slide level2 grey">
+<h2>행동 규칙 예시: 네 가지 실패 양상</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="excerpt">
+<p>Karpathy, X, 2026-01-26: “They don’t manage their confusion, don’t seek clarifications, don’t surface inconsistencies, don’t present tradeoffs, …” / “LLMs are exceptionally good at looping until they meet specific goals.”</p>
+</div>
+<p><span class="label">forrestchang/andrej-karpathy-skills, CLAUDE.md (2026-01-27)</span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>실패 양상</th>
+<th>규칙</th>
+<th>원문</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>가정을 숨기고 진행</td>
+<td>Think Before Coding</td>
+<td>“Don’t assume. Don’t hide confusion. Surface tradeoffs.”</td>
+</tr>
+<tr class="even">
+<td>요청보다 크게 설계</td>
+<td>Simplicity First</td>
+<td>“Minimum code that solves the problem. Nothing speculative.”</td>
+</tr>
+<tr class="odd">
+<td>무관한 코드까지 수정</td>
+<td>Surgical Changes</td>
+<td>“Touch only what you must. Clean up only your own mess.”</td>
+</tr>
+<tr class="even">
+<td>검증 없이 완료 선언</td>
+<td>Goal-Driven Execution</td>
+<td>“Define success criteria. Loop until verified.”</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>규칙 한 줄 = 실패 양상 하나. 연구 프로젝트에도 그대로 옮겨짐</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>시간: 1.5분</li>
+<li>메시지 한 줄: 좋은 행동 규칙은 에이전트가 실제로 저지르는 실패를 하나씩 겨눈 문장</li>
+<li>출처 구분을 정확히: 카파시가 쓴 것은 X 게시글(실패 양상 관찰, 2026-01-26). CLAUDE.md 파일은 다음 날 Forrest Chang이 그 관찰을 네 원칙으로 옮긴 것. 카파시 본인이 공개한 CLAUDE.md는 없고, 공개 지지도 확인되지 않음. “카파시의 CLAUDE.md”라고 말하지 않기</li>
+<li>인용 원문 두 조각은 2026-10-30에 2차 보도(TechTimes 2026-05-18, aibuilderclub)에서 확인. X 원문 전체는 발표 1주 전 재확인(행동 규칙 4). 미확인 부분은 “…”</li>
+<li>레포 스타 약 22만(2026-05 보도). 숫자는 발표 전 재확인</li>
+<li>네 규칙과 이 발표의 대응: 1 ↔︎ 행동 규칙 6(가정은 명시, 여러 해석이면 묻기) / 3 ↔︎ 사례 레포 읽기 전용 / 4 ↔︎ 3막 수치 검증 스크립트</li>
+<li>4막 “한계” 장의 세 장면(묻지 않고 고름, 그럴듯한 용어, “완료되었습니다!”)이 바로 이 실패 양상</li>
+<li>연구용으로 옮길 때 추가되는 규칙: 데이터 노출 범위(집계값만), 수치 도출 과정 기록, 정의 고정. 코딩 규칙만으로는 부족</li>
 <li>다음 두 장: 사례 레포의 실제 구조와 정의 블록</li>
 </ul>
 <style type="text/css">
