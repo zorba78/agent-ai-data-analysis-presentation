@@ -492,36 +492,38 @@ Karpathy, X, 2026-01-26: "They don't manage their confusion, don't seek clarific
 - 반대 장면: 에이전트가 정의와 코드의 불일치를 먼저 짚음. "스크립트 감사: 포화모형 다중공선성 가능, MetS 기준 행 주석 처리 "의도적인지 확인 필요"" → 3막 S21
 :::
 
-## 폴더 구조와 권한: 개념과 역할 {.grey}
+## 경계: 폴더와 권한 {.grey}
 
 [2. 작업 환경]{.eyebrow}
 
-::: {.stage3}
+::: {.cards}
 
 ::: {.box}
-[개념]{.label}
+[폴더: 사람과 에이전트의 자리를 나눔]{.label}
 
-- 폴더 구조: 사람 파일과 에이전트 파일의 자리를 미리 나눔
-- 권한: 에이전트가 쓸 수 있는 도구와 폴더의 경계
-- 설정 파일 settings.json에 allow, deny, additionalDirectories
+::: {.codepanel}
+
+```text
+airforce-fatty-liver/
+├── code/agent_bot/2026-03-19/ … 08-16/
+├── quarto/user/           # researcher
+├── quarto/agent_bot/YYYY-MM-DD/
+├── data/derived-data/     # read-only
+└── references/agent-downloaded/
+```
+
+:::
+
+- 에이전트 산출물은 날짜 폴더에: 추적, 덮어쓰기 방지
 :::
 
 ::: {.box}
-[역할과 효과]{.label}
+[권한: 쓸 수 있는 도구와 폴더의 경계]{.label}
 
-- 날짜 폴더: 언제 무엇을 만들었는지 추적, 덮어쓰기 방지
-- 읽기 전용 폴더: 원자료, 논문 PDF 보호
-- 매번 승인: 삭제, 외부 전송은 사람이 결정
-- 반복 승인이 쌓이면 allow로: 속도와 안전의 균형
-:::
-
-::: {.human}
-[작성 요점]{.label}
-
-- 에이전트 산출물 폴더를 CLAUDE.md에 명시
-- deny는 데이터, 참고문헌, 다른 프로젝트
-- allow는 좁게: 명령 전체 문자열, 도메인 단위
-- allow 목록을 주기적으로 점검, 남은 위험 항목 제거
+- 읽기 전용: 원자료, 논문 PDF, 다른 프로젝트 레포
+- 산출물 폴더와 프로젝트 밖 폴더는 설정에 명시
+- 삭제, 외부 전송은 allow에 두지 않고 매번 승인
+- 승인한 항목은 쌓임: 사례 레포 allow에 `Bash(rm -f *.pdf)`가 남아 있었음
 :::
 
 :::
@@ -529,79 +531,17 @@ Karpathy, X, 2026-01-26: "They don't manage their confusion, don't seek clarific
 ::: {.notes}
 - 시간: 1.5분
 - 메시지 한 줄: 경계를 먼저 그으면 에이전트에게 더 많이 맡길 수 있음
-- 폴더 구조 근거: 사례 레포 code/agent_bot/2026-03-19 … 2026-08-16. 날짜만 봐도 분석 → 문헌 → 리뷰어 대응 흐름이 보임
-- 권한 근거: settings.local.json의 allow 항목이 문헌 작업 때 허용한 curl, WebFetch, PubMed MCP로 남아 있음
-- 점검 필요 예: allow에 `Bash(rm -f *.pdf)`가 남아 있었음. 한 번 허용하면 계속 유효
-- deny 예: 이 발표 프로젝트 settings.json. references/ 편집 금지, 사례 레포 전체 편집 금지
-- 다음 두 장: 실제 폴더 트리, 실제 allow 목록
-:::
-
-## 폴더 구조 예시 {.grey}
-
-[2. 작업 환경]{.eyebrow}
-
-::: {.codepanel}
-
-```text
-airforce-fatty-liver/
-├── CLAUDE.md, AGENTS.md            # contract
-├── code/                           # researcher scripts
-│   └── agent_bot/2026-03-19/ ... 2026-08-16/
-├── quarto/user/                    # researcher reports, manuscript
-├── quarto/agent_bot/2026-03-10/ ... 2026-08-16/
-├── output/user/, output/agent_bot/YYYY-MM-DD/
-├── data/derived-data/              # analysis-ready datasets
-├── references/                     # literature, agent-downloaded/
-└── memory/agent_bot/2026-05-06/ ...
-```
-
-:::
-
-::: {.notes}
-- 시간: 1분
-- 레포 실제 트리. 파일명은 생략
-- 에이전트 산출물은 작업일 폴더에: 언제 무엇을 만들었는지 추적 가능
-- 사람 파일과 섞이지 않음: 덮어쓰기 방지
-- agent_bot = 레포 CLAUDE.md에서 에이전트(DataBot) 산출물 폴더 이름
-- 생성 규칙: 작업 시점 '년도-월일' 폴더를 만들어 저장(CLAUDE.md 136–137행)
-- 같은 규칙을 2026-05-06 에이전트가 memory에 feedback으로 저장 → S17 memory 장
+- 폴더: 사례 레포 실제 트리의 축약. 파일명 생략. agent_bot = 레포 CLAUDE.md의 에이전트(DataBot) 산출물 폴더 이름. 생성 규칙은 CLAUDE.md 136–137행 "작업 시점 '년도-월일' 폴더를 만들어 저장"
 - 날짜 폴더만 봐도 흐름: 2026-03 분석 보고서 → 2026-05 문헌 요약, 원고 → 2026-08 리뷰어 대응
+- 같은 규칙을 2026-05-06 에이전트가 memory에 feedback으로 저장 → memory 장
 - data/derived-data: 파일명, 내용은 화면에 띄우지 않음
-- 아웃라인의 `code/{user,agent}` 표기는 실제 폴더 이름(`code/` 최상위, `agent_bot`)으로 바꿈
-:::
-
-## 권한 설정 예시
-
-[2. 작업 환경]{.eyebrow}
-
-::: {.codepanel}
-
-```json
-"allow": [
-  "Bash(curl -sL \"https://europepmc.org/article/MED/30134584\" -A \"Mozilla/5.0\")",
-  "WebFetch(domain:europepmc.org)",
-  "mcp__claude_ai_PubMed__get_article_metadata",
-  "Read(<path>/airforce-fatty-liver/**)"
-],
-"additionalDirectories": ["<path>\\airforce-fatty-liver\\references\\agent-downloaded"]
-```
-
-:::
-
-- 도구별 allow 목록 / `additionalDirectories`: 프로젝트 밖 폴더는 명시
-- 읽기 전용 폴더: `"deny": ["Edit(/references/**)"]`
-- 파괴적 명령은 allow에 두지 않고 매번 승인
-
-::: {.notes}
-- 시간: 1분
-- settings.local.json: 승인할 때 허용한 항목이 쌓이는 파일
-- 남아 있는 것: 문헌 PDF 내려받기 때 허용한 curl, PowerShell Invoke-WebRequest, WebFetch(europepmc.org), PubMed MCP 2개(`lookup_article_by_citation`, `get_article_metadata`)
-- `additionalDirectories`: PDF 저장 폴더 references/agent-downloaded를 명시적으로 추가
-- 정리 대상도 있음: allow에 `Bash(rm -f *.pdf)`가 남아 있음. 한 번 허용하면 계속 유효 → 주기적 점검
-- deny 예시는 이 발표 프로젝트: references/ 편집 금지, 사례 레포 전체 편집 금지
-- 배열 줄바꿈만 줄임. 항목 문자열은 원문(경로 제외)
-- 마스킹: 드라이브와 작업 폴더 → `<path>`. 이메일 파라미터가 든 항목(unpaywall 2개)은 발췌에서 제외
-- 에이전트 표기: 2026-05 문헌 작업 = Claude Code
+- 권한: Claude Code settings.json의 allow, deny, additionalDirectories. 승인할 때 허용한 항목은 settings.local.json에 쌓임
+- 사례 레포 allow에 남은 것: 문헌 PDF 내려받기 때 허용한 curl, PowerShell Invoke-WebRequest, WebFetch(europepmc.org), PubMed MCP 2개(`lookup_article_by_citation`, `get_article_metadata`). `additionalDirectories`로 references/agent-downloaded 추가
+- `Bash(rm -f *.pdf)`: 한 번 허용하면 계속 유효. allow 목록을 주기적으로 점검해 남은 위험 항목 제거
+- deny 예: 이 발표 프로젝트 settings.json. references/ 편집 금지, 사례 레포 전체 편집 금지(`Edit(/references/**)`)
+- allow는 좁게: 명령 전체 문자열, 도메인 단위. 반복 승인이 쌓이면 allow로 올려 속도와 안전의 균형
+- 마스킹: 드라이브와 작업 폴더 경로는 띄우지 않음. 이메일 파라미터가 든 항목은 제외
+- 2026-10-30: 개념 장, 폴더 트리 장, 권한 JSON 장 3장을 이 1장으로 합침. 통계 청중에게 JSON 문법은 불필요, 원칙과 장면만
 :::
 
 ## 스킬: 개념과 역할

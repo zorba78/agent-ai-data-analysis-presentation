@@ -14,3 +14,4 @@
 - [2막 재구성 2026-10-23](act2-concept-rewrite-2026-10-23.md) — 개념/역할/작성 요점 구조, D3를 3막 ①로 이동, 설치 영상 압축, 덱 57장
 - [부록 삭제 2026-10-30](appendix-removed-2026-10-30.md) — 부록 4장 삭제, 소재는 excerpts에 유지, 시간 조정은 보류
 - [CLAUDE.md 슬라이드 보강 2026-10-30](claude-md-slides-2026-10-30.md) — 목적/역할/행동 규칙 강조, 카파시 관찰 vs Forrest Chang 파일 구분, 원문 재확인 필요
+- [폴더, 권한 3장→1장 2026-10-30](boundary-slide-merge-2026-10-30.md) — 경계: 폴더와 권한 1장으로 통합, allow JSON은 노트로, .columns+codepanel 겹침 주의
