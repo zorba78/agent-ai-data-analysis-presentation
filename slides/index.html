@@ -1096,74 +1096,6 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="claude.md와-스킬의-차이" class="slide level2 grey">
-<h2>CLAUDE.md와 스킬의 차이</h2>
-<p><span class="eyebrow">2. 작업 환경</span></p>
-<div class="tbl-wide">
-<table class="caption-top">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 42%">
-<col style="width: 42%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>CLAUDE.md</th>
-<th>스킬 (SKILL.md)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>읽히는 때</td>
-<td>세션마다 항상</td>
-<td>요청이 발동 문구와 맞을 때만</td>
-</tr>
-<tr class="even">
-<td>담는 것</td>
-<td>늘 적용되는 것: 목적, 역할, 정의, 규칙</td>
-<td>한 작업의 절차: 순서, 체크리스트, 출력 형식</td>
-</tr>
-<tr class="odd">
-<td>개수</td>
-<td>프로젝트당 하나</td>
-<td>작업당 하나, 여러 개</td>
-</tr>
-<tr class="even">
-<td>넣는 기준</td>
-<td>모든 작업에 해당하는가</td>
-<td>같은 절차를 세 번째 시키는가</td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul>
-<li>같은 프로젝트에서: “집계값만 출력” → CLAUDE.md / “표본크기 민감도 표 작성” → 스킬</li>
-</ul>
-<aside class="notes">
-<ul>
-<li>시간: 1.5분</li>
-<li>메시지 한 줄: 늘 지킬 것은 CLAUDE.md, 시킬 때만 따를 절차는 스킬</li>
-<li>둘 다 Markdown, 둘 다 에이전트가 읽음. 차이는 읽히는 때와 범위</li>
-<li>CLAUDE.md는 세션 시작 때 통째로 컨텍스트에 들어감. 스킬은 description만 먼저 보이고, 요청과 맞을 때 본문을 읽음</li>
-<li>잘못 넣으면: 규칙을 스킬에 넣으면 그 작업에서만 지켜짐(다른 작업에서 집계 규칙이 빠짐). 절차를 CLAUDE.md에 넣으면 매 세션 읽혀 파일이 길어지고 뒤쪽 규칙이 무시됨</li>
-<li>비유(구두로만): CLAUDE.md는 연구실 운영 규정, 스킬은 실험 프로토콜 문서</li>
-<li>예시 출처: “집계값만 출력”은 사례 레포 CLAUDE.md 윤리적 제약 절과 이 발표 CLAUDE.md 화면 노출 규칙 / “표본크기 민감도 표”는 다른 프로젝트 ss-sensitivity 스킬(다음 다음 장)</li>
-<li>이 발표 프로젝트 예: 가운뎃점 금지는 CLAUDE.md(모든 글에 적용), 렌더와 넘침 점검 절차는 revealjs-deck 스킬(렌더할 때만)</li>
-<li>다음 장: 스킬 개념과 작성 요점</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
 <section id="스킬-개념과-역할" class="slide level2">
 <h2>스킬: 개념과 역할</h2>
 <p><span class="eyebrow">2. 작업 환경</span></p>
@@ -1250,6 +1182,74 @@
 <li>세션 메모리 스킬(session-memory): “기억해”가 트리거, 파일당 사실 1건, 절대 날짜 → S17</li>
 <li>사례 레포 airforce-fatty-liver에는 스킬 폴더 없음. 예시는 다른 두 프로젝트(마스킹 완료: <code>&lt;project-name&gt;</code>, <code>&lt;indication&gt;</code>)</li>
 <li>앞부분 생략 표시(…)는 발췌 시 줄임</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="claude.md와-스킬의-차이" class="slide level2 grey">
+<h2>CLAUDE.md와 스킬의 차이</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="tbl-wide">
+<table class="caption-top">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 42%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>CLAUDE.md</th>
+<th>스킬 (SKILL.md)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>읽히는 때</td>
+<td>세션마다 항상</td>
+<td>요청이 발동 문구와 맞을 때만</td>
+</tr>
+<tr class="even">
+<td>담는 것</td>
+<td>늘 적용되는 것: 목적, 역할, 정의, 규칙</td>
+<td>한 작업의 절차: 순서, 체크리스트, 출력 형식</td>
+</tr>
+<tr class="odd">
+<td>개수</td>
+<td>프로젝트당 하나</td>
+<td>작업당 하나, 여러 개</td>
+</tr>
+<tr class="even">
+<td>넣는 기준</td>
+<td>모든 작업에 해당하는가</td>
+<td>같은 절차를 세 번째 시키는가</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>같은 프로젝트에서: “집계값만 출력” → CLAUDE.md / “표본크기 민감도 표 작성” → 스킬</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>시간: 1.5분</li>
+<li>메시지 한 줄: 늘 지킬 것은 CLAUDE.md, 시킬 때만 따를 절차는 스킬</li>
+<li>둘 다 Markdown, 둘 다 에이전트가 읽음. 차이는 읽히는 때와 범위</li>
+<li>CLAUDE.md는 세션 시작 때 통째로 컨텍스트에 들어감. 스킬은 description만 먼저 보이고, 요청과 맞을 때 본문을 읽음</li>
+<li>잘못 넣으면: 규칙을 스킬에 넣으면 그 작업에서만 지켜짐(다른 작업에서 집계 규칙이 빠짐). 절차를 CLAUDE.md에 넣으면 매 세션 읽혀 파일이 길어지고 뒤쪽 규칙이 무시됨</li>
+<li>비유(구두로만): CLAUDE.md는 연구실 운영 규정, 스킬은 실험 프로토콜 문서</li>
+<li>예시 출처: “집계값만 출력”은 사례 레포 CLAUDE.md 윤리적 제약 절과 이 발표 CLAUDE.md 화면 노출 규칙 / “표본크기 민감도 표”는 다른 프로젝트 ss-sensitivity 스킬(앞 장)</li>
+<li>이 발표 프로젝트 예: 가운뎃점 금지는 CLAUDE.md(모든 글에 적용), 렌더와 넘침 점검 절차는 revealjs-deck 스킬(렌더할 때만)</li>
+<li>다음 장: MCP</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
