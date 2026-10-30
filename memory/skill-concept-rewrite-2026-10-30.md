@@ -4,3 +4,5 @@
 - 결정: 세 칸 구조는 유지하되 모든 줄을 발췌본의 실제 문장으로 교체. 개념은 lecture-review의 "검토해줘" → 15항목 점검 장면, 효과는 판정 Pass/Fail/N.A.와 "qmd 렌더 통과" 항목, 작성 요점은 ss-continuous 발동 문구, 표본크기 6개 분할, "지적만 하고 수정은 하지 않는다", session-memory 출력 규칙
 - 핵심 개념 한 줄 추가: 에이전트는 description만 늘 보고, 요청이 맞으면 본문을 읽음(발동 조건 vs 절차)
 - 출처: slides/excerpts/setup-skill-lecture-review, setup-skills-ss-bundle, setup-skill-session-memory
+- 2차 수정(같은 날): 사용자 지적 2건. ① 작성 요점은 원칙이지 예시가 아님 ② 예시(강의 점검, 표본크기)가 사례(조종사 vs KNHANES)와 맞지 않음. 본문은 원칙만, 다른 프로젝트 예시는 모두 노트로. 사례 레포에는 스킬 폴더가 없다는 사실을 노트에 명시하고, "사례였다면 verify-numbers.R 실행 절차를 스킬로"를 구두 연결로 둠
+- 원칙(이후 2막 개념 장 공통): 본문 "작성 요점" 칸에는 원칙만. 예시는 다음 예시 장 또는 노트
