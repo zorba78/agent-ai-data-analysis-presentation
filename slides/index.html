@@ -6,13 +6,11 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="index_files/libs/quarto-contrib/videojs/video.min.js"></script>
-<link href="index_files/libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="구본초, 한국한의학연구원">
-  <meta name="dcterms.date" content="2026-10-30">
+  <meta name="dcterms.date" content="2026-11-02">
   <title>연구 생산성 향상을 위한 Agent AI 기반 워크플로우: 데이터 분석에서 논문 작성까지</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -104,7 +102,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-b4a9b76c60df6ded3f4b2337f63534ab.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-72ebb11433f756167f2442bd273af14a.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -213,7 +211,7 @@
 </div>
 </div>
 
-  <p class="date">2026-10-30</p>
+  <p class="date">2026-11-02</p>
 </section>
 <section id="ai-활용-방식-4가지" class="slide level2 grey">
 <h2>AI 활용 방식 4가지</h2>
@@ -223,6 +221,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>AI를 연구에 쓰는 방식을 네 가지로 나눠 봤습니다.</li>
+<li>네 방식 모두 모델은 같고, AI가 제 작업 환경에 닿는 정도가 다릅니다.</li>
+<li>1번 웹 챗봇은 질문하고, 답에 나온 코드나 문장을 복사해 씁니다.</li>
+<li>2번은 CSV, PDF를 채팅창에 올리고, 챗봇이 코드를 실행합니다.</li>
+<li>3번 Copilot 같은 자동완성은 코드를 제안하고, 실행과 확인은 제가 합니다.</li>
+<li>4번 에이전트는 Claude Code가 제 PC에서 파일을 읽고 쓰고 실행합니다.</li>
+<li>제 R 세션, 레포, 규칙을 직접 쓰는 이 방식이 오늘 주제입니다.</li>
+<li>아래 축의 오른쪽으로 갈수록 자율성이 높아지고, 연구자 역할은 “결정”만 남습니다.</li>
+<li>여기 계신 분들 대부분은 1번, 2번을 쓰실 텐데, 거기가 출발점입니다.</li>
+<li>먼저 1번과 2번을 한 그림으로 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>네 방식 모두 같은 모델. 다른 것은 AI가 내 작업 환경에 얼마나 닿는가</li>
 <li>1 챗봇: 질문과 답. 코드, 문장을 복사해 씀. 데이터는 안 올림</li>
@@ -253,6 +265,17 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>앞 장의 1번과 2번을 한 그림으로 그렸습니다.</li>
+<li>왼쪽이 제 PC, 오른쪽이 외부 서버에 있는 웹 챗봇입니다.</li>
+<li>1번, PC에 있는 CSV 파일을 챗봇에 올립니다.</li>
+<li>2번, 채팅창에 “이 데이터로 회귀분석 해줘”라고 묻습니다.</li>
+<li>3번, 답으로 온 결과 표, 해석 문장, 예시 코드를 원고로 복사합니다.</li>
+<li>세 동작 사이는 매번 연구자가 “직접 옮김”으로 잇습니다.</li>
+<li>이 방식의 한계를 다음 장에서 세 가지로 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>앞 장의 1과 2를 한 그림으로</li>
 <li>세 동작: 업로드, 질문, 복사. 사이를 잇는 것은 매번 사람</li>
@@ -278,6 +301,19 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>챗봇 방식의 한계를 보안, 맥락, 재현 세 가지로 정리했습니다.</li>
+<li>첫째 보안, 원자료가 기관 경계를 넘어 외부 서버로 갑니다.</li>
+<li>IRB 승인 범위, 군 자료 반출 규정과 부딪힐 수 있습니다.</li>
+<li>둘째 맥락, 변수 정의와 제외 기준이 대화와 함께 사라집니다.</li>
+<li>지난 분석 결정도 남지 않아서 새 대화마다 처음부터 설명합니다.</li>
+<li>셋째 재현, 코드, 결과, 원고가 서로 다른 창에 있습니다.</li>
+<li>결과 숫자를 원고로 손으로 복사하는 순간 검증 경로가 끊깁니다.</li>
+<li>[여기에: 본인이 겪은 사례 1건]</li>
+<li>같은 작업을 에이전트로 하면 구조가 어떻게 바뀌는지 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>보안: 원자료가 외부 서버로. IRB 승인 범위, 군 자료 반출 규정과 부딪힐 수 있음</li>
 <li>맥락: 변수 정의, 제외 기준, 지난 분석 결정이 대화와 함께 사라짐. 대화마다 다시 설명</li>
@@ -304,6 +340,24 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>제 PC의 Positron 창 하나 안에서 Claude Code가 네 칸과 연결됩니다.</li>
+<li>챗봇과 다른 점은 실행, 파일, 기억 세 가지입니다.</li>
+<li>실행, Claude Code가 제 R 세션에서 코드를 돌리고 에러를 읽고 고칩니다.</li>
+<li>파일, 코드와 표와 원고가 레포에 날짜별로 남습니다.</li>
+<li>기억, CLAUDE.md와 memory를 다음 세션이 다시 읽습니다.</li>
+<li>주황 칸 CLAUDE.md는 사람이 쓰는 자리이고, 이후 장에서도 같은 색입니다.</li>
+<li>오른쪽 위 Claude 모델에는 원자료 파일이 아니라 읽은 내용, 출력, 지시가 갑니다.</li>
+<li>계산은 제 PC의 R이 전체 데이터로 하고, 모델에는 결과 텍스트만 갑니다.</li>
+<li>다만 <code>head()</code>, <code>print(df)</code> 같은 출력은 관측치가 그대로 넘어갑니다.</li>
+<li>그래서 CLAUDE.md에 집계만 출력하고 행 출력 함수는 쓰지 말라고 적습니다.</li>
+<li>그 규칙을 지켰는지는 제가 출력을 보고 확인합니다.</li>
+<li>오른쪽 아래 MCP 문헌 검색은 검색 질의만 밖으로 나갑니다.</li>
+<li>이 발표 전체가 이 그림의 설명입니다.</li>
+<li>먼저 이 구조로 하는 연구 작업을 단계로 나눠 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 2분</li>
 <li>챗봇과의 차이 세 가지: 실행, 파일, 기억</li>
 <li>실행: 에이전트가 내 R 세션에서 코드를 돌리고 에러를 읽고 고침</li>
@@ -318,8 +372,8 @@
 <li>예: 유병률 45.3%는 3,697명 중 누구의 값도 LLM이 보지 않고 받는 결과. 사람이 콘솔에서 <code>summary()</code> 결과만 읽는 것과 같음</li>
 </ul></li>
 <li>관측치가 전송되는 경우: <code>head()</code>, <code>print(df)</code>, <code>glimpse()</code> 출력 / 데이터 파일을 Read 도구로 직접 열 때 / 에러 메시지에 값이 섞일 때 / 5명 미만 셀의 집계</li>
-<li>그래서 CLAUDE.md 규칙: 집계만 출력, 행 출력 함수 금지, 데이터 파일 직접 열기 금지, 작은 셀은 “5 미만”. 규칙은 에이전트가 지킬 때만 작동, 지켰는지는 사람이 출력을 보고 확인(2막 D3)</li>
-<li>그래서 집계만 출력하게 하는 규칙이 필요(2막 라이브 D3, CLAUDE.md)</li>
+<li>그래서 CLAUDE.md 규칙: 집계만 출력, 행 출력 함수 금지, 데이터 파일 직접 열기 금지, 작은 셀은 “5 미만”. 규칙은 에이전트가 지킬 때만 작동, 지켰는지는 사람이 출력을 보고 확인(3막 ② 탐색)</li>
+<li>그래서 집계만 출력하게 하는 규칙이 필요(3막 ② 탐색, CLAUDE.md)</li>
 <li>오른쪽 아래 MCP: 문헌 검색 질의만 밖으로</li>
 <li>이 발표 전체가 이 그림의 설명</li>
 </ul>
@@ -335,65 +389,68 @@
           display:block!important;
       }</style></aside>
 </section>
-<section id="연구-워크플로우-7단계" class="slide level2 grey">
-<h2>연구 워크플로우 7단계</h2>
+<section id="연구-워크플로우-6단계" class="slide level2 grey">
+<h2>연구 워크플로우 6단계</h2>
 <p><span class="eyebrow">1. AI 활용 방식</span></p>
 <div class="pipeline">
-<span class="all">탐색</span><span class="all">가설</span><span class="all">분석</span><span class="all">해석</span><span class="all">문헌</span><span class="all">원고</span><span class="all">리뷰어</span>
+<span class="all">전처리</span><span class="all">탐색</span><span class="all">가설</span><span class="all">분석</span><span class="all">문헌</span><span class="all">초안</span>
 </div>
 <div class="cards">
 <div class="box">
-<p><span class="h3">① 탐색</span></p>
-<p>코드북, 변수명, 자료형, 결측 파악</p>
-<p>구조만 읽음(행 단위 출력 금지)</p>
+<p><span class="h3">① 전처리</span></p>
+<p>자료 정제, 결합, 정의에 따른 변수 생성</p>
+<p>원자료는 읽기 전용</p>
 </div>
 <div class="box">
-<p><span class="h3">② 가설</span></p>
+<p><span class="h3">② 탐색</span></p>
+<p>변수 구조, 결측, 기술통계</p>
+<p>구조와 집계만 읽음(행 단위 출력 금지)</p>
+</div>
+<div class="box">
+<p><span class="h3">③ 가설</span></p>
 <p>선행 연구의 남은 의문에서 연구 질문</p>
-<p>CLAUDE.md에 기록</p>
+<p>분석계획서에 기록</p>
 </div>
-<div class="box">
-<p><span class="h3">③ 분석</span></p>
-<p>코드 작성, 내 R 세션에서 실행</p>
-<p>오류 수정, 스크립트 저장</p>
 </div>
+<div class="cards">
 <div class="box">
-<p><span class="h3">④ 해석</span></p>
-<p>결과 요약, 표와 그림 생성</p>
+<p><span class="h3">④ 분석</span></p>
+<p>코드 작성, 내 R 세션에서 실행, 해석</p>
 <p>수치는 연구자가 대조</p>
 </div>
-</div>
-<div class="cards">
 <div class="box">
 <p><span class="h3">⑤ 문헌</span></p>
-<p>문헌 DB MCP로 검색, PDF 확보</p>
-<p>인용 검증, 요약 정리</p>
+<p>문헌 DB MCP로 검색, 요약 정리</p>
+<p>인용 검증</p>
 </div>
 <div class="box">
-<p><span class="h3">⑥ 원고</span></p>
-<p>Methods, Results 초안</p>
-<p>투고 양식으로 렌더</p>
-</div>
-<div class="box">
-<p><span class="h3">⑦ 리뷰어</span></p>
-<p>지적별 대응 계획, 재분석</p>
-<p>응답서 초안</p>
-</div>
-<div class="human">
-<p><span class="h3">모든 단계</span></p>
-<p>에이전트: 작성, 실행, 정리</p>
-<p>연구자: 질문, 대조, 채택 결정</p>
+<p><span class="h3">⑥ 초안</span></p>
+<p>Methods, Results부터 원고 초안</p>
+<p>내부 검토 후 수정</p>
 </div>
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>연구 작업을 전처리부터 초안까지 여섯 단계로 나눴습니다.</li>
+<li>어떤 논문에도 같은 순서라서 카드에는 사례 숫자를 넣지 않았습니다.</li>
+<li>① 전처리에서 원자료는 읽기 전용, ② 탐색에서는 구조와 집계만 읽습니다.</li>
+<li>③ 가설은 선행 연구의 남은 의문에서 나오고, 분석계획서에 적습니다.</li>
+<li>④ 분석은 제 R 세션에서 실행하고, 해석도 이 단계에 넣었습니다.</li>
+<li>⑤ 문헌은 MCP로 문헌 DB를 검색하고, ⑥ 초안은 Methods, Results부터 씁니다.</li>
+<li>리뷰어 대응은 오늘 다루지 않습니다.</li>
+<li>에이전트는 작성, 실행, 정리를, 저는 질문, 대조, 채택 결정을 맡습니다.</li>
+<li>3막에서 단계마다 프롬프트, 에이전트가 한 일, 제가 확인한 것을 봅니다.</li>
+<li>이 순서를 그대로 따라갈 사례 논문을 소개하겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
-<li>일반 워크플로우. 어떤 논문에도 같은 7단계. 3막에서 대사증후군 논문으로 이 순서 그대로 채움</li>
+<li>일반 워크플로우. 어떤 논문에도 같은 6단계. 3막에서 대사증후군 논문을 처음부터 다시 진행하며 이 순서 그대로 채움</li>
 <li>단계마다 같은 세 칸: 프롬프트 / 에이전트가 한 일 / 내가 확인한 것</li>
-<li>기간: 에이전트 산출물 날짜 폴더 기준 2026-03-10 ~ 2026-08-16</li>
-<li>에이전트 표기: 2026-03 분석, 해석 대화는 Positron Assistant(Claude Sonnet 4.6). 2026-05 이후 문헌, 원고, 리뷰어 대응은 Claude Code</li>
-<li>카드는 사례 숫자 없이 일반형. 사례 대응은 3막: ① 코드북 53행 / ② 선행 지방간 논문의 요산 패턴 → RQ 1–5 / ③ RQ1 로지스틱, n = 3,697 / ④ MetS aOR 0.30 / ⑤ 24편 / ⑥ Statistical analysis 절 / ⑦ Reviewer 2 대응</li>
-<li>각 카드 둘째 줄은 연구자 쪽 또는 산출물. 에이전트가 하는 일과 연구자가 하는 일을 매 단계 같이 말함</li>
+<li>모든 단계에서 에이전트는 작성, 실행, 정리. 연구자는 질문, 대조, 채택 결정</li>
+<li>해석은 분석 단계에 포함. 리뷰어 대응은 다루지 않음</li>
+<li>카드는 사례 숫자 없이 일반형</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -436,17 +493,28 @@
 </div>
 <ul>
 <li>출판: Ku B, Song DH. BMJ Mil Health 2026, epub</li>
-<li>사례 선정 이유: 로지스틱 회귀 중심의 단순한 분석, 탐색부터 리뷰어 대응까지 전 과정 기록 보존</li>
+<li>3막: 이 논문을 새 폴더에서 처음부터 다시 분석. 출판 논문은 참고하지 않음</li>
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>선행 지방간 논문에서 요산은 조종사에서만 위험 요인이었습니다.</li>
+<li>대사증후군에서도 같은 패턴인가, 이 질문은 에이전트가 아니라 여기서 나왔습니다.</li>
+<li>조종사 2,604명과 국민건강영양조사 남성 1,093명을 비교했습니다.</li>
+<li>대사증후군은 11.1% 대 37.1%, aOR 0.30으로 조종사가 낮았습니다.</li>
+<li>혈압 구성요소만 조종사가 높았고, aOR 2.12였습니다.</li>
+<li>3막에서는 새 폴더에서, 출판 논문을 참고하지 않고 처음부터 다시 분석합니다.</li>
+<li>그 전에 2막에서 작업 환경 구성부터 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
-<li>동기: 선행 지방간 논문(Song DH, Ku B. Aerosp Med Hum Perform 2025;96(9))의 요산 결과(조종사 하위집단 다변량 로지스틱, OR 1.83, 95% CI 1.32–2.55)가 남긴 의문. 지방간 논문은 여기 한 번만 언급, 사례로 쓰지 않음. 화면에는 OR 생략</li>
+<li>동기: 선행 지방간 논문(Song DH, Ku B. Aerosp Med Hum Perform 2025;96(10):894–902)의 요산 결과(조종사 하위집단 다변량 로지스틱, OR 1.83, 95% CI 1.32–2.55)가 남긴 의문. 지방간 논문은 여기 한 번만 언급, 사례로 쓰지 않음. 화면에는 OR 생략</li>
 <li>설계: 조종사 2,604 vs KNHANES 2022 남성 1,093, 24–61세. 참조군은 KNHANES</li>
 <li>분석: 로지스틱 회귀 중심이라 1시간 사례로 적합. 혈액 지표(요산, 공복혈당)는 선형회귀와 집단 간 기울기 차이(요산 Δβ 0.27, p = 0.009). 화면에는 로지스틱만</li>
 <li>결과: 출판본 Abstract 수치. MetS 11.1% vs 37.1%, aOR 0.30 / 혈압 구성요소 47.7% vs 38.8%, aOR 2.12(95% CI 1.80 to 2.52)</li>
 <li>연구 질문은 에이전트가 아니라 선행 논문의 남은 의문에서 나옴(3막 ② 가설로 연결)</li>
-<li>말로 연결: 앞 장의 7단계를 이 논문으로 하나씩 따라감(3막)</li>
+<li>말로 연결: 앞 장의 6단계를 이 논문으로 처음부터 따라감(3막)</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -468,6 +536,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>사례로 들어가기 전에 제 작업 환경부터 보여드리겠습니다.</li>
+<li>그림은 다섯 층이고, 맨 아래가 에디터 Positron입니다.</li>
+<li>그 위 파란 층 Claude Code가 파일을 읽고 쓰고 코드를 실행합니다.</li>
+<li>가운데 주황색 CLAUDE.md는 사람이 쓰는 지침 파일입니다.</li>
+<li>그 위에 스킬과 MCP, 맨 위에 memory가 있습니다.</li>
+<li>각 층은 빠졌을 때 생기는 문제로 보시면 됩니다.</li>
+<li>에디터가 없으면 에이전트가 무엇을 실행했는지 제가 못 봅니다.</li>
+<li>CLAUDE.md가 없으면 정의와 규칙을 세션마다 다시 설명합니다.</li>
+<li>memory가 없으면 지난 결정을 다음 세션이 모릅니다.</li>
+<li>맨 아래 Positron 설치부터 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>각 층 한 장씩. 그 밖에 프로젝트 구조, 권한, 오케스트레이션(간단히)도 이 막에서</li>
 <li>층이 빠지면 생기는 문제
@@ -515,6 +597,17 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>설치는 위 그림의 세 단계이고, 10분이면 끝납니다.</li>
+<li>positron.posit.co에서 내려받고, R 4.2 이상은 따로 설치합니다.</li>
+<li>폴더를 열면 설치된 R을 찾아서 콘솔이 바로 시작됩니다.</li>
+<li>아래 카드 세 개는 설치 직후 한 번만 하는 설정입니다.</li>
+<li>창 오른쪽 위 메뉴에서 R 버전을 고르고, RStudio 단축키를 켭니다.</li>
+<li>Quarto와 Jupyter는 이미 들어 있어서 확장은 Claude Code만 설치합니다.</li>
+<li>다음 장은 Positron에 내장된 Quarto입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>메시지 한 줄: 설치는 10분, R만 있으면 바로 시작</li>
 <li>아래 카드: 설치 직후 한 번만 하는 설정 3가지
@@ -562,6 +655,17 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>그림 처음의 <code>원고.qmd</code> 한 파일에 글, R 코드 청크, 인용이 같이 들어갑니다.</li>
+<li><code>quarto render</code> 한 줄이면 docx, pdf, html, revealjs가 나옵니다.</li>
+<li>원고의 숫자가 코드에서 나오니까 손으로 옮기는 단계가 없습니다.</li>
+<li>1막에서 말씀드린 재현 문제에 대한 제 답이 이것입니다.</li>
+<li>R Markdown을 만든 Posit의 다음 세대라서 Rmd도 대부분 그대로 렌더됩니다.</li>
+<li>사례 논문 원고도, 지금 보시는 발표자료도 qmd로 썼습니다.</li>
+<li>pdf에는 LaTeX가 필요해서, 다음 장은 TinyTeX입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>메시지 한 줄: 원고도 코드처럼. 숫자가 코드에서 나오면 검증 경로가 끊기지 않음(1막 “재현” 한계의 답)</li>
 <li>R Markdown과의 차이(청중 다수가 Rmd 사용자일 때)
@@ -607,6 +711,17 @@
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>pdf를 만들 때 LaTeX 전체를 설치할 필요는 없습니다.</li>
+<li>TinyTeX는 TeX Live 경량판으로 약 100MB입니다.</li>
+<li>그림 A처럼 Positron 터미널에서 <code>quarto install tinytex</code> 한 줄이면 됩니다.</li>
+<li>R에서는 B처럼 tinytex 패키지로 설치해도 되고, 둘 중 하나만 씁니다.</li>
+<li>아래 <code>quarto check</code> 출력에 not installed가 보이면 설치하시면 됩니다.</li>
+<li>사례 논문은 docx로 투고해서 LaTeX를 쓰지 않았습니다.</li>
+<li>다음 장은 같은 Claude Code를 Positron과 웹에서 쓸 때의 차이입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>메시지 한 줄: LaTeX 전체 설치 없이 pdf. 명령 한 줄, 100MB</li>
 <li>TinyTeX: Yihui Xie가 만든 TeX Live 경량 배포판. 관리자 권한 불필요, 없는 패키지는 렌더 중 tlmgr로 자동 설치. 전체 TeX Live는 수 GB</li>
@@ -638,6 +753,17 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>같은 Claude Code 엔진인데, 결과를 보는 화면이 다릅니다.</li>
+<li>가운데 열이 Positron 안, 오른쪽 열이 웹 Code의 클라우드 VM입니다.</li>
+<li>첫 줄, Positron에서는 제가 보는 R 세션에서 코드가 돌아갑니다.</li>
+<li>웹은 Rscript로 따로 실행해서 끝나면 객체가 사라집니다.</li>
+<li>채팅에 적힌 “OR 0.30”을 읽는 대신 그 모형 객체를 제가 직접 엽니다.</li>
+<li>설치 없이 바로 시작하거나 결과만 받을 일이면 웹이 낫습니다.</li>
+<li>저는 분석이 중심이라 이쪽을 쓰고, 다음 장은 Claude Code 설치입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>같은 Claude Code 엔진. 차이는 실행 위치가 아니라 작업 화면</li>
 <li>웹 Code(claude.ai/code): GitHub 레포를 클라우드 VM에 복제해 작업. 데스크톱 앱 Code 탭은 내 PC 폴더에서 실행</li>
@@ -689,6 +815,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>Claude Code는 설치 방법이 두 가지이고, 가운데 화살표처럼 엔진은 같습니다.</li>
+<li>왼쪽 CLI는 PowerShell에서 <code>irm</code> 한 줄, macOS와 Linux는 <code>curl</code> 한 줄입니다.</li>
+<li>프로젝트 폴더에서 <code>claude</code>를 치면 첫 실행 때 브라우저 로그인이 뜹니다.</li>
+<li>시작할 때 그 폴더의 CLAUDE.md를 먼저 읽습니다.</li>
+<li>오른쪽 확장은 Extensions 창에서 “Claude Code”를 검색해 설치합니다.</li>
+<li>에디터 오른쪽 위 ✻ 아이콘을 누르면 패널이 열립니다.</li>
+<li>패널은 자체 CLI를 내장해서, 터미널에서 쓰려면 CLI도 따로 설치합니다.</li>
+<li>무료 플랜으로는 쓸 수 없고 유료 구독이나 Console 계정이 필요합니다.</li>
+<li>아래 카드 네 개가 챗봇과 갈리는 지점이고, 실행은 도구별로 승인합니다.</li>
+<li>다음 장은 이 설치 과정을 녹화한 영상입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 설치는 명령 한 줄, 시작은 <code>claude</code> 한 줄</li>
 <li>요건: 유료 구독(Pro, Max, Team, Enterprise) 또는 Console 계정. 무료 플랜 불가. Windows 10 1809+, macOS 13+, Ubuntu 20.04+</li>
@@ -702,7 +842,7 @@
 <li>읽기, 쓰기, 실행: 챗봇과 갈리는 지점. 도구 이름은 레포 settings.local.json allow 항목에 그대로: <code>Bash(...)</code>, <code>PowerShell(...)</code>, <code>Read(...)</code>, <code>WebFetch(...)</code></li>
 <li>권한은 도구별 승인 → 권한 장</li>
 <li>논문 작업 당시 2026-03 분석 대화는 Positron Assistant(Claude Sonnet 4.6). 지금은 Claude Code로 통일</li>
-<li>다음 장: 라이브 D3</li>
+<li>다음 장: 시연: 설치와 첫 실행(영상)</li>
 <li>도구 기능 설명은 발표 1주 전 최신 버전과 재대조(행동 규칙 4)</li>
 </ul>
 <style type="text/css">
@@ -742,6 +882,15 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>앞의 두 장을 Windows 11 가상 머신에서 그대로 해 본 영상이고, 2배속입니다.</li>
+<li>위 세 칸 순서대로, 폴더를 열면 R 콘솔이 자동으로 뜨는 장면을 봐 주십시오.</li>
+<li>이어서 PowerShell 한 줄로 CLI를 설치하고, ✻ 아이콘으로 패널을 엽니다.</li>
+<li>(영상 뒤) 설치는 세 단계이고, 시작은 <code>claude</code> 한 줄이었습니다.</li>
+<li>(영상 뒤) 이제 이 환경에 넣는 지침 파일로 넘어가겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 2분</li>
 <li>영상: 사용자 제작, Hyper-V Windows 11 VM에서 녹화(2026-10-23). 원본 20분 538MB → 1080p 2배속 10분 19MB. 로컬 demo/clips/install-positron-claude.mp4가 없으면 GitHub Release v0.1-demo 첨부 파일을 재생(Pages용)</li>
 <li>편집 후보: Codex 설치 구간, 바탕화면과 탐색기의 계정명 폴더 노출 구간, 설치 진행 바 대기 구간. 2분 목표</li>
@@ -811,6 +960,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>여기부터는 설치한 환경에 무엇을 넣는지입니다.</li>
+<li>위 첫 줄처럼 프롬프트는 한 번 읽히고 사라집니다.</li>
+<li>파일은 세션을 열 때마다 다시 읽힙니다.</li>
+<li>카드마다 위는 문제, 아래는 파일로 푼 해법입니다.</li>
+<li>첫 카드 CLAUDE.md는 정의와 규칙을 매번 설명하던 1막의 맥락 문제를 맡습니다.</li>
+<li>스킬은 같은 절차를 말로 반복하던 일, MCP는 검색 결과를 손으로 복사하던 일입니다.</li>
+<li>아래 줄 memory는 지난 결정을 남기고, 권한은 에이전트가 손댈 범위를 정합니다.</li>
+<li>오케스트레이션은 작성과 검토를 다른 모델에 나눠 자기 검토를 막습니다.</li>
+<li>주황색 CLAUDE.md는 사람이 책임지고 확정하는 파일입니다.</li>
+<li>요소마다 개념 한 장과 사례 한 장씩, CLAUDE.md부터 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 에이전트의 성능은 모델보다 지침 파일이 정함</li>
 <li>챗봇 한계(1막) 세 가지가 각 파일로 풀림: 맥락 → CLAUDE.md, memory / 재현 → 폴더 구조, 권한 / 반복 → 스킬, MCP</li>
@@ -865,6 +1028,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>CLAUDE.md는 프롬프트가 아니라 프로젝트 지침서입니다.</li>
+<li>왼쪽처럼 프로젝트 폴더 맨 위에 두면 세션을 열 때마다 먼저 읽힙니다.</li>
+<li>같은 내용을 AGENTS.md로 두면 Codex와 Copilot도 읽습니다.</li>
+<li>초안은 <code>/init</code>으로 에이전트에게 맡겨도 되지만 확정은 제가 합니다.</li>
+<li>가운데 칸의 정의 고정은 사례에서 바로 확인됩니다.</li>
+<li>대화 로그 세 건 어디에도 MetS 정의나 허리둘레 기준을 묻는 장면이 없습니다.</li>
+<li>오른쪽 작성 요점의 첫 줄은 목적과 역할을 먼저 쓰라는 것입니다.</li>
+<li>같은 질문에도 생물통계 분석자와 코딩 도우미는 다른 답을 냅니다.</li>
+<li>“head() 쓰지 마”보다 “요약은 집계 함수로”처럼 기본값을 적습니다.</li>
+<li>다음 장은 행동 규칙을 어떤 문장으로 쓰는지 보여주는 예입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 프롬프트가 아니라 프로젝트 지침서. 한 번 쓰면 모든 세션에 적용</li>
 <li>개념: 레포 루트의 CLAUDE.md. Claude Code가 시작할 때 자동으로 컨텍스트에 넣음. 하위 폴더에도 둘 수 있음</li>
@@ -941,6 +1118,20 @@
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>위 인용은 카파시의 CLAUDE.md가 아니라 X에 올린 게시글입니다.</li>
+<li>다음 날 Forrest Chang이 그 관찰을 CLAUDE.md 네 원칙으로 옮겼습니다.</li>
+<li>표 왼쪽 열이 에이전트의 실패 양상, 가운데 열이 그것을 겨눈 규칙입니다.</li>
+<li>첫 줄, 가정을 숨기고 진행하는 실패에는 Think Before Coding입니다.</li>
+<li>마지막 줄, 검증 없이 완료를 선언하는 실패에는 Goal-Driven Execution입니다.</li>
+<li>아래는 사례 레포 CLAUDE.md에서 같은 자리에 있는 규칙입니다.</li>
+<li>행동 규칙 1 “결과 생성 및 해석 시 추론은 최대한 배제하고 근거에 기반한 답변 도출”이 첫 줄 자리입니다.</li>
+<li>행동 규칙 9 “모든 수치 결과는 그 도출 과정을 문서에 포함”이 마지막 줄 자리입니다.</li>
+<li>연구용에는 여기에 집계값만 출력, 정의 고정 같은 규칙이 더 붙습니다.</li>
+<li>다음 장에서 사례 레포 CLAUDE.md의 전체 구조를 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 좋은 행동 규칙은 에이전트가 실제로 저지르는 실패를 하나씩 겨눈 문장</li>
 <li>출처 구분을 정확히: 카파시가 쓴 것은 X 게시글(실패 양상 관찰, 2026-01-26). CLAUDE.md 파일은 다음 날 Forrest Chang이 그 관찰을 네 원칙으로 옮긴 것. 카파시 본인이 공개한 CLAUDE.md는 없고, 공개 지지도 확인되지 않음. “카파시의 CLAUDE.md”라고 말하지 않기</li>
@@ -949,7 +1140,7 @@
 <li>아래 두 줄은 사례 레포 CLAUDE.md 원문(발췌본 06-contract-mets-definition, setup-claude-md-six-blocks). 행동 규칙 1은 26행대, 9는 39행, “코딩 전 생각하기”는 코딩 규칙(41행) 아래 소제목</li>
 <li>요지: 코딩용 원칙과 연구용 규칙은 같은 실패를 겨눔. “코드를 짜기 전에 생각”이 연구에서는 “근거 없이 추론하지 않기”, “검증될 때까지 반복”이 “수치의 도출 과정을 남기기”</li>
 <li>이 발표 CLAUDE.md의 대응(구두): 행동 규칙 6 “가정은 명시하고, 여러 해석이 가능하면 고르지 말고 묻는다” ↔︎ Think Before Coding / “사례 레포는 읽기 전용” ↔︎ Surgical Changes</li>
-<li>4막 “한계” 장의 세 장면(묻지 않고 고름, 그럴듯한 용어, “완료되었습니다!”)이 바로 이 실패 양상</li>
+<li>3막에도 같은 실패 양상: “H2에서는 보정이 필요가 없어”를 H2 전체에 글자 그대로 적용(③ 가설 설정), 과도하게 복잡한 분석 선택(④ 분석)</li>
 <li>연구용으로 옮길 때 추가되는 규칙: 데이터 노출 범위(집계값만), 수치 도출 과정 기록, 정의 고정. 코딩 규칙만으로는 부족</li>
 <li>다음 두 장: 사례 레포의 실제 구조와 정의 블록</li>
 </ul>
@@ -985,6 +1176,20 @@
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>사례 레포 CLAUDE.md의 절 제목을 뽑은 것이고, 왼쪽 숫자는 줄 번호입니다.</li>
+<li>5번째 줄 상태에는 전처리, 분석, 보고서 작성까지 완료라고 적혀 있습니다.</li>
+<li>그래서 세션을 열면 에이전트가 지금 어느 단계인지부터 압니다.</li>
+<li>목적이 9번째 줄, 역할이 20번째 줄로 행동 규칙보다 앞에 옵니다.</li>
+<li>39번째 줄이 행동 규칙 9, “모든 수치 결과는 그 도출 과정을 문서에 포함”입니다.</li>
+<li>표 값이 어떻게 나왔는지 문서에 남아서 3막의 숫자 검증으로 이어집니다.</li>
+<li>아래로 코딩 규칙, 윤리적 제약, 생성 파일 저장 공간까지 여섯 블록입니다.</li>
+<li>같은 내용을 AGENTS.md로도 두는데, 사례의 AGENTS.md는 목적, 코딩 규칙, 윤리적 제약 절이 빠진 짧은 판입니다.</li>
+<li>두 파일을 맞춰 두는 일은 사람 몫입니다.</li>
+<li>다음 장은 이 파일 안의 대사증후군 정의 블록입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>프롬프트는 한 번 쓰고 사라짐. CLAUDE.md는 세션마다 읽힘</li>
 <li>상태 줄: 세션을 열면 에이전트가 프로젝트 단계를 바로 앎</li>
@@ -1021,12 +1226,23 @@
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>CLAUDE.md “사전 정보” 절에 있는 대사증후군 정의 블록 원문입니다.</li>
+<li>허리둘레는 남성 90cm 이상, 혈압은 130/85 이상을 기준으로 적었습니다.</li>
+<li>이 기준은 제가 정한 것이고, 에이전트는 바꾸지 않았습니다.</li>
+<li>줄 끝의 <code>mets_c1</code>부터 <code>mets_c5</code>까지가 코드의 변수명과 같습니다.</li>
+<li>전처리 스크립트와 분석 스크립트에 이 이름 그대로 나옵니다.</li>
+<li>그래서 대화 로그 어디에도 에이전트가 이 정의를 다시 묻는 장면이 없습니다.</li>
+<li>다음 장은 에이전트가 손댈 수 있는 폴더와 권한의 경계입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>“사전 정보” 절의 MetS 정의 블록 원문 그대로</li>
 <li><code>mets_c1</code>–<code>mets_c5</code>: 전처리 스크립트(01), 분석 스크립트(02)에 같은 이름으로 등장</li>
 <li>대화 로그 3건(2026-03, Positron Assistant, Claude Sonnet 4.6) 어디에도 MetS 정의, 허리둘레 기준, 공복 여부를 묻는 장면 없음</li>
 <li>허리둘레 남 ≥ 90 cm(한국 복부비만 기준), 혈압 ≥ 130/85는 연구자가 정해 적은 기준. 에이전트는 바꾸지 않음</li>
-<li>반대 장면: 에이전트가 정의와 코드의 불일치를 먼저 짚음. “스크립트 감사: 포화모형 다중공선성 가능, MetS 기준 행 주석 처리”의도적인지 확인 필요”” → 3막 S21</li>
+<li>반대 장면: 에이전트가 정의와 코드의 불일치를 먼저 짚음. “스크립트 감사: 포화모형 다중공선성 가능, MetS 기준 행 주석 처리”의도적인지 확인 필요”” (원 사례 레포 2026-03 로그. 3막 ① 확인 요청 장의 불일치 분해와 같은 행동)</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1070,6 +1286,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>경계를 먼저 그어 두면 에이전트에게 더 많이 맡길 수 있습니다.</li>
+<li>왼쪽은 사례 레포의 폴더 구조를 줄인 것입니다.</li>
+<li><code>quarto/user</code>는 제 자리, <code>agent_bot</code> 아래 날짜 폴더는 에이전트 자리입니다.</li>
+<li>날짜 폴더만 봐도 3월 분석 보고서, 5월 문헌 요약과 원고, 8월 리뷰어 대응이 보입니다.</li>
+<li><code>data/derived-data</code>는 읽기 전용 폴더입니다.</li>
+<li>오른쪽 권한은 Claude Code의 settings.json에서 allow와 deny로 정합니다.</li>
+<li>삭제와 외부 전송은 allow에 두지 않고 매번 승인합니다.</li>
+<li>마지막 줄, 한 번 승인한 <code>Bash(rm -f *.pdf)</code>가 allow에 남아 있었습니다.</li>
+<li>승인한 항목은 계속 유효해서 allow 목록을 주기적으로 점검해 지워야 합니다.</li>
+<li>다음은 같은 절차를 매번 말로 지시하지 않게 하는 스킬입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 경계를 먼저 그으면 에이전트에게 더 많이 맡길 수 있음</li>
 <li>폴더: 사례 레포 실제 트리의 축약. 파일명 생략. agent_bot = 레포 CLAUDE.md의 에이전트(DataBot) 산출물 폴더 이름. 생성 규칙은 CLAUDE.md 136–137행 “작업 시점 ‘년도-월일’ 폴더를 만들어 저장”</li>
@@ -1130,6 +1360,20 @@
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>스킬은 프롬프트를 잘 쓰는 법이 아니라 다시 쓰지 않는 법입니다.</li>
+<li>왼쪽처럼 <code>.claude/skills</code> 아래 SKILL.md 파일 하나가 스킬 하나입니다.</li>
+<li>에이전트는 평소 description만 보다가 요청이 맞으면 본문을 읽고 따릅니다.</li>
+<li>사례 레포에는 스킬 폴더가 없어서, 이 장의 예는 다른 연구 프로젝트에서 가져왔습니다.</li>
+<li>강의 검토 스킬은 “검토해줘” 한마디에 15개 항목을 점검해 표로 보고합니다.</li>
+<li>오른쪽 첫 요점, 발동 문구는 제가 실제로 치는 말로 씁니다.</li>
+<li>표본크기 스킬에는 “군당 몇 명”, “2:1 배정이면” 같은 말을 넣었습니다.</li>
+<li>“연속형 1차 변수의 검정력 산출”로만 쓰면 제가 그렇게 말하지 않아서 발동이 안 됩니다.</li>
+<li>세 번째 요점은 범위로, 강의 검토 스킬에는 “지적만 하고 수정은 하지 않는다”고 적었습니다.</li>
+<li>다음 장에서 사례의 수치 검증 절차를 스킬로 옮겨 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 프롬프트를 잘 쓰는 법이 아니라 다시 쓰지 않는 법</li>
 <li>개념: Claude Code는 시작할 때 모든 스킬의 description만 읽어 둠. 요청이 description과 맞으면 그때 SKILL.md 본문을 읽어 따름. description이 발동 조건, 본문은 발동 뒤의 절차</li>
@@ -1179,13 +1423,27 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>먼저 말씀드리면, 이 파일은 발표용으로 쓴 가상 예이고 사례 레포에는 없습니다.</li>
+<li>2번 단계의 <code>verify-numbers.R</code>은 리뷰어 대응 때 실제로 돌린 스크립트입니다.</li>
+<li>그때는 제가 매번 “답변서 숫자 다시 계산해서 대조”라고 지시했습니다.</li>
+<li>맨 위 description에는 “수치 확인”, “검증 돌려”처럼 제가 쓰던 말에 가깝게 넣었습니다.</li>
+<li>1번은 대조할 수치를 문서에서 뽑아 문서, 위치, 값의 표로 만드는 단계입니다.</li>
+<li>2번은 원고 속 숫자가 R 객체가 아니라 글자라서 같은 데이터셋에서 다시 계산하는 단계입니다.</li>
+<li>3번은 불일치를 고치지 않고 보고만 하게 해서 분석과 원고가 어긋나지 않게 합니다.</li>
+<li>4번은 출력 위치로, 날짜 폴더 규칙과 같습니다.</li>
+<li>실제 재실행 결과는 약물과 유병률 12개, BMI 6단계, Table 4 SI 계수 전부 일치였습니다.</li>
+<li>다음 장에서 CLAUDE.md와 스킬을 나란히 놓고 비교하겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 앞 장 원칙 네 가지를 사례의 실제 절차에 적용하면 이 파일이 됨</li>
 <li>가상 예임을 청중에게 분명히: 사례 레포에는 스킬 폴더가 없음(2026-03 Positron Assistant, 2026-08 Claude Code). 이 SKILL.md는 발표용으로 쓴 것</li>
 <li>바탕이 된 실제 절차: 레포 <code>code/agent_bot/2026-08-16/verify-numbers.R</code>. 헤더 원문 “Verify every number that the response letter promises to insert into the manuscript, before it is written into … Nothing here changes any analysis; it recomputes from the same analysis dataset the manuscript already uses.”</li>
 <li>실행 결과 원문(2026-08-16 session-summary §5): “verify-numbers.R 재실행: 약물/유병률 12개, BMI 6단계, Table 4 SI 계수 전부 일치”</li>
 <li>1번(대조표): 리뷰어 답변서 §D의 절차. 답변서가 약속한 수치를 원고에 쓰기 전에 대조</li>
-<li>2번(재계산): 원고 산문의 숫자는 R 객체가 아니라 글자. 그래서 같은 데이터셋에서 다시 계산하는 단계가 필요(3막 ⑦)</li>
+<li>2번(재계산): 원고 산문의 숫자는 R 객체가 아니라 글자. 그래서 같은 데이터셋에서 다시 계산하는 단계가 필요(3막 ④ 분석의 오케스트레이터 독립 재계산)</li>
 <li>3번(보고만): 앞 장 원칙 3. 불일치를 에이전트가 임의로 고치면 분석과 원고가 어긋남. 이 발표 프로젝트 fact-checker 에이전트 정의도 같은 원칙</li>
 <li>4번(출력 위치): 레포 CLAUDE.md 저장 규칙(날짜 폴더)과 일치</li>
 <li>description의 발동 문구는 사례 대화 로그에서 사용자가 실제로 쓴 표현에 가깝게 씀. 발표 전 로그에서 원문 확인 권장</li>
@@ -1252,6 +1510,20 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>둘 다 Markdown이고 둘 다 에이전트가 읽는데, 차이는 읽히는 때입니다.</li>
+<li>표 첫 줄, CLAUDE.md는 세션마다 항상, 스킬은 발동 문구와 맞을 때만 읽힙니다.</li>
+<li>그래서 CLAUDE.md에는 목적, 역할, 정의, 규칙처럼 늘 적용되는 것을 넣습니다.</li>
+<li>스킬에는 한 작업의 순서, 체크리스트, 출력 형식을 넣습니다.</li>
+<li>마지막 줄, 같은 절차를 세 번째 시키고 있으면 스킬로 옮깁니다.</li>
+<li>아래 “집계값만 출력”은 모든 작업에 해당해서 CLAUDE.md에 둡니다.</li>
+<li>이 규칙을 스킬에 두면 그 작업에서만 지켜지고 다른 작업에서는 빠집니다.</li>
+<li>반대로 절차를 CLAUDE.md에 넣으면 파일이 길어져 뒤쪽 규칙이 무시됩니다.</li>
+<li>연구실로 치면 CLAUDE.md는 운영 규정, 스킬은 실험 프로토콜입니다.</li>
+<li>다음은 에이전트가 외부 도구를 직접 부르는 MCP입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 늘 지킬 것은 CLAUDE.md, 시킬 때만 따를 절차는 스킬</li>
 <li>둘 다 Markdown, 둘 다 에이전트가 읽음. 차이는 읽히는 때와 범위</li>
@@ -1307,6 +1579,20 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>MCP는 에이전트가 외부 도구를 함수처럼 부르는 규격입니다.</li>
+<li>Anthropic이 공개한 규격이고, 다른 에이전트도 지원합니다.</li>
+<li>서버 하나가 도구 묶음 하나로, PubMed 하나, R 세션 하나인 식입니다.</li>
+<li>Positron MCP를 쓰면 에이전트가 돌린 코드가 제 콘솔에 그대로 찍힙니다.</li>
+<li>앞에서 같은 R 세션을 본다고 말씀드린 근거가 이것입니다.</li>
+<li>사례에서는 PubMed MCP로 문헌 24편의 서지를 조회했습니다.</li>
+<li>결과에 DOI와 출처가 붙어 와서 제가 검증할 수 있습니다.</li>
+<li>오른쪽 첫 요점처럼, 문헌 MCP로 밖에 나가는 것은 검색 질의입니다.</li>
+<li>다만 에이전트가 읽은 결과는 모델 서버로 간다는 점은 1막과 같습니다.</li>
+<li>연결 상태는 <code>claude mcp list</code>로 확인하고, 다음 장에서 사례의 구성을 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>메시지 한 줄: 에이전트의 손을 늘리는 규격. 데이터는 안 나가고 질의만 나감</li>
 <li>개념: Anthropic이 공개한 규격, 다른 에이전트도 지원. 서버는 로컬 프로세스 또는 원격</li>
@@ -1335,6 +1621,19 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>가운데 Claude Code가 MCP 클라이언트이고, 양쪽이 연결된 서버입니다.</li>
+<li>왼쪽 내 PC 상자의 Positron MCP는 제가 보는 R 세션에 붙습니다.</li>
+<li>에이전트는 거기서 객체, 그림, 콘솔 기록을 조회합니다.</li>
+<li>오른쪽 점선 상자는 외부 검색이고, 위에 적힌 대로 질의만 나갑니다.</li>
+<li>PubMed는 서지 정보나 인용 문구로 논문을 찾고, 사례 문헌 단계에서 썼습니다.</li>
+<li>bioRxiv는 프리프린트, Scholar Gateway는 학술 문헌 검색입니다.</li>
+<li>Clinical Trials는 등록 시험 검색으로, 표본크기 프로젝트에서 벤치마크를 찾을 때 썼습니다.</li>
+<li>다만 에이전트가 읽은 내용은 모델 API로 간다는 점을 기억해 두십시오.</li>
+<li>다음은 세션이 바뀌어도 지난 결정을 잇는 memory입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
 <li>MCP: 에이전트가 외부 도구를 함수처럼 부르는 연결 규격</li>
 <li>Positron MCP는 내 R 세션, 나머지 넷은 문헌과 시험 등록 검색</li>
@@ -1342,7 +1641,7 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <li>확인 필요: bioRxiv, Clinical Trials, Scholar Gateway를 사례 논문에서 쓴 기록. Clinical Trials는 표본크기 프로젝트 벤치마크 스킬에서 사용(setup-skills-ss-bundle)</li>
 <li>확인 필요: Scholar Gateway 기능 설명 문구</li>
 <li>연결 상태 확인: <code>claude mcp list</code></li>
-<li>데이터는 밖으로 나가지 않고 검색 질의만 나감(문헌 MCP 기준). 단, 에이전트가 읽은 내용은 모델 API로 전송됨(1막 S04 주의와 같은 말)</li>
+<li>데이터는 밖으로 나가지 않고 검색 질의만 나감(문헌 MCP 기준). 단, 에이전트가 읽은 내용은 모델 API로 전송됨(1막 “에이전트 방식” 장의 주의와 같은 말)</li>
 <li>도구 기능 설명은 발표 1주 전 재대조(행동 규칙 4)</li>
 </ul>
 <style type="text/css">
@@ -1390,6 +1689,17 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>CLAUDE.md가 헌법이라면 memory는 판례에 해당합니다.</li>
+<li>세션에서 생긴 결정, 교정, 상태를 파일 하나에 사실 하나씩 남깁니다.</li>
+<li>왼쪽 세 번째 줄처럼, CLAUDE.md에 “시작 때 읽어라”를 적어야 작동합니다.</li>
+<li>사례에서는 5월 6일 세션에서 에이전트가 memory 네 건을 직접 썼습니다.</li>
+<li>제가 진행 상태를 물은 것이 계기였습니다.</li>
+<li>5월 9일 세션은 “현재까지 작업 상태 확인”이라는 첫 요청에서 바로 이어 갔습니다.</li>
+<li>다음 장에서 그때 만든 색인을 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>메시지 한 줄: CLAUDE.md가 헌법이면 memory는 판례</li>
 <li>사례: 2026-05-06 세션에서 에이전트가 memory 4건 작성(사용자 프로필, 프로젝트 상태, 참조 문서, 출력 폴더 규칙). 계기는 사용자가 진행 상태를 물은 것</li>
@@ -1426,6 +1736,17 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>5월 6일 세션에서 에이전트가 만든 <code>MEMORY.md</code> 색인입니다.</li>
+<li>네 줄이 각각 파일 하나이고, 줄 끝 요약은 화면에서 줄였습니다.</li>
+<li>네 번째 줄 출력 폴더 규칙은 산출물을 작업일 날짜 폴더에 두라는 내용입니다.</li>
+<li>이유도 같이 적혀 있는데, 추적할 수 있고 사람 파일과 섞이지 않기 때문입니다.</li>
+<li>두 번째 줄 프로젝트 상태에는 분석 완료, 원고 작성 진행 중이 적혀 있습니다.</li>
+<li>다만 사례 CLAUDE.md에는 저장 규칙만 있고 시작 때 읽으라는 줄은 없었습니다.</li>
+<li>다음은 에이전트 여럿에게 일을 나누는 오케스트레이션입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>2026-05-06 세션(Claude Code)에서 에이전트가 만든 memory 4건과 색인</li>
 <li>계기: 사용자가 CLAUDE.md를 열고 진행 상태를 물은 세션(project_status 파일의 Why)</li>
@@ -1434,7 +1755,7 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <li>project_status_2026_05_06: 분석 완료, 원고 작성이 진행 중인 작업</li>
 <li>이어받은 정황: 2026-05-09 세션 첫 요청 “현재까지 작업 상태 확인”, 산출물은 quarto/agent_bot/2026-05-09/에 저장. 05-09 세션이 MEMORY.md를 읽었다는 직접 기록은 없음</li>
 <li>“세션 시작 시 먼저 읽음”은 CLAUDE.md에 적어야 작동: 이 발표 프로젝트 CLAUDE.md 행동 규칙 7. 사례 레포 CLAUDE.md에는 저장 규칙만(133행)</li>
-<li>스킬로 만들면: session-memory(“기억해” 트리거, S15)</li>
+<li>스킬로 만들면: session-memory(“기억해” 트리거)</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1481,6 +1802,17 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>오케스트레이션은 에이전트 여럿에게 작성, 검토, 검증을 나눠 맡기는 것입니다.</li>
+<li>연구에서 제가 이걸 쓰는 이유는 속도보다 독립 검토입니다.</li>
+<li>가운데 첫 줄처럼, 쓴 모델과 검토하는 모델을 다른 계열로 둡니다.</li>
+<li>공유 상태는 대화가 아니라 CLAUDE.md, memory, git 같은 파일입니다.</li>
+<li>오른쪽 요점대로, 검토 지적을 반영할지는 제가 하나씩 정합니다.</li>
+<li>사례 논문은 에이전트 하나로 충분했고, 이 구조는 이 발표자료를 만들 때 썼습니다.</li>
+<li>처음에는 하나로 시작하시면 되고, 다음 장에서 구성만 간단히 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>메시지 한 줄: 연구에서 쓰는 이유는 속도보다 독립 검토</li>
 <li>이 발표자료가 이 구조로 만들어짐: 초안 Opus 5.5 워커, 검토 Terra(Codex) 또는 Astra(Copilot), 지휘 Fable</li>
@@ -1528,12 +1860,60 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </ul>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>이 발표자료를 만든 실제 구성입니다.</li>
+<li>왼쪽 카드처럼 CLAUDE.md를 AGENTS.md로도 두어 모든 모델이 같은 지침을 읽습니다.</li>
+<li>가운데 오케스트레이터는 작성 쪽 Claude Fable 5.1, 검토 쪽 GPT-6.0 Astra입니다.</li>
+<li>오른쪽 워커 중 Opus 5.5가 슬라이드 초안을 쓰면 Terra나 Astra가 검토합니다.</li>
+<li>검토 쪽은 review 폴더에만 쓰고, 작성 쪽은 그 폴더를 읽기만 합니다.</li>
+<li>Terra가 한도로 멈추면 <code>run-worker.ps1</code>이 Opus로 다시 돌리고 실제 모델을 기록합니다.</li>
+<li>다음 장은 이 설정을 실제로 하는 과정을 녹화한 영상입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
 <li>이 발표자료 자체가 이 구조로 만들어짐: 이 장 초안 = Opus 5.5 워커(slide-writer), 검토 = Terra 또는 Astra</li>
 <li>공유 상태는 대화가 아니라 레포: CLAUDE.md = AGENTS.md, memory/, review/, git</li>
 <li>Astra, Terra는 review/에만 씀. 작성 쪽(Fable, Opus)은 review/를 읽기만</li>
 <li>한도 소진: Terra 실패 → Opus(<code>claude -p</code>) 재실행, 결과 파일 머리에 실제 수행 모델. Claude 쪽 한도는 대기</li>
 <li>깊이 들어가지 않음. 질문 나오면 이 프로젝트 <code>CLAUDE.md</code> 오케스트레이션 표로 구두 보충</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="시연-프로젝트-설정" class="slide level2 grey">
+<h2>시연: 프로젝트 설정</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="vidcenter">
+<iframe src="https://www.youtube.com/embed/HFQgLpBmv88" width="960" height="540" title="Project setup demo" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>이 발표 프로젝트의 설정 작업을 녹화한 영상이고, 2배속에서 몇 구간만 틀겠습니다.</li>
+<li>순서는 폴더를 만드는 목적, CLAUDE.md 작성, 스킬 설정, 오케스트레이션 설정입니다.</li>
+<li>앞 장들에서 본 파일이 어떤 순서로 채워지는지 봐 주십시오.</li>
+<li>(영상 뒤) 앞에서 설명한 CLAUDE.md, 스킬, 오케스트레이션을 설정 순서대로 보셨습니다.</li>
+<li>(영상 뒤) 2막을 이득과 조건 한 장으로 정리하겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2분(영상 전체 17분, 발표에서는 구간 선택 재생)</li>
+<li>영상: 사용자 제작, 이 발표 프로젝트의 실제 설정 작업 녹화(2026-11-01). 원본 35분 8.9GB → 2배속 17분, 업로드 파일 setting-01-2x.mp4(4K 2배속 CRF 26, 90MB), YouTube https://www.youtube.com/watch?v=HFQgLpBmv88</li>
+<li>내용 순서: 폴더 생성 목적 → CLAUDE.md 작성 → 스킬셋 설정 → 오케스트레이션 설정</li>
+<li>구간 시각: 리허설 때 영상을 보며 지정</li>
+<li>업로드 전 체크리스트(화면 노출 규칙 4, 5): 터미널 경로, 환경변수, 열린 탭, API 키, 다른 프로젝트 설정 파일의 서버명, DB명, 계정</li>
+<li>공개 범위: 일부 공개(unlisted) 권장</li>
+<li>네트워크 실패 시 앞 장(오케스트레이션 구성)으로 설명</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1568,30 +1948,57 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <p>정의와 규칙이 파일에 있어 세션이 바뀌어도 같은 기준</p>
 </div>
 </div>
+<p><span class="tag-human">위 이득이 나오려면 필요한 것</span></p>
 <div class="cards">
 <div class="human">
-<p><span class="h3">조건 1: 지침 파일</span></p>
-<p>CLAUDE.md, 스킬, memory가 없으면 매 세션이 첫 세션</p>
+<p><span class="h3">조건 1. 규칙은 파일에</span></p>
+<ul>
+<li>없으면: 세션마다 정의와 규칙을 다시 설명, 워커는 대화를 모름</li>
+<li>예: MetS 정의를 스킬에 둬서 두 자료에 같은 함수 / 참고 금지 규칙이 파일에 없어 워커가 출판본을 가져옴</li>
+</ul>
 </div>
 <div class="human">
-<p><span class="h3">조건 2: 경계</span></p>
-<p>읽기 전용 폴더, 집계만 출력, 매번 승인하는 명령</p>
+<p><span class="h3">조건 2. 권한에는 경계</span></p>
+<ul>
+<li>없으면: 에이전트가 원자료를 고치거나 개인 단위 자료를 화면에 띄울 수 있음</li>
+<li>예: 원자료 폴더 쓰기 금지 설정, 출력은 집계만, 허용 목록 밖 명령은 실행 전 승인</li>
+</ul>
 </div>
 <div class="human">
-<p><span class="h3">조건 3: 확인 지점</span></p>
-<p>수치 대조, 해석 의심, 채택 결정은 사람. 3막에서 하나씩</p>
+<p><span class="h3">조건 3. 검증은 사람</span></p>
+<ul>
+<li>없으면: 빠르게 나온 틀린 숫자, 과한 분석이 그대로 원고로</li>
+<li>예: 표 단순화 지시, 요산이 핵심이라는 판단, 참고 금지 논문 지적</li>
+</ul>
 </div>
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>2막 정리로, 위 줄은 이득이고 아래 주황 줄은 그 이득이 나오는 조건입니다.</li>
+<li>재현은 원고 수치를 스크립트로 다시 계산할 수 있다는 뜻입니다.</li>
+<li>추적은 날짜 폴더, 대화 로그, memory로 몇 달 뒤에도 이유를 확인하는 것입니다.</li>
+<li>속도는 사례에서 하루에 문헌 24편 요약과 PDF 20편을 받은 것이 예입니다.</li>
+<li>일관성은 정의가 파일에 있어 세션이 바뀌어도 같은 기준을 쓰는 것입니다.</li>
+<li>조건 1의 예로, 참고 금지 규칙이 대화에만 있어서 워커가 출판본을 가져왔습니다.</li>
+<li>조건 2는 권한의 경계로, 원자료 폴더는 쓰기 금지, 출력은 집계만입니다.</li>
+<li>조건 3은 사람의 검증으로, 에이전트의 재계산은 숫자가 맞는지까지만 봅니다.</li>
+<li>무엇을 보고할지, 무엇이 발견인지는 제가 정합니다.</li>
+<li>3막에서는 이 논문을 처음부터 여섯 단계로 따라가고, 먼저 출발 상태와 규칙입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
-<li>2막 정리. 위 줄은 이득, 아래 줄(주황)은 그 이득이 성립하는 조건</li>
-<li>재현 근거: verify-numbers.R(3막 ④ 수치 검증). 원고에 넣을 숫자를 같은 데이터에서 다시 계산</li>
+<li>2막 정리. 위 줄은 이득, 아래 줄(주황)은 그 이득이 성립하는 조건. 각 조건은 “없으면 생기는 일”과 3막의 실제 예로 설명</li>
+<li>조건 1 규칙을 파일에: 위 줄의 일관성, 추적을 받침. 예는 3막 ① 전처리(mets-definition 스킬, 같은 mets_components() 함수로 두 자료 재산출)와 ⑤ 규칙 위반 장(출판 논문 참고 금지가 대화에만 있었음)</li>
+<li>조건 2 권한에 경계를: 2막 “경계: 폴더와 권한” 장의 요약. research-example <code>.claude/settings.json</code>의 deny <code>Edit(./data/rawdata/**)</code>, CLAUDE.md “산출물에 개별 레코드 비노출”, 허용 목록(Rscript, python) 밖 명령은 승인 요청</li>
+<li>조건 3 검증은 사람이: 위 줄의 재현을 의미 있게 만듦. 오케스트레이터의 독립 재계산은 숫자가 맞는지까지. 무엇을 보고할지, 무엇이 발견인지, 어떤 규칙을 어겼는지는 사람. 예는 3막 ④ 분석, ④ 결과와 해석, ⑤ 규칙 위반</li>
+<li>재현 근거: verify-numbers.R(원 사례 레포). 원고에 넣을 숫자를 같은 데이터에서 다시 계산. research-example에서는 오케스트레이터가 워커 수치를 별도 코드로 재계산</li>
 <li>추적 근거: agent_bot/YYYY-MM-DD 폴더, agent-conversation/*.json 로그, memory/agent_bot/</li>
 <li>속도 근거: 2026-05-06 하루에 references-summary.md 24편, PDF 20편. Methods 초안 2026-03-21, 응답서 v1 2026-08-15</li>
 <li>일관성 근거: MetS 정의를 묻는 장면이 로그에 없음</li>
-<li>조건 3이 3막의 축: 단계마다 “내가 확인한 것” 칸</li>
-<li>다음: 3막, 이 논문으로 7단계를 따라감</li>
+<li>조건 3이 3막의 축: 단계마다 “내가 확인한 것” 칸, 3막 끝 “연구자 확인 지점”으로 다시 닫음</li>
+<li>다음: 3막, 이 논문을 처음부터 6단계로 따라감</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1605,37 +2012,59 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="단계별-슬라이드-구성" class="slide level2">
-<h2>단계별 슬라이드 구성</h2>
+<section id="출발-상태와-규칙" class="slide level2">
+<h2>출발 상태와 규칙</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="pipeline">
-<span>탐색</span><span>가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span>
+<span>전처리</span><span>탐색</span><span>가설</span><span>분석</span><span>문헌</span><span>초안</span>
 </div>
 <div class="stage3">
 <div class="box">
-<p><span class="label">프롬프트</span></p>
-<p>내가 에이전트에게 한 말</p>
+<p><span class="label">출발 상태</span></p>
+<ul>
+<li>원자료 2개: 공군 조종사 검진, KNHANES 2022</li>
+<li>CLAUDE.md, 스킬 6개, 워커 4개</li>
+<li>분석 코드, 결과, 원고 없음</li>
+</ul>
 </div>
 <div class="box">
-<p><span class="label">에이전트가 한 일</span></p>
-<p>읽고, 코드를 쓰고, 실행하고, 고친 것</p>
+<p><span class="label">규칙</span></p>
+<ul>
+<li>원자료 읽기 전용</li>
+<li>출판된 대사증후군 논문은 참고, 인용 금지</li>
+<li>수치는 실행 출력에서만</li>
+</ul>
 </div>
 <div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<p>고르고, 대조하고, 빼기로 한 것</p>
-</div>
-</div>
+<p><span class="label">단계마다 세 칸</span></p>
 <ul>
-<li>인용 블록은 대화 로그, 파일 원문 그대로. 일반 글자는 요약 또는 예시 프롬프트</li>
-<li>에이전트: 2026-03 장면은 Positron Assistant (Claude Sonnet 4.6), 2026-05 이후는 Claude Code</li>
+<li>프롬프트</li>
+<li>에이전트가 한 일</li>
+<li>내가 확인한 것</li>
 </ul>
+</div>
+</div>
 <aside class="notes">
 <ul>
-<li>시간: 0.5분</li>
-<li>말할 것: 1막 S05의 일곱 단계를 같은 순서로 한 바퀴. 이번 묶음은 ① 탐색부터 ④ 해석까지</li>
-<li>단계마다 같은 세 칸: 프롬프트 / 에이전트가 한 일(파랑) / 내가 확인한 것(주황)</li>
-<li>읽는 법: 인용 블록은 로그 원문, 다듬지 않음. 일반 글자는 요약 또는 예시 프롬프트</li>
-<li>에이전트 이름: 3월 대화 로그는 Positron Assistant (Claude Sonnet 4.6). 5월 이후 memory, qmd, 코드 장면은 Claude Code로 부름(레포 표기 DataBot, 모델 미기재)</li>
+<li>대본
+<ul>
+<li>이제 제 대사증후군 논문으로 사례를 보겠습니다.</li>
+<li>이미 출판한 논문을 2막 마지막 시연의 설정 그대로, 새 폴더에서 처음부터 다시 했습니다.</li>
+<li>왼쪽 칸, 원자료는 공군 조종사 검진과 KNHANES 2022 두 개입니다.</li>
+<li>여기에 CLAUDE.md, 스킬 6개, 워커 4개만 있고, 분석 코드, 결과, 원고는 없습니다.</li>
+<li>가운데 칸의 출판 논문 참고 금지는 정답지를 보고 푸는 시연을 막으려는 규칙입니다.</li>
+<li>이 규칙이 실제로 어떻게 됐는지는 다섯 번째 문헌 단계에서 보시겠습니다.</li>
+<li>단계마다 오른쪽 세 칸 순서로 짚겠고, 첫 단계는 전처리입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>말할 것: 이미 출판한 논문을 새 폴더에서 처음부터 다시 진행. 2막 마지막 영상의 설정 상태에서 시작</li>
+<li>소재: research-example 폴더 작업 녹화. 장마다 영상 1개(YouTube)</li>
+<li>출발 상태: <code>data/rawdata/</code>의 공군 xlsx, KNHANES sas7bdat. CLAUDE.md, <code>.claude/skills/</code> 6개, <code>.claude/agents/</code> 4개(literature-scout, stats-analyst, manuscript-writer, peer-reviewer)</li>
+<li>오케스트레이터 Claude Fable 5.1, 워커 Claude Opus 5.5</li>
+<li>출판 논문 배제 이유: 정답지를 보고 푸는 시연이 되지 않도록. 선행 지방간 논문(AMHP 2025)은 기준점으로 허용</li>
+<li>출판 논문 참고 금지 규칙: 녹화 시작 시점에는 research-example 파일에 없었음. ⑤ 문헌 단계에서 문헌 워커가 출판본을 가져온 뒤 CLAUDE.md에 추가됨(⑤ 규칙 위반 장)</li>
+<li>리뷰어 대응은 다루지 않음. 내부 검토(peer-reviewer)까지만</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1649,111 +2078,276 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="데이터-탐색" class="slide level2 grey">
-<h2>① 데이터 탐색</h2>
+<section id="전처리" class="slide level2 grey">
+<h2>① 전처리</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="pipeline">
-<span class="active">탐색</span><span>가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span>
+<span class="active">전처리</span><span>탐색</span><span>가설</span><span>분석</span><span>문헌</span><span>초안</span>
 </div>
-<div class="stage3">
-<div class="box">
-<p><span class="label">프롬프트</span></p>
-<p>코드북과 분석 데이터셋 구조 요약</p>
-<ul>
-<li>CLAUDE.md에 이미 있는 것: 분석 데이터 파일명, 로드 코드 한 줄, MetS 정의</li>
-</ul>
-</div>
-<div class="box wide">
-<p><span class="label">에이전트가 한 일</span></p>
-<ul>
-<li>코드북 53행과 <code>names()</code>, <code>class()</code>, <code>levels()</code>만 읽음</li>
-<li>범주: 집단, 인구학, 신체계측, 약물, 질병, MetS 기준</li>
-<li>생활습관, 검사치, 설계변수(<code>wt_itvex</code>, <code>psu</code>, <code>kstrata</code>)</li>
-<li><code>mets_c1</code>–<code>mets_c5</code>: CLAUDE.md, 코드북, 코드에서 같은 이름</li>
-</ul>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<ul>
-<li>식별 열 1개는 목록에서 제외</li>
-<li><code>URATE</code> mg/dL, 원고 표는 μmol/L (×59.48)</li>
-<li><code>GLUC</code> mg/dL, 원고 표는 mmol/L (÷18.02)</li>
-<li>약물 3개와 질병(<code>C_</code>) 7개는 다른 범주</li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<div class="vidcenter">
-<video id="video_shortcode_videojs_video1" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D3-session-open.mp4"></video>
-</div>
-<aside class="notes">
-<ul>
-<li>시간: 3분(설명 1.5 + 라이브 D3 1.5)</li>
-<li>라이브 D3를 이 장에 합침(2026-10-23, 2막에서 이동). 순서: Positron 터미널에서 <code>claude</code> 실행 → “분석 데이터셋의 변수 구조와 결측을 집계로만 요약” 입력 → 출력이 집계뿐인지 확인. 실패나 시간 초과 시 클릭으로 백업 영상</li>
-<li>결측 수 5 미만 셀은 “5 미만”으로 말함(화면 노출 규칙 2). 시작 전 체크리스트(규칙 5): 터미널 경로, 환경변수, 열린 탭, API 키</li>
-<li>확인 필요: 라이브는 합성 데이터 또는 공개 데이터로(공군 데이터는 발표 PC에서 열지 않기로). 백업 영상 demo/clips/D3-session-open.mp4는 2026-10-23 기준 없음, VM에서 녹화</li>
-<li>확인 필요: “집계만 출력” 규칙은 사례 레포 CLAUDE.md에 없음. 시연용 프로젝트 CLAUDE.md에 추가</li>
-<li>말할 것: 에이전트에게 데이터 행은 주지 않음. 주는 것은 구조(변수명, 자료형, 단위)와 정의(CLAUDE.md의 파일 목록, MetS 정의)</li>
-<li>프롬프트는 예시, 로그 인용 아님. 분류표는 발표 준비 중 조사 결과(2026-10-19, 코드북과 메타데이터만 읽음)</li>
-<li>3월 로그의 같은 단계: 에이전트가 <code>nrow</code>, <code>ncol</code>, <code>table(GROUP)</code>, 결과 표 열 이름만 출력(add-analysis msg[3]), <code>names()</code>로 실제 변수명 확인(finalize msg[7])</li>
-<li>데이터셋 3,697행 × 58열: 코드북 53개 + 파생 5개(<code>GROUP2</code>, <code>C_OBESEB</code>, <code>medication</code>, <code>medication_n</code>, <code>WC_GROUP</code>)</li>
-<li>단위 변환 계수 59.48, 1/18.02는 S30 SI 변환 검증으로 이어짐</li>
-<li>설계변수 3개는 있으나 비가중 분석(비교 목적, 한쪽만 가중하면 목표 모집단 불일치). 질문 나오면만: 08-unweighted-decision, r2 Limitations</li>
-<li>화면 노출 규칙 1, 3: 행 출력 없음, 식별 열 이름 없음</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</div>
-</section>
-<section id="기존-분석-스크립트-점검" class="slide level2">
-<h2>① 기존 분석 스크립트 점검</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="stage3">
 <div class="box">
 <p><span class="label">프롬프트</span></p>
 <blockquote>
-<p>현재 02-afhe-khanes-analysis-script.R 수행 내요 검증 및 결과 요약. output 파일 생성하지 않음.</p>
+<p>작업이 완료되면 공군 데이터 리코딩을 먼저 진행해줘. 공군 원본 코드값을 코드북 라벨로 치환 직업을 완료 후 바로 진행.</p>
+</blockquote>
+<blockquote>
+<p>KNHANES 코드북이 필요할 것 같아. 기존에 작업했던 엑셀 파일을 derived-data에 업로드 했어. 참고해</p>
 </blockquote>
 </div>
 <div class="box wide">
 <p><span class="label">에이전트가 한 일</span></p>
 <ul>
-<li>스크립트 721줄 읽기, 세션 객체는 구조만 확인</li>
+<li>워커 2개 병렬: 공군 정제, KNHANES 정제 → 병합 워커</li>
+<li>공군: 2,827 → 여성 88 제외 → 2,739. 코드→라벨 치환 검증 14/14</li>
+<li>KNHANES: 6,265 → 남성 2,797 → 24–61세 1,299 → 검진 1,240 → 공복 8시간 1,192 → 완전사례 1,174</li>
+<li>MetS 5요소를 두 자료에 같은 함수로 재산출, 병합 3,913 × 55</li>
+<li>공통 함수의 스코프 버그 발견 후 수정(<code>.env$</code> 참조)</li>
 </ul>
-<blockquote>
-<p>포화 모델이 작성되어 있으나, 다중공선성 위험이 있어 결과 해석 시 주의 필요</p>
-</blockquote>
-<blockquote>
-<p><code>demo_tbl</code>에 MeTS 기준 항목이 포함되지 않음 → 의도적인지 확인 필요</p>
-</blockquote>
 </div>
 <div class="human">
 <p><span class="label">내가 확인한 것</span></p>
-<ul>
-<li>MetS 기준 행 주석 처리는 의도. 구성요소는 Table 2에서 따로 보고</li>
-<li>다중공선성: 포화모형은 빼고 검사항목별 모형만 유지(모형 축소)</li>
-</ul>
+<ol type="1">
+<li class="fragment">METS는 재산출함. 2. 약물복용 여부 3. GLIDISEASE는 무시해도 상관 없음. 3. BMI는 현재 키, 체중으로 재계산</li>
+</ol>
+<blockquote>
+<p>KHNANES 데이터를 단순 표본 데이터로 간주해서 분석을 진행할 예정이야. 그 이유는 공군 건강검진 데이터에 가중치 적용이 불가하거든.</p>
+</blockquote>
+<blockquote>
+<p>complete case로 결정</p>
+</blockquote>
 </div>
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>첫 단계는 분석이 아니라 두 자료를 같은 정의로 맞추는 일입니다.</li>
+<li>왼쪽 칸은 1차 결과를 보고 추가한 지시로, 공군 원본 코드값을 코드북 라벨로 바꾸라는 겁니다.</li>
+<li>KNHANES는 예전에 만든 코드북 엑셀을 derived-data에 올려 두고 참고하라고 했습니다.</li>
+<li>가운데 칸, 에이전트는 공군과 KNHANES 정제 워커 두 개를 병렬로 돌렸습니다.</li>
+<li>공군은 2,827명에서 여성 88명을 빼 2,739명이고, 치환 검증은 14개 중 14개 통과입니다.</li>
+<li>KNHANES는 6,265명에서 남성, 24세에서 61세, 검진, 공복 8시간 순으로 걸렀습니다.</li>
+<li>완전사례까지 거쳐 1,174명이 남았습니다.</li>
+<li>MetS 다섯 요소는 mets-definition 스킬의 정의로, 두 자료에 같은 함수를 써서 다시 계산했습니다.</li>
+<li>이 공통 함수 <code>mets_components()</code>에서 인자와 이름이 같은 열이 인자를 가리는 버그가 나왔습니다.</li>
+<li>워커가 지적했고, 오케스트레이터가 <code>.env$</code> 참조로 고친 뒤 결과가 같은지 확인했습니다.</li>
+<li>오른쪽 칸, 제가 “KHNANES 데이터를 단순 표본 데이터로 간주해서 분석을 진행할 예정이야.”라고 썼습니다.</li>
+<li>공군 건강검진 데이터에는 가중치를 적용할 수 없어서입니다.</li>
+<li>그래서 KNHANES 비가중 추정치는 이 표본의 기술값이지 한국 남성 모집단 추정치가 아닙니다.</li>
+<li>원고 Limitations에 적을 부분입니다.</li>
+<li>결측은 “complete case로 결정”이라고 썼습니다.</li>
+<li>PA_MOD를 공변량으로 넣으면 KNHANES 분석군이 1,174명에서 1,096명이 되는 결정입니다.</li>
+<li>오른쪽 첫 인용의 “METS는 재산출함”은 다음 장, 원 변수와 어긋난 52명에서 나왔습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2.5분</li>
+<li>2026-11-02 새벽 세션, Claude Code. 오케스트레이터 Claude Fable 5.1, 워커 stats-analyst(Claude Opus 5.5)</li>
+<li>말할 것: 분석보다 먼저 두 자료를 같은 정의로 맞추는 일. 정의는 스킬(mets-definition, airforce-dataset, knhanes-survey)에 있고, 결정은 내가 함</li>
+<li>흐름: 워커 브리핑 → 공군, KNHANES 병렬 → 1차 결과 확인 → 리코딩 추가 지시 → 결정 4건 → 병합 워커 → 결측 표 → 완전사례 결정 → Figure 1 흐름도(svg)</li>
+<li>숫자 출처: 각 run 폴더 <code>output/*_flow.csv</code>, <code>03_merge_datasets_summary.md</code>. 모두 집계값, 비가중</li>
+<li>스코프 버그: 공통 함수 <code>mets_components()</code>에서 인자와 같은 이름의 열이 있으면 열이 인자를 가림. 워커가 지적, 오케스트레이터가 <code>.env$</code> 참조로 수정 후 결과 동일 확인</li>
+<li>가중치 미적용 결정의 뜻: KNHANES 비가중 추정치는 이 표본의 기술값이지 한국 남성 모집단 추정치가 아님. 원고 Limitations에 적을 것</li>
+<li>완전사례 결정의 효과: PA_MOD를 공변량으로 넣으면 KNHANES 분석군 1,174 → 1,096</li>
+<li>다음 장: 재산출 MetS가 원 변수와 어긋난 52명을 에이전트가 어떻게 다뤘는가</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="확인-요청-재산출-mets와-원-변수의-불일치" class="slide level2">
+<h2>① 확인 요청: 재산출 MetS와 원 변수의 불일치</h2>
+<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="stage3">
+<div class="box">
+<p><span class="label">에이전트가 한 일</span></p>
+<ul>
+<li>재산출 <code>METS_new</code> 308명(11.2%) vs 원 <code>METS</code> 290명(10.6%). 불일치 52명(1.9%)</li>
+<li>원인 분해
+<ul>
+<li>HDL 정확히 40 mg/dL 17명: 원 변수는 ≤ 40, JIS 기준은 &lt; 40</li>
+<li>수축기 130–134 mmHg만으로 충족 30명: 원 변수는 같은 구간에서 양성, 음성 혼재</li>
+<li>약물 변수로만 충족 5명</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>어떤 단일 절단값으로도 재현되지 않습니다.</p>
+</blockquote>
+</div>
+<div class="box">
+<p><span class="label">되물은 것</span></p>
+<blockquote>
+<p>사용자 확인이 필요한 사항 (모아서 한 번에 답해 주시면 됩니다)</p>
+</blockquote>
+<ol type="1">
+<li>원 METS 산출 방식 확인 가능한지. 불가능하면 재산출을 주 변수로</li>
+<li>병력 변수가 “진단”인지 “약물 복용”인지</li>
+<li>데이터에서 드러난 추가 사항: 코드북에 없는 값, 전제와 다른 측정 범위, BMI 차이</li>
+</ol>
+</div>
+<div class="human">
+<p><span class="label">내가 확인한 것</span></p>
+<ol type="1">
+<li class="fragment">METS는 재산출함. 2. 약물복용 여부 3. GLIDISEASE는 무시해도 상관 없음. 3. BMI는 현재 키, 체중으로 재계산</li>
+</ol>
+<ul>
+<li>원 변수는 검증용 <code>METS_orig</code>로만 보존</li>
+<li>시간이 오래 걸린 이유를 물었더니: 브리핑 뒤 변경 3차례마다 재실행</li>
+</ul>
+<blockquote>
+<p>결정이 필요한 사항은 워커 투입 전에 한 번에 모아서 여쭙고</p>
+</blockquote>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>왼쪽 칸, 재산출 <code>METS_new</code> 308명과 원 변수 <code>METS</code> 290명이 52명에서 어긋났습니다.</li>
+<li>에이전트는 다르다는 말에서 멈추지 않고 원인을 셋으로 나눴습니다.</li>
+<li>HDL이 정확히 40인 17명은 원 변수가 40 이하, JIS 기준이 40 미만을 쓴 차이입니다.</li>
+<li>수축기 130에서 134만으로 충족한 30명은 원 변수에서 양성, 음성이 섞여 있었습니다.</li>
+<li>에이전트가 “어떤 단일 절단값으로도 재현되지 않습니다.”라고 답했습니다.</li>
+<li>가운데 칸, 결정은 “모아서 한 번에 답해 주시면 됩니다”라며 제게 넘겼습니다.</li>
+<li>원 산출 코드가 없으니, 오른쪽 칸처럼 “METS는 재산출함”으로 답했습니다.</li>
+<li>오래 걸린 이유를 물었더니, 브리핑 뒤 변경 세 번마다 재실행했다고 답했습니다.</li>
+<li>에이전트가 “결정이 필요한 사항은 워커 투입 전에 한 번에 모아서 여쭙고”라고 스스로 정리했습니다.</li>
+<li>이 정제 과정을 영상으로 보시겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
-<li>2026-03-10, Positron Assistant (Claude Sonnet 4.6)</li>
-<li>말할 것: 에이전트의 첫 일은 코드 작성이 아니라 내 스크립트 읽기. 끝에 “이게 의도인가”를 되물음</li>
-<li>도구 호출: read 1회(721줄), executeCode 2회(<code>nrow</code>, <code>ncol</code>, <code>table(GROUP)</code>, 결과 표 열 이름). 행 출력 없음</li>
-<li>요약 끝 “검토 사항” 2건: 포화모형 다중공선성, MeTS 기준 행 주석 처리. 둘 다 결정을 연구자에게 넘김</li>
-<li>같은 메시지의 조정 OR 0.37(MetS), 2.16(혈압): 중간값, 원고 최종값 aOR 0.30, 2.12. 보정 변수 세트가 바뀌기 전 값. 화면에 띄우지 않음</li>
-<li>확인 필요: 연구자의 답은 로그에 없음(다음 요청 msg[4]는 조정 모델 2, 3 비교 요약). 오른쪽 칸은 아웃라인 기술, 발표자 확인 후 확정</li>
-<li>오른쪽 칸 근거: 출판본 구성요소 aOR은 Table 2에서 인용(11-methods-draft-and-number-sourcing), 출판본 Statistical analysis “For 15 z-scored biomarkers, nested logistic regression estimated group-specific ORs for MetS per 1-SD increase”(08-probit-choice-reason)</li>
+<li>2026-11-02, Claude Code 오케스트레이터(Claude Fable 5.1)의 보고 메시지. 인용은 원문 그대로</li>
+<li>말할 것: 에이전트는 “다르다”에서 멈추지 않고 왜 다른지 셋으로 나눠 보여줌. 그래도 결정은 내게 넘김. 원 변수의 산출 코드가 없으니 재산출을 주 변수로</li>
+<li>HDL 경계: JIS 2009는 남성 &lt; 40 mg/dL. 원 변수는 ≤ 40으로 센 것으로 추정</li>
+<li>혈압 30명: SBP 128–140 임계값을 전부 탐색해도 최소 불일치 21건. 기록된 수축기 단일 임계값으로 재현 불가 → 원 변수의 혈압 판정 근거 불명</li>
+<li>추가 사항 원문: GLIDISEASE에 코드북 정의가 없는 값 “2”가 12명 / 지방간 초음파가 40세 미만 351명에도 있음 / 기록된 BMI가 체중/신장²보다 최대 0.13 낮음</li>
+<li>시간 질문 장면: 사용자 “생각보다 시간이 너무 오래 걸리는데?” → 에이전트가 원인을 작업량이 아니라 재실행 횟수로 설명(스타일, 스키마 변경 / 결정 4건 + 리코딩 / EXERCISE 추가와 가중치 전환). 교훈을 스스로 정리: 결정은 워커 투입 전에 모아서, 워커 실행 중 변경은 큐에</li>
+<li>이 교훈은 2막 오케스트레이션 원칙 “사용자 결정은 모아서 한 번에”와 같은 말. 원칙이 있어도 실제로는 중간 변경이 생김</li>
+<li>5명 셀은 5 이상이라 그대로 표기(화면 노출 규칙 2)</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="영상-자료-정제" class="slide level2">
+<h2>① 영상: 자료 정제</h2>
+<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="vidcenter">
+<iframe src="https://www.youtube.com/embed/SxZpKwva5qo" width="960" height="540" title="Data preprocessing" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>원본 63분 녹화를 2배속으로 줄인 32분짜리 영상의 일부입니다.</li>
+<li>공군과 KNHANES 정제 워커 두 개가 병렬로 도는 흐름을 보시면 됩니다.</li>
+<li>에이전트가 결정 사항을 모아서 묻고 제가 답하는 순서도 함께 보시면 됩니다.</li>
+<li>중간에 원 변수와 재산출 MetS가 52명 어긋났다는 보고가 나오고, 제가 “METS는 재산출함”으로 답합니다.</li>
+<li>가중치를 두고 에이전트가 고민하자, 비가중으로 간다고 제가 이유와 함께 정해 주는 장면도 있습니다.</li>
+<li>정제는 워커가 했고, 정의와 결정은 제가 했습니다.</li>
+<li>다음은 이렇게 만든 데이터를 탐색하는 단계입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>영상: research-example 녹화 data-preprocessing.mp4(원본 63분 15.9GB → 2배속 32분). YouTube https://youtu.be/SxZpKwva5qo</li>
+<li>짚을 장면: 워커 2개 병렬 투입 / 불일치 52명 분해 보고와 결정 4건 답변 / 가중치 미적용 지시 / “생각보다 시간이 너무 오래 걸리는데?”와 에이전트의 재실행 횟수 설명</li>
+<li>재생 구간: 시작 시각은 리허설 때 영상을 보며 지정. 1분 안에 위 장면 중 1–2개만</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="탐색" class="slide level2 grey">
+<h2>② 탐색</h2>
+<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="pipeline">
+<span>전처리</span><span class="active">탐색</span><span>가설</span><span>분석</span><span>문헌</span><span>초안</span>
+</div>
+<div class="stage3">
+<div class="box">
+<p><span class="label">프롬프트</span></p>
+<blockquote>
+<p>최종적으로 도출한 분석 데이터셋의 변수 구조와 결측을 요약해줘.</p>
+</blockquote>
+<blockquote>
+<p>DX 관련 변수, GGT와 HBA1C, URBLD, URPROT 는 분석변수에 포함하지 않을꺼야. 나머지 변수에 대해 결측을 제외한 completed case로 구성된 데이터셋을 최종 분석 데이터셋으로 생성해줘.</p>
+</blockquote>
+</div>
+<div class="box wide">
+<p><span class="label">에이전트가 한 일</span></p>
+<ul>
+<li>병합본 3,913 × 55를 R로 읽어 변수 6묶음, 결측 표로 요약(집계만)</li>
+<li>구조적 결측 구분: 진단 변수는 KNHANES 전용, GGT는 공군 전용, HbA1c는 공군 74% 결측</li>
+<li>완전사례 48열, 3,823명(공군 2,738, KNHANES 1,085). 제외 89명 중 71명은 신체활동 무응답만</li>
+<li>Figure 1 흐름도에 “Excluded: missing covariates” 노드 추가, 렌더 확인</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="label">내가 확인한 것</span></p>
+<blockquote>
+<p>연령표준화는 따로 하지 않을꺼야.</p>
+</blockquote>
+<ul>
+<li>에이전트의 주의: 평균 연령 36세 vs 44세, 조유병률 직접 비교 문장은 심사 지적 가능 → 층화와 연령 보정 OR로</li>
+<li>공군 혈액검사 전원 공복 확인 → 흐름도 문구 수정</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>두 번째 단계, 탐색입니다.</li>
+<li>왼쪽 첫 프롬프트로 최종 분석 데이터셋의 변수 구조와 결측을 요약하라고 했습니다.</li>
+<li>이 단계는 워커 없이 오케스트레이터가 직접 R로 집계했습니다.</li>
+<li>가운데 칸 첫 줄, 병합본 3,913명, 변수 55개를 여섯 묶음과 결측 표로 정리했습니다.</li>
+<li>에이전트가 본 것은 구조와 집계뿐이고, 행 단위 출력은 없었습니다.</li>
+<li>둘째 줄, 진단 변수는 KNHANES에만, GGT는 공군에만 있는 구조적 결측입니다.</li>
+<li>HBA1C는 공군 2,025명, 73.9%가 비어 있었습니다.</li>
+<li>두 번째 프롬프트로 DX 관련 변수, GGT, HBA1C, URBLD, URPROT를 빼고 완전사례로 만들라고 했습니다.</li>
+<li>셋째 줄, 결과는 변수 48개에 3,823명, 공군 2,738명과 KNHANES 1,085명입니다.</li>
+<li>KNHANES 제외 89명 중 71명은 신체활동 무응답 하나 때문이었습니다.</li>
+<li>완전사례 뒤 MetS는 11.2% 대 39.6%로 제외 전과 거의 같았습니다.</li>
+<li>에이전트는 MCAR 가정과 PA_MOD를 뺀 민감도 모형을 스스로 적어 두었습니다.</li>
+<li>오른쪽 칸, 제가 “연령표준화는 따로 하지 않을꺼야.”라고 썼습니다.</li>
+<li>에이전트는 평균 연령이 36세 대 44세라서, 조유병률 직접 비교 문장은 심사에서 지적받기 쉽다고 짚었습니다.</li>
+<li>그래서 조유병률은 Table 1에만 두고, 본문 비교는 층화와 연령 보정 OR로 하기로 했습니다.</li>
+<li>공군 혈액검사가 전원 공복인 것을 확인해 Figure 1 흐름도 문구도 고쳤습니다.</li>
+<li>이제 이 데이터로 무엇을 물을지 정하는 가설 단계입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2.5분</li>
+<li>2026-11-02 세션(KST 05:01–05:15), Claude Code 오케스트레이터(Claude Fable 5.1)가 직접 수행. 워커 없이 R로 집계</li>
+<li>말할 것: 탐색 단계에서 에이전트가 본 것은 구조와 집계뿐. 행 단위 출력 없음(화면 노출 규칙 1)</li>
+<li>변수 6묶음: 식별과 설계 / 신체, 혈압, 생화학 / 혈액, 소변, 간염 / 약물과 진단 / 생활습관 / MetS</li>
+<li>결측 표 요지: HTN_DX 등 3개는 공군 전체 결측(구조적), GGT는 KNHANES 전체 결측(2022 미측정), HBA1C 공군 2,025명(73.9%), PA_MOD 78명(6.6%, KNHANES GPAQ 무응답), 나머지는 각 5 미만</li>
+<li>완전사례 결과: 공군 5 미만(URATE 결측), KNHANES 89명 제외. 완전사례 후 MetS 11.2% vs 39.6%, 제외 전과 거의 같음. 에이전트가 MCAR 가정과 민감도(PA_MOD 제외 모형)를 스스로 적음</li>
+<li>연령표준화 결정 뒤 에이전트 원문 요지: “조유병률(11.2% vs 39.6%)을 원고에서 직접 비교 문장으로 쓰면 심사에서 지적받을 가능성이 높습니다” → 조유병률은 Table 1에만, 본문 비교는 층화와 보정 OR</li>
+<li>숫자 출처: 세션 보고 메시지와 <code>code/agent/2026-11-02_완전사례/README.md</code></li>
+<li>다음 장: 이 데이터로 무엇을 물을 것인가</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1768,354 +2362,157 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
       }</style></aside>
 </section>
 <section id="가설-설정" class="slide level2 grey">
-<h2>② 가설 설정</h2>
+<h2>③ 가설 설정</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="pipeline">
-<span>탐색</span><span class="active">가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span>
-</div>
-<div class="stage3">
-<div class="box">
-<p><span class="label">맥락</span></p>
-<ul>
-<li>AI 없이 쓴 선행 지방간 논문(AMHP 2025)</li>
-<li>요산 OR 1.83, 조종사에서만 유의</li>
-<li>대사증후군에서도 같은 패턴인가</li>
-</ul>
-</div>
-<div class="box wide">
-<p><span class="label">에이전트가 한 일</span></p>
-<ul>
-<li>CLAUDE.md의 연구 목적 5가지를 읽고 요약</li>
-<li>RQ1 유병률, 구성요소 OR / RQ2 층화 수준별 차이</li>
-<li>RQ3 혈액 지표의 집단 간 차이 / RQ4 보정 후 남은 지표의 영향 요인</li>
-<li>RQ5 healthy-worker effect</li>
-</ul>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<ul>
-<li>RQ 1–5 확정, CLAUDE.md “연구 목적” 절에 기록</li>
-<li>에이전트는 분석 전에 이 절을 다시 읽음(다음 장)</li>
-</ul>
-</div>
-</div>
-<aside class="notes">
-<ul>
-<li>시간: 1.5분</li>
-<li>말할 것: 질문은 에이전트가 아니라 앞 논문의 남은 의문에서 나옴. 에이전트는 그 질문을 CLAUDE.md에서 읽고 정리</li>
-<li>맥락: Song DH, Ku B. Aerosp Med Hum Perform 2025;96(9). doi:10.3357/AMHP.6646.2025. AI 미사용 논문. 지방간 논문 언급은 여기까지</li>
-<li>요산 OR 1.83: 조종사 하위군 다변량 로지스틱 회귀 추정치, 비조종사에서는 유의하지 않음(memory/outline-decisions-2026-10-20.md 결정 4, CLAUDE.md 사례 논문)</li>
-<li>에이전트 장면: finalize msg<a href="2026-03-18,%20Positron%20Assistant%20(Claude%20Sonnet%204.6)">0–1</a>. 기억 상태 확인 요청에 AGENTS.md를 읽고 연구 목적 5가지를 요약. 발췌본 없음, 문장을 인용하려면 발췌 필요</li>
-<li>RQ 절은 이 세션 전부터 CLAUDE.md에 있었음(msg[1]의 읽기 결과에 포함)</li>
-<li>RQ 원문 요약(레포 CLAUDE.md 265–282행): RQ1 구성요소 유병률과 OR(로지스틱) / RQ2 연령, 허리둘레, 혈압, TG, HDL, 공복혈당 층화 수준별 유병률, OR / RQ3 혈액 지표의 단계별 보정 모형 / RQ4 보정 후 남은 지표의 영향 요인 / RQ5 healthy-worker effect</li>
-<li>CLAUDE.md RQ3은 Model 0–3의 4단계, 출판본은 Model 0–2(BMI와 약물을 Model 2에 함께)</li>
-<li>요산을 넣은 근거는 리뷰어 R2-3 대응으로 출판본 Introduction에 추가: “Serum urate is not a conventional MetS screening test, so its inclusion warrants explanation.”(05-urate-origin)</li>
-<li>RQ4의 “남은 지표” = <code>URATE</code>, <code>GLUC</code> → 다음 장</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="분석-설계안-선택" class="slide level2">
-<h2>② 분석 설계안 선택</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="stage3">
-<div class="box">
-<p><span class="label">프롬프트</span></p>
-<blockquote>
-<p>URATE와 GLUC에 대해 연구목적 4번에 대한 분석 실시</p>
-</blockquote>
-</div>
-<div class="box wide">
-<p><span class="label">에이전트가 한 일</span></p>
-<ul>
-<li>CLAUDE.md의 연구목적 4번과 변수 구조 확인</li>
-<li>설계안: 종속 <code>URATE</code>, <code>GLUC</code> / 집단별 다중선형회귀 + 상호작용</li>
-</ul>
-<blockquote>
-<p>이 방향으로 진행할까요? 아니면 다른 접근(예: 매개분석, 경로분석 등)을 원하시는지 알려 주세요.</p>
-</blockquote>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<blockquote>
-<p>현재 방향으로 진행한 다음 매개분석(BMI → URATE/GLUC → MeTS) 방향 분석 실시</p>
-</blockquote>
-<ul>
-<li>매개분석은 뒤에 원고에서 제외</li>
-</ul>
-<blockquote>
-<p>RQ4에서 mediation analysis 결과는 추가하지 않을 예정</p>
-</blockquote>
-</div>
-</div>
-<aside class="notes">
-<ul>
-<li>시간: 1.5분</li>
-<li>2026-03-19, Positron Assistant (Claude Sonnet 4.6)</li>
-<li>말할 것: 에이전트는 CLAUDE.md의 연구목적을 다시 읽고, 설계안을 내고, 멈춤. 방향은 내가 고름</li>
-<li>과정: 할 일 4항목 작성 → 공변량 선택에서 <code>DYSLIPIDEMIA</code> 없음 에러 → <code>names()</code>로 실제 이름 <code>DYSLIP</code> 확인(작은 자기수정, 화면에는 안 띄움) → <code>summary()</code>로 분포 확인(집계만)</li>
-<li>설계안 원문: 종속 URATE, GLUC(각각) / 독립 AGE, BMI, SMOKING, ALCOHOL, EXERCISE, medication + GROUP2 / 집단별 다중선형회귀 + 집단 간 회귀계수 비교(상호작용) / 표준화 β 비교</li>
-<li>선택지 3개를 제안 버튼으로 제시: 그대로 진행 / 상관 추가 / 매개분석</li>
-<li>연구자 선택: 현재 방향 + 매개분석 둘 다</li>
-<li>매개분석은 돌렸고(다음 장 D1) 원고에서는 뺌(finalize msg[24]). 출판본에 남은 것: “Linear regression examined determinants of urate and fasting glucose, with pooled-model interaction tests”(08-probit-choice-reason, 출판본 Statistical analysis)</li>
-<li>“고쳤다”와 “쓴다”는 다른 결정: ⑦ 리뷰어 대응과 연결</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="분석-실행" class="slide level2 grey">
-<h2>③ 분석 실행</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="pipeline">
-<span>탐색</span><span>가설</span><span class="active">분석</span><span>해석</span><span>문헌</span><span>원고</span><span>리뷰어</span>
+<span>전처리</span><span>탐색</span><span class="active">가설</span><span>분석</span><span>문헌</span><span>초안</span>
 </div>
 <div class="stage3">
 <div class="box">
 <p><span class="label">프롬프트</span></p>
-<p>RQ1 로지스틱 회귀. MetS와 구성요소 5개, 보정 변수 연령, 흡연, 음주, 운동</p>
-</div>
-<div class="box">
-<p><span class="label">에이전트가 한 일</span></p>
-<ul>
-<li>코드 작성 → 내 R 세션에서 실행 → 출력 읽고 수정</li>
-<li>결과는 세션 객체로 남음. 다음 요청은 객체 이름으로</li>
-<li>스크립트는 <code>code/agent_bot/YYYY-MM-DD/</code>에 저장</li>
-</ul>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<ul>
-<li>모형: 로지스틱, 참조군 KNHANES(<code>GROUP2</code>)</li>
-<li>보정 변수: <code>AGE</code>, <code>SMOKING</code>, <code>ALCOHOL</code>, <code>EXERCISE</code></li>
-<li>n = 3,697 (조종사 2,604 / KNHANES 1,093)</li>
-</ul>
-</div>
-</div>
-<aside class="notes">
-<ul>
-<li>시간: 1분</li>
-<li>말할 것: 챗봇과 가장 다른 지점. 에이전트가 쓰는 R 세션 = 내가 보는 R 세션. 결과는 대화창이 아니라 세션 객체와 파일로 남음</li>
-<li>프롬프트는 예시: 출판본 Statistical analysis의 모형 사양을 프롬프트로 옮김. 원문 “MetS prevalence, components and adjusted associations were compared using logistic regression with adjustment for age, smoking, alcohol use and physical activity.”(08-probit-choice-reason에 수록된 출판본 4쪽 추출문)</li>
-<li>확인 필요: RQ1 모형 코드는 원래 연구자 스크립트(<code>code/02-afhe-khanes-analysis-script.R</code>, S21에서 감사)에 있었음. 에이전트가 쓰고, 돌리고, 저장한 로그 근거는 RQ4(finalize msg[8–9], <code>code/agent_bot/2026-03-19/01_rq4_regression_urate_gluc.R</code>, <code>02_rq4_mediation_urate_gluc.R</code>)</li>
-<li>객체 이름이 다음 요청의 주소: 사용자가 <code>tbl_result_mets_lbtest</code>를 이름으로 지목(add-analysis msg[4], msg[20])</li>
-<li>n: CLAUDE.md 사례 논문(조종사 2,604 vs KNHANES 1,093), 07-data-structure(3,697행), finalize msg[7] 집계(06-design-proposal-choice)</li>
-<li>다음 장: 이 루프에서 에러가 났을 때</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="시연-코드-오류-수정" class="slide level2">
-<h2>③ 시연: 코드 오류 수정</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="columns">
-<div class="column" style="width:62%;">
-<video id="video_shortcode_videojs_video2" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D1-error-fix.mp4"></video>
-</div><div class="column" style="width:38%;">
-<p><span class="h3">시도 1</span></p>
-<p><code>mediate()</code> 호출 → <code>object 'fm_med' not found</code></p>
-<p><span class="h3">틀린 진단</span></p>
-<p>“SAME data object” 가설로 수정 → <code>object 'fm_a' not found</code></p>
-<p><span class="h3">맞는 진단</span></p>
-<p>“captures the model call env” → <code>eval(bquote(...))</code>로 적합 → “Done.”</p>
-</div></div>
-<aside class="notes">
-<ul>
-<li>시간: 2분(녹화 90초 + 정리 30초)</li>
-<li>녹화 D1 미제작(<code>demo/clips/</code>에 파일 없음, 2026-10-20 기준). 클립 내용은 아래 로그 장면과 일치해야 함. 오른쪽 요약 3줄은 로그 기준</li>
-<li>장면: RQ4 매개분석의 <code>mediation::mediate()</code> 환경 오류. 2026-03-19, Positron Assistant (Claude Sonnet 4.6), finalize msg<a href="요청은%20msg%5B8%5D">9</a></li>
-<li>시도 1: 함수 안에서 <code>as.formula(sprintf(...))</code>로 모형 적합 후 <code>mediate()</code> → <code>object 'fm_med' not found</code></li>
-<li>시도 2: 주석 “# Fix: mediation models must be fit on the SAME data object passed to mediate()”, <code>as.data.frame()</code> 추가 → <code>object 'fm_a' not found</code>. 진단이 틀림</li>
-<li>시도 3: 주석 “# mediation::mediate() captures the model call env”, <code>eval(bquote(lm(.(as.formula(f_a_chr)), data = dat)))</code> → 4개 조합 모두 “Done.”</li>
-<li>말할 것: 에러 메시지를 읽고 가설을 바꿈. 같은 수정을 반복하지 않음</li>
-<li>에이전트가 자기 도구 호출 한도 초과를 스스로 기록: “I have made 9 tool calls this turn.”</li>
-<li>매개분석 수치는 출판 원고에 없음, 화면에 띄우지 않음. 원고에서 제외(msg[24])</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="보고서-렌더-오류-진단" class="slide level2 grey">
-<h2>③ 보고서 렌더 오류 진단</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="stage3">
-<div class="box">
-<p><span class="label">프롬프트</span></p>
 <blockquote>
-<p>knit 실행 시 오류. 분석 결과는 현재 작업공간에 저장된 결과를 기반으로 통계량 값들을 추출해서 테이블을 재생성하고, …</p>
+<p>그럼 지금부터 분석을 시작해줘. 분석의 초점은 다음과 같아. 1: 공군 파일럿과 일반인구 집단 간 대사증후군 유병률이 유의하게 다른가? 2. MeTS 구성 요소들 중 어떤 요소가 … 가장 큰 유병률 차이를 보이는가? 3: 혈액검사 바이오마커 중 … 유의한 차이를 보이는 지표는 무엇인가? 4: … 건강근로자효과(healthy worker effect)의 근거가 있는가?</p>
 </blockquote>
 </div>
 <div class="box wide">
 <p><span class="label">에이전트가 한 일</span></p>
 <blockquote>
-<p>문제를 파악했습니다. 세 가지 핵심 이슈입니다:</p>
+<p>지시대로 <strong>분석은 실행하지 않고</strong> 통계분석계획서(SAP) v2.0을 수립해 문서화했습니다.</p>
+</blockquote>
+<ul>
+<li>H1–H4마다 귀무가설, 추정량, 모형, 산출물(Table 1–4, Fig 2–4)</li>
+<li>H4는 단면 자료로 검정 불가 → 사전 지정 패턴 E1–E6 판정표로</li>
+<li>설계 참고 수치: 80% 검정력에서 검출 가능한 구성요소 차이 약 6 pp, 바이오마커 d ≈ 0.19</li>
+<li>미결 7개를 모아 한 번에 질문. qmd → html</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="label">내가 확인한 것</span></p>
+<blockquote>
+<p>탐색연구의 관례 상 다중검정에 대한 보정은 필요하지 않아.</p>
+</blockquote>
+<blockquote>
+<p>H2에서는 보정이 필요가 없어. 말 그대로 조유병률을 볼꺼고 집단 간 차이를 보는게 목적이야.</p>
+</blockquote>
+<blockquote>
+<p>아 다시 한 번 확인할께. H2에서 첫 번째는 … 유병률을 테이블로 보여주고 unadjusted OR과 adjusted OR(… 연령, 생활습관)이야. 두 번째는 … 하위집단(10세 단위 또는 분위수)에 따라 …</p>
+</blockquote>
+<ul>
+<li>SAP v2.0 → v2.2 → H2 재확정. 분석은 아직 0줄</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>세 번째 단계, 가설입니다.</li>
+<li>왼쪽 칸, 제가 “그럼 지금부터 분석을 시작해줘.”라고 쓰고 질문 네 개를 붙였습니다.</li>
+<li>출발점은 AI 없이 쓴 지방간 논문에서 요산이 조종사에서만 위험 요인이었다는 점입니다.</li>
+<li>가운데 칸, 에이전트는 “지시대로 분석은 실행하지 않고”라며 SAP v2.0부터 썼습니다.</li>
+<li>research-orchestration 스킬의 Phase 0과 CLAUDE.md의 분석 계획서 우선 원칙이 그렇게 시킨 겁니다.</li>
+<li>계획서에는 H1부터 H4까지 귀무가설, 추정량, 모형, 산출물이 들어갔습니다.</li>
+<li>H4는 단면 자료로 검정할 수 없어서, 미리 정한 패턴 E1에서 E6 판정표로 바꿨습니다.</li>
+<li>80% 검정력에서 검출 가능한 구성요소 차이는 약 6 pp, 바이오마커는 d 약 0.19였습니다.</li>
+<li>미결 7개는 “권고안대로 진행”이라고만 답해도 되게 묶어서 물었습니다.</li>
+<li>오른쪽 칸, 제가 “탐색연구의 관례 상 다중검정에 대한 보정은 필요하지 않아.”라고 썼습니다.</li>
+<li>v2.1은 보정 대신 검정 수를 밝히고, 15개 검정의 기대 위양성 0.75개를 부록에 넣었습니다.</li>
+<li>이어서 “H2에서는 보정이 필요가 없어”라고 쓰자, 에이전트는 H2a, H2b를 모두 비보정으로 바꿨습니다.</li>
+<li>에이전트가 “H2b를 비보정으로 바꾼 것은 "H2 전체"라는 말씀을 그대로 적용한 것입니다.”라고 답했습니다.</li>
+<li>짧은 지시가 글자 그대로 적용됐고, 해석을 밝혀 준 덕에 되돌리기는 쉬웠습니다.</li>
+<li>세 번째 인용으로 H2a를 조유병률 표, 비보정 OR, 연령과 생활습관 보정 OR로 재확정했습니다.</li>
+<li>여기까지 분석은 0줄이고, 가설 문장은 결국 제가 써야 했습니다.</li>
+<li>다음 장은 에이전트가 제 설계에서 먼저 짚은 약점입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2.5분</li>
+<li>2026-11-02 세션(KST 05:22–05:51), Claude Code 오케스트레이터(Claude Fable 5.1), 워커 없음</li>
+<li>말할 것: “분석을 시작해줘”라고 했는데 에이전트는 계획서부터 씀. 스킬(research-orchestration) Phase 0과 CLAUDE.md 분석 원칙 1 “분석 계획서 우선”이 그렇게 시킴</li>
+<li>질문의 출처: 선행 지방간 논문(AMHP 2025, AI 미사용)에서 요산이 조종사에서만 위험 요인이었다는 남은 의문. 지방간 논문 언급은 여기까지</li>
+<li>v2.0 미결 7개: 조종사 내 인자 모형 유지 / 50–61세 합침(60세 이상 조종사 25명) / H1 효과측도 PR vs OR / H2 순위 지표 / H3 다중비교 Holm vs FDR / H4 음성 대조 지표 / 중복 수검 가정. “권고안대로 진행”이라고만 답해도 되게 묶음</li>
+<li>v2.1: 다중검정 보정 제거, 대신 검정 수와 탐색적 성격을 Methods와 각주에 명시. 15개 검정에서 기대 위양성 0.75개를 부록에 표시</li>
+<li>v2.2: Model 0 비보정 / Model 1 연령 + 흡연, 음주, PA_MOD(주 모형) / Model 2 + BMI + 약물은 혈액지표에만. 효과측도 OR 통일. H2b 구성요소 4분위 × 집단, H3b 바이오마커 × 집단 신설</li>
+<li>v2.2 뒤 혼선(KST 06:12–06:29): “연령표준화는 어떤 의미로 제안이 된거지?” → 에이전트가 표준화와 보정 회귀의 차이를 표로 설명 → 연령군 × 집단 모형을 H1에 보강 → “H2에서는 보정이 필요가 없어” → 에이전트가 H2a, H2b 모두 비보정으로 바꾸고 원문 “H2b를 비보정으로 바꾼 것은 "H2 전체"라는 말씀을 그대로 적용한 것입니다. H2b만 Model 1을 유지하길 원하시면 알려 주세요.” → 재확인 메시지로 재정렬</li>
+<li>재확정 구조: H2a = MetS와 구성요소 5개의 집단별 조유병률 표 + 비보정 OR(Model 0) + 보정 OR(Model 1 연령, 생활습관) / H2b = 하위집단(연령군 4층 + 구성요소 측정값 6개 합동 4분위) × 집단 비보정 상호작용(하위집단별 OR, 3 df LR). H1의 연령군 모형은 H2b로 이동, H1은 전체 보정 OR만</li>
+<li>말할 것: 짧은 지시(“H2에서는 보정이 필요가 없어”)는 글자 그대로 적용됨. 에이전트가 자기 해석을 밝혀서 되돌리기 쉬웠음. 가설 문장은 결국 내가 써야 함</li>
+<li>가설 원문은 사용자 메시지 그대로(2026-11-02 05:22 KST). SAP 원본 <code>docs/analysis-plan.md</code>, 렌더 <code>quarto/04_sap.html</code></li>
+<li>다음 장: 에이전트가 내 설계에서 먼저 짚은 약점</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="설계-검토-순환성과-희소-셀" class="slide level2">
+<h2>③ 설계 검토: 순환성과 희소 셀</h2>
+<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="stage3">
+<div class="box wide">
+<p><span class="label">에이전트가 짚은 것</span></p>
+<blockquote>
+<p><strong>방법론적으로 짚어둘 점 두 가지</strong>(SAP에 민감도·주석으로 넣었고, 결정은 사용자 몫입니다)</p>
+</blockquote>
 <ol type="1">
-<li><strong>YAML 안 <code>#</code> 주석</strong> → 파싱 오류</li>
-<li><strong>knit 환경은 세션과 독립</strong> → <code>ft_urate</code>, <code>ft_gluc</code>, <code>ft_med</code> 객체가 없음. 청크 안에서 데이터로부터 직접 재생성 필요</li>
-<li><strong><code>fig_path</code></strong> → 저장된 PNG를 <code>knitr::include_graphics()</code>로 삽입</li>
+<li>순환성: MetS 정의에 그 지표의 역치가 들어 있음</li>
 </ol>
-</blockquote>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<ul>
-<li>표는 qmd 안에서 재생성하도록 지시</li>
-<li>그림은 저장된 PNG를 쓰도록 지정</li>
-<li>응답이 끊겨 한 줄 입력: “재실행”</li>
-<li>매개분석 수치 하드코딩(<code>med_summary</code>): 에이전트의 절충, 수용</li>
-</ul>
-</div>
-</div>
-<aside class="notes">
-<ul>
-<li>시간: 1분</li>
-<li>2026-03-19, Positron Assistant (Claude Sonnet 4.6)</li>
-<li>말할 것: R Markdown, Quarto 사용자라면 겪어 본 세 가지. YAML 안 주석 / knit 환경은 세션과 별개 / 그림을 객체로 호출</li>
-<li>과정: read 도구 실패(ENOPRO, Positron Assistant의 workspace 경계 문제) → bash <code>cat</code>으로 대체해 YAML 머리 확인 → 3원인 진단 → 세션 객체, PNG 존재 확인 → 응답 끊김 → 사용자 “재실행” → 자급자족 qmd로 재작성, 자체 검증 “Overall: PASS”</li>
-<li>수정 요약: YAML 주석 제거 / setup 청크에서 데이터 로드 → 회귀 모형 → 표 재생성 / 경로 다이어그램은 <code>knitr::include_graphics()</code> / <code>source()</code> 의존 제거</li>
-<li>3번 원인의 PNG 사용은 내 프롬프트의 지정이기도 함. 그래서 오른쪽 칸에 적음</li>
-<li>하드코딩 판단: 2,000회 bootstrap을 knit마다 돌리지 않으려는 절충. CLAUDE.md 행동 규칙 7(“직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김”, 3월 AGENTS.md에도 있음)과 긴장. 에이전트가 정했고 연구자가 받아들임. 매개분석은 결국 원고에서 제외</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="표와-그림-생성" class="slide level2">
-<h2>③ 표와 그림 생성</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="stage3">
-<div class="box">
-<p><span class="label">프롬프트</span></p>
-<p>Table 1을 Lancet 양식으로</p>
-<ul>
-<li>CLAUDE.md 행동 규칙: “테이블은 Lancet 논문 포맷 적용”</li>
-<li>양식 함수 <code>lancet_ft()</code>는 내가 먼저 작성(<code>code/funs/helpers.R</code>)</li>
-</ul>
-</div>
-<div class="box wide">
-<p><span class="label">에이전트가 한 일</span></p>
-<ul>
-<li>Table 1: <code>tbl_summary()</code> → <code>as_flex_table()</code> → <code>border_remove()</code>, <code>hline_top()</code></li>
-<li>Figure 2: <code>emmeans()</code> 추정 → <code>patchwork</code> 조립</li>
-<li>Figure 1 CONSORT: <code>DiagrammeR::grViz()</code></li>
-<li>제출용 내보내기: PNG 600 dpi, TIFF 300 dpi</li>
-</ul>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<ul>
-<li>표의 숫자가 코드 출력과 같은지</li>
-<li>소수점 규칙(|x| ≥ 10 → 1자리)이 표와 산문에서 같은지</li>
-<li>리뷰어 요청에는 표시만 바꿈</li>
-</ul>
 <blockquote>
-<p>The underlying models, estimates and contrasts are untouched; only the display changes.</p>
+<p>WC Q4(≥89 cm)에서는 거의 전원이 복부비만 기준을 충족해, 사실상 “나머지 구성요소의 군집”을 비교하게 됩니다.</p>
+</blockquote>
+<ol start="2" type="1">
+<li>희소 셀: 조종사가 합동 표본의 72%라 분위가 양극으로 갈림</li>
+</ol>
+<blockquote>
+<p>WC Q2에 KNHANES 139명, TG Q1에 117명뿐이고, 사건 수는 더 적을 수 있습니다.</p>
 </blockquote>
 </div>
-</div>
-<aside class="notes">
-<ul>
-<li>시간: 1분</li>
-<li>2026-08-15, 16. Claude Code(레포 표기 DataBot, 모델 미기재). <code>helpers.R</code>은 사용자 작성(<code>code/funs/</code>, agent_bot 폴더 아님)</li>
-<li>말할 것: 표와 그림은 데이터에서 문서까지 코드 한 줄기. 양식은 내가 먼저 정하고 에이전트는 따름</li>
-<li>프롬프트 첫 줄은 예시. 양식 근거는 CLAUDE.md 행동 규칙(현재 레포 CLAUDE.md 8번)과 사용자 헬퍼 <code>lancet_ft()</code></li>
-<li>Lancet 골격: 상단 2pt, 헤더 아래 1pt, 본문 하단 2pt, Arial, 본문 9pt(r2 qmd 579–599행)</li>
-<li>그림: <code>emmeans(..., type = "response")</code> → patchwork 조립, 범례 7개를 하나로 모음(리뷰어 2, comment 12). Figure 2 재작도는 리뷰어 2, item 14 대응</li>
-<li>내보내기 스크립트: 원고와 같은 그림, 장치와 해상도만 다름</li>
-<li>다음 장 연결: 표는 코드 출력, 산문의 숫자는 글자라 따로 대조</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="결과-해석" class="slide level2 grey">
-<h2>④ 결과 해석</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="pipeline">
-<span>탐색</span><span>가설</span><span>분석</span><span class="active">해석</span><span>문헌</span><span>원고</span><span>리뷰어</span>
-</div>
-<div class="stage3">
 <div class="box">
-<p><span class="label">프롬프트</span></p>
-<p>전체 결과 해석</p>
-</div>
-<div class="box wide">
-<p><span class="label">에이전트가 한 일</span></p>
+<p><span class="label">제안한 장치</span></p>
 <ul>
-<li>MetS 유병률: 조종사 11.1% vs KNHANES 37.1%, aOR 0.30</li>
-<li>혈압 구성요소만 조종사가 높음: 47.7% vs 38.8%, aOR 2.12</li>
-<li><code>URATE</code>, <code>GLUC</code>와 MetS의 연관: 조종사에서 더 강함</li>
+<li>민감도: 결과변수를 해당 구성요소를 뺀 “나머지 4개 중 2개 이상”으로</li>
+<li>사건 수 5 미만 셀은 억제, 인접 분위 합침을 보조로</li>
+<li>H3b에서 GLUC, TRIG, HDL 제외(같은 순환성)</li>
 </ul>
 </div>
 <div class="human">
 <p><span class="label">내가 확인한 것</span></p>
 <ul>
-<li>숫자는 원고 최종값(출판본 Abstract)과 대조</li>
-<li>3월 10일 요약의 조정 OR은 보정 변수 세트 변경 전 값</li>
-<li>어느 시점, 어느 모형의 숫자인지부터 확인</li>
+<li>지적은 맞음. 민감도와 억제 규칙을 SAP에 채택</li>
+<li>결정은 여전히 내 몫: 8개 항목을 “권고안대로”로 일괄 확정할지, 하나씩 볼지</li>
+<li>분석 실행은 다음 단계</li>
 </ul>
 </div>
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>제가 요청한 4분위 × 집단 분석의 약점을 에이전트가 먼저 짚었습니다.</li>
+<li>첫째는 순환성으로, MetS 정의에 그 지표의 역치가 이미 들어 있다는 겁니다.</li>
+<li>WC Q4는 거의 전원이 복부비만이라, 사실상 “나머지 구성요소의 군집”을 비교하게 된다고 했습니다.</li>
+<li>둘째는 희소 셀로, 조종사가 합동 표본의 72%라 분위가 양쪽 끝으로 갈립니다.</li>
+<li>에이전트가 “WC Q2에 KNHANES 139명, TG Q1에 117명뿐이고, 사건 수는 더 적을 수 있습니다.”라고 답했습니다.</li>
+<li>가운데 칸, 민감도 결과변수 <code>METS_excl_k</code>는 해당 요소를 뺀 나머지 4개 중 2개 이상입니다.</li>
+<li>사건 수 5 미만 셀은 억제하고, 인접 분위 합침을 보조로 붙였습니다.</li>
+<li>오른쪽 칸, 지적이 맞아서 민감도와 억제 규칙을 SAP에 채택했습니다.</li>
+<li>에이전트는 반대 의견을 내면서도 “결정은 사용자 몫입니다”라고 적어, 미결 8개는 제게 남겼습니다.</li>
+<li>탐색과 계획서 작성 과정을 영상으로 보시겠습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1.5분</li>
-<li>말할 것: 에이전트의 설명은 출발점. 내 일은 그 설명의 숫자와 말을 의심하는 것</li>
-<li>프롬프트는 예시. 실제 로그 장면 후보: finalize msg<a href="2026-03-18">2–3</a>, 보고서 청크 결과를 요약해 AGENTS.md에 반영하라는 요청 → 에이전트가 “핵심 해석” 작성, 이 시점 수치는 최종값과 같음. 발췌본 없음, 인용하려면 발췌 필요</li>
-<li>화면 수치 = 출판본 최종값: MetS 11.1% vs 37.1%, aOR 0.30 / 혈압 구성요소 47.7% vs 38.8%, aOR 2.12 (95% CI 1.80 to 2.52) / 집단 간 기울기 차이 공복혈당 Δβ 0.98 (p&lt;0.001), 요산 Δβ 0.27 (p = 0.009)(CLAUDE.md 사례 논문, 05-urate-origin 출판본 Abstract 대조)</li>
-<li>3월 10일 감사 메시지의 조정 OR 0.37(MetS), 2.16(혈압): 중간값, 원고 최종값 0.30, 2.12. 보정 변수 세트가 바뀌기 전 값(06-script-audit-questions)</li>
-<li>산문의 숫자는 글자: 응답서에 “taken from Table 2; no reanalysis was required”처럼 표에서 가져온 출처를 적어 둠(11-methods-draft-and-number-sourcing)</li>
-<li>말도 의심: 에이전트 표의 “고혈압 (mets_c4)”는 진단명이 아니라 혈압 기준(≥ 130/85 mmHg 또는 약물) 충족</li>
-<li>다음 장: 숫자가 아니라 용어가 엇갈린 경우</li>
+<li>2026-11-02 05:51 KST 보고 메시지, 원문 그대로. 에이전트 인용의 가운뎃점은 로그 원문이라 유지</li>
+<li>말할 것: 내가 요청한 4분위 × 집단 분석의 약점을 에이전트가 먼저 짚음. 반대 의견을 내되 결정은 넘김(research-example CLAUDE.md 페르소나 “방법론적 문제가 있으면 짧게 지적한 뒤 대안을 제시”)</li>
+<li>순환성 뜻: WC 4분위별 MetS 유병률 비교에서 상위 분위는 복부비만 기준을 이미 충족 → 나머지 4요소 중 2개 이상인지 비교하는 셈. 민감도 결과변수 <code>METS_excl_k</code></li>
+<li>희소 셀 뜻: 합동 4분위라 KNHANES는 상위 분위, 조종사는 하위 분위에 몰림. 셀 n과 사건 수가 작은 칸은 OR이 불안정 → 억제와 합침(SAP §3.2, 부록 D)</li>
+<li>화면 노출 규칙 2와 같은 원리(5 미만 셀 억제)가 분석 설계에도 들어감</li>
+<li>미결 8개(SAP §13, H2 재확정 후): 조종사 내 인자 모형 생략, 50–61 합침, 희소 셀 규칙, H3b 제외, emmeans 설치, 민감도 포함, 음성 대조 PLAT와 BUN, 중복 수검 없음 가정. 처음 9개였던 H2a 순위 지표는 조유병률 차이로 확정되며 제거</li>
+<li>확인 필요: 사용자의 최종 답(권고안 일괄 확정 여부)은 이 세션 로그에 없음. 다음 녹화에서 확인</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2129,41 +2526,29 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="해석-오류-사례-두-종류의-오즈비" class="slide level2 grey">
-<h2>④ 해석 오류 사례: 두 종류의 오즈비</h2>
+<section id="영상-탐색과-분석계획서" class="slide level2">
+<h2>②③ 영상: 탐색과 분석계획서</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="chat user">
-<p><span class="who">사용자, msg[18]</span></p>
-<p>… 맨 처음 로지스틱 회귀모형 결과 보정 후에도 대사증후군에 대한 공군 집단의 오즈비가 일반 인구 집단보다 높게 나타난 사실과 어떻게 연결을 할 수 있지?</p>
+<div class="vidcenter">
+<iframe src="https://www.youtube.com/embed/_SwO-ve6bFY" width="960" height="540" title="Exploration and analysis plan" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 </div>
-<div class="chat">
-<p><span class="who">Positron Assistant (Claude Sonnet 4.6), msg[19]</span></p>
-<p>… 조종사 집단에 내재된 건강 근로자 효과(Healthy Worker Effect)로 수렴하는 공통 설명이 가능합니다.</p>
-</div>
-<div class="chat catch">
-<p><span class="who">사용자, msg[20]</span></p>
-<p>결과 해석이 이상한데? 로지스틱 회귀모형 결과는 작업 공간의 tbl_result_mets_lbtest 결과를 확인해.</p>
-</div>
-<div class="chat">
-<p><span class="who">Positron Assistant, msg[21]</span></p>
-<p>확인했습니다. 이전 해석에 오류가 있었습니다. 정확하게 재정리합니다.</p>
-</div>
-<ul>
-<li>탐색 단계의 질문. “오즈비”가 어느 표인지 묻지 않음 / 표 이름으로 바로잡음 / 이 연결 시도는 원고에 올리지 않음</li>
-</ul>
 <aside class="notes">
 <ul>
-<li>시간: 1.5분</li>
-<li>2026-03-10, Positron Assistant (Claude Sonnet 4.6)</li>
-<li>구도(memory/outline-decisions-2026-10-20.md 결정 1): 탐색적 질문의 “오즈비”가 두 표 중 어느 것인지 에이전트가 묻지 않음 → 연구자가 표 이름으로 잡음 → 그 연결 시도는 원고에 올리지 않음. 사용자 질문의 전제 오류로 말하지 않음</li>
-<li>두 표: <code>tbl_data_mets_component</code>(집단 간 유병 OR) vs <code>tbl_result_mets_lbtest</code>(집단 안에서 검사값 1 SD 증가당 MetS OR). 사용자가 말한 것은 뒤쪽, 에이전트는 앞쪽으로 받음</li>
-<li>에이전트는 그 틀 위에 HWE 서사와 영어 “논문 서술 제안” 문장까지 작성. 자기 답 1번에서 OR이 낮다고 적은 것과도 모순</li>
-<li>msg[20]: 표 이름 지목 + 결과 표 붙여 넣음. msg[21]: 결과 객체 구조를 다시 출력한 뒤 두 OR 정의를 나눠 다시 씀</li>
-<li>로그 속 수치(집단 간 0.37, 요산 1-SD OR 1.27 vs 0.98): 중간값, 원고 최종값 집단 간 MetS aOR 0.30, 조종사 요산 per-SD OR 1.35. 화면에 띄우지 않음</li>
-<li>출판 원고는 요산 연령 기울기와 OR을 연결하지 않음(사용자 확인 2026-10-20)</li>
-<li>통계 깊이는 여기까지. 교훈은 프롬프트 규칙: 용어가 모호하면 묻게 하라</li>
-<li>현재 레포 CLAUDE.md 코딩 규칙: “여러 해석이 가능하다면, 조용히 하나를 선택하지 말고 가능한 해석 제시”. 대화 로그 3건의 AGENTS.md 읽기 결과에는 없는 문구, 추가 시점 확인 필요</li>
-<li>4막 S40 한계(“모호한 용어를 묻지 않음”)와 연결</li>
+<li>대본
+<ul>
+<li>탐색과 가설 설정을 한 영상에 담았습니다.</li>
+<li>결측 표를 R로 집계하는 장면과, 분석 대신 SAP부터 쓰는 장면을 보시면 됩니다.</li>
+<li>미결 사항을 모아서 한 번에 묻는 형식도 눈여겨보시면 됩니다.</li>
+<li>앞부분은 변수 구조와 결측을 집계로만 확인하고, 완전사례로 결정하는 장면입니다.</li>
+<li>뒷부분에서 제가 “H2에서는 보정이 필요가 없어”라고 했다가 다시 확인해 구조를 바로잡습니다.</li>
+<li>여기까지 분석은 0줄이고, 분석 데이터셋과 계획서만 생겼습니다.</li>
+<li>이제 네 번째 단계, 분석으로 넘어가겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>영상: research-example 녹화, 탐색과 가설 설정이 한 영상(사용자 2026-11-02). data-check-2x.mp4 + exploring-and-sap-2x.mp4 병합, 25분. YouTube https://youtu.be/_SwO-ve6bFY</li>
+<li>짚을 장면: 앞 7분 30초는 data-check(변수 구조와 결측 요약, 완전사례 결정, 연령표준화 미실시) / 뒤 17분 33초는 SAP(가설 4개 프롬프트, “분석은 실행하지 않고” 계획서 작성, H2 혼선과 재확인, 순환성과 희소 셀 지적)</li>
+<li>재생 구간: 시작 시각은 리허설 때 영상을 보며 지정. 1분 안에 SAP 부분의 H2 재확인 장면 권장</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2177,52 +2562,182 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="수치-검증" class="slide level2 grey">
-<h2>④ 수치 검증</h2>
+<section id="분석" class="slide level2 grey">
+<h2>④ 분석</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="pipeline">
+<span>전처리</span><span>탐색</span><span>가설</span><span class="active">분석</span><span>문헌</span><span>초안</span>
+</div>
 <div class="stage3">
 <div class="box">
 <p><span class="label">프롬프트</span></p>
-<p>응답서에 약속한 숫자를 원고에 넣기 전에 전부 재계산</p>
+<blockquote>
+<p>권고안대로 진행.</p>
+</blockquote>
+<blockquote>
+<p>시간이 없는 관계로 분석을 H3까지만 진행하기로</p>
+</blockquote>
 </div>
 <div class="box wide">
 <p><span class="label">에이전트가 한 일</span></p>
 <ul>
-<li><code>verify-numbers.R</code>: 약물, 유병 비율 / BMI 분포 / SI 변환 후 계수</li>
-</ul>
-<blockquote>
-<p>Nothing here changes any analysis; it recomputes from the same analysis dataset the manuscript already uses.</p>
-</blockquote>
-<ul>
-<li>검증 기준을 먼저 적음: SI 변환 후 OR과 p는 그대로</li>
+<li>워커 run 4개: 파생변수와 Table 1 → H1, H2a → H2b, H3 병렬</li>
+<li>워커 결과를 그대로 받지 않음: 오케스트레이터가 핵심 수치를 따로 재계산, 전부 일치</li>
+<li>산출물: Table 1–5, Supplementary S1–S3, Figure 2–6</li>
+<li>세션 한도로 중단 → “중단된 작업 이어서” 한 줄로 재개</li>
 </ul>
 </div>
 <div class="human">
 <p><span class="label">내가 확인한 것</span></p>
 <blockquote>
-<p><code>verify-numbers.R</code> 재실행: 약물/유병률 12개, BMI 6단계, Table 4 SI 계수 전부 일치</p>
+<p>분석 결과를 중간에 확인했는데 과도하게 복잡한 분석방법을 선택하는 것 같아.</p>
 </blockquote>
 <ul>
-<li>렌더 성공과 그림 존재는 별개: “성공”한 docx 두 개에 Figure 1 없음</li>
+<li>Table 2는 n(%), 비보정 OR, 보정 OR만 → SAP v2.3에 “과도한 복잡성 배제” 명시</li>
+<li>집단 간 차이 표기를 Δβ(95% CI)로 지정</li>
 </ul>
-<blockquote>
-<p>knitr <code>error = TRUE</code> 문서는 exit code만으로 성공을 판단하면 안 됨</p>
-</blockquote>
 </div>
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>네 번째 분석 단계, 왼쪽 칸에 제가 “권고안대로 진행.”이라고 썼습니다.</li>
+<li>시간이 없어 H3까지만 하고, H4 건강근로자효과는 Discussion 해석으로 돌렸습니다.</li>
+<li>가운데 칸 첫 줄, 워커 run 4개입니다.</li>
+<li>파생변수와 Table 1, H1과 H2a 다음, H2b와 H3은 같은 입력만 읽어서 병렬로 돌렸습니다.</li>
+<li>둘째 줄, 오케스트레이터는 워커 결과를 그대로 받지 않았습니다.</li>
+<li>Table 2의 OR 12개, 요산 평균 차이와 상호작용, Δβ를 별도 코드로 다시 계산해 전부 일치했습니다.</li>
+<li>산출물은 Table 1부터 5, Supplementary S1부터 S3, Figure 2부터 6입니다.</li>
+<li>세션 한도로 멈췄을 때도 “중단된 작업 이어서” 한 줄로 재개했습니다.</li>
+<li>오른쪽 칸, 제가 “분석 결과를 중간에 확인했는데 과도하게 복잡한 분석방법을 선택하는 것 같아.”라고 썼습니다.</li>
+<li>에이전트는 Wilson CI 열, Newcombe CI, 연령 spline, PR, WHtR과 ATP III 민감도를 뺐습니다.</li>
+<li>Table 2는 n(%), 비보정 OR, 보정 OR만 남기고, SAP v2.3에 “과도한 복잡성 배제”를 적었습니다.</li>
+<li>Table 3은 Figure 4와 겹쳐서 집단 내 기준 대비 OR로 바꾸게 했습니다.</li>
+<li>집단 간 비교는 ratio of ORs 대신 OR 차이로, 표기는 Δβ와 95% CI로 정했습니다.</li>
+<li>제가 프로빗을 제안하자, 에이전트는 프로빗 계수는 OR로 해석되지 않는다고 반대했습니다.</li>
+<li>대신 로짓을 주 분석으로, 프로빗 상호작용 p는 보조표로 두자는 대안을 붙였습니다.</li>
+<li>실행은 워커, 검증은 오케스트레이터, 방향은 제가 맡은 셈입니다.</li>
+<li>이렇게 나온 결과를 다음 장에서 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2.5분</li>
+<li>2026-11-02 세션(KST 06:36–08:55), Claude Code 오케스트레이터 Claude Fable 5.1, 워커 stats-analyst(Claude Opus 5.5)</li>
+<li>말할 것: 분석의 실행은 워커, 검증은 오케스트레이터, 방향은 나. 세 층이 따로 움직임</li>
+<li>run 구성: 05 파생변수와 Table 1 / 06 H1, H2a(Table 2, Figure 2, 3) / 07 H2b 하위집단(Table 3, Figure 4) / 08 H3 바이오마커(Table 4, 5, Figure 5, 6). 07과 08은 같은 입력을 읽기만 해서 병렬</li>
+<li>독립 재계산: Table 2 OR 12개, 요산 평균 차이와 상호작용, Δβ를 오케스트레이터가 별도 코드로 다시 계산해 일치 확인 후 정식 폴더에 반영</li>
+<li>단순화 지시 뒤 에이전트가 삭제한 것: 유병률 Wilson CI 열, 유병률 차이와 Newcombe CI, 순위 열, 연령 spline, 연속형 연령 상호작용, PR, WHtR과 ATP III 민감도. 이후 run에도 같은 기준 적용을 SAP에 적음</li>
+<li>내가 바로잡은 다른 것: Table 1의 MetS 구성요소 개수를 범주형 → 연속형 / Table 3은 Figure 4와 중복이니 집단 내 기준 대비 OR로 / 집단 간 비교는 ratio of ORs 대신 OR 차이 → 최종 Δβ</li>
+<li>프로빗 제안에 대한 에이전트 반응: 프로빗 계수는 OR로 해석되지 않으니 로짓 주 분석, 프로빗 상호작용 p는 보조표로. 반대 의견을 내되 대안을 붙임</li>
+<li>범위 결정: 시간 제약으로 H4(건강근로자효과 패턴표)는 보류, Discussion 해석으로만</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="결과와-해석" class="slide level2">
+<h2>④ 결과와 해석</h2>
+<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="stage3">
+<div class="box wide">
+<p><span class="label">에이전트가 정리한 결과</span></p>
+<ul>
+<li>MetS: 조종사 11.2% vs KNHANES 39.6%, 보정 OR 0.27 (0.23–0.33)</li>
+<li>혈압 구성요소만 조종사가 높음: 보정 OR 2.09</li>
+<li>연령군 간 격차 균일: 상호작용 p = 0.914</li>
+<li>요산–MetS 연관이 조종사에서 더 강함: Δβ 0.24, BMI와 약물 보정 후에도 유지</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="label">스스로 단 주의</span></p>
+<ul>
+<li>혈압 상호작용은 로짓에서만, 프로빗과 구성요소 제외 정의에서는 소실 → “척도 의존적”으로</li>
+<li>콜레스테롤, LDL 차이는 KNHANES 지질약 복용자 영향 가능</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="label">내가 더한 것</span></p>
+<ul>
+<li>요산 결과를 이 연구의 핵심 발견으로 지정</li>
+<li>공군 혈압 측정 방식 제공 → 에이전트가 편향 방향을 다시 따짐</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>왼쪽 칸, MetS는 조종사 11.2%, KNHANES 39.6%, 보정 OR 0.27입니다.</li>
+<li>혈압 구성요소만 조종사가 높아서 보정 OR 2.09입니다.</li>
+<li>연령군 간 격차는 균일해서 상호작용 p가 0.914입니다.</li>
+<li>출판본은 보정 OR 0.30, 혈압 2.12였고, 에이전트는 이 출판본을 모르는 상태였습니다.</li>
+<li>대상 정의와 보정 변수가 달라 숫자는 다르지만, 방향과 크기는 같습니다.</li>
+<li>가운데 칸, 혈압 상호작용이 프로빗에서 사라져서 에이전트가 “척도 의존적”이라고 적었습니다.</li>
+<li>콜레스테롤, LDL 차이에는 지질약 복용자 제외 민감도를 제안했고, 아직 돌리지 않았습니다.</li>
+<li>오른쪽 칸, 저는 여러 결과 가운데 요산을 이 연구의 핵심 발견으로 지정했습니다.</li>
+<li>Model 1에서 요산 1 SD당 OR은 조종사 1.59, KNHANES 1.25, Δβ 0.24, p = 0.006입니다.</li>
+<li>BMI와 약물을 더한 Model 2에서도 Δβ 0.26, p = 0.012로 유지됐습니다.</li>
+<li>숫자는 에이전트가 냈지만, 어느 숫자를 원고의 중심에 둘지는 제가 정했습니다.</li>
+<li>공군은 자동혈압계로 한 번 재고, 높게 나오면 청진법으로 다시 재서 가장 낮은 값을 쓴다고 알려 줬습니다.</li>
+<li>에이전트는 조종사 혈압이 과대평가보다 오히려 하향 편향일 수 있다고 다시 따졌습니다.</li>
+<li>이 분석 과정을 영상으로 보시겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2분</li>
+<li>말할 것: 숫자를 내는 것까지는 에이전트가 빠름. 어느 숫자를 원고의 중심에 둘지는 내가 정함</li>
+<li>지방간 논문은 ③ 가설 설정에서 한 번만 언급(사용자 결정 2026-11-02). 이 장에서는 말하지 않음. 사용자 원문 메시지는 “이전 선행연구와 비교해볼 때 요산이 유의하게 나왔다는 것은 이 연구에서 유의미한 발견이야.”</li>
+<li>수치 출처: research-example <code>output/tables/table2_prevalence_or.csv</code>, <code>table3_subgroups.csv</code>, <code>table5_biomarker_interaction.csv</code>. 비가중, 완전사례 3,823명</li>
+<li>재현 수치와 출판본 수치는 다름: 출판본 보정 OR 0.30, 혈압 2.12(조종사 2,604 vs KNHANES 1,093). 재현은 0.27, 2.09(2,738 vs 1,085). 분석 대상 정의와 보정 변수가 다르기 때문. 방향과 크기는 같음. 이 비교는 발표자만 함, 에이전트는 출판본을 모름</li>
+<li>요산 결과(Model 1): 조종사 1 SD당 OR 1.59, KNHANES 1.25, Δβ 0.24 (0.07–0.42), p = 0.006. Model 2(BMI + 약물) Δβ 0.26, p = 0.012</li>
+<li>에이전트가 요산 결과를 Discussion 1순위 자료로 지정, <code>docs/discussion-notes.md</code>에 정리</li>
+<li>혈압 측정 방식(사용자 제공): 자동혈압계 1회, 높게 나온 조종사는 청진법으로 재측정해 가장 낮은 값 채택 → 에이전트 판단: 조종사 혈압의 과대평가 가능성은 낮고 오히려 하향 편향. 에이전트가 재측정 역치와 대상자 수를 추가로 물음</li>
+<li>지질약 주의: KNHANES 지질약 복용자는 LDL 평균 93.5 mg/dL, MetS 91%. 복용자 제외 민감도를 에이전트가 제안, 미실행</li>
+<li>해석 문서: <code>quarto/05_results_interpretation.html</code>, 핵심 메시지 5개</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="영상-분석" class="slide level2">
+<h2>④ 영상: 분석</h2>
+<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
+<div class="vidcenter">
+<iframe src="https://www.youtube.com/embed/xnLV1XTcu_E" width="960" height="540" title="Statistical analysis" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>분석 녹화 두 개를 이어 붙여 2배속으로 줄인 약 29분짜리 영상입니다.</li>
+<li>Table 2를 단순하게 하라고 지시하는 장면을 보시면 됩니다.</li>
+<li>세션 한도로 멈췄다가 한 줄로 재개하는 장면, 요산을 짚는 장면도 들어 있습니다.</li>
+<li>제가 프로빗을 제안하자 에이전트가 OR 해석을 이유로 로짓을 주 분석으로 두자고 답하는 장면도 있습니다.</li>
+<li>집단 간 차이 표기가 ratio of ORs, OR 차이, Δβ 순으로 바뀌는 과정도 그대로 남아 있습니다.</li>
+<li>계산은 워커가 했고, 무엇을 남기고 뺄지는 제가 정했습니다.</li>
+<li>다음은 이 결과를 뒷받침할 문헌을 모으는 단계입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>시간: 1분</li>
-<li>2026-08-14(대응 계획 §D), 2026-08-16(스크립트, 렌더). Claude Code(레포 표기 DataBot, 모델 미기재)</li>
-<li>말할 것: 원고의 숫자는 R 객체가 아니라 글자. 넣기 전에 같은 데이터에서 다시 계산하는 스크립트를 따로 둠</li>
-<li>프롬프트는 예시. 스크립트 헤더 Purpose: 응답서가 원고에 넣겠다고 약속한 숫자를 넣기 전에 전부 검증</li>
-<li>검사 3가지: (1) 약물 복용, 유병 비율(comment 2.7) (2) BMI 분포, 한국과 WHO 기준(comment 2.9) (3) 요산, 공복혈당 SI 변환 후 Table 4 계수(comment 2.8)</li>
-<li>SI 변환: 요산 mg/dL → μmol/L ×59.48, 혈당 mg/dL → mmol/L ÷18.02. 결과변수만 바뀌므로 계수와 CI는 같은 배수, p는 불변(스크립트 주석). 대응 계획 §D 2번: 변환 후 OR, Δβ, 95% CI, p가 기존과 다르면 변환 오류</li>
-<li>§D 1번: 최종 표와 그림은 R에서 재생성. Python 값은 검증, 설계용</li>
-<li>이 스크립트 출력이 이 발표의 수치 대조 기준(CLAUDE.md 행동 규칙 2)</li>
-<li>렌더: R 4.6.1 사용자 라이브러리에 <code>DiagrammeR</code>, <code>webshot2</code>, <code>chromote</code> 없음 → Figure 1(CONSORT) 실패. <code>error = TRUE</code>라 렌더는 “성공”, 그림 번호가 밀린 docx 두 차례(23:09, 23:28) → 패키지 설치 후 재렌더, Figure 1, 2 정상</li>
-<li>교훈이 memory에 남아 다음 세션의 체크리스트: docx에서 “Error” 문단, 그림 개수, 캡션 번호 확인</li>
-<li>다음: ⑤ 문헌 탐색</li>
+<li>영상: analysis-01.mp4와 analysis-02.mp4를 이어 붙여 2배속(analysis-2x.mp4, 약 29분). YouTube https://youtu.be/xnLV1XTcu_E</li>
+<li>짚을 장면: Table 2 단순화 지시(“과도하게 복잡한 분석방법”) / 프로빗 제안과 에이전트의 로짓 권고 / 세션 한도 후 “중단된 작업 이어서” 재개 / 표기 변경(ratio of ORs → OR 차이 → Δβ) / 요산 지적</li>
+<li>앞 18분 48초는 analysis-01, 그 뒤는 analysis-02</li>
+<li>재생 구간: 시작 시각은 리허설 때 영상을 보며 지정. 1분 안에 Table 2 단순화 지시 장면 권장</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2236,45 +2751,66 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="문헌-탐색" class="slide level2">
-<h2>⑤ 문헌 탐색</h2>
+<section id="참고문헌-수집" class="slide level2 grey">
+<h2>⑤ 참고문헌 수집</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="pipeline">
-<span>탐색</span><span>가설</span><span>분석</span><span>해석</span><span class="active">문헌</span><span>원고</span><span>리뷰어</span>
+<span>전처리</span><span>탐색</span><span>가설</span><span>분석</span><span class="active">문헌</span><span>초안</span>
 </div>
 <div class="stage3">
 <div class="box">
 <p><span class="label">프롬프트</span></p>
-<p>references.md 15편 + 추가 검색</p>
-<p>PDF 확보, 요약, 본 연구와의 연결</p>
+<blockquote>
+<p>그럼 지금 까지한 분석 결과를 해석적 측면에서 정리하고 이를 문서화한 다음 지금 결과를 뒷받침할 수 있는 근거를 수집해줘.</p>
+</blockquote>
 </div>
-<div class="box">
+<div class="box wide">
 <p><span class="label">에이전트가 한 일</span></p>
-<p>PubMed MCP로 메타데이터 조회, DOI 명시</p>
-<p>PDF 자동 확보(Europe PMC, 출판사), 파일명 규칙, <code>references.bib</code></p>
-<p><code>references-summary.md</code>: 24편 그룹별 요약</p>
-<p>결과: 25편 중 20편 PDF 확보(업로드 포함)</p>
+<ul>
+<li>문헌 워커 4명 병렬: 요산 / 조종사, 군 MetS, 건강근로자효과 / 한국 MetS, KNHANES / 바이오마커, 측정 차이</li>
+<li>232편, 전부 PubMed PMID 대조. 핵심 6편은 오케스트레이터가 다시 확인</li>
+<li>색인 문서: 핵심 결과 5개마다 어떤 문헌이 붙는지 대응표</li>
+<li>계획서 오류 발견: KNHANES 2022 혈압은 수은계가 아니라 자동 측정</li>
+</ul>
 </div>
 <div class="human">
 <p><span class="label">내가 확인한 것</span></p>
-<p>다운로드 불가 4편: 봇 차단 2, 러시아어 전용 1, closed access 1</p>
-<p>출판사 원본 PDF 13개 직접 업로드</p>
-<p>업로드 파일 중 목록 밖 논문 1편 확인(Kim 2022)</p>
+<ul>
+<li>국내 선례: 한국 병사 vs KNHANES, 혈압만 병사가 높음</li>
+<li>에이전트가 물은 기관 정보: 검사법, LDL 계산 방식</li>
+<li>DOI가 실제 문헌인지, 주장과 맞는지</li>
+</ul>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li>1.5분</li>
-<li>문헌 단계 산출물: 요약 문서 1개, PDF 폴더 <code>references/agent-downloaded/</code>, BibTeX <code>quarto/user/references.bib</code></li>
-<li>프롬프트 칸은 요지. 원문 로그 없음(2026-05-06 Claude Code 세션). 문서 머리 “목적” 줄 기준: “<code>quarto/user/references.md</code> 15편 + 추가 검색 9편 = 총 24편의 논문에 대해 PDF 다운로드 결과, 핵심 내용, 본 연구(RQ 1–5)와의 연결을 정리”</li>
-<li>문서 머리 “출처 표기” 원문: “모든 메타데이터는 PubMed에서 조회한 정보이며, DOI 링크는 본 문서에 포함됨.”</li>
-<li>도구 흔적: 사례 레포 <code>.claude/settings.local.json</code> 허용 목록에 PubMed MCP 도구 2개(<code>lookup_article_by_citation</code>, <code>get_article_metadata</code>), Europe PMC WebFetch, curl 항목</li>
-<li>다운로드 불가 4편(§1.2) 사유: Cloudflare bot 차단 2, 러시아어 전용 저널(Unpaywall 미색인) 1, closed access 1. 수동 확보 필요로 표시</li>
-<li>사용자 업로드(§1 업데이트): 출판사 원본 13개 중 9개 rename(<code>{##}_{Author}{Year}_{Topic}.pdf</code>), byte-identical 중복 3개 삭제, 1개 출판사 원본으로 교체</li>
-<li>신규 논문(§1.4): Kim JS, Han BS, Kwon YH, Lim J. A 5-Year Analysis of Aviation Medical Examinations in South Korea. Aerosp Med Hum Perform. 2022;93(6):499–506. doi:10.3357/AMHP.5973.2022. 업로드 파일 <code>amhp-article-p499.pdf</code>가 references.md에 없던 논문 → BibTeX <code>kim2022</code> 등재</li>
-<li>말할 것: “찾고, 내려받고, 정리”는 에이전트, 막힌 곳 뚫기와 업로드는 사람</li>
-<li>확인 필요: §1.1 표는 21행(출처 열 기준 자동 10, 사용자 업로드 10, 로컬 원고 1), 머리 문장은 “20편”. 슬라이드는 문서 기재값 20편 사용</li>
-<li>아웃라인의 “Europe PMC와 출판사에서 PDF 20편”은 업로드 포함 수치라 칸 문구를 바꿈. “4편은 봇 차단으로 수동 업로드”도 원문과 달라 사유별로 나눔</li>
+<li>대본
+<ul>
+<li>다섯 번째 단계, 문헌입니다.</li>
+<li>왼쪽 칸, 분석 결과를 해석 측면에서 문서화하고 그 결과를 뒷받침할 근거를 모으라고 썼습니다.</li>
+<li>밖으로 나가는 것은 검색 질의뿐이고, 데이터는 제 PC에 남습니다.</li>
+<li>가운데 칸, 문헌 워커 4명이 요산, 조종사와 군, 한국 MetS, 바이오마커를 나눠 맡았습니다.</li>
+<li>PubMed MCP와 Scholar Gateway로 232편을 모았고, 전부 PMID로 대조했습니다.</li>
+<li>워커 지시에는 PMID나 DOI가 확인되는 문헌만 쓰고, 아니면 확인 불가로 적게 했습니다.</li>
+<li>핵심 6편은 오케스트레이터가 다시 확인했습니다.</li>
+<li>색인 문서 <code>00_index.md</code>는 핵심 결과 5개마다 어떤 문헌이 붙는지 대응표로 묶었습니다.</li>
+<li>오른쪽 칸 첫 줄, 국내 선례로 Lee JH 2018의 한국 병사 대 KNHANES 비교가 나왔습니다.</li>
+<li>19세에서 29세 비교에서 MetS는 0.8% 대 7.9%였고, 혈압 구성요소만 병사가 높았습니다.</li>
+<li>문헌이 계획서도 고쳤는데, KNHANES 2022 혈압은 수은계가 아니라 자동 오실로메트릭 측정이었습니다.</li>
+<li>공군 크레아티닌 측정법, AST와 ALT 시약, LDL 직접측정 여부는 문헌으로 답할 수 없어 제게 물었습니다.</li>
+<li>저는 DOI가 실제 문헌인지, 인용한 주장과 맞는지를 봤습니다.</li>
+<li>그런데 이 단계에서 규칙 위반이 하나 생겼습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2분</li>
+<li>2026-11-02 세션(KST 09:03–09:30), 워커 literature-scout(Claude Opus 5.5) 4명</li>
+<li>말할 것: 밖으로 나가는 것은 검색 질의뿐. 데이터는 PC에 남음. PubMed MCP, Scholar Gateway 사용</li>
+<li>분량: 요산 59편, 조종사와 군 87편, 한국 MetS 26건, 바이오마커 60편. <code>docs/literature/</code> 12개 파일 + <code>00_index.md</code></li>
+<li>결과별 근거 예: 유병률 격차와 혈압 패턴은 Lee JH 2018 J Korean Med Sci(병사 vs KNHANES 19–29세, MetS 0.8% vs 7.9%, 혈압 구성요소만 병사가 높음) / 혈압 측정 횟수는 Schulze 2000(1회→2회 측정 SBP −5 mmHg) / 지질약 민감도 방법론은 Choi 2022 Pharmacoepidemiol Drug Saf / MetS 정의는 KSSO 2022 지침</li>
+<li>문헌이 고친 것: SAP와 해석 노트의 “KNHANES 수은혈압계” 기술이 틀림(2022는 자동 오실로메트릭), 중성지방 측정법 변경도 발견. 선행 지방간 논문 서지도 PubMed 기준으로 정정(96(10):894–902)</li>
+<li>에이전트가 사용자에게 넘긴 질문: 공군 크레아티닌 측정법, AST와 ALT 시약, 혈구분석기, LDL 직접측정 여부. 문헌으로 답할 수 없는 기관 정보</li>
+<li>가짜 참고문헌 방지: 워커 지시에 “PMID나 DOI가 확인되는 문헌만, 아니면 확인 불가로 표기”</li>
+<li>다음 장: 이 단계에서 생긴 규칙 위반</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2288,37 +2824,65 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="시연-pubmed-scholar-gateway-검색" class="slide level2 grey">
-<h2>⑤ 시연: PubMed, Scholar Gateway 검색</h2>
+<section id="규칙-위반-참고-금지-논문" class="slide level2">
+<h2>⑤ 규칙 위반: 참고 금지 논문</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<video id="video_shortcode_videojs_video3" width="800" height="450" class="video-js vjs-default-skin vjs-big-play-centered " controls="" preload="auto" data-setup="{}" title=""><source src="../demo/clips/D2-literature.mp4"></video>
-<p><span class="label">프롬프트</span></p>
-<p>“조종사 집단의 요산과 대사증후군 연관 선행 연구 검색, DOI와 함께”</p>
-<div class="cards">
+<div class="stage3">
 <div class="box">
-<p><span class="h3">1. MCP 호출</span></p>
-<p>PubMed, Scholar Gateway</p>
-</div>
-<div class="box">
-<p><span class="h3">2. 결과 표</span></p>
-<p>저자, 연도, 저널, DOI</p>
+<p><span class="label">워커 보고</span></p>
+<blockquote>
+<p>같은 비교가 이미 출판되어 있습니다. Ku B, Song DH. <em>BMJ Mil Health</em> 2026</p>
+</blockquote>
+<ul>
+<li>문헌 워커가 PubMed에서 출판본을 찾아 요약에 넣음</li>
+<li>원고 방향에 영향을 주는 사항으로 먼저 보고</li>
+</ul>
 </div>
 <div class="human">
-<p><span class="h3">3. DOI 확인</span></p>
-<p>링크가 실제로 열리는지 사람이 확인</p>
+<p><span class="label">내 지적</span></p>
+<blockquote>
+<p>해당 논문은 참고하지 않는다라는 규칙을 줬는데</p>
+</blockquote>
+<blockquote>
+<p>지금 분석은 해당 논문을 재현하기 위함이야</p>
+</blockquote>
+</div>
+<div class="box">
+<p><span class="label">에이전트 조치</span></p>
+<ul>
+<li>해석 노트, 문헌 파일, 워커 요약에서 해당 내용 삭제</li>
+<li>CLAUDE.md 작업 규칙에 한 줄 추가, 진행 중 워커에 제외 지시</li>
+<li>전 파일 검색으로 남은 흔적 0건 확인</li>
+</ul>
 </div>
 </div>
+<ul>
+<li>원인: 규칙이 워커가 읽는 파일에 없었음. 말로 한 규칙은 워커에게 전달되지 않음</li>
+</ul>
 <aside class="notes">
 <ul>
-<li>1.5분, 녹화 60초</li>
-<li>2026-05-06 원 세션의 재연이 아님. 같은 도구로 새로 검색하는 장면이라고 먼저 말함</li>
-<li>밖으로 나가는 것은 검색 질의뿐. 데이터는 PC에 남음</li>
-<li>결과 표에 나온 논문은 녹화본 기준으로 말함. 예상 결과를 슬라이드에 미리 적지 않음</li>
-<li>녹화 후 결과 논문을 <code>references-summary.md</code> 목록과 대조</li>
-<li>가짜 인용 방지: DOI가 실제로 열리는지 사람이 확인 → 다음 장</li>
-<li>녹화 전: <code>claude mcp list</code>로 연결 상태 확인, 화면 노출 규칙 5 체크리스트(터미널 경로, 환경변수, 열린 탭, API 키)</li>
-<li>발표 1주 전 MCP 이름과 연결 상태 재확인(행동 규칙 4)</li>
-<li>클립 미제작: <code>demo/clips/D2-literature.mp4</code> 없음(2026-10-20 기준). 백업 녹화 필수</li>
+<li>대본
+<ul>
+<li>왼쪽 칸, 문헌 워커가 PubMed에서 제 출판 논문을 찾아 요약에 넣었습니다.</li>
+<li>워커는 숨기지 않고 “같은 비교가 이미 출판되어 있습니다.”라고 결정이 필요한 사항 첫 번째로 올렸습니다.</li>
+<li>가운데 칸, 제가 “해당 논문은 참고하지 않는다라는 규칙을 줬는데”라고 지적했습니다.</li>
+<li>오른쪽 칸, 에이전트는 해석 노트, 문헌 파일, 워커 요약에서 해당 내용을 지웠습니다.</li>
+<li>CLAUDE.md 작업 규칙에 한 줄을 넣고, 진행 중인 워커에도 제외를 지시했습니다.</li>
+<li>전 파일을 검색해 남은 흔적이 0건인 것도 확인했습니다.</li>
+<li>아래 줄의 원인은 설정의 빈칸으로, 이 규칙이 CLAUDE.md, 스킬, 에이전트 정의 어디에도 없었습니다.</li>
+<li>워커는 대화를 모르고 CLAUDE.md와 브리핑만 읽으니, 말로 한 규칙은 전달되지 않습니다.</li>
+<li>지켜야 할 규칙은 대화가 아니라 파일에 적어야 합니다.</li>
+<li>이 장면을 포함해 문헌 수집 과정을 영상으로 보시겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1.5분</li>
+<li>2026-11-02 KST 09:22–09:24. 워커 보고와 사용자 메시지는 원문 그대로</li>
+<li>말할 것: 에이전트 잘못이라기보다 설정의 빈칸. 워커는 대화를 모르고 CLAUDE.md와 브리핑만 읽음(2막 오케스트레이션 원칙 “브리핑이 전부다”)</li>
+<li>사실 확인: 2026-11-02 새벽 확인 시 research-example의 CLAUDE.md, 스킬, 에이전트 정의 어디에도 이 규칙 없음. 규칙 줄은 사건 직후(09:24) CLAUDE.md에 추가됨</li>
+<li>워커는 오히려 정직하게 행동: 출판본을 찾자 “결정이 필요한 사항” 첫 번째로 올림. 숨기지 않음</li>
+<li>에이전트 정리 원문 요지: 해당 논문은 규칙 자체를 적은 두 곳(진행 기록, CLAUDE.md)에만 식별자로 남고 결과 수치는 어디에도 없음. 같은 저자의 다른 선행 연구(지방간 논문)는 규칙 대상 아님</li>
+<li>후속 장면: 저널 추천 요청에 에이전트가 중복 출판을 경고 → 사용자 “알아 AI를 이용한 논문작성에 대한 예시로 쿼리를 준거야” → 경고를 접고 결과에 맞는 저널만 추천</li>
+<li>교훈: 지켜야 할 규칙은 대화가 아니라 파일에. 2막 CLAUDE.md 장의 메시지와 같음</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2332,40 +2896,29 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="인용-검증" class="slide level2">
-<h2>⑤ 인용 검증</h2>
+<section id="영상-문헌-수집" class="slide level2">
+<h2>⑤ 영상: 문헌 수집</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="cards">
-<div class="box">
-<p><span class="h3">모든 항목에 DOI</span></p>
-<p>머리말: “DOI 링크는 본 문서에 포함됨”</p>
-<p>DOI가 없으면 “없음”과 PMID로 표기</p>
-</div>
-<div class="box">
-<p><span class="h3">인용 부분 발췌</span></p>
-<p>CLAUDE.md: “문헌 인용 시 인용한 부분의 내용을 발췌”</p>
-<p>본문 미확보 논문은 초록 범위 안에서만 인용</p>
-</div>
-<div class="box">
-<p><span class="h3">“본 연구와의 연결” 칸 필수</span></p>
-<p>항목 구조: “목적 / 표본 / 핵심 결과 / 본 연구와의 연결”</p>
-<p><code>rhee2015</code>: “본 연구와 동일 직업집단(ROK 공군) 분석의 직접 선례”</p>
-</div>
-</div>
-<div class="excerpt">
-<p>CLAUDE.md, 하지 말아야할 규칙: “실제 출처와 대응하지 않는 AI 생성 인용을 사용하는 것.”</p>
+<div class="vidcenter">
+<iframe src="https://www.youtube.com/embed/WXJjkJ09R6U" width="960" height="540" title="Literature collection" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 </div>
 <aside class="notes">
 <ul>
-<li>1분</li>
-<li>가짜 인용을 막는 장치는 요약 문서의 형식 자체</li>
-<li>DOI: 머리말 원문 “출처 표기: 모든 메타데이터는 PubMed에서 조회한 정보이며, DOI 링크는 본 문서에 포함됨.”</li>
-<li>DOI 없는 항목 2편은 “DOI: 없음”과 PMID로 표기, 지어내지 않음. 회색문헌 1편은 “icao.int에서 PDF 직접 확인 필요”로 표시(§4)</li>
-<li>발췌: 사례 레포 <code>CLAUDE.md</code> 행동 규칙 7 하위 항목(37행). 윤리적 제약 “생성 시 반드시 하지 말아야할 규칙”(119행)</li>
-<li>본문 미확보 예: <code>koterov2025</code>는 러시아어 본문 미확보, 사용자 제공 영문 초록만 사용. 짧은 직접 인용(각 ≤25 words)으로 주장마다 anchor(§6.3.1)</li>
-<li>에이전트가 스스로 적은 한계(§4) 원문: “본문 검토 없이 초록 수치를 그대로 옮긴 항목이 다수이므로, manuscript에 인용 시 본문 재확인 필요.”</li>
-<li>연결 문장 예: Rhee et al.&nbsp;2015, Aerosp Med Hum Perform, doi:10.3357/AMHP.4362.2015. 리뷰어 대응(S36)에서 채택 논거로 다시 등장</li>
-<li>구조가 막는 것은 없는 논문. 있지만 다른 말을 하는 논문은 본문을 읽는 사람이 막음</li>
+<li>대본
+<ul>
+<li>문헌 수집 녹화를 2배속으로 줄인 약 11분짜리 영상입니다.</li>
+<li>문헌 워커 4명이 주제를 나눠 동시에 투입되는 장면을 보시면 됩니다.</li>
+<li>워커가 출판본을 찾아 먼저 보고하고, 제 지적 뒤 에이전트가 지우는 장면도 들어 있습니다.</li>
+<li>문헌 정리 중에 KNHANES 2022 혈압이 자동 측정이라는 사실이 나와 계획서 기술을 고칩니다.</li>
+<li>에이전트가 문헌으로 답할 수 없는 검사법과 LDL 계산 방식을 저에게 묻는 장면도 있습니다.</li>
+<li>232편을 모으는 동안 밖으로 나간 것은 검색 질의뿐이었습니다.</li>
+<li>다음은 마지막 원고 초안 단계입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>영상: literature-review.mp4 2배속(literature-review-2x.mp4, 약 11분). YouTube https://youtu.be/WXJjkJ09R6U</li>
+<li>짚을 장면: 문헌 워커 4명 병렬 투입 / 워커가 출판본을 찾아 “결정이 필요한 사항”으로 먼저 보고 / “해당 논문은 참고하지 않는다라는 규칙을 줬는데” 지적과 제거, CLAUDE.md 규칙 추가 / KNHANES 2022 혈압 측정 방식 정정 / 기관 정보 질문</li>
+<li>재생 구간: 시작 시각은 리허설 때 영상을 보며 지정. 1분 안에 참고 금지 지적 장면 권장</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2379,45 +2932,75 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="methods-results-작성" class="slide level2 grey">
-<h2>⑥ Methods, Results 작성</h2>
+<section id="초안-작성" class="slide level2 grey">
+<h2>⑥ 초안 작성</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
 <div class="pipeline">
-<span>탐색</span><span>가설</span><span>분석</span><span>해석</span><span>문헌</span><span class="active">원고</span><span>리뷰어</span>
+<span>전처리</span><span>탐색</span><span>가설</span><span>분석</span><span>문헌</span><span class="active">초안</span>
 </div>
 <div class="stage3">
 <div class="box">
 <p><span class="label">프롬프트</span></p>
-<p>Statistical analysis 절, 수식 포함</p>
-</div>
-<div class="box">
-<p><span class="label">에이전트가 한 일</span></p>
-<p><code>05_statistical_analysis_methods.qmd</code> 초안(2026-03-21)</p>
-<p>Overview: R 버전, 패키지 인용, 검정 기준까지 작성</p>
-<p>저자 문체 유지 qmd 원고(2026-05-09), qmd → docx 렌더</p>
 <blockquote>
-<p>“… the largest adjusted p among those components, taken from Table 2; no reanalysis was required.”</p>
+<p>먼저 이 결과를 투고할만한 SCIE급 저널을 추천해줘.</p>
+</blockquote>
+<blockquote>
+<p>일단 저자정보는 적지 말고 BMC 계열 공통 서식을 생성 워드 파일에 적용. … 인용은 제안한 Vancouver 형태로 만들고 quarto-word 랜더링 시 bib 파일이 필요할 수 있으므로 bib 파일 생성 권장.</p>
 </blockquote>
 </div>
+<div class="box wide">
+<p><span class="label">에이전트가 한 일</span></p>
+<ul>
+<li>저널 후보 표: 영향력지수는 웹에서 확인한 값, 미확인은 표기</li>
+<li>1순위 저널의 투고 규정 확인: Word 템플릿 없음, Vancouver, LLM 사용은 Methods에 기재 필수</li>
+<li>Times New Roman 참조 docx, BMC 인용 스타일, 흐름도 PNG 변환</li>
+<li>원고 워커 2명 병렬: Methods, Results / 나머지 섹션. 인용은 PubMed에서 받은 bib</li>
+</ul>
+</div>
 <div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<p>산문의 숫자는 글자: 표, 스크립트와 대조</p>
-<p>“all p ≤ 0.009”가 Table 2 보정 p 중 최대인지</p>
-<p>초안 R 4.5.2 → 출판본 V.4.5.3</p>
+<p><span class="label">내가 확인할 것</span></p>
+<ul>
+<li>산문의 숫자와 표 대조</li>
+<li>인용이 주장과 맞는지</li>
+<li>에이전트가 남긴 TODO 13곳: IRB 번호, 측정법, 민감도, Declarations</li>
+</ul>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li>1.5분</li>
-<li>원고 단계 첫 장. Methods 초안은 3월 분석 대화 끝에서 Positron Assistant(Claude Sonnet 4.6)가 작성. qmd 저자란 “Databot (Agent Analysis)”</li>
-<li>Overview 첫 문단: R 버전, tidyverse, broom, emmeans, flextable 인용, Welch t, Pearson χ2 또는 Fisher 기준까지 에이전트가 채움</li>
-<li>제목 보정해서 말할 것: 표와 그림은 코드에서 나옴. 산문의 숫자는 하드코딩된 글자. 그래서 “코드에서 나오거나 스크립트로 검증된다”</li>
-<li>인용 원문(답변서 2026-08-15, Claude Code): “The added p value is the largest adjusted p among those components, taken from Table 2; no reanalysis was required.”</li>
-<li>확인할 것: 이 p가 Table 2 다섯 구성요소의 보정 p 중 가장 큰 값인지</li>
-<li>2026-08-16 교차검증 원문: “답변서의 원고 인용문 전부 r2 qmd/docx와 대조 → 일치”</li>
-<li>R 버전: 초안 4.5.2, 출판본 V.4.5.3. 원고 숫자는 최종 실행 기준</li>
-<li>2026-05-09 재작성: docx 초안을 바탕으로 새 qmd 원고 작성(다음 장)</li>
-<li>프롬프트 칸은 요지. 원문 확인 필요</li>
+<li>대본
+<ul>
+<li>마지막 여섯 번째 단계, 원고 초안입니다.</li>
+<li>왼쪽 칸, 제가 “먼저 이 결과를 투고할만한 SCIE급 저널을 추천해줘.”라고 썼습니다.</li>
+<li>에이전트는 처음에 중복 출판을 경고했습니다.</li>
+<li>제가 “알아 AI를 이용한 논문작성에 대한 예시로 쿼리를 준거야”라고 답하자 저널만 추천했습니다.</li>
+<li>가운데 칸, 저널 후보 표의 영향력지수는 웹에서 확인한 값이고, 미확인은 그렇게 표기했습니다.</li>
+<li>1순위는 BMC의 Diabetology &amp; Metabolic Syndrome입니다.</li>
+<li>투고 규정에서 LLM 사용은 Methods에 기재 필수라는 점을 짚었고, 4막 윤리에서 다시 봅니다.</li>
+<li>Times New Roman 참조 docx와 BMC 인용 스타일을 깔고, 더미 렌더로 번호 인용을 확인했습니다.</li>
+<li>원고 워커 2명에게 Methods와 Results, 나머지 섹션을 나눠 맡겼고, 인용 키는 PMID로 통일했습니다.</li>
+<li>워커 브리핑에는 참고 금지 논문 제외, 수치 출처 주석, LLM 사용 기재를 넣었습니다.</li>
+<li>앞 장의 규칙이 이번에는 브리핑에 적혀 워커에게 갔습니다.</li>
+<li>이런 잔손은 에이전트가 깔고, 산문의 숫자와 인용 대조는 오른쪽 칸처럼 제가 합니다.</li>
+<li>초안 v1은 초록 338단어, 참고문헌 75개, 본문 인용 87회가 모두 번호로 붙은 상태로 나왔습니다.</li>
+<li>에이전트는 IRB 번호, 측정법, 민감도, Declarations를 TODO 13곳으로 남기고 넘어갔습니다.</li>
+<li>혈압 해석은 “신중히 해석”으로, 서론에는 신규성 주장을 넣지 않았다고 스스로 밝혔습니다.</li>
+<li>원고 작성 과정을 영상으로 보시겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 2분</li>
+<li>2026-11-02 KST 09:35–10:10. 원고 초안 v1 완성(10:10), <code>manuscript/manuscript_draft_v1.docx</code></li>
+<li>말할 것: 저널 규정 확인, 서식 파일, 인용 스타일 같은 잔손이 많은 일을 에이전트가 먼저 깔아 둠. 원고의 숫자와 주장은 내가 대조</li>
+<li>저널 추천: 1순위 Diabetology &amp; Metabolic Syndrome(BMC, 오픈액세스). 대안 Journal of Obesity &amp; Metabolic Syndrome, Aerospace Medicine and Human Performance, Military Medicine, J Korean Med Sci 등. 영향력지수는 에이전트가 웹에서 확인한 값, 연도 불명은 그대로 표기</li>
+<li>투고 규정에서 에이전트가 짚은 것: “LLM 사용은 Methods에 기재 필수(저자 자격 불가)”. 4막 윤리 장과 연결</li>
+<li>인프라: 참조 docx(Times New Roman 12 pt, 더블스페이스), <code>biomed-central.csl</code>, 마스터 <code>manuscript.qmd</code>가 섹션 파일을 include → docx. 더미 렌더로 <code>[1]</code>, <code>[1, 2]</code> 번호 인용 확인</li>
+<li>워커 분담: W1 Methods, Results, 그림 범례 / W2 제목, 초록(350단어 이하), Background, Discussion, Conclusions, Declarations(저자 정보 TODO). 인용 키는 PMID로 통일해 병합 충돌 방지</li>
+<li>참고 금지 논문 제외, 수치 출처 주석, LLM 사용 기재를 워커 브리핑에 포함</li>
+<li>초안 v1: Title, Abstract 338단어, Keywords 9개, Background, Methods(LLM 사용 기재 포함), Results(Figure 1 삽입), Discussion, Conclusions, 약어 27개, Declarations(TODO), Figure 1–6 범례. 참고문헌 75개, 본문 인용 87회 모두 번호로 해결</li>
+<li>에이전트가 사용자에게 물은 것: 공군 자료 기간(2021–2022가 맞는지), 여성 제외 사유 문구, 공복 문구, IRB 번호와 TG, LDL 측정법</li>
+<li>에이전트가 스스로 내린 서술 결정(바꿀 수 있다고 명시): 혈압 소견은 두 측정 편향의 순효과를 단정할 수 없어 “신중히 해석” / Background는 재현 목적이라 신규성 주장 없음</li>
+<li>남은 TODO 13곳: IRB 승인번호와 동의 면제, 공군 TG 측정법과 LDL 직접측정 여부, 지질약 복용자 제외 민감도, Declarations(이해상충, 연구비, 저자 기여, 감사)</li>
+<li>내부 검토(peer-reviewer)와 표, 그림 정비는 다음 단계 후보로 남음. 발표 시점에는 초안 v1까지</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2431,106 +3014,29 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="문체와-분량-조정" class="slide level2">
-<h2>⑥ 문체와 분량 조정</h2>
+<section id="영상-원고-초안" class="slide level2">
+<h2>⑥ 영상: 원고 초안</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="stage3">
-<div class="box">
-<p><span class="label">프롬프트</span></p>
-<blockquote>
-<p>저자의 문맥, 문체, 주장 등을 유지하면서 초안의 부족한 부분을 수정</p>
-</blockquote>
-<blockquote>
-<p>진행하되 문장에 하이픈 사용 지양 (예: <code>--rather than ... --</code>)</p>
-</blockquote>
-<p>Abstract 300자 이내로 압축</p>
-</div>
-<div class="box">
-<p><span class="label">에이전트가 한 일</span></p>
-<p><code>manuscript-pilot-khanes-METS-revised.qmd</code> 신규, 인용키 21개 검증</p>
-<p>Abstract 299 단어, em-dash 제거</p>
-<p>6번째 limitation 약 200 → 약 95 단어</p>
-<p>세션 요약 memory §7에 “사용자 명시” 기준 기록</p>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<p>em-dash 쓴 첫 시도 거부 → 재작성</p>
-<p>“Discussion 재인용과 중복”으로 지워진 HWE 인용 5편 복원</p>
-<blockquote>
-<p>해석 틀을 도입하는 문장에 근거가 없어지는 것은 중복 제거가 아님</p>
-</blockquote>
-<p>복원 후 참고문헌 36편 불변, 복원 5편 번호 17–21</p>
-</div>
+<div class="vidcenter">
+<iframe src="https://www.youtube.com/embed/PijAcm--Ngc" width="960" height="540" title="Manuscript drafting" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 </div>
 <aside class="notes">
 <ul>
-<li>1.5분</li>
-<li>원고 재작성 세션(2026-05-09, Claude Code). 사용자 지시가 세션 요약 §7 “주요 의사결정 / 사용자 피드백”에 “사용자 명시”로 남음</li>
-<li>§7 “사용자 명시” 원문 3건: “qmd 파일에 결과 테이블 및 그림은 포함시키지 않고 논문 내용만 작성” / “진행하되 문장에 하이픈 사용 지양 (예: <code>--rather than ... --</code>)” / “저자의 문맥, 문체, 주장 등을 유지하면서 초안의 부족한 부분을 수정”</li>
-<li>§7 네 번째 항목: 압축 우선(Abstract, Limitations 모두 길이 압축 요청 두 차례)</li>
-<li>“Abstract 300자 이내로 압축”은 §2 흐름 표의 요청 칸 문구. 로그 원문 아님</li>
-<li>§2 원문: “6번째 limitation 추가 (사용자 첫 시도에서 em-dash 사용 → 거부 → 재작성)”</li>
-<li>§6 검증: Abstract 단어수 = 299, Limitations 전체 308 단어, em-dash 0개, 인용키 21개 모두 <code>references.bib</code>에 존재</li>
-<li>확인 필요: 요청 표기는 “300자”, 결과 기록은 “299 단어”. 단위가 다름</li>
-<li>기록 주체: <code>memory/agent_bot/</code> 폴더, 에이전트가 세션 끝에 작성. 제목의 “내가 적어 둔다”는 내 지시가 memory 파일로 남아 다음 세션의 기준이 된다는 뜻으로 말함</li>
-<li>HWE 인용 복원(2026-08-16 저녁, §5-1): Introduction 문장 “We anchor our findings within the framework of the healthy-worker effect (HWE) in aviation”의 인용 5편(<code>cairns2020</code>, <code>houston2011</code>, <code>koterov2025</code>, <code>park2024</code>, <code>pizzi2008</code>)</li>
-<li>교훈 원문: “"중복 인용" 판단은 같은 문헌이 여러 문장에 붙는 것을 자동으로 중복으로 보면 안 됨. 각 문장이 자체 근거를 필요로 하는지 먼저 볼 것”</li>
-<li>같은 날 반대 방향: Table 3 각주의 진짜 중복은 사용자 지적으로 새 문장 삭제</li>
-<li>이 발표의 가운뎃점, em-dash 금지 규칙도 같은 방식(이 프로젝트 <code>CLAUDE.md</code> 행동 규칙 5)</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="리뷰어-대응" class="slide level2 grey">
-<h2>⑦ 리뷰어 대응</h2>
-<p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="pipeline">
-<span>탐색</span><span>가설</span><span>분석</span><span>해석</span><span>문헌</span><span>원고</span><span class="active">리뷰어</span>
-</div>
-<div class="stage3">
-<div class="box">
-<p><span class="label">프롬프트</span></p>
-<p>Reviewer 2 지적별 대응 계획</p>
-<p>예: R2-14, 연령은 10년 구간인데 다른 변수는 왜 사분위인가</p>
-</div>
-<div class="box">
-<p><span class="label">에이전트가 한 일</span></p>
-<p><code>reviewer2-response-plan.md</code>: 지적별 채택 논거, 폐기 논거</p>
-<p>채택: 원고가 이미 인용 중인 <code>rhee2015</code>의 사분위 선례</p>
-<blockquote>
-<p>사실이지만 <strong>이 표본에서만 성립하는 우연의 일치</strong>이며 사후 관찰임</p>
-</blockquote>
-<p>응답서 초안 2026-08-15 → v2 2026-08-16</p>
-</div>
-<div class="human">
-<p><span class="label">내가 확인한 것</span></p>
-<p>1차 개정안에 절단값 일치표가 이미 들어가 있었음</p>
-<p>폐기 사유 2개: 사후 관찰, 리뷰어가 묻지 않은 쟁점</p>
-<p>사실이어도 설계 시점의 이유가 아니면 뺌</p>
-</div>
-</div>
-<aside class="notes">
+<li>대본
 <ul>
-<li>1.5분</li>
-<li>리뷰어 대응 단계(2026-08-14부터 16까지, Claude Code). 레포 표기 DataBot, 모델 미기재</li>
-<li>장면: R2-14 대응안 작성 중 에이전트가 자기 논거 2개를 “응답서에 쓰지 말 것”으로 분류</li>
-<li>폐기 1: 사분위 상한과 MetS 진단 절단값의 일치(WC 89.1 vs 90, SBP 131 vs 130, DBP 85 vs 85, TG 153 vs 150, GLUC 101 vs 100). 원문 “설계 시점의 사유가 아니므로 "왜 사분위를 썼는가"에 대한 답이 될 수 없고, 응답서에 넣으면 사후 정당화로 읽힘.”</li>
-<li>폐기 2: “진단 절단값을 층화 기준으로 쓰면 순환성이 최대가 된다”. 원문 “리뷰어가 묻지 않은 쟁점이며” / “먼저 꺼내면 오히려 이 지점을 파고들 빌미가 됨.”</li>
-<li>채택: 관례 논거. <code>rhee2015</code>가 ROKAF 항공종사자 911명에서 최상위 사분위 기준으로 MetS 위험(OR 8.88) 보고. 같은 분야, 같은 설계의 직접 선례, 신규 인용 불필요</li>
-<li>결론 원문: “리뷰어의 "??"는 설계 결함 지적이 아니라 일관성에 대한 의문 제기이므로, 간결하고 확신 있는 답이 최선.”</li>
-<li>확인된 사실: 절단값 일치표는 2026-08-15 1차 개정안에 들어가 있었음. 에이전트가 쓴 것 중 무엇을 빼느냐도 통제 지점 → 다음 장</li>
-<li>확인 필요: 폐기를 사용자가 승인한 기록은 발췌본에 없음(아웃라인 “폐기 논거 승인”). 슬라이드는 확인 기준으로만 씀</li>
-<li>응답서 파일: <code>quarto/agent_bot/2026-08-15/responses-to-reviewers.qmd</code>, <code>quarto/agent_bot/2026-08-16/responses-to-reviewers-v2.qmd</code>(발췌 11)</li>
-<li>프롬프트 칸은 요지. R2-14 문구는 발췌본의 맥락 설명이고 리뷰어 원문 아님</li>
+<li>원고 초안 작성 녹화입니다.</li>
+<li>저널 규정과 서식, 인용 스타일을 먼저 깔고 원고 워커가 쓰는 순서로 보시면 됩니다.</li>
+<li>1순위 저널의 투고 규정을 확인하고, Times New Roman 서식 파일과 BMC 인용 스타일을 만드는 장면이 먼저 나옵니다.</li>
+<li>이어서 원고 워커 2명이 섹션을 나눠 쓰고, 오케스트레이터가 합쳐서 Word로 렌더합니다.</li>
+<li>원고가 나와도 산문의 숫자와 인용 대조는 제가 할 일로 남습니다.</li>
+<li>여섯 단계에서 제가 손댄 곳을 한 장으로 정리하겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>영상: draft-01, draft-02 병합 2배속(draft-2x.mp4, 약 9분). YouTube https://youtu.be/PijAcm–Ngc</li>
+<li>짚을 장면: 저널 추천과 중복 출판 경고, “알아 AI를 이용한 논문작성에 대한 예시로 쿼리를 준거야” / 투고 규정 확인(LLM 사용 Methods 기재 필수) / 서식 파일과 CSL 준비 / 원고 워커 2명 병렬 / 병합 후 docx 렌더</li>
+<li>앞 8분 15초는 draft-01, 그 뒤는 draft-02</li>
+<li>재생 구간: 시작 시각은 리허설 때 영상을 보며 지정. 1분 안에 투고 규정 확인 장면 권장</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2547,41 +3053,60 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <section id="연구자-확인-지점" class="slide level2 grey">
 <h2>연구자 확인 지점</h2>
 <p><span class="eyebrow">3. 사례: 대사증후군 논문</span></p>
-<div class="cards">
+<div class="cards tall">
 <div class="human">
-<p><span class="h3">1. 실행 전 승인</span></p>
-<p>“User declined to execute tool.” → 범위 다시 지정</p>
-<p><span class="tag-human">2026-03-19, Positron Assistant</span></p>
+<p><span class="h3">1. 정의와 대상</span></p>
+<ul>
+<li>MetS 재산출, 약물 변수의 의미, 가중치 미적용, 완전사례</li>
+<li>에이전트는 불일치를 분해해 보여주고 결정을 넘김</li>
+</ul>
 </div>
 <div class="human">
-<p><span class="h3">2. 데이터 노출</span></p>
-<p>행 단위 출력 금지, 집계값만, 5명 미만은 “5 미만”</p>
-<p><span class="tag-human">이 발표의 CLAUDE.md 화면 노출 규칙</span></p>
-</div>
-</div>
-<div class="cards">
-<div class="human">
-<p><span class="h3">3. 빼는 결정</span></p>
-<p>“응답서에 넣으면 사후 정당화로 읽힘”</p>
-<p><span class="tag-human">2026-08-14, Claude Code</span></p>
+<p><span class="h3">2. 질문과 설계</span></p>
+<ul>
+<li>가설 4개는 내가 씀</li>
+<li>“H2에서는 보정이 필요가 없어”의 오해를 재확인으로 바로잡음</li>
+</ul>
 </div>
 <div class="human">
-<p><span class="h3">4. 저자 검토</span></p>
-<p>“해석 틀을 도입하는 문장에 근거가 없어지는 것은 중복 제거가 아님”</p>
-<p><span class="tag-human">2026-08-16, Claude Code</span></p>
+<p><span class="h3">3. 복잡성과 의미</span></p>
+<ul>
+<li>“과도하게 복잡한 분석방법” 지적으로 표 단순화</li>
+<li>요산을 핵심 발견으로 지정한 것은 나</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="h3">4. 규칙과 근거</span></p>
+<ul>
+<li>참고 금지 논문이 문헌에 섞임 → 지적, 규칙을 파일로</li>
+<li>문헌으로 답할 수 없는 기관 정보는 내가 제공</li>
+</ul>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li>1.5분</li>
-<li>3막 정리. 일곱 단계에서 사람이 손을 댄 지점은 네 종류</li>
-<li>1 실행 전 승인(2026-03-19, Positron Assistant(Claude Sonnet 4.6)): 요청 “분석 결과 도출을 위해 생성했던 스크립트들을 새로운 파일로 저장” → 에이전트가 flextable 스크립트부터 저장하려 함 → 도구 실행 거부</li>
-<li>이어진 원문: “<strong>Tool execution canceled by user.</strong> What would you like me to do instead?” → 사용자 “내가 원했던건 연구질문 4와 관련한 분석 스크립트를 새로운 R 파일로 작성하라는 것이야.”</li>
-<li>도구 경계 메모: write 도구는 “outside the workspace and not currently open in an editor”로 실패, bash로 우회해 RQ4 스크립트 2개 생성</li>
-<li>2 데이터 노출: 이 프로젝트 <code>CLAUDE.md</code> 화면 노출 규칙 1–3(행 단위 출력 금지, 집계값만, 5명 미만은 “5 미만”, 식별 열은 변수명도 띄우지 않음). 임상 DB에 붙이는 스킬 규칙(읽기 전용, 집계값만, 접속정보 비노출)은 질문 시 구두 보충</li>
-<li>3 빼는 결정: S36. 폐기 판단 문장은 에이전트가 씀. 응답서에 무엇이 남는지는 저자 몫</li>
-<li>4 저자 검토: S35. “중복”으로 지워진 HWE 인용 5편 복원</li>
-<li>마지막 장(S41)에서 이 그림으로 다시 닫음</li>
+<li>대본
+<ul>
+<li>여섯 단계에서 제가 손댄 지점을 네 가지로 묶었습니다.</li>
+<li>첫째 카드, 52명 불일치는 에이전트가 분해했지만 MetS 재산출, 가중치 미적용, 완전사례는 제가 정했습니다.</li>
+<li>둘째 카드, 가설 4개는 제가 썼고, “H2에서는 보정이 필요가 없어”의 오해는 재확인으로 바로잡았습니다.</li>
+<li>셋째 카드, “과도하게 복잡한 분석방법”이라는 지적으로 표를 줄였습니다.</li>
+<li>여러 결과 가운데 요산을 핵심 발견으로 지정한 것도 제 판단이었습니다.</li>
+<li>넷째 카드, 참고 금지 논문이 문헌에 섞였을 때 지적하고 규칙을 파일로 옮겼습니다.</li>
+<li>혈압 측정 방식처럼 문헌으로 답할 수 없는 기관 정보는 제가 줬습니다.</li>
+<li>에이전트는 실행, 검증, 정리를 빠르게 했고, 방향, 의미, 규칙은 제가 맡았습니다.</li>
+<li>에이전트가 결정을 넘기는 지점이 곧 연구자 확인 지점입니다.</li>
+<li>4막에서는 AI에 맡긴 일과 연구자의 일을 나눠 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1.5분</li>
+<li>3막 정리. 여섯 단계에서 사람이 손을 댄 지점을 네 종류로 묶음</li>
+<li>1: ① 전처리의 METS 불일치 52명 분해, 결정 4건 / ② 탐색의 완전사례 결정</li>
+<li>2: ③ 가설 설정. 가설 문장은 사용자 원문, 짧은 지시가 글자 그대로 적용된 장면</li>
+<li>3: ④ 분석. Table 2 단순화 지시, 요산 지적</li>
+<li>4: ⑤ 문헌. 참고 금지 논문 사건, 혈압 측정 방식과 검사법 같은 기관 정보</li>
+<li>공통: 에이전트는 실행과 검증과 정리를 빠르게, 사람은 방향과 의미와 규칙. 에이전트가 결정을 넘기는 지점이 곧 연구자 확인 지점</li>
+<li>다음: 4막, 무엇이 빨라졌고 무엇이 남았나</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2618,10 +3143,24 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>앞 장의 연구자 확인 지점을, 맡긴 일과 남은 일로 다시 나눠 보겠습니다.</li>
+<li>왼쪽 카드, 에이전트에게 간 것은 다섯 가지입니다.</li>
+<li>코드 작성과 실행, 표와 그림, 문헌 정리를 에이전트가 맡았습니다.</li>
+<li>숫자 검증 스크립트와 원고 초안도 에이전트가 썼습니다.</li>
+<li>오른쪽 카드, 사람에게 남은 것도 다섯 가지입니다.</li>
+<li>질문을 정하고, 설계안 가운데 하나를 고르는 일은 제 몫입니다.</li>
+<li>결과 해석, 어떤 문헌을 인용할지 판단, 최종 검토도 제가 합니다.</li>
+<li>줄어든 시간은 숫자로 일반화하지 않고, 제 경험으로만 말씀드리겠습니다.</li>
+<li><code>[여기에: 체감 효과 한 문장, 예: 전처리부터 초안까지 걸린 기간]</code></li>
+<li>이렇게 나눠 쓰려면 처음에 해 둘 설정이 세 가지 있습니다.</li>
+</ul></li>
+<li>메모</li>
 <li>1.5분</li>
-<li>왼쪽 항목별 사례: 코드 작성과 실행(S24–S26), 표와 그림(S27), 문헌 정리(S31), 숫자 검증 스크립트(S30), 초안(S34, S35)</li>
-<li>오른쪽 항목별 사례: 질문(S22 RQ 확정), 설계 선택(S23 설계안 중 선택), 해석(S29 “오즈비”가 가리킨 두 표), 인용 판단(S33, S35 HWE 인용 복원), 최종 검토(S36, S37)</li>
-<li><code>[여기에: 체감 효과, 예: 리뷰어 대응 기간]</code></li>
+<li>왼쪽 항목별 사례(3막): 코드 작성과 실행(① 전처리, ④ 분석의 워커 run), 표와 그림(④ Table 1–5, Figure 2–6), 문헌 정리(⑤ 232편), 숫자 검증(④ 오케스트레이터 독립 재계산), 초안(⑥ 원고 워커 2명)</li>
+<li>오른쪽 항목별 사례(3막): 질문(③ 가설 4개 직접 작성), 설계 선택(③ H2 재확인, 설계 검토 권고안 확정), 해석(④ 요산을 핵심 발견으로 지정, 표 단순화), 인용 판단(⑤ 참고 금지 논문 지적), 최종 검토(⑥ 산문 숫자와 표 대조, 에이전트가 남긴 TODO 13곳)</li>
+<li><code>[여기에: 체감 효과, 예: 전처리부터 초안까지 걸린 기간]</code></li>
 <li>시간 절감 수치는 발췌본에 없음. 체감은 발표자 경험으로만 말하고 숫자로 일반화하지 않음</li>
 </ul>
 <style type="text/css">
@@ -2658,6 +3197,20 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 </div>
 <aside class="notes">
 <ul>
+<li>대본
+<ul>
+<li>세 카드 모두 사례 레포에 실제로 있는 설정입니다.</li>
+<li>첫 카드, CLAUDE.md 한 장은 목적과 상태, 역할, 행동 규칙으로 시작합니다.</li>
+<li>여기에 코딩 규칙, 윤리 제약, 저장 규칙을 더해 6블록입니다.</li>
+<li>사례 레포 원본은 381행이지만, 처음에는 한 장이면 됩니다.</li>
+<li>에이전트를 교정할 일이 생길 때마다 한 줄씩 더하시면 됩니다.</li>
+<li>두 번째 카드, code와 output을 user와 agent로 나누고 그 아래 날짜 폴더를 둡니다.</li>
+<li>그러면 에이전트가 언제 무엇을 만들었는지 날짜 폴더로 추적할 수 있습니다.</li>
+<li>세 번째 카드, verify-numbers.R은 원고의 숫자를 같은 데이터에서 다시 계산합니다.</li>
+<li>SI 변환 뒤 OR, Δβ, 95% CI, p가 기존 값과 같은지를 기준으로 미리 정했습니다.</li>
+<li>다음은 AI를 쓴 논문에 적용되는 윤리 기준입니다.</li>
+</ul></li>
+<li>메모</li>
 <li>1.5분</li>
 <li>셋 다 사례 레포에 실제로 있는 것</li>
 <li>CLAUDE.md: 사례 레포 원본 381행, 6블록. 행동 규칙 7 원문 “직접 테이블을 생성하지 말고 테이블 값이 도출되는 과정을 반드시 남김”, 9 원문 “모든 수치 결과는 그 도출 과정을 문서에 포함”</li>
@@ -2665,7 +3218,7 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <li>폴더: 사람과 에이전트 산출물 분리, 날짜 폴더. 실례: 에이전트가 “AGENTS.md 규칙에 따라 <code>code/agent_bot/2026-03-19/</code> 폴더에” 저장(07), 검증 스크립트 위치 <code>code/agent_bot/2026-08-16/</code></li>
 <li>검증 스크립트 헤더 원문: “Nothing here changes any analysis; it recomputes from the same analysis dataset the manuscript already uses.”</li>
 <li>검증 기준은 미리 정함: SI 변환 후 OR, Δβ, 95% CI, p가 기존 값과 완전히 같아야 함(reviewer2-response-plan §D)</li>
-<li>스타터킷에 템플릿(다음 장)</li>
+<li>이 설정을 받쳐 줄 도구는 마지막 장</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2679,36 +3232,57 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="한계" class="slide level2 grey">
-<h2>한계</h2>
+<section id="ai-활용-논문의-윤리" class="slide level2 grey">
+<h2>AI 활용 논문의 윤리</h2>
 <p><span class="eyebrow human">4. 정리</span></p>
-<div class="cards">
+<div class="cards tall">
 <div class="box">
-<p><span class="h3">묻지 않고 고른다</span></p>
-<p>“오즈비”가 가리킨 두 표 중 하나를 골라 서사까지 작성</p>
-<p>“이전 해석에 오류가 있었습니다”</p>
+<p><span class="h3">저자 자격</span></p>
+<ul>
+<li>AI는 저자로 올릴 수 없음(ICMJE, COPE 공통)</li>
+<li>이유: 정확성, 무결성, 독창성에 책임질 수 없음</li>
+<li>저자 기준 4가지(기여, 초안 또는 수정, 최종 승인, 책임)를 AI는 못 채움</li>
+<li>감사의 글에도 AI를 사람처럼 적지 않음</li>
+</ul>
 </div>
 <div class="box">
-<p><span class="h3">그럴듯한 용어</span></p>
-<p>척도 의존성을 이렇게 부름</p>
-<p>“이는 통계학에서 잘 알려진 <strong>”non-collapsibility”</strong> 문제입니다.”</p>
+<p><span class="h3">사용 공개</span></p>
+<ul>
+<li>투고 시 커버레터에 사용 사실</li>
+<li>원고 해당 절에 도구 이름, 버전, 용도(예: 코드 작성, 문장 교정)</li>
+<li>문법 교정 수준은 면제하는 저널도 있음. 애매하면 공개</li>
+<li>저널마다 위치와 문구가 다름: 투고 규정 확인</li>
+</ul>
 </div>
-<div class="box">
-<p><span class="h3">완료 선언</span></p>
-<p>공분산을 뺀 SE 손계산 뒤</p>
-<p>“완료되었습니다!”</p>
+<div class="human">
+<p><span class="h3">최종 책임</span></p>
+<ul>
+<li>AI 산출물은 틀리거나 빠지거나 치우칠 수 있음: 저자가 읽고 고침</li>
+<li>AI 생성물을 1차 출처로 인용 불가. 인용은 원 문헌으로</li>
+<li>숫자는 실행 출력, 인용은 원문과 대조한 기록을 남김</li>
+<li>공개하지 않은 사용: 정정 대상, 경우에 따라 부정행위</li>
+</ul>
 </div>
 </div>
 <aside class="notes">
 <ul>
-<li>1분</li>
-<li>세 장면 모두 3월 분석 대화, Positron Assistant(Claude Sonnet 4.6)</li>
-<li>묻지 않고 고름(2026-03-10): 탐색적 질문의 “오즈비”는 집단 내 1-SD OR 표(<code>tbl_result_mets_lbtest</code>)였는데 에이전트는 집단 간 유병 OR로 받아 HWE 서사와 논문 문장까지 작성. 사용자 “결과 해석이 이상한데?” → 에이전트 “확인했습니다. 이전 해석에 오류가 있었습니다.” 이 연결 시도는 원고에 들어가지 않음</li>
-<li>그럴듯한 용어(2026-03-17): probit 척도에서 비유의, 확률 척도에서 유의로 갈린 상호작용을 “non-collapsibility”라 부름. 맞는 이름은 상호작용의 척도 의존성. 계산 재현은 정확. 수치는 <code>slides/excerpts/08-probit-logit-probability-scale.md</code></li>
-<li>완료 선언(2026-03-12): 3원 상호작용 SE를 <code>sqrt(cont_df$SE[1]^2 + cont_df$SE[2]^2)</code>로 손계산(공분산 무시). 주석 “METS_new is the outcome (binary), not a predictor”를 남긴 채 “완료되었습니다!”. 사용자 확인 흔적 없음</li>
-<li>출판 원고에 없는 탐색 결과라 수치는 올리지 않음</li>
-<li>질문 나오면: Δβ 부호를 같은 메시지 안에서 반대로 읽은 장면(2026-03-10). 출처 <code>slides/excerpts/09-delta-beta-sign.md</code></li>
-<li>대응: CLAUDE.md(이 프로젝트 <code>CLAUDE.md</code> 행동 규칙 6 “여러 해석이 가능하면 고르지 말고 묻는다”), 검증 스크립트(S30), 다른 계열 모델 검토(S18)</li>
+<li>대본
+<ul>
+<li>기준은 ICMJE 권고안이고, COPE도 2023년 2월 입장문에서 같은 방향을 냈습니다.</li>
+<li>첫 카드, AI는 저자 기준 네 가지를 채우지 못해 저자로 올릴 수 없습니다.</li>
+<li>두 번째 카드, 투고할 때 커버레터와 원고 해당 절에 도구 이름, 버전, 용도를 적습니다.</li>
+<li>위치와 문구는 저널마다 다르니 투고 규정을 먼저 보고, 애매하면 공개합니다.</li>
+<li>세 번째 카드, 숫자는 실행 출력과, 인용은 원문과 대조한 기록을 남깁니다.</li>
+<li>공개하지 않은 사용은 정정 대상이고, 경우에 따라 부정행위가 됩니다.</li>
+<li>다음 세 장은 실제로 문제가 된 사례입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>기준: ICMJE 권고안 “AI Use by Authors” 절. COPE 입장문(2023-02)도 같은 방향</li>
+<li>저자 기준 4가지는 ICMJE 저자 정의. AI는 넷 중 어느 것에도 책임 주체가 될 수 없음</li>
+<li>공개 위치: ICMJE는 커버레터와 원고의 관련 절. 저널별 예: 일부는 Methods, 일부는 Acknowledgments 또는 별도 선언문</li>
+<li>이 발표 방식에 대입: 에이전트가 쓴 코드, 초안은 모두 저자가 검토. 코드, 로그, memory가 남아 검증 기록이 됨</li>
+<li>다음 세 장: 실제로 문제가 된 사례</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -2722,43 +3296,283 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="스타터킷" class="slide level2 grey">
-<h2>스타터킷</h2>
+<section id="최근-이슈-1-가짜-참고문헌" class="slide level2 grey">
+<h2>최근 이슈 1: 가짜 참고문헌</h2>
 <p><span class="eyebrow human">4. 정리</span></p>
-<p>[여기에: 스타터킷 주소] QR</p>
-<p>CLAUDE.md 템플릿 / 폴더 구조 / 검증 체크리스트 / 프롬프트 치트시트</p>
-<div class="cards">
-<div class="human">
-<p><span class="h3">1. 실행 전 승인</span></p>
-<p>“User declined to execute tool.” → 범위 다시 지정</p>
-<p><span class="tag-human">2026-03-19, Positron Assistant</span></p>
+<div class="cards tall">
+<div class="box">
+<p><span class="h3">PubMed 전수 조사</span></p>
+<ul>
+<li>Columbia 연구진, Lancet 서한(2026-05)</li>
+<li>논문 250만 편, 참고문헌 9,710만 건을 자동 대조</li>
+<li>존재하지 않는 참고문헌 4,046건이 2,810편에서 발견</li>
+<li>2023년 2,828편 중 1편 → 2025년 458편 중 1편 → 2026년 초 277편 중 1편</li>
+<li>급증 시점 2024년 중반: AI 글쓰기 도구 확산과 일치</li>
+</ul>
 </div>
-<div class="human">
-<p><span class="h3">2. 데이터 노출</span></p>
-<p>행 단위 출력 금지, 집계값만, 5명 미만은 “5 미만”</p>
-<p><span class="tag-human">이 발표의 CLAUDE.md 화면 노출 규칙</span></p>
+<div class="box">
+<p><span class="h3">학회 논문</span></p>
+<ul>
+<li>NeurIPS 2025 채택 논문에서 가짜 인용 100건 분석</li>
+<li>유형: 없는 논문, 실존 저자에 없는 제목, 실존 제목에 다른 저자, 틀린 DOI</li>
+<li>심사를 통과한 뒤 발견: 심사자도 참고문헌을 확인하지 않음</li>
+<li>결론을 지탱하는 인용이 가짜면 철회, 부수적이면 정정이 적절하다는 의견</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="h3">학계 밖</span></p>
+<ul>
+<li>Deloitte, 호주 고용부 복지제도 검토 보고서(2025-10)</li>
+<li>없는 학술 논문 인용, 연방법원 판결문 인용 조작</li>
+<li>시드니대 연구자가 지적, 수정판에 GPT-4o 기반 도구 사용을 뒤늦게 명시</li>
+<li>계약액 약 44만 호주달러 중 마지막 분할금 환불</li>
+</ul>
 </div>
 </div>
-<div class="cards">
-<div class="human">
-<p><span class="h3">3. 빼는 결정</span></p>
-<p>“응답서에 넣으면 사후 정당화로 읽힘”</p>
-<p><span class="tag-human">2026-08-14, Claude Code</span></p>
-</div>
-<div class="human">
-<p><span class="h3">4. 저자 검토</span></p>
-<p>“해석 틀을 도입하는 문장에 근거가 없어지는 것은 중복 제거가 아님”</p>
-<p><span class="tag-human">2026-08-16, Claude Code</span></p>
-</div>
-</div>
+<ul>
+<li>더 큰 문제: 있지만 다른 말을 하는 인용. DOI 확인으로 못 잡고 본문을 읽어야 함</li>
+</ul>
 <aside class="notes">
 <ul>
-<li>1분</li>
-<li>스타터킷 구성: CLAUDE.md 템플릿, 폴더 구조, 검증 체크리스트, 프롬프트 치트시트</li>
-<li><code>[여기에: 스타터킷 주소]</code>, QR 이미지 자리</li>
-<li><code>starter-kit/</code> 폴더 미작성(2026-10-20 기준)</li>
-<li>닫는 그림: 3막의 통제 지점 네 곳. 에이전트에게 넘기는 일이 늘어도 이 네 곳은 사람 자리</li>
-<li>Q&amp;A로 넘어감(7분)</li>
+<li>대본
+<ul>
+<li>첫 카드, Columbia 연구진은 2026년 5월 Lancet 서한에서 PubMed를 전수 조사했습니다.</li>
+<li>없는 참고문헌이 나온 논문은 2023년 2,828편 중 1편, 2026년 초 277편 중 1편입니다.</li>
+<li>두 번째 카드, NeurIPS 2025 채택 논문의 가짜 인용 100건은 심사를 통과한 뒤 발견됐습니다.</li>
+<li>세 번째 카드, Deloitte는 2025년 10월 호주 고용부 보고서에 없는 논문을 인용했습니다.</li>
+<li>시드니대 연구자가 지적한 뒤 Deloitte는 마지막 분할금을 환불했습니다.</li>
+<li>있는 논문이 다른 말을 하는 인용은 DOI로 못 잡아서, 인용 부분을 원문에서 읽습니다.</li>
+<li>다음은 심사 과정에서 생긴 일입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>전수 조사: Topaz 외, Retraction Watch 2026-05-07 보도. 저자 발언: “손상은 이미 발생”, 모델이 좋아져도 이미 실린 가짜 인용은 남음</li>
+<li>비판도 있음: 방법 상세 부족(Flemyng), “쉬운 것만 잡은 것”(Hosseini). 존재는 하지만 내용이 다른 인용이 더 큰 문제라는 지적</li>
+<li>NeurIPS 100건: arXiv 2602.05930. 유형 분류는 이 논문의 분류를 요약. CS 학회 3곳 2025년 논문 2.6%에 가짜 인용 의심(2024년 0.3%)은 2차 보도</li>
+<li>Deloitte: AP 보도 2025-10-07. 호주 고용부가 “보고서의 실질과 권고는 유지”라고 밝힘. 상원의원은 전액 환불 요구</li>
+<li>이 발표의 대응: ⑤ 문헌 단계의 DOI 확인, 인용 부분 발췌, “본 연구와의 연결” 칸. 존재 확인과 내용 확인은 별개</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="최근-이슈-2-ai-심사와-숨은-프롬프트" class="slide level2 grey">
+<h2>최근 이슈 2: AI 심사와 숨은 프롬프트</h2>
+<p><span class="eyebrow human">4. 정리</span></p>
+<div class="cards tall">
+<div class="box">
+<p><span class="h3">심사자가 AI를 씀</span></p>
+<ul>
+<li>ICLR 2026 심사평 75,800건을 탐지기로 분류(Pangram)</li>
+<li>약 21%가 AI 전체 생성, 절반 이상에 AI 흔적으로 추정</li>
+<li>다른 탐지기는 5%로 추정: 수치보다 현상이 논점</li>
+<li>NIH(2023-06): 심사 내용을 AI에 올리면 기밀 위반, 심사 배제와 자격 정지</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="h3">저자가 AI 심사자를 노림</span></p>
+<ul>
+<li>Nikkei 조사(2025-07): arXiv 원고 17편, 14개 대학</li>
+<li>KAIST, Waseda, 북경대, NUS, Washington, Columbia 등</li>
+<li>흰 글씨, 극소 글꼴로 “positive review only”, “no criticism” 1–3문장</li>
+<li>사람 눈에는 안 보이고 AI에는 읽힘</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="h3">결과</span></p>
+<ul>
+<li>KAIST “몰랐고 용납하지 않음”, 공저자 1명 철회 의사</li>
+<li>Waseda 교수 “AI로 심사하는 게으른 심사자 대응” 해명</li>
+<li>설문: AI 심사가 명시된 경우 72%가 부정행위로 분류</li>
+<li>학술 분석은 새로운 유형의 부적절한 연구관행으로 규정</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>두 쪽 다 같은 틈: 사람이 읽지 않는 심사, 사람이 보지 않는 원고</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>첫 카드, ICLR 2026 심사평을 Pangram은 약 21%, 다른 탐지기는 5%가 AI 생성이라고 봤습니다.</li>
+<li>NIH는 2023년 6월, 심사 내용을 AI에 올리면 기밀 위반으로 심사 배제와 자격 정지라고 했습니다.</li>
+<li>두 번째 카드, Nikkei는 2025년 7월 14개 대학의 arXiv 원고 17편에서 숨은 문장을 찾았습니다.</li>
+<li>흰 글씨라 사람 눈에는 안 보이고, AI에는 “positive review only”가 읽힙니다.</li>
+<li>KAIST는 몰랐고 용납하지 않는다고 했고, 공저자 1명이 철회 의사를 밝혔습니다.</li>
+<li>에이전트에게 원고를 넘길 때도, 제가 읽지 않은 부분은 제 것이 아닙니다.</li>
+<li>다음은 AI가 쓴 글에 표시를 남기는 법과 기술입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>심사자 쪽: Pangram Labs의 상용 탐지기 결과. Sem-Detect는 같은 표본에서 5%. 저자 항의 댓글로 지목된 심사평 58건 중 50건이 탐지기에서도 AI 생성으로 분류</li>
+<li>NIH 공지 NOT-OD-23-149(2023-06-23): 생성형 AI로 심사평 작성 금지. 근거는 기밀성(업로드한 내용의 행방 보장 없음)과 심사자 판단 대체</li>
+<li>저자 쪽: TechCrunch, The Decoder 2025-07 보도. 학술 분석은 Lin Z, arXiv 2507.06185(18편), 2026 CACM 게재. 편수는 조사 주체에 따라 17, 18</li>
+<li>72%: Research Integrity and Peer Review 설문. AI 심사가 명시되지 않은 경우는 의견이 갈림</li>
+<li>말할 것: 에이전트에게 원고를 넘길 때도 같은 원리. 내가 읽지 않은 것은 내 것이 아님. ⑥ 초안 단계의 내부 검토는 보고만 하고 결정은 사람</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="최근-이슈-3-워터마크와-표시-의무" class="slide level2 grey">
+<h2>최근 이슈 3: 워터마크와 표시 의무</h2>
+<p><span class="eyebrow human">4. 정리</span></p>
+<div class="cards tall">
+<div class="box">
+<p><span class="h3">법</span></p>
+<ul>
+<li>한국 AI 기본법 2026-01-22 시행: 생성형 AI 결과물 표시 의무</li>
+<li>대상은 사업자, 개인 이용자 아님. 딥페이크는 예외 없이 사람이 알아볼 표시</li>
+<li>과태료 최대 3천만 원, 1년 이상 유예</li>
+<li>EU AI Act 50조 2026-08-02 시행. 투명성 실천강령에 Anthropic, OpenAI, Google, Meta, Microsoft 서명</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="h3">Claude 텍스트 워터마크</span></p>
+<ul>
+<li>Anthropic 발표 2026-08-14. Google DeepMind SynthID-Text(Nature 2024) 방식</li>
+<li>키와 앞 단어 몇 개로 다음 단어 선택을 결정: 통계적 패턴</li>
+<li>사람 눈에 안 보임, 품질과 비용 영향 없음, 사용자 정보 미포함</li>
+<li>탐지 API: 규제기관, 언론, 연구자 등 자격 기관에 비공개 미리보기</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="h3">한계</span></p>
+<ul>
+<li>짧은 글은 탐지 불안정</li>
+<li>제목, 사실처럼 정답 단어가 하나면 패턴 희박. 코드는 주석에만</li>
+<li>가벼운 편집은 남고, 전면 재작성은 사라짐</li>
+<li>“Claude가 관여했을 가능성”만 알려줌. 누가 썼는지, 다른 AI인지, 사람인지는 판정 불가</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>워터마크가 가리는 것은 누가 썼는가가 아니라 누가 책임지는가. 처음부터 공개하고 검증 기록을 남기는 쪽이 안전</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>한국 AI 기본법은 2026년 1월 22일 시행됐고, 표시 의무는 개인이 아닌 사업자에게 있습니다.</li>
+<li>Anthropic은 2026년 8월 14일 Claude 텍스트 워터마크를 발표했습니다.</li>
+<li>비밀 키와 직전 토큰 몇 개로 후보마다 0 또는 1 값을 매기고, 값이 큰 후보를 조금 더 고릅니다.</li>
+<li>탐지는 같은 키로 이 값을 다시 계산해 평균이 0.5보다 높은지 봅니다.</li>
+<li>짧은 글은 탐지가 불안정하고, 전면 재작성하면 패턴이 사라집니다.</li>
+<li>누가 썼는지는 못 가리니, 처음부터 커버레터에 도구 이름을 적고 기록을 남깁니다.</li>
+<li>그 기록을 남기는 데 쓰는 도구를 마지막으로 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>한국: Korea JoongAng Daily, Korea Times 보도. 서비스 안에서만 쓰이는 결과물은 안내문으로 충분, 다운로드나 공유로 밖에 나가면 표시 강화. 유예 연장 법안 처리 여부는 발표 전 재확인</li>
+<li>EU: 50조 투명성 의무. 2026-08-02 이전 출시 모델은 전환기간</li>
+<li>Anthropic: 2026-08-14 발표, 09-01 탐지 API 갱신. 내부 시험에서 내용, 창의성, 가독성 영향 없음. 토큰이 늘지 않아 비용 동일. 워터마크와 키에서 사용자, 조직, 대화 정보 복원 불가</li>
+<li>탐지 대상 기관: 규제기관, 법 집행, 언론, 팩트체커, 독립 연구자, 교육기관, EU 시민사회, 자체 준수 확인이 필요한 기업. 확대 예정</li>
+<li>말할 것: 탐지 회피가 아니라 공개가 답. ICMJE 공개 요건(앞 장)과 연결. 이 발표의 방식은 코드, 로그, memory가 그대로 남아 검증 기록이 됨</li>
+<li>발표 1주 전 재확인: 법 시행 상황, 탐지 API 공개 범위, 수치(행동 규칙 4)</li>
+<li>원리(질문 대비, SynthID-Text). 세부 설정값은 DeepMind 논문과 참조 구현 기준, Anthropic은 미공개
+<ul>
+<li>바탕: 모델은 토큰마다 후보 확률을 매기고 난수로 하나를 뽑음. 워터마크는 이 난수의 출처만 바꿈. 확률 자체는 손대지 않음</li>
+<li>시드 생성기: 비밀 키 + 직전 토큰 몇 개(슬라이딩 창, 논문 기본 4개)를 해시 → 시드. 같은 키, 같은 직전 토큰이면 같은 시드. 참조 구현은 Threefry 난수기, 63비트 키</li>
+<li>g값: 시드로 후보 토큰마다, 토너먼트 층마다 0 또는 1(반반) 값을 뽑음. 키 없이는 난수로 보이고, 키가 있으면 재계산 가능</li>
+<li>토너먼트 샘플링: 원래 분포에서 후보 여러 개 → 둘씩 짝지어 1층 g값 큰 쪽 승리(동점은 무작위) → 승자끼리 2층 g값으로 반복 → 참조 구현 기본 30층 → 최후 승자가 출력 토큰. 결과는 여전히 모델이 그럴듯하다고 본 후보 중 하나, g값 큰 쪽으로 살짝 기운 선택이 토큰마다 쌓임</li>
+<li>품질 보호 1, 비왜곡: 키를 여러 개 두고 평균 내면 토큰 분포가 원래와 같음. 기울기는 문맥마다 방향이 달라 특정 단어 편애 없음</li>
+<li>품질 보호 2, 반복 문맥 마스킹: 한 응답 안에서 같은 직전 토큰 묶음이 다시 나오면 같은 시드라 같은 방향으로 기울게 됨 → 그 토큰은 워터마크 없이 원래 분포로</li>
+<li>품질 보호 3, 적용 순서: temperature, top-k, top-p 조정이 끝난 분포에 적용. 사용자 샘플링 설정과 충돌 없음</li>
+<li>실증: DeepMind는 Gemini 응답 약 2천만 건 실험에서 사람 평가 품질 차이 없음. Anthropic 내부 시험도 내용, 창의성, 가독성 차이 없음, 토큰 증가 없어 비용 동일</li>
+<li>탐지: 모델 불필요, 키와 텍스트만. 토큰마다 직전 토큰 + 키로 시드와 g값 재계산 → g값 평균. 워터마크 없으면 0.5 근처, 있으면 0.5 초과 → 우연 확률 계산(참조 구현: 이항분포 p값, 또는 키별 학습한 베이즈 점수 0–1). 토큰이 많을수록 분산 줄어 확신 상승</li>
+<li>한계가 원리에서 나오는 이유: 짧은 글은 평균이 우연과 구분 안 됨 / 후보가 하나인 자리(Principia → Mathematica)는 고를 것이 없어 사실, 제목, 수치 많은 글에 희박 / 코드는 정확 출력 필요해 미적용, 주석만 / 편집은 고친 토큰과 그것을 문맥으로 쓰는 뒤 몇 토큰만 깨짐, 전면 재작성과 타 모델 패러프레이즈는 대부분 깨짐 / 사람 글 교정은 Claude가 고른 단어가 적음 / 탐지는 “이 키의 패턴이 있는가”만 답함</li>
+<li>키 관리: 키가 새면 누구나 넣거나 지울 수 있음 → 탐지는 API로만, 자격 기관 한정</li>
+<li>외부 검증: 2026-09 arXiv 논문(Nemecek 외), 공개 구현을 오픈 모델에 적용. 산문은 시드 변경 수준의 영향, 코드는 한 모델에서 정확도 3점 손실, 탐지는 우연 수준. 배포된 Claude 자체는 검증 불가라는 점을 거버넌스 문제로 지적</li>
+</ul></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="함께-쓰면-좋은-도구" class="slide level2 grey">
+<h2>함께 쓰면 좋은 도구</h2>
+<p><span class="eyebrow human">4. 정리</span></p>
+<div class="cards tall">
+<div class="box">
+<p><span class="h3">Git, GitHub</span></p>
+<ul>
+<li>왜: 에이전트는 한 번에 파일 여러 개를 고침. 무엇이 바뀌었는지 사람이 다 기억 못 함</li>
+<li>커밋 단위로 기록 → diff로 검토 → 틀리면 되돌림</li>
+<li>GitHub 비공개 레포: 백업, 공동저자와 공유, 원고 이력</li>
+<li>원자료, 개인정보는 <code>.gitignore</code>로 제외</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="h3">renv</span></p>
+<ul>
+<li>왜: 에이전트가 필요하면 패키지를 설치함. 내 R 환경이 조용히 바뀜</li>
+<li>프로젝트별 라이브러리, <code>renv.lock</code>에 버전 고정</li>
+<li>6개월 뒤, 다른 PC, 리뷰어 요청에도 같은 결과</li>
+<li><code>sessionInfo()</code> 로그와 같이 남기면 재현 근거</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="h3">Zotero</span></p>
+<ul>
+<li>왜: 에이전트가 만든 인용키, DOI가 실제 문헌인지 대조할 기준이 필요</li>
+<li>내 문헌 DB에서 <code>.bib</code> 자동 내보내기(Better BibTeX)</li>
+<li>Quarto 원고가 같은 <code>.bib</code>을 읽음 → 없는 인용키는 렌더에서 걸림</li>
+<li>PDF, 메모, 태그를 한곳에</li>
+</ul>
+</div>
+</div>
+<ul>
+<li>공통점: 에이전트가 바꾼 것을 추적하고, 되돌리고, 재현하는 장치. 에이전트가 빨라질수록 더 필요함</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>첫 카드, Git은 에이전트가 한 번에 여러 파일을 고칠 때 무엇이 바뀌었는지 남깁니다.</li>
+<li>요청 단위로 커밋하면 diff 한 화면으로 검토하고, 틀리면 그 커밋만 되돌립니다.</li>
+<li>두 번째 카드, renv는 패키지 버전을 renv.lock에 고정해 6개월 뒤에도 같은 결과를 냅니다.</li>
+<li>세 번째 카드, Zotero에서 내보낸 .bib을 원고가 읽게 하면, 없는 인용키는 렌더에서 걸립니다.</li>
+<li>세 도구 모두 에이전트가 바꾼 것을 추적하고, 되돌리고, 재현하는 장치입니다.</li>
+<li>git이 없던 3막 research-example에서는 날짜별 run 폴더와 진행 기록이 이 역할을 했습니다.</li>
+<li>여기까지 하고 질문 받겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>이 장의 위치: 스타터킷 장을 대신함(2026-11-02 사용자 결정). 템플릿 배포 대신 “같이 깔아 둘 도구와 이유”</li>
+<li>Git: 에이전트는 한 요청에 스크립트, qmd, 문서 여러 개를 동시에 고침. 커밋을 요청 단위로 끊으면 “이번 요청이 무엇을 바꿨나”가 diff 한 화면. 잘못되면 그 커밋만 되돌림</li>
+<li>Claude Code 자체 되돌리기(체크포인트)는 세션 안에서 에이전트가 고친 파일에 한정. 내가 고친 것, R이 만든 산출물, 세션 밖 변경까지는 git이 담당. 발표 1주 전 기능 재확인(행동 규칙 4)</li>
+<li>research-example 실례: <code>.gitignore</code>(원자료 <code>data/rawdata/</code>, <code>*.sas7bdat</code>, <code>*.xlsx</code>)는 있지만 git 저장소는 아님. 대신 에이전트 산출물을 <code>code/agent/&lt;날짜&gt;_&lt;작업요약&gt;/</code> run 폴더로 나누고 <code>docs/progress.md</code>에 기록하는 규칙으로 버팀. git이 있으면 이 기록이 커밋 메시지로 대체됨</li>
+<li>이 발표자료 자체: GitHub 레포 + GitHub Pages로 배포. 영상은 git 제외, YouTube와 Release로</li>
+<li>주의: 공개 레포에 데이터나 설정 파일의 서버명, 계정이 올라가지 않게. 화면 노출 규칙 4와 같은 원리</li>
+<li>renv: <code>renv::init()</code>으로 시작, <code>renv::snapshot()</code>으로 lockfile 갱신, <code>renv::restore()</code>로 복원. 에이전트가 패키지 설치를 제안하면 승인 후 snapshot. research-example SAP의 “추가 설치는 사전 승인” 규칙과 연결</li>
+<li>Zotero: Better BibTeX 플러그인이 인용키를 고정하고 <code>.bib</code>을 자동 갱신. 에이전트에게 “references.bib에 없는 키는 쓰지 말 것”을 CLAUDE.md에 적으면 가짜 참고문헌(앞 장)을 구조적으로 막음. 내용이 맞는지는 여전히 사람이 읽어야 함</li>
+<li>질문 나오면: Positron은 Git 패널 내장, GitHub Desktop도 가능. Zotero 대신 EndNote도 bib 내보내기 가능</li>
+<li>마무리 멘트: 에이전트에게 더 많이 맡길수록 기록, 고정, 대조 장치가 더 필요함. Q&amp;A로 넘어감(7분)</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -3156,9 +3970,6 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
         }
       });
       </script>
-    <script>videojs(video_shortcode_videojs_video1);</script>
-    <script>videojs(video_shortcode_videojs_video2);</script>
-    <script>videojs(video_shortcode_videojs_video3);</script>
     
 
 </body></html>

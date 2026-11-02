@@ -17,3 +17,5 @@
 - [폴더, 권한 3장→1장 2026-10-30](boundary-slide-merge-2026-10-30.md) — 경계: 폴더와 권한 1장으로 통합, allow JSON은 노트로, .columns+codepanel 겹침 주의
 - [CLAUDE.md vs 스킬 비교 장 2026-10-30](claude-md-vs-skill-slide-2026-10-30.md) — 비교표 1장 추가, .tbl-wide 클래스로 전폭 표
 - [스킬 개념 장 재작성 2026-10-30](skill-concept-rewrite-2026-10-30.md) — 추상 표현을 발췌본 실제 문장으로 교체, description은 발동 조건
+- [설정 영상 YouTube 참조](setting-video-youtube-2026-11-02.md) — setting-01 영상 YouTube 링크, 기존 설치 영상 유지, embed는 http로 열어야 재생
+- [3막 처음부터 재구성 2026-11-02](act3-first-run-restructure-2026-11-02.md) — research-example 녹화 기반 6단계, 리뷰어 제외, 내용은 녹화 후

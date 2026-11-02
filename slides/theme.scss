@@ -131,3 +131,10 @@ $code-color: $ink;
 .reveal #title-slide .quarto-title-authors, .reveal #title-slide p.author, .reveal #title-slide p.date { color: #8FA3BF; font-size: 0.8em; }
 .reveal #title-slide .quarto-title-authors { justify-content: flex-start; }
 .reveal #title-slide::before { content: "POSITRON + CLAUDE CODE"; display: block; position: absolute; top: 1.4em; left: 1.2em; font-size: 0.75em; letter-spacing: 2px; color: $blue2; font-weight: 500; }
+
+// Tall cards: one-row card slides that would otherwise leave the lower half empty
+.reveal .cards.tall > div { font-size: 0.85em; padding: 1em 1.1em; }
+.reveal .cards.tall ul { margin: 0; padding-left: 1.1em; }
+.reveal .cards.tall li { margin-bottom: 0.25em; }
+.reveal .cards.tall h3 { font-size: 1.1em; margin-bottom: 0.5em; }
+.reveal .cards.tall + ul, .reveal .cards.tall + p { margin-top: 0.8em; font-size: 0.9em; }

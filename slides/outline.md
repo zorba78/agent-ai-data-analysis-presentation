@@ -10,9 +10,9 @@
 |---|---|---|
 | 1 왜 다른가 | 7 | 8.5 |
 | 2 환경 | 15 | 20 |
-| 3 사례 한 바퀴 | 17 | 25 |
-| 4 효과와 팁 | 4 | 5 |
-| 합계(표지 제외) | 43 | 58.5 |
+| 3 사례 | 17 | 27 |
+| 4 효과와 팁 | 7 | 8 |
+| 합계(표지 제외) | 46 | 63.5 |
 
 2026-10-20 S02, S08b 추가로 1.5분 초과. 2026-10-22 S08c Quarto, S08d TinyTeX 추가로 총 5.5분 초과(58.5분, S09b 시연 2분 포함). 3막 또는 Q&A에서 조정 필요.
 | Q&A | | 7 |
@@ -47,7 +47,7 @@
 - 본문: 데이터는 PC에 / 에이전트가 코드 작성, 실행, 수정 / 결과는 파일로 남음 / 규칙은 계약서로
 - 노트: 챗봇과의 차이 세 가지: 실행, 파일, 기억. 이 발표 전체가 이 그림의 설명
 
-### S05 한 바퀴: 탐색 → 가설 → 분석 → 해석 → 문헌 → 원고 → 리뷰어 (1.5)
+### S05 연구 워크플로우 6단계 (1.5) [2026-11-02 개정: 전처리 → 탐색 → 가설 → 분석 → 문헌 → 초안]
 - 유형: 파이프라인 7단계 진행바 + 한 줄씩
 - 본문: 7단계. 모든 단계에서 에이전트가 일하고, 사람이 결정
 - 노트: 3막에서 이 순서 그대로. 단계마다 "프롬프트 / 에이전트가 한 일 / 내가 확인한 것"
@@ -153,84 +153,39 @@
 - 본문: Claude Code(Fable) + Copilot(Astra) / 워커 Opus, Terra / 검토는 다른 계열 모델 / 디스패처가 한도 소진 시 대체
 - 노트: 이 발표자료 자체가 이 구조로 만들어짐. 깊이 들어가지 않음. 질문 나오면 구두로 보충
 
-## 3막. 사례 한 바퀴 (25분)
+## 3막. 사례 (25분) [2026-11-02 재구성]
 
-각 단계 첫 장: 7단계 진행바에서 해당 단계 active. 3단 칸: 프롬프트 / 에이전트가 한 일 / 내가 확인한 것.
+research-example 폴더에서 처음부터 다시 진행한 작업 녹화가 소재. 리뷰어 대응 제외, 해석은 분석에 포함. 이전 3막(로그 회고형 17장)은 `output/agent/2026-11-02/act3-v2-archive/`에 보관. 각 장의 `[녹화 후]` 자리는 녹화와 로그 확인 뒤 채움.
 
-### S19 3. 한 바퀴: 같은 세 칸으로 일곱 단계를 본다 (0.5)
-- 유형: 진행바 + 3칸 범례
+| 장 | 제목 | 분 |
+|---|---|---|
+| S20 | 출발 상태와 규칙 | 1 |
+| S21, S21b, S21v | ① 전처리 / ① 확인 요청: 재산출 MetS와 원 변수의 불일치 / ① 영상: 자료 정제 | 2.5 + 1.5 + 1 |
+| S22 | ② 탐색 | 2.5 |
+| S23, S23b | ③ 가설 설정 / ③ 설계 검토: 순환성과 희소 셀 | 2.5 + 1.5 |
+| S23v | ②③ 영상: 탐색과 분석계획서(한 영상, 2026-11-02 구조 변경) | 1 |
+| S24, S24b, S24v | ④ 분석 / ④ 결과와 해석 / ④ 영상: 분석 | 2.5 + 2 + 1 |
+| S25, S25b | ⑤ 참고문헌 수집 / ⑤ 규칙 위반: 참고 금지 논문 | 2 + 1.5 |
+| S26, S26v | ⑥ 초안 작성 / ⑥ 영상: 원고 초안 | 2 + 1 |
+| S27 | 연구자 확인 지점 | 1.5 |
+| 합계 | | 27 |
 
-### ① 데이터 탐색 (3)
-#### S20 ① 데이터 탐색: 에이전트에게 주는 것은 행이 아니라 구조와 정의다 (1.5)
-- 3단: 프롬프트 "코드북과 분석 데이터셋 구조 요약" / 변수 53개 분류표(집단, 인구학, 신체계측, 약물, 생활습관, 검사치, 설계변수) / 식별 열 제외, 단위 확인
-- 출처: 07-data-structure
-#### S21 기존 스크립트를 감사시키면 "의도인가"를 묻는다 (1.5)
-- 3단: 프롬프트 "02 스크립트 감사" / 포화모형 다중공선성 경고, MetS 기준 행 주석 처리 "의도적인지 확인 필요" / 주석 처리는 의도. 다중공선성은 모형 축소
-- 출처: 06-script-audit-questions
-
-### ② 가설 (3)
-#### S22 ② 가설: 선행 논문의 패턴이 질문이 된다 (1.5)
-- 3단: 맥락: 지방간 논문에서 조종사의 요산 위험 높음 / 에이전트: RQ 1–5 정리(유병률 차이, 구성요소, 효과 수정, 바이오마커, 요산과 혈당의 결정요인) / 연구자: RQ 확정, CLAUDE.md에 기록
-- 출처: 레포 CLAUDE.md RQ 절
-#### S23 에이전트는 설계안을 내고 멈춘다. 고르는 쪽은 연구자다 (1.5)
-- 3단: 프롬프트 RQ4 / "이 방향으로 진행할까요? 아니면 다른 접근(예: 매개분석, 경로분석 등)을 원하시는지 알려 주세요." / 현재 방향 + 매개분석 선택, 매개분석은 뒤에 원고에서 제외
-- 출처: 06-design-proposal-choice
-
-### ③ 분석 (5)
-#### S24 ③ 분석: 에이전트가 내 세션에서 코드를 쓰고, 돌리고, 고친다 (1)
-- 3단: 프롬프트 "RQ1 로지스틱 회귀, 보정 변수 연령, 흡연, 음주, 운동" / 코드 작성 → 실행 → 결과 객체 저장 / 모형식, 보정 변수, n 확인
-- 출처: 출판본 Statistical analysis
-#### S25 녹화 D1: 에러를 읽고 가설을 바꿔 가며 고친다 (2)
-- 유형: 녹화 `../demo/clips/D1-error-fix.mp4` + 요약 3줄(시도 1 에러 → 틀린 진단 → 맞는 진단)
-- 2026-10-20 변경: D1 장면은 매개분석(07-mediation-env-error)이 아니라 07-factor-prevalence-zero(유병률 전부 0% → 자료형 확인 → 수정). 매개분석은 출판 논문에 없고, 초기 분석 방향과 맞지 않아 사용자가 제외. 20초 재현 예시: demo/clips/D1-error-fix-sample.gif(scripts/make_d1_gif.py)
-- 출처: 07-mediation-env-error, 07-knit-failure-three-causes
-#### S26 "세션에서는 되는데 knit은 안 된다"의 세 원인을 한 번에 진단했다 (1)
-- 3단: 프롬프트 "qmd 렌더 에러" / YAML 안 주석, knit 환경 ≠ 세션, 그림을 객체로 호출 / 표는 qmd 안에서 재구성하도록 요구
-- 출처: 07-knit-failure-three-causes
-#### S27 표와 그림은 코드에서 나온다: 양식은 내가 정하고 에이전트가 적용한다 (1)
-- 3단: 프롬프트 "Table 1을 Lancet 양식으로" / `gtsummary` → `as_flex_table`, `lancet_ft()` 헬퍼, forest plot, CONSORT / 숫자가 코드 출력과 같은지
-- 출처: 10-table-figure-automation
-
-### ④ 해석 (4)
-#### S28 ④ 해석: 에이전트가 결과를 설명하고, 나는 그 설명을 의심한다 (1.5)
-- 3단: 프롬프트 "전체 결과 해석" / 유병률 11.1% vs 37.1%, aOR 0.30, 혈압 구성요소만 조종사가 높음, 요산과 혈당의 연관이 조종사에서 강함 / 숫자는 원고 최종값과 대조
-- 출처: 출판본 Abstract, 11-methods-draft-and-number-sourcing
-#### S29 모호한 질문에는 되묻게 해야 한다: "오즈비"가 두 표를 가리켰던 날 (1.5)
-- 3단: 프롬프트 "요산 결과와 오즈비를 어떻게 연결하지?" / 집단 간 유병 OR로 받아 HWE 서사 작성 → "이전 해석에 오류가 있었습니다" / 표 이름을 짚어 바로잡음, 탐색 단계 서사는 원고에 올리지 않음
-- 노트: 통계 깊이는 여기까지. 교훈은 "용어가 모호하면 묻게 하라"는 프롬프트 규칙
-- 출처: 09-two-odds-ratios-confused
-#### S30 숫자 검증은 스크립트로: 원고의 모든 숫자를 데이터에서 다시 계산한다 (1)
-- 3단: 프롬프트 "응답서에 약속한 숫자를 전부 재계산" / `verify-numbers.R`, SI 변환 후 OR과 p 불변 규칙 / "전부 일치" 기록 확인, 렌더 성공과 그림 존재는 별개
-- 출처: 09-verify-numbers-script, 09-render-success-missing-figure
-
-### ⑤ 문헌 탐색 (4)
-#### S31 ⑤ 문헌: 해석을 뒷받침할 선행 연구를 에이전트가 찾고, 내려받고, 정리한다 (1.5)
-- 3단: 프롬프트 "references.md 15편 + 추가 검색, PDF 확보, 요약" / PubMed MCP로 메타데이터, Europe PMC와 출판사에서 PDF 20편, BibTeX 등재, `references-summary.md`(24편, 그룹별 요약, 본 연구와의 연결) / 4편은 봇 차단으로 수동 업로드, 신규 논문 1편 발견
-- 출처: 레포 `quarto/agent_bot/2026-05-06/references-summary.md`, `references/agent-downloaded/`
-#### S32 녹화 D2: PubMed와 Scholar Gateway로 선행 문헌을 찾는 장면 (1.5)
-- 유형: 녹화 `../demo/clips/D2-literature.mp4`
-- 본문: 프롬프트 "조종사 집단의 요산과 대사증후군 연관 선행 연구 검색, DOI와 함께" / MCP 호출 → 결과 표 → DOI 확인
-- 노트: 가짜 인용 방지: DOI가 실제로 열리는지 사람이 확인
-#### S33 가짜 인용은 구조로 막는다: DOI 실존, 발췌 인용, 요약에 연결 문장 (1)
-- 유형: 카드 3개
-- 본문: 모든 항목에 DOI / 인용 부분 발췌 / "본 연구와의 연결" 칸 필수
-- 출처: references-summary.md 구조, CLAUDE.md 윤리 제약
-
-### ⑥ 원고 (3)
-#### S34 ⑥ 원고: Methods와 Results는 분석 로그에서 나온다 (1.5)
-- 3단: 프롬프트 "Statistical analysis 절, 수식 포함" / 05_statistical_analysis_methods.qmd, 저자 문체로 재작성, Quarto → docx / 산문의 숫자는 글자라서 표와 스크립트로 교차검증
-- 출처: 11-methods-draft-and-number-sourcing
-#### S35 문체와 길이의 기준은 내가 memory에 적어 둔다 (1.5)
-- 3단: 프롬프트 "저자 문체로, em-dash 없이, 299단어 초록" / 재작성본 / AI 문체 제거 확인, 인용 복원
-- 출처: 2026-05-09 manuscript-revised, 12-hwe-citations-restored
-
-### ⑦ 리뷰어 대응 (3)
-#### S36 ⑦ 리뷰어 대응: 지적 하나에 근거표 하나 (1.5)
-- 3단: 프롬프트 "Reviewer 2 지적별 대응 계획" / reviewer2-response-plan.md(채택 논거, 폐기 논거), 응답서 v2 / 폐기 논거 승인, 사실이어도 사후 정당화는 뺌
-- 출처: 12-posthoc-argument-dropped
-#### S37 통제 지점 네 곳: 실행 전 승인, 데이터 노출, 빼는 결정, 저자 검토 (1.5)
-- 유형: 2×2 카드(주황)
-- 출처: 07-user-cancels-tool-call, CLAUDE.md 화면 노출 규칙, 12-posthoc, 12-hwe
+- 출처: research-example `CLAUDE.md`, `docs/analysis-plan.md`, `.claude/skills/research-orchestration/SKILL.md`(2026-11-02 확인). 녹화 후 run 폴더(`agent/<날짜>_<작업요약>/`)와 `docs/progress.md`를 출처로 추가
+- 수치: 재분석 결과라 출판본과 다를 수 있음. 대조 기준 결정 필요(CLAUDE.md 행동 규칙 2)
+- 영상: 장마다 YouTube 1개, ID 자리 `YOUTUBE_ID_1`–`6`
+- S21, S21b 출처(2026-11-02 채움): research-example 세션 로그(2026-11-02 03:15–04:41 KST, 오케스트레이터 Claude Fable 5.1, 워커 stats-analyst Claude Opus 5.5). 프롬프트 인용은 사용자 메시지 원문, 에이전트 인용은 오케스트레이터 보고 메시지 원문
+- S21 수치: `code/agent/2026-11-02_공군자료정제/output/01_clean_airforce_flow.csv`(2,827 → 2,739), `2026-11-02_KNHANES정제/output/02_clean_knhanes_flow.csv`(6,265 → 1,174), `2026-11-02_자료병합/output/03_merge_datasets_summary.md`(3,913 × 55, MetS 11.2% vs 39.6%, 연령 36.3 vs 44.1). 리코딩 검증 14/14은 공군 README
+- S21b 수치: `2026-11-02_공군자료정제/output/mets_components_af.csv`(METS_new 308, METS_orig 290), `mets_discordance_af.csv`(30 / 5 / 17), 공군 summary.md(SBP 임계값 탐색 최소 21건)
+- 영상: `C:/Users/Boncho/Videos/화면 녹화/data-preprocessing.mp4` 63분 → `data-preprocessing-2x.mp4`
+- S22, S23, S23b 출처(2026-11-02 채움): 세션 로그 578f1270(KST 05:01–05:15, 탐색과 완전사례), 4511cebe(KST 05:22–05:51, SAP v2.0–2.2). 프롬프트와 에이전트 인용은 원문. 수치: `code/agent/2026-11-02_완전사례/README.md`(3,823 × 48, 2,738 / 1,085, 89명 중 71명 GPAQ), SAP v2.0 보고(검출 가능 6 pp, d ≈ 0.19, 60세 이상 25명), v2.2 보고(72%, WC Q2 139명, TG Q1 117명), `docs/analysis-plan.md` v2.2
+- S23 혼선 장면(2026-11-02 반영): 세션 4511cebe KST 06:12–06:29. 연령표준화 질문 → §5-4 보강 → "H2에서는 보정이 필요가 없어" → H2 전체 비보정 → 재확인 메시지(06:28) → H2a 보정 OR 복원, 연령군 모형 H1→H2b 이동. progress.md 마지막 두 줄, SAP §1 표, §6.2, §13(미결 8개)
+- S24–S27 출처(2026-11-02 채움): 세션 4511cebe. 분석 KST 06:36–08:55, 문헌 09:03–09:30, 초안 09:35–09:50. 사용자 메시지 원문(대기열 입력 포함: "해당 논문은 참고하지 않는다라는 규칙을 줬는데" 09:22, "지금 분석은 해당 논문을 재현하기 위함이야" 09:23, "알아 AI를 이용한 논문작성에 대한 예시로 쿼리를 준거야" 09:36). 로그 타임스탬프는 UTC, 9시간 더해 KST
+- S24, S24b 수치: research-example `output/tables/table2_prevalence_or.csv`(MetS 0.19 → 0.27 (0.23–0.33), 혈압 1.41 → 2.09), `table3_subgroups.csv`(연령군 LR p 0.914), `table5_biomarker_interaction.csv`(요산 OR 1.59 vs 1.25, Δβ 0.24 (0.07–0.42) p 0.006, Model 2 Δβ 0.26 p 0.012), 오케스트레이터 보고(지질약 복용자 LDL 93.5, MetS 91%)
+- S24b 출판본 대조(노트 전용): 출판 aOR 0.30, 혈압 2.12(CLAUDE.md 사례 논문). 재현은 0.27, 2.09
+- S25 수치: `docs/progress.md`(문헌 4 run 232편), 오케스트레이터 보고(59 / 87 / 26 / 60). Lee JH 2018 doi:10.3346/jkms.2018.33.e172, Schulze 2000 doi:10.1023/a:1011020823807, Choi 2022 doi:10.1002/pds.5437
+- S25b: 워커 보고 원문 "같은 비교가 이미 출판되어 있습니다."(문헌 A 워커, 09:22). 규칙 부재 근거: 2026-11-02 새벽 research-example grep 결과 없음, CLAUDE.md 92행 규칙 줄과 파일 수정 시각 09:49, progress.md 39행
+- S26: 오케스트레이터 보고 09:36(저널 추천), 09:41(투고 규정), 09:50(원고 인프라). `docs/journal-shortlist.md`, `docs/journal-guidelines.md`. 원고 미완성
+- 선행 지방간 논문 서지 정정: PubMed 기준 Aerosp Med Hum Perform 2025;96(10):894–902, PMID 41043813(research-example 문헌 워커 확인). 슬라이드 노트 반영, 이 프로젝트 CLAUDE.md는 96(9)로 남음
 
 ## 4막. 효과와 팁 (5분)
 
@@ -242,11 +197,32 @@
 - 본문: CLAUDE.md 한 장 쓰기(6블록) / 산출물 폴더 나누기 / 숫자 검증 스크립트 하나
 - 노트: 스타터킷에 템플릿
 
-### S40 한계: 묻지 않고 고르고, 그럴듯한 용어를 붙이고, "완료"라고 말한다 (1)
-- 본문: 모호한 용어를 묻지 않음 / non-collapsibility 같은 용어 오용 / "완료되었습니다!"와 올바름은 다름
-- 노트: 그래서 계약서, 검증 스크립트, 다른 계열 모델 검토
+### S40 AI 활용 논문의 윤리 (1) [2026-11-02 교체: 로그 장면 3개 → 일반 윤리]
+- 본문: 저자 자격 / 사용 공개 / 최종 책임. 미공개 사용은 정정 또는 부정행위
+- 출처: ICMJE Recommendations, AI Use by Authors https://www.icmje.org/recommendations/browse/artificial-intelligence/ai-use-by-authors.html (2026-11-02 확인)
+- 이전 내용(묻지 않고 고름, non-collapsibility, 완료 선언)은 `output/agent/2026-11-02/act4-before-limits.qmd`
 
-### S41 스타터킷 (1)
-- 본문: `[여기에: 스타터킷 주소]` QR / CLAUDE.md 템플릿, 폴더 구조, 검증 체크리스트, 프롬프트 치트시트
-- 마지막 장: S37 통제 지점 그림으로 닫음
+### S40b 최근 이슈 1: 가짜 참고문헌 (1) [2026-11-02 추가, 11-02 3장으로 분할]
+- 본문: PubMed 전수 조사 / 증가 추세 / 학계 밖(Deloitte)
+- 출처: Retraction Watch 2026-05-07 https://retractionwatch.com/2026/05/07/one-in-277-pubmed-indexed-papers-in-2026-shows-fabricated-references-says-analysis/ (Topaz 외, Lancet 서한. 250만 편, 9,710만 건, 4,046건/2,810편, 1/2,828 → 1/458 → 1/277)
+- 출처: NeurIPS 2025 가짜 인용 100건 arXiv 2602.05930. CS 학회 2.6%(2025) vs 0.3%(2024)는 2차 보도(SciCampus가 Nature 분석 인용), 1차 미확인
+- 출처: Deloitte 환불 AP 보도 2025-10-07 https://www.ctvnews.ca/business/article/deloitte-to-partially-refund-australian-government-for-report-with-apparent-ai-generated-errors/ , Fortune https://fortune.com/2025/10/07/deloitte-ai-australia-government-report-hallucinations-technology-290000-refund (계약 A$440,000, GPT-4o 기반 도구 공개, 마지막 분할금 환불)
 
+### S40c 최근 이슈 2: AI 심사와 숨은 프롬프트 (1)
+- 본문: 심사자가 AI를 씀(ICLR 2026, NIH) / 저자가 AI 심사자를 노림(Nikkei) / 결과
+- 출처: Pangram Labs ICLR 2026 분석, 2차 보도 https://news.bensbites.com/posts/52410-pangram-labs-21-of-the-75800-peer-reviews-submitted-for-iclr-2026-a-major-ml-conference-were-fully-ai-generated-and-50-contained-signs-of-ai-use . 다른 탐지기(Sem-Detect)는 5%로 추정(arXiv 2605.21713). 1차 보고서 미확인, 발표 전 확인
+- 출처: NIH NOT-OD-23-149 https://grants.nih.gov/grants/guide/notice-files/NOT-OD-23-149.html (2023-06-23)
+- 출처: Nikkei 조사 2차 보도 TechCrunch 2025-07-06 https://techcrunch.com/2025/07/06/researchers-seek-to-influence-peer-review-with-hidden-ai-prompts , The Decoder https://the-decoder.com/researchers-hide-prompts-in-scientific-papers-to-sway-ai-powered-peer-review/ (17편, 14개 대학). Lin Z. arXiv 2507.06185(18편), CACM https://cacm.acm.org/opinion/hidden-prompts-in-manuscripts-exploit-ai-assisted-peer-review/ . 72% 설문: Research Integrity and Peer Review https://link.springer.com/article/10.1186/s41073-025-00187-7
+- 편수 불일치: Nikkei 17편, Lin 18편. 슬라이드는 Nikkei 기준, 노트에 Lin 기준 병기
+
+### S40d 최근 이슈 3: 워터마크와 표시 의무 (1)
+- 본문: 법(한국, EU) / Claude 텍스트 워터마크 / 한계
+- 출처: Anthropic https://www.anthropic.com/news/claude-text-watermark (2026-08-14, 09-01 갱신), 지원 문서 https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content
+- 출처: EU AI Act 50조 2026-08-02 시행, 실천강령 서명(2차 보도, 1차 EU 문서 미확인)
+- 출처, 원리 노트: Dathathri 외. Scalable watermarking for identifying large language model outputs. Nature 2024;634:818–823. doi:10.1038/s41586-024-08025-4 / 참조 구현 https://github.com/google-deepmind/synthid-text (창 4, 깊이 30, Threefry, 63비트 키는 논문과 구현 기준) / Nemecek 외. arXiv 2609.09604
+- 출처: 한국 AI 기본법 2026-01-22 시행, 과태료 최대 3천만 원, 1년 이상 유예. Korea JoongAng Daily https://www.koreajoongangdaily.com/business/koreas-groundbreaking-ai-law-requires-watermarks-on-generated-content-but-enforcement-gaps-remain/12094830 . 유예 연장 법안 처리 여부 미확인
+
+### S41 함께 쓰면 좋은 도구 (1) [2026-11-02 교체: 스타터킷 → 도구 권고]
+- 본문: Git, GitHub / renv / Zotero. 각 카드에 "왜"를 첫 줄로. 마지막 줄 공통점(추적, 되돌림, 재현)
+- 출처: research-example `.gitignore`와 git 저장소 없음(2026-11-02 확인), `docs/progress.md` run 폴더 기록 규칙. renv, Zotero Better BibTeX는 일반 기능 설명. Claude Code 체크포인트 범위는 발표 1주 전 공식 문서 재확인
+- 이전 스타터킷 장 내용(QR 자리, 통제 지점 카드 4개)은 git 이력에 남음
