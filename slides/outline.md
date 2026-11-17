@@ -138,6 +138,18 @@
 - 노트: 잘못 넣었을 때의 양상(규칙을 스킬에: 다른 작업에서 빠짐 / 절차를 CLAUDE.md에: 파일이 길어져 뒤쪽 규칙 무시). 비유는 구두로만
 - 이유: 프롬프트 설정이 낯선 청중이 둘의 차이를 가장 먼저 물음(사용자 지적 2026-10-30)
 
+### S15c 하네스: 개념과 역할 (1.5) (2026-11-16 추가, 비교 장 뒤)
+- 본문: 모델을 감싸고 돌리는 프로그램, Claude Code 자체가 하네스 / 루프: 모델 호출 → 도구 실행 → 결과 반환 / 여섯 요소: 실행, 도구, 컨텍스트, 상태, 수명주기, 검증 / 지침 파일, 스킬, MCP, memory는 하네스 입력 / 설정 창구: settings.json, 지침 파일, MCP 등록 / 훅
+- 노트: 챗봇과 Claude Code는 같은 모델, 1막의 차이는 하네스 차이. 깊이 들어가지 않음
+- 출처: 여섯 요소 H=(E,T,C,S,L,V)는 "Agent Harness for LLM Agents: A Survey" preprints.org 202604.0428(2026-04), 레포 Gloriaameng/Awesome-Agent-Harness / "도구에서 플랫폼으로"는 "Harness Engineering: A Source-Code Study of Eleven Systems" arXiv:2609.00006(2026-07) / "같은 모델, 다른 결과"는 같은 논문이 인용한 Harness-Bench(2026) / 훅 예는 일반 예(이 레포에 훅 설정 없음, 2026-10-21 비밀 검사는 수동) / 재대조 규칙은 이 발표 CLAUDE.md 행동 규칙 4
+- 확인 필요: 발표 1주 전 Claude Code 훅, settings.json 항목명 최신판과 대조
+
+### S15d 하네스와 지침 파일의 차이 (1) (2026-11-16 추가)
+- 본문: 표 3열(하네스 / CLAUDE.md / 스킬) x 5행(무엇인가, 누가 만드나, 정하는 것, 바꾸는 법, 없으면) / 사례: 집계값 규칙은 파일, 매 세션 읽어 넣고 행 출력 명령을 권한 창에 멈추는 것은 하네스
+- 노트: SKILL.md는 공개 표준이라 Claude Code, Codex, Cursor에서 동작. CLAUDE.md는 AGENTS.md로 이름만 바꾸면 Codex가 읽음
+- 출처: Agent Skills 표준 호환 범위는 K-Dense scientific-agent-skills README(2026-10 확인) / AGENTS.md 호환은 이 발표 CLAUDE.md "CLAUDE.md = AGENTS.md" / 권한 창 예는 이 발표 CLAUDE.md 화면 노출 규칙 1
+- 시간: 2막에 2.5분 추가. 전체 시간 조정은 보류(부록 삭제 때와 같은 처리)
+
 ### S16 MCP: 에이전트가 외부 도구를 직접 호출한다 (1.5)
 - 유형: 카드 5개
 - 본문: Positron MCP(R 세션) / PubMed / bioRxiv / Clinical Trials / Scholar Gateway

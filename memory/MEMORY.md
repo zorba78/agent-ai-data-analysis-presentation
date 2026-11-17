@@ -19,3 +19,5 @@
 - [스킬 개념 장 재작성 2026-10-30](skill-concept-rewrite-2026-10-30.md) — 추상 표현을 발췌본 실제 문장으로 교체, description은 발동 조건
 - [설정 영상 YouTube 참조](setting-video-youtube-2026-11-02.md) — setting-01 영상 YouTube 링크, 기존 설치 영상 유지, embed는 http로 열어야 재생
 - [3막 처음부터 재구성 2026-11-02](act3-first-run-restructure-2026-11-02.md) — research-example 녹화 기반 6단계, 리뷰어 제외, 내용은 녹화 후
+- [두 번째 발표 제목 2026-11-13](second-talk-title-2026-11-13.md) — "Positron 기반 에이전트 AI 활용 연구 워크플로우", 부제 없음, 첫 발표 제목과 구분
+- [하네스 슬라이드 2장 2026-11-16](harness-slides-2026-11-16.md) — 2막 비교 장 뒤에 하네스 개념, 하네스 vs 지침 파일 표 추가, 57장, 시간 조정 보류

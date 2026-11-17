@@ -6,15 +6,15 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
 
   <meta name="author" content="구본초, 한국한의학연구원">
-  <meta name="dcterms.date" content="2026-11-02">
+  <meta name="dcterms.date" content="2026-11-03">
   <title>연구 생산성 향상을 위한 Agent AI 기반 워크플로우: 데이터 분석에서 논문 작성까지</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
@@ -102,7 +102,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-72ebb11433f756167f2442bd273af14a.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-f0321a1bd2575a34677ee8c541d22416.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -211,7 +211,7 @@
 </div>
 </div>
 
-  <p class="date">2026-11-02</p>
+  <p class="date">2026-11-03</p>
 </section>
 <section id="ai-활용-방식-4가지" class="slide level2 grey">
 <h2>AI 활용 방식 4가지</h2>
@@ -1532,6 +1532,168 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <li>비유(구두로만): CLAUDE.md는 연구실 운영 규정, 스킬은 실험 프로토콜 문서</li>
 <li>예시 출처: “집계값만 출력”은 사례 레포 CLAUDE.md 윤리적 제약 절과 이 발표 CLAUDE.md 화면 노출 규칙 / “수치 대조”는 앞 장의 verify-numbers 가상 스킬(실제 절차는 2026-08-16 스크립트)</li>
 <li>이 발표 프로젝트 예: 가운뎃점 금지는 CLAUDE.md(모든 글에 적용), 렌더와 넘침 점검 절차는 revealjs-deck 스킬(렌더할 때만)</li>
+<li>다음 장: MCP</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="하네스-개념과-역할" class="slide level2">
+<h2>하네스: 개념과 역할</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="stage3">
+<div class="box">
+<p><span class="label">개념</span></p>
+<ul>
+<li>모델을 감싸고 돌리는 프로그램. Claude Code 자체가 하네스</li>
+<li>루프: 모델 호출 → 도구 실행 → 결과 반환 → 다시 모델 호출</li>
+<li>여섯 요소: 실행, 도구, 컨텍스트, 상태, 수명주기, 검증</li>
+<li>CLAUDE.md, 스킬, MCP, memory는 하네스에 넣는 입력</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="label">역할과 효과</span></p>
+<ul>
+<li>컨텍스트 관리: 지침 파일 로드, 스킬 description 노출, 긴 대화 요약</li>
+<li>도구 호출과 권한 승인: 파일 읽기, 쉘 실행, MCP 중계</li>
+<li>상태 유지: 세션, memory, git 작업 폴더</li>
+<li>같은 모델도 하네스가 다르면 결과가 다름</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="label">설정 요점</span></p>
+<ul>
+<li>연구자가 짜는 것이 아니라 고르고 설정하는 것</li>
+<li>설정 창구: settings.json(권한, 모델, 훅), 지침 파일, MCP 등록</li>
+<li>훅으로 루프에 끼어듦: 커밋 전 비밀 검사, 렌더 후 점검</li>
+<li>하네스 버전이 바뀌면 기능 설명을 다시 대조</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>지금까지 본 파일들이 어디에 들어가는지, 그 바깥 틀이 하네스입니다.</li>
+<li>왼쪽 첫 줄, 하네스는 모델을 감싸고 돌리는 프로그램이고 Claude Code 자체가 하네스입니다.</li>
+<li>모델은 글만 내놓습니다. 그 글을 도구 호출로 바꿔 실행하고 결과를 다시 넣는 루프가 하네스입니다.</li>
+<li>여섯 요소 중 연구자가 손대는 것은 컨텍스트, 도구, 상태입니다.</li>
+<li>CLAUDE.md와 스킬은 컨텍스트, MCP는 도구, memory와 git은 상태에 해당합니다.</li>
+<li>가운데 마지막 줄, 같은 모델이라도 하네스가 다르면 결과가 다릅니다.</li>
+<li>챗봇과 Claude Code는 같은 Claude 모델을 씁니다. 1막의 차이는 하네스 차이입니다.</li>
+<li>오른쪽 요점대로 하네스는 연구자가 짜는 것이 아니라 고르고 설정하는 것입니다.</li>
+<li>설정 창구는 settings.json, 지침 파일, MCP 등록 세 가지입니다.</li>
+<li>훅은 루프의 특정 시점에 내 스크립트를 끼우는 것으로, 이 발표 레포는 커밋 전 비밀 검사를 걸어 두었습니다.</li>
+<li>다음 장에서 하네스와 지침 파일의 차이를 표로 정리합니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1.5분</li>
+<li>메시지 한 줄: 모델이 아니라 하네스가 챗봇과 에이전트를 가름</li>
+<li>여섯 요소는 2026년 하네스 서베이의 정의(Execution, Tools, Context, State, Lifecycle, Verification). 슬라이드에는 한국어만</li>
+<li>Claude Code, Codex CLI, Gemini CLI, Positron Assistant 모두 하네스. 2026년 중반 기준 “개발자가 쓰는 도구에서 개발자가 안에서 일하는 플랫폼으로” 이동</li>
+<li>“같은 모델, 다른 결과” 근거: 설정 수준 하네스 차이만으로 성능이 달라진다는 벤치마크. 성능을 모델만의 것으로 돌리지 말 것</li>
+<li>훅 예: 이 발표 레포의 커밋 전 비밀 패턴 검사(2026-10-21). 발표 1주 전 기능 재대조 규칙은 이 발표 CLAUDE.md 행동 규칙 4</li>
+<li>깊이 들어가지 않음. 질문 나오면 “루프 한 바퀴”를 화이트보드로</li>
+<li>다음 장: 비교표</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="하네스와-지침-파일의-차이" class="slide level2 grey">
+<h2>하네스와 지침 파일의 차이</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="tbl-wide">
+<table class="caption-top">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 30%">
+<col style="width: 28%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>하네스 (Claude Code)</th>
+<th>CLAUDE.md</th>
+<th>스킬 (SKILL.md)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>무엇인가</td>
+<td>모델을 돌리는 프로그램</td>
+<td>텍스트 파일</td>
+<td>텍스트 파일</td>
+</tr>
+<tr class="even">
+<td>누가 만드나</td>
+<td>도구 개발사</td>
+<td>연구자</td>
+<td>연구자</td>
+</tr>
+<tr class="odd">
+<td>정하는 것</td>
+<td>언제 무엇을 읽고 실행하는가</td>
+<td>무엇을 지킬 것인가</td>
+<td>어떻게 할 것인가</td>
+</tr>
+<tr class="even">
+<td>바꾸는 법</td>
+<td>settings.json, 훅, 버전 업데이트</td>
+<td>파일 편집</td>
+<td>파일 편집</td>
+</tr>
+<tr class="odd">
+<td>없으면</td>
+<td>모델이 글만 내놓음</td>
+<td>매 세션 정의, 규칙 재설명</td>
+<td>매번 절차를 말로 지시</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="label">사례에서</span></p>
+<ul>
+<li>하네스: 집계값 출력 규칙을 매 세션 읽어 넣고, 행 출력 명령을 권한 창에 띄움</li>
+<li>CLAUDE.md와 스킬: 그 규칙과 절차를 적어 둔 파일</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>셋을 한 표에 두면 역할이 갈립니다.</li>
+<li>첫 줄, 하네스는 프로그램이고 나머지 둘은 텍스트 파일입니다.</li>
+<li>둘째 줄, 하네스는 도구 개발사가 만들고 지침 파일은 연구자가 씁니다.</li>
+<li>셋째 줄, 하네스는 언제 무엇을 읽고 실행할지, CLAUDE.md는 무엇을 지킬지, 스킬은 어떻게 할지를 정합니다.</li>
+<li>하네스를 바꾸는 법은 settings.json과 훅, 그리고 버전 업데이트입니다.</li>
+<li>아래 사례처럼, 집계값 규칙은 CLAUDE.md에 있고 그걸 매 세션 읽어 넣는 쪽이 하네스입니다.</li>
+<li>행 단위 출력 명령을 실행 전에 권한 창으로 멈추는 것도 하네스의 일입니다.</li>
+<li>연구자는 지침 파일을 쓰고, 하네스는 설정 창구 안에서만 만집니다.</li>
+<li>다음은 하네스에 외부 도구를 붙이는 MCP입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>메시지 한 줄: 하네스는 고르고 설정, 지침 파일은 연구자가 씀</li>
+<li>하네스 교체 가능성: SKILL.md는 공개 표준이라 Claude Code, Codex, Cursor에서 같은 폴더가 동작. CLAUDE.md는 AGENTS.md로 이름만 바꾸면 Codex가 읽음. 지침 파일은 하네스보다 오래 감</li>
+<li>권한 창 예: 이 발표 CLAUDE.md 화면 노출 규칙 1(행 단위 출력 금지). 규칙은 파일, 멈추는 동작은 하네스</li>
+<li>“없으면” 줄 셋째 칸은 앞 비교 장의 “같은 절차를 세 번째 시키는가”와 연결</li>
 <li>다음 장: MCP</li>
 </ul>
 <style type="text/css">
@@ -3622,7 +3784,7 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -3877,7 +4039,8 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }
           // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
           for (var i=0; i<links.length; i++) {
             const link = links[i];
             if (!isInternal(link.href)) {
@@ -3886,8 +4049,69 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
               if (link.dataset.originalHref !== undefined) {
                 link.href = link.dataset.originalHref;
               }
+              if (!link.classList.contains('no-external-icon')) {
+              }
             }
           }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
         function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
           const config = {
             allowHTML: true,
@@ -3901,6 +4125,7 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
             interactiveBorder: 10,
             theme: 'light-border',
             placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
           };
           if (contentFn) {
             config.content = contentFn;
