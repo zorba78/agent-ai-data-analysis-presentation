@@ -109,6 +109,9 @@ $code-color: $ink;
 .reveal span.eyebrow, .reveal span.src { display: block; white-space: nowrap; }
 // Card titles: a span, not ###, because ### inside a slide becomes a nested (vertical) slide
 .reveal span.h3 { display: block; font-size: 1.05em; font-weight: 700; color: $ink; margin-bottom: 0.2em; }
+// Evidence cards: survey overview line (small, muted) above the result line (emphasised)
+.reveal span.study { display: block; font-size: 0.8em; color: $muted; margin-bottom: 0.15em; }
+.reveal span.finding { display: block; font-weight: 600; color: $ink; }
 .reveal section.dark span.h3 { color: $beige; }
 .reveal section.dark .cards > div span.h3, .reveal section.dark .stage3 > div span.h3 { color: $ink; }
 .reveal .stage3 > div > p, .reveal .cards > div > p { margin: 0.25em 0; }

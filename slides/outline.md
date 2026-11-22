@@ -17,6 +17,8 @@
 2026-10-20 S02, S08b 추가로 1.5분 초과. 2026-10-22 S08c Quarto, S08d TinyTeX 추가로 총 5.5분 초과(58.5분, S09b 시연 2분 포함). 3막 또는 Q&A에서 조정 필요.
 | Q&A | | 7 |
 
+2026-11-22 S01b, S39b, S39c 추가로 3장, 4.5분 증가. 덱은 표지 포함 60장. 시간 조정은 보류.
+
 시연: 녹화 D1(3막 ③ 분석 실행, 90초), 녹화 D2(3막 ⑤ 문헌 탐색, 60초), 라이브 D3(2막 Claude Code 세션 열기 + 데이터 구조 질문, 2분). 백업 녹화 필수.
 
 ---
@@ -26,6 +28,16 @@
 ### S01 발표자 (0.5)
 - 유형: 텍스트. `[여기에: 소속, 역할 한 줄]`
 - 노트: 통계학자, 두 논문 공저자, AI는 2025년부터 연구에 투입
+
+### S01b 연구자의 AI 활용 목적 (1) [2026-11-22 추가, 1막 맨 앞]
+- 유형: 카드 3개(가설 검토 / 정량 분석 / 문헌 수집) + 근거 카드 4개(최근 조사와 연구) + 2줄. 시간 1.5분으로 조정
+- 본문: 가설은 연구자의 것, AI는 세 가지 일에 드는 시간을 줄이는 도구. 절감 시간의 일부는 확인에 다시 사용
+- 문헌 카드는 "가설을 뒷받침하는 선행 문헌"(사용자 결정 2026-11-22, 지지와 반대 구분 표기 안 함)
+- 출처: 세 용도는 사용자 정리(2026-11-22). 4막 S39b, S39c와 연결
+- 출처, 사용률: Wiley ExplanAItions 2025 보도자료 2025-10-07 https://newsroom.wiley.com/press-releases/press-release-details/2025/AI-Adoption-Jumps-to-84-Among-Researchers-as-Expectations-Undergo-Significant-Reality-Check/default.aspx (2025-08 조사, 2,430명, 업무 전반 AI 사용 84%, 2024년 57%. 연구와 출판 업무 62%, 2024년 45%)
+- 출처, 국내: 한국연구재단 2025 대학교원 연구윤리 인식수준 조사보고서, 교수신문 보도 https://www.kyosu.net/news/articleView.html?idxno=211323 , 대학지성 https://www.unipress.co.kr/news/articleView.html?idxno=13659 (2025-09 조사, 2,079명, 속도 향상 동의 84.03%. 2023년 67.1%는 재단 웹진 https://webzine.nrf.re.kr/magazine/2403/sub_1_03.php , 2024년 75.4%). 보고서 원문 미확인, 언론 보도 기준. 디지털타임스는 같은 표본을 2024년 조사로 표기해 연도 불일치
+- 출처, 절감 시간: Google, Google DeepMind, MIT FutureTech "AI in Science: Early Insights" 2026-09 https://ai.google/static/documents/AI-in-Science.pdf (미국과 영국 연구자 637명, 주당 순절감 7시간 미만, 자기 보고. 절감자의 약 89%가 절감 시간의 10% 이상을 검증에 사용). 검색 요약 기준, 원문 PDF 재확인 필요
+- 출처, 논문 성과: Hao Q, Xu F, Li Y, Evans J. Artificial intelligence tools expand scientists' impact but contract science's focus. Nature 2026;649:1237–1243. doi:10.1038/s41586-025-09922-y (4,130만 편, 논문 3.02배, 인용 4.84배, 책임자 1.37년 빠름. 주제 폭 4.63% 감소, 교류 22% 감소는 Phys.org 보도 기준)
 
 ### S02 AI 활용 방식 4가지 (1.5) [2026-10-20 추가]
 - 유형: 그림(`assets/figs/s01-ai-usage-modes.svg`, 4칸 카드 + 축)
@@ -209,7 +221,21 @@ research-example 폴더에서 처음부터 다시 진행한 작업 녹화가 소
 - 본문: CLAUDE.md 한 장 쓰기(6블록) / 산출물 폴더 나누기 / 숫자 검증 스크립트 하나
 - 노트: 스타터킷에 템플릿
 
+### S39b 용도별 위험과 대응 (1.5) [2026-11-22 추가]
+- 유형: 표 3행 4열(용도 / 위험 / 대응 / 3막 사례) + 판별 기준 1줄
+- 본문: 가설 검토(동조하는 답, 결과 뒤 가설 수정) / 정량 분석(유의할 때까지 분석 변경, 미대조 숫자) / 문헌 수집(지지 문헌만, 없는 문헌)
+- 출처: 3막 ③ 설계 검토, ④ 분석, ⑤ 참고문헌 수집 장의 출처와 같음
+
+### S39c AI가 사람을 대신한 사례 (1.5) [2026-11-22 추가]
+- 유형: 카드 3개(시험 스마트안경 / 논문 가짜 참고문헌 / 리만 가설 증명 주장) + 물음 1줄
+- 수치는 모두 2026-11-22 검색으로 확인한 2차 보도. 발표 직전 1차 출처와 재대조
+- 출처, 시험: 경향신문 2026-11-18 https://www.khan.co.kr/article/202611181643011/ (공단 주관 시험 스마트안경 12건, 9건 수사, 의원실 자료) / MBC 2026-10-22 https://imnews.imbc.com/news/2026/society/article/6859975_36918.html (정보처리기사 응시자 송치) / 데일리안 https://www.dailian.co.kr/news/view/1712597/ (교육부, 전국 중학교와 고등학교 4건) / 한국경제 2026-11-11 https://www.hankyung.com/article/202611118708i (논술고사장, 수능 반입 금지) / 쿠키뉴스 2026-11-17 https://www.kukinews.com/article/view/kuk202611170225
+- 출처, 논문: 연합뉴스 2026-11-17(네이트 전재) https://m.news.nate.com/view/20261117n02309 (리트랙션워치 집계 2023년 이후 한국 기관 논문 철회, AI 생성 내용 205건, 참고문헌 문제 316건. 한국연구재단 첫 AI 활용 연구부정 사례) / 교수신문 2026-11-19 https://www.kyosu.net/news/articleView.html?idxno=212472
+- 출처, 리만 가설: SiliconANGLE 2026-11-20 https://siliconangle.com/2026/11/20/anthropic-researcher-claims-to-have-proven-riemann-hypothesis-using-claude/ (Levent Alpöge 공개 글, Lean 약 1,700만 줄, 저자가 수학 내용을 다 이해하지 못했다고 밝힘, Anthropic 공식 확인 없음). 검증 상태는 출처마다 다름. 원문(저자 개인 누리집) 1차 확인 필요
+- 주의: "증명했다"가 아니라 "증명했다는 주장, 검증 중"
+
 ### S40 AI 활용 논문의 윤리 (1) [2026-11-02 교체: 로그 장면 3개 → 일반 윤리]
+- 2026-11-22: 카드 아래 "이해: 내가 설명할 수 없는 결과는 내 이름으로 내지 않음" 1줄 추가(ICMJE 기준 밖, 발표자 원칙)
 - 본문: 저자 자격 / 사용 공개 / 최종 책임. 미공개 사용은 정정 또는 부정행위
 - 출처: ICMJE Recommendations, AI Use by Authors https://www.icmje.org/recommendations/browse/artificial-intelligence/ai-use-by-authors.html (2026-11-02 확인)
 - 이전 내용(묻지 않고 고름, non-collapsibility, 완료 선언)은 `output/agent/2026-11-02/act4-before-limits.qmd`
