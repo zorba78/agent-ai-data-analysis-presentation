@@ -43,7 +43,7 @@
     <circle cx="346" cy="290" r="30" fill="url(#gCloud)"/><circle cx="384" cy="266" r="38" fill="url(#gCloud)"/><circle cx="422" cy="292" r="28" fill="url(#gCloud)"/><rect x="346" y="290" width="76" height="30" fill="#DDE3EC"/>
   </g>
   <text x="384" y="356" font-size="19" fill="#6A7179" text-anchor="middle">외부 서버</text>
-  <text x="48" y="460" font-size="26" font-weight="700" fill="#14213D">원자료가 외부 서버로</text>
+  <text x="48" y="460" font-size="26" font-weight="700" fill="#14213D">원자료가 외부 서버로 이동</text>
   <text x="48" y="502" font-size="21" fill="#4A5568">IRB 승인 범위</text>
   <text x="48" y="536" font-size="21" fill="#4A5568">군 자료 반출 규정</text>
 

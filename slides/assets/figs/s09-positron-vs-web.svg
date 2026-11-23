@@ -43,7 +43,7 @@
   <rect x="250" y="308" width="8" height="88" rx="4" fill="#0B5FA5"/><rect x="850" y="308" width="8" height="88" rx="4" fill="#8A94A1"/>
   <text x="280" y="346" font-size="21" font-weight="500" fill="#14213D">실행한 코드가 내 콘솔 기록에 남음</text>
   <text x="280" y="378" font-size="20" fill="#4A5568">중간에 끊고 이어 가기 가능</text>
-  <text x="880" y="346" font-size="21" font-weight="500" fill="#14213D">대화 기록 안에만</text>
+  <text x="880" y="346" font-size="21" font-weight="500" fill="#14213D">대화 기록 안에만 남음</text>
   <text x="880" y="378" font-size="20" fill="#4A5568">끝날 때까지 기다림</text>
 
   <!-- row 4 -->
