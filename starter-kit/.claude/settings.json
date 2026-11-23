@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Rscript:*)",
+      "Bash(python:*)",
+      "PowerShell(Rscript:*)",
+      "PowerShell(python:*)"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(git push:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": [
+      "Edit(./data/rawdata/**)",
+      "Edit(./code/user/**)"
+    ]
+  }
+}

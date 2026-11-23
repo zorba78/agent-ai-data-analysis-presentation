@@ -112,6 +112,15 @@ $code-color: $ink;
 // Evidence cards: survey overview line (small, muted) above the result line (emphasised)
 .reveal span.study { display: block; font-size: 0.8em; color: $muted; margin-bottom: 0.15em; }
 .reveal span.finding { display: block; font-weight: 600; color: $ink; }
+// Starter kit slide: five file cards, then a download button row with a QR code
+.reveal .cards.kit > div { font-size: 0.8em; padding: 1.2em 0.9em; min-height: 215px; }
+.reveal .cards.kit span.h3 a { color: $ink; text-decoration: underline; text-underline-offset: 0.2em; }
+.reveal .dlrow { display: flex; align-items: center; gap: 1.5em; margin-top: 1.5em; }
+.reveal .dlrow .dlinfo { flex: 1; font-size: 0.9em; }
+.reveal .dlrow .dlinfo ul { margin-top: 0.6em; }
+.reveal .dlrow > p { margin: 0; }
+.reveal .dlrow img { margin: 0; border: 1px solid $line; border-radius: 0.4em; }
+.reveal a.dl { display: inline-block; background: $navy; color: #FFFFFF; padding: 0.5em 1.2em; border-radius: 0.5em; font-weight: 700; text-decoration: none; }
 .reveal section.dark span.h3 { color: $beige; }
 .reveal section.dark .cards > div span.h3, .reveal section.dark .stage3 > div span.h3 { color: $ink; }
 .reveal .stage3 > div > p, .reveal .cards > div > p { margin: 0.25em 0; }

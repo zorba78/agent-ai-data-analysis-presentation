@@ -264,3 +264,12 @@ research-example 폴더에서 처음부터 다시 진행한 작업 녹화가 소
 - 본문: Git, GitHub / renv / Zotero. 각 카드에 "왜"를 첫 줄로. 마지막 줄 공통점(추적, 되돌림, 재현)
 - 출처: research-example `.gitignore`와 git 저장소 없음(2026-11-02 확인), `docs/progress.md` run 폴더 기록 규칙. renv, Zotero Better BibTeX는 일반 기능 설명. Claude Code 체크포인트 범위는 발표 1주 전 공식 문서 재확인
 - 이전 스타터킷 장 내용(QR 자리, 통제 지점 카드 4개)은 git 이력에 남음
+
+### S42 스타터킷 내려받기 (1) [2026-11-23 추가]
+- 메시지: 설정 파일 다섯 개를 압축 파일 하나로 배포
+- 본문: 카드 5개(CLAUDE.md 템플릿 / 폴더 구조 / 권한 설정 / 결과 확인 체크리스트 / 설치 안내), 내려받기 단추, QR 코드
+- 원본: `starter-kit/`(README 포함 6개 파일). 압축 파일 `slides/assets/starter-kit.zip`은 원본을 고칠 때마다 다시 생성
+- 바탕: research-example 폴더의 CLAUDE.md, `.claude/settings.json`, `.gitignore`, `docs/progress.md`, `docs/coding-standards.md`, `code/agent/2026-11-02_기술통계/README.md`. 사례 수치(2,739, 1,174, 3,823, 14/14, 52명 1.9%, 11.2% 대 39.6%, OR 0.27, 232편, 인용 87회와 참고문헌 75개, 할 일 13개)는 `docs/progress.md`와 3막 출처
+- QR: `slides/assets/figs/s42-starter-kit-qr.svg`, GitHub Pages의 압축 파일 주소
+- 출처: Positron MCP 설치 방법은 Posit 안내 글(opensource.posit.co/blog/2026-11-04_positron-mcp), Claude Code 설치는 2막 설치 장과 같은 내용
+- 덱은 표지 포함 61장. 발표 끝 화면으로 Q&A 동안 유지
