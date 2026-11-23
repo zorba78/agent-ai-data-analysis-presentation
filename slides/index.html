@@ -1643,168 +1643,6 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
           display:block!important;
       }</style></aside>
 </section>
-<section id="하네스-개념과-역할" class="slide level2">
-<h2>하네스: 개념과 역할</h2>
-<p><span class="eyebrow">2. 작업 환경</span></p>
-<div class="stage3">
-<div class="box">
-<p><span class="label">개념</span></p>
-<ul>
-<li>모델을 감싸고 돌리는 프로그램. Claude Code 자체가 하네스</li>
-<li>반복: 모델 호출 → 도구 실행 → 결과 반환 → 다시 모델 호출</li>
-<li>여섯 요소: 실행, 도구, 문맥, 상태, 수명주기, 검증</li>
-<li>CLAUDE.md, 스킬, MCP, memory는 하네스에 넣는 입력</li>
-</ul>
-</div>
-<div class="box">
-<p><span class="label">역할과 효과</span></p>
-<ul>
-<li>문맥 관리: 지침 파일 읽기, 스킬 설명(description) 보여 주기, 긴 대화 요약</li>
-<li>도구 호출과 권한 승인: 파일 읽기, 터미널 명령 실행, MCP 도구 연결</li>
-<li>상태 유지: 세션, memory, git 작업 폴더</li>
-<li>같은 모델도 하네스가 다르면 결과가 다름</li>
-</ul>
-</div>
-<div class="human">
-<p><span class="label">설정 요점</span></p>
-<ul>
-<li>연구자가 짜는 것이 아니라 고르고 설정하는 것</li>
-<li>설정하는 곳: settings.json(권한, 모델, 훅), 지침 파일, MCP 등록</li>
-<li>훅(hook)으로 반복 과정에 끼어듦: 커밋 전 비밀 검사, 렌더 후 점검</li>
-<li>하네스 버전이 바뀌면 기능 설명을 다시 대조</li>
-</ul>
-</div>
-</div>
-<aside class="notes">
-<ul>
-<li>대본
-<ul>
-<li>지금까지 본 파일들을 읽고 실행하는 프로그램이 하네스입니다.</li>
-<li>왼쪽 첫 줄, 하네스는 모델을 감싸고 돌리는 프로그램이고 Claude Code 자체가 하네스입니다.</li>
-<li>모델은 글만 내놓습니다. 그 글을 도구 호출로 바꿔 실행하고 결과를 다시 넣는 반복 과정이 하네스입니다.</li>
-<li>여섯 요소 중 연구자가 손대는 것은 문맥, 도구, 상태입니다.</li>
-<li>CLAUDE.md와 스킬은 문맥, MCP는 도구, memory와 git은 상태에 해당합니다.</li>
-<li>가운데 마지막 줄, 같은 모델이라도 하네스가 다르면 결과가 다릅니다.</li>
-<li>챗봇과 Claude Code는 같은 Claude 모델을 씁니다. 1막의 차이는 하네스 차이입니다.</li>
-<li>오른쪽 요점대로 하네스는 연구자가 짜는 것이 아니라 고르고 설정하는 것입니다.</li>
-<li>설정하는 곳은 settings.json, 지침 파일, MCP 등록 세 가지입니다.</li>
-<li>훅은 반복 과정의 특정 시점에 내 스크립트를 끼우는 것입니다. 커밋 전 비밀 검사가 전형적인 예입니다.</li>
-<li>다음 장에서 하네스와 지침 파일의 차이를 표로 정리합니다.</li>
-</ul></li>
-<li>메모</li>
-<li>시간: 1.5분</li>
-<li>메시지 한 줄: 모델이 아니라 하네스가 챗봇과 에이전트를 가름</li>
-<li>여섯 요소는 2026년 하네스 서베이의 정의(Execution, Tools, Context, State, Lifecycle, Verification). 슬라이드에는 한국어만</li>
-<li>Claude Code, Codex CLI, Gemini CLI, Positron Assistant 모두 하네스. 2026년 중반 기준 “개발자가 쓰는 도구에서 개발자가 안에서 일하는 플랫폼으로” 이동</li>
-<li>“같은 모델, 다른 결과” 근거: 설정 수준 하네스 차이만으로 성능이 달라진다는 비교 결과. 성능을 모델만의 것으로 돌리지 말 것</li>
-<li>훅 예는 일반 예. 이 발표 프로젝트에는 훅이 설정돼 있지 않음(2026-11-16 확인). 2026-10-21 비밀 검사는 에이전트가 수동으로 한 것. 발표 1주 전 기능 재대조 규칙은 이 발표 CLAUDE.md 행동 규칙 4</li>
-<li>깊이 들어가지 않음. 질문 나오면 “반복 한 번”을 화이트보드로</li>
-<li>다음 장: 비교표</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="하네스와-지침-파일의-차이" class="slide level2 grey">
-<h2>하네스와 지침 파일의 차이</h2>
-<p><span class="eyebrow">2. 작업 환경</span></p>
-<div class="tbl-wide">
-<table class="caption-top">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 30%">
-<col style="width: 28%">
-<col style="width: 28%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th>하네스 (Claude Code)</th>
-<th>CLAUDE.md</th>
-<th>스킬 (SKILL.md)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>무엇인가</td>
-<td>모델을 돌리는 프로그램</td>
-<td>텍스트 파일</td>
-<td>텍스트 파일</td>
-</tr>
-<tr class="even">
-<td>누가 만드나</td>
-<td>도구 개발사</td>
-<td>연구자</td>
-<td>연구자</td>
-</tr>
-<tr class="odd">
-<td>정하는 것</td>
-<td>언제 무엇을 읽고 실행하는가</td>
-<td>무엇을 지킬 것인가</td>
-<td>어떻게 할 것인가</td>
-</tr>
-<tr class="even">
-<td>바꾸는 법</td>
-<td>settings.json, 훅, 버전 업데이트</td>
-<td>파일 편집</td>
-<td>파일 편집</td>
-</tr>
-<tr class="odd">
-<td>없으면</td>
-<td>모델이 글만 내놓음</td>
-<td>매 세션 정의, 규칙 재설명</td>
-<td>매번 절차를 말로 지시</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><span class="label">사례에서</span></p>
-<ul>
-<li>하네스: 집계값 출력 규칙을 매 세션 읽어 넣고, 행 출력 명령을 권한 창에 띄움</li>
-<li>CLAUDE.md와 스킬: 그 규칙과 절차를 적어 둔 파일</li>
-</ul>
-<aside class="notes">
-<ul>
-<li>대본
-<ul>
-<li>셋을 한 표에 두면 역할이 갈립니다.</li>
-<li>첫 줄, 하네스는 프로그램이고 나머지 둘은 텍스트 파일입니다.</li>
-<li>둘째 줄, 하네스는 도구 개발사가 만들고 지침 파일은 연구자가 씁니다.</li>
-<li>셋째 줄, 하네스는 언제 무엇을 읽고 실행할지, CLAUDE.md는 무엇을 지킬지, 스킬은 어떻게 할지를 정합니다.</li>
-<li>하네스를 바꾸는 법은 settings.json과 훅, 그리고 버전 업데이트입니다.</li>
-<li>아래 사례처럼, 집계값 규칙은 CLAUDE.md에 있고 그걸 매 세션 읽어 넣는 쪽이 하네스입니다.</li>
-<li>행 단위 출력 명령을 실행 전에 권한 창으로 멈추는 것도 하네스의 일입니다.</li>
-<li>연구자는 지침 파일을 쓰고, 하네스는 설정하는 곳 안에서만 만집니다.</li>
-<li>다음은 하네스에 외부 도구를 붙이는 MCP입니다.</li>
-</ul></li>
-<li>메모</li>
-<li>시간: 1분</li>
-<li>메시지 한 줄: 하네스는 고르고 설정, 지침 파일은 연구자가 씀</li>
-<li>다른 하네스로 바꿀 때: SKILL.md는 공개 표준이라 Claude Code, Codex, Cursor에서 같은 폴더가 동작. CLAUDE.md는 AGENTS.md로 이름만 바꾸면 Codex가 읽음. 지침 파일은 도구가 바뀌어도 그대로 쓸 수 있음</li>
-<li>권한 창 예: 이 발표 CLAUDE.md 화면 노출 규칙 1(행 단위 출력 금지). 규칙은 파일, 멈추는 동작은 하네스</li>
-<li>“없으면” 줄 셋째 칸은 앞 비교 장의 “같은 절차를 세 번째 시키는가”와 연결</li>
-<li>다음 장: MCP</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
 <section id="mcp-개념과-역할" class="slide level2 grey">
 <h2>MCP: 개념과 역할</h2>
 <p><span class="eyebrow">2. 작업 환경</span></p>
@@ -2003,7 +1841,7 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <li>이유도 같이 적혀 있는데, 추적할 수 있고 사람 파일과 섞이지 않기 때문입니다.</li>
 <li>두 번째 줄 프로젝트 상태에는 분석 완료, 원고 작성 진행 중이 적혀 있습니다.</li>
 <li>다만 사례 CLAUDE.md에는 저장 규칙만 있고 시작 때 읽으라는 줄은 없었습니다.</li>
-<li>다음은 에이전트 여럿에게 일을 나누는 오케스트레이션입니다.</li>
+<li>다음은 지금까지 본 요소들을 묶어 부르는 이름, 하네스입니다.</li>
 </ul></li>
 <li>메모</li>
 <li>시간: 1분</li>
@@ -2015,6 +1853,218 @@ description: 원고, 답변서에 넣을 수치를 분석 데이터셋에서 다
 <li>이어받은 정황: 2026-05-09 세션 첫 요청 “현재까지 작업 상태 확인”, 산출물은 quarto/agent_bot/2026-05-09/에 저장. 05-09 세션이 MEMORY.md를 읽었다는 직접 기록은 없음</li>
 <li>“세션 시작 시 먼저 읽음”은 CLAUDE.md에 적어야 작동: 이 발표 프로젝트 CLAUDE.md 행동 규칙 7. 사례 프로젝트의 CLAUDE.md에는 저장 규칙만(133행)</li>
 <li>스킬로 만들면: session-memory(“기억해” 트리거)</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="하네스-개념과-역할" class="slide level2">
+<h2>하네스: 개념과 역할</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="stage3">
+<div class="box">
+<p><span class="label">개념</span></p>
+<ul>
+<li>에이전트가 일을 올바르게 할 가능성을 높이려고 연구자가 반복해서 다듬는 작업 환경</li>
+<li>구성: CLAUDE.md, 스킬, MCP, memory, 권한</li>
+<li>프롬프트 엔지니어링: 요청 한 번의 문장을 다듬는 일</li>
+<li>하네스 엔지니어링: 그 내용을 파일과 설정으로 옮겨 계속 고치는 일</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="label">역할과 효과</span></p>
+<ul>
+<li>같은 설명을 반복하지 않음: 정의와 규칙이 세션마다 자동으로 읽힘</li>
+<li>같은 실수가 반복되지 않음: 바로잡은 내용이 파일에 남음</li>
+<li>사람이 바뀌어도 같은 방식: 공동연구자도 같은 설정으로 작업</li>
+<li>모델이 같아도 하네스가 다르면 결과가 다름</li>
+</ul>
+</div>
+<div class="human">
+<p><span class="label">다듬는 방법</span></p>
+<ul>
+<li>에이전트가 틀리면 다시 묻기 전에 원인부터 확인</li>
+<li>규칙 위반은 CLAUDE.md에, 반복 절차는 스킬에 추가</li>
+<li>도구 부족은 MCP로, 잊은 결정은 memory로 보완</li>
+<li>한 번에 완성하지 않고 쓰면서 한 줄씩 보강</li>
+</ul>
+</div>
+</div>
+<p><span class="label">다듬은 사례</span></p>
+<div class="cards">
+<div class="box">
+<p><span class="h3">참고 금지 논문 인용, 3막 ⑤</span></p>
+<p>문제: 규칙을 말로만 전달, 실행 에이전트가 읽는 파일에 없었음</p>
+<p>고친 곳: CLAUDE.md 작업 규칙에 한 줄 추가</p>
+</div>
+<div class="box">
+<p><span class="h3">혈압 측정 방식 기술 오류, 3막 ⑤</span></p>
+<p>문제: 분석계획서에 확인하지 않은 내용이 적힘</p>
+<p>고친 곳: 문헌 검색(MCP) 결과로 분석계획서 정정</p>
+</div>
+<div class="box">
+<p><span class="h3">가운뎃점과 줄임말, 이 발표자료</span></p>
+<p>문제: 글쓰기 규칙이 없어 같은 지적을 반복</p>
+<p>고친 곳: CLAUDE.md 행동 규칙과 memory에 추가</p>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>지금까지 CLAUDE.md, 스킬, MCP, memory, 권한을 하나씩 봤습니다.</li>
+<li>이것들을 묶어 부르는 이름이 하네스입니다.</li>
+<li>왼쪽 첫 줄, 하네스는 에이전트가 일을 올바르게 할 가능성을 높이려고 연구자가 반복해서 다듬는 작업 환경입니다.</li>
+<li>여러분이 아시는 프롬프트 엔지니어링은 요청 한 번의 문장을 다듬는 일입니다.</li>
+<li>하네스 엔지니어링은 그 내용을 파일과 설정으로 옮겨 두고 계속 고치는 일입니다.</li>
+<li>가운데 칸, 정의와 규칙이 세션마다 자동으로 읽혀서 같은 설명을 반복하지 않습니다.</li>
+<li>바로잡은 내용이 파일에 남아서 같은 실수도 반복되지 않습니다.</li>
+<li>마지막 줄, 챗봇과 Claude Code는 같은 모델을 씁니다. 1막에서 본 차이는 하네스의 차이입니다.</li>
+<li>오른쪽 칸이 다듬는 방법입니다. 에이전트가 틀리면 다시 묻기 전에 왜 틀렸는지부터 봅니다.</li>
+<li>규칙을 어겼으면 CLAUDE.md에, 같은 절차를 또 시키고 있으면 스킬에 추가합니다.</li>
+<li>한 번에 완성하는 것이 아니라 쓰면서 한 줄씩 보강합니다.</li>
+<li>아래는 실제로 다듬은 사례 세 가지입니다.</li>
+<li>첫 카드는 3막에서 보실 장면으로, 말로만 한 규칙이 지켜지지 않아 CLAUDE.md에 한 줄을 넣었습니다.</li>
+<li>셋째 카드는 이 발표자료를 만들면서 생긴 일로, 지적할 때마다 규칙이 한 줄씩 늘었습니다.</li>
+<li>다음 장에서 프롬프트에 쓰던 내용이 어느 요소로 옮겨 가는지 표로 보겠습니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1.5분</li>
+<li>메시지 한 줄: 하네스는 연구자가 반복해서 다듬는 작업 환경, 프롬프트 엔지니어링의 확장</li>
+<li>2026-11-23 다시 씀(사용자 결정): 하네스를 넓은 뜻으로. 이전 판은 “모델을 감싸고 돌리는 프로그램, Claude Code 자체”라는 좁은 뜻이었음. 위치도 스킬 장 뒤에서 오케스트레이션 장 앞으로 옮김</li>
+<li>좁은 뜻도 실제로 쓰임: 모델을 호출하고 도구를 실행하고 결과를 다시 넣는 프로그램. 질문 나오면 “Claude Code라는 프로그램 위에 연구자가 얹는 설정까지 합쳐 하네스라고 부름”으로 답</li>
+<li>여섯 요소(실행, 도구, 문맥, 상태, 수명주기, 검증)는 2026년 하네스 조사 논문의 분류. CLAUDE.md와 스킬은 문맥, MCP는 도구, memory는 상태. 본문에서는 뺌</li>
+<li>용어 흐름: 프롬프트 엔지니어링 → 문맥(컨텍스트) 엔지니어링 → 하네스 엔지니어링 순으로 범위가 넓어졌다는 설명이 일반적. 발표 1주 전 재확인(행동 규칙 4)</li>
+<li>“같은 모델, 다른 결과” 근거: 설정 수준의 하네스 차이만으로 성능이 달라진다는 비교 결과. 성능을 모델만의 것으로 돌리지 말 것</li>
+<li>다듬은 사례 1: 3막 “⑤ 규칙 위반: 참고 금지 논문” 장. 규칙 줄은 사건 직후 CLAUDE.md에 추가됨</li>
+<li>다듬은 사례 2: research-example 진행 기록. 문헌 C 결과로 국민건강영양조사 2022 혈압이 자동 측정임을 확인, 분석계획서의 수은혈압계 기술을 정정. “확인하지 않은 내용”이라는 원인 표현은 발표자 해석</li>
+<li>다듬은 사례 3: 이 발표 프로젝트. 가운뎃점 금지는 CLAUDE.md 행동 규칙 5(2026-10-20), 줄임말 금지는 memory(2026-11-22)</li>
+<li>다음 장: 프롬프트와 하네스 요소</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="프롬프트와-하네스-요소" class="slide level2 grey">
+<h2>프롬프트와 하네스 요소</h2>
+<p><span class="eyebrow">2. 작업 환경</span></p>
+<div class="tbl-wide">
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>프롬프트에 쓰던 것</th>
+<th>하네스 요소</th>
+<th>적용 시점</th>
+<th>사례</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>역할, 배경, 규칙</td>
+<td>CLAUDE.md</td>
+<td>세션마다 자동</td>
+<td>대사증후군 정의, 집계값만 출력</td>
+</tr>
+<tr class="even">
+<td>절차, 출력 형식</td>
+<td>스킬</td>
+<td>해당 작업 때 호출</td>
+<td>수치 대조 절차</td>
+</tr>
+<tr class="odd">
+<td>지난 대화의 결정</td>
+<td>memory</td>
+<td>세션 시작 때</td>
+<td>산출물은 날짜 폴더에 저장</td>
+</tr>
+<tr class="even">
+<td>복사해 붙여 넣던 자료</td>
+<td>MCP</td>
+<td>필요할 때 호출</td>
+<td>R 세션, PubMed 검색</td>
+</tr>
+<tr class="odd">
+<td>“하지 마세요”</td>
+<td>권한, 훅(hook)</td>
+<td>실행 직전과 직후</td>
+<td>원자료 폴더 편집 금지</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>위 네 줄은 글로 쓴 지침, 마지막 줄은 강제. 반드시 지켜야 하는 규칙은 강제하는 쪽에</li>
+</ul>
+<p><span class="label">같은 규칙을 두는 세 가지 방법</span></p>
+<div class="cards">
+<div class="box">
+<p><span class="h3">지침: CLAUDE.md</span></p>
+<p>“원자료는 절대 수정하지 않는다”</p>
+<p>모델이 읽고 따름. 따를지는 확률의 문제</p>
+</div>
+<div class="human">
+<p><span class="h3">권한: settings.json</span></p>
+<p><code>"deny": ["Edit(./data/rawdata/**)"]</code></p>
+<p>편집 시도 자체가 실행되지 않음</p>
+</div>
+<div class="human">
+<p><span class="h3">훅(hook): settings.json</span></p>
+<p>정해진 시점에 규칙과 검증을 프로그램이 실행</p>
+<p>예: 파일을 고친 직후 검증 스크립트 자동 실행</p>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>대본
+<ul>
+<li>챗봇에서 좋은 프롬프트를 쓸 때 넣던 내용을 왼쪽 열에 적었습니다.</li>
+<li>첫 줄, 역할과 배경과 규칙은 CLAUDE.md로 옮겨 가고 세션마다 자동으로 읽힙니다.</li>
+<li>둘째 줄, 절차와 출력 형식은 스킬로 옮겨 가고 해당 작업을 시킬 때만 불려 옵니다.</li>
+<li>셋째 줄, 지난 대화에서 정한 것은 memory에 남아 다음 세션이 시작할 때 읽습니다.</li>
+<li>넷째 줄, 검색 결과나 자료 요약을 복사해 붙여 넣던 일은 MCP가 대신합니다.</li>
+<li>여기까지 네 줄은 모두 글로 쓴 지침입니다. 모델이 읽고 따르지만, 따를지는 확률의 문제입니다.</li>
+<li>마지막 줄은 성격이 다릅니다. “하지 마세요”라고 쓰던 것을 권한과 훅으로 강제합니다.</li>
+<li>훅은 파일을 고치기 직전이나 직후처럼 정해진 시점에, 모델의 판단과 상관없이 규칙과 검증을 실행하는 절차입니다.</li>
+<li>아래 카드 세 장은 “원자료를 고치지 않는다”는 같은 규칙을 두는 세 가지 방법입니다.</li>
+<li>첫 카드처럼 CLAUDE.md에 글로 적으면 모델이 읽고 따르지만 보장은 아닙니다.</li>
+<li>둘째 카드가 사례에서 쓴 방법입니다. 권한 설정으로 막으면 에이전트가 고치려 해도 실행되지 않습니다.</li>
+<li>셋째 카드 훅은 파일을 고친 직후에 검증 스크립트를 자동으로 돌리는 식으로 씁니다.</li>
+<li>그래서 반드시 지켜야 하는 규칙은 글이 아니라 강제하는 쪽에 둡니다.</li>
+<li>다음은 에이전트 여럿에게 일을 나누는 오케스트레이션입니다.</li>
+</ul></li>
+<li>메모</li>
+<li>시간: 1분</li>
+<li>메시지 한 줄: 프롬프트의 요소가 하네스 요소로 옮겨 감. 지침은 확률, 권한과 훅은 강제</li>
+<li>2026-11-23 교체(사용자 결정): 이전 “하네스와 지침 파일의 차이” 표는 하네스와 CLAUDE.md를 서로 다른 것으로 대비해 넓은 뜻과 맞지 않음</li>
+<li>훅의 뜻(사용자 정리): 에이전트가 자동으로 작업할 때 주요 결정이나 이벤트가 생긴 시점에, 확률적 판단이 아니라 규칙과 검증을 강제하는 절차</li>
+<li>훅의 일반 예: 파일을 고친 직후 검증 스크립트 자동 실행, 커밋 직전 비밀 정보 검사. 설정 위치는 settings.json</li>
+<li>주의: 사례 프로젝트와 이 발표 프로젝트에는 훅을 설정하지 않았음(2026-11-16 확인). 실제로 쓴 강제 장치는 권한의 편집 금지(research-example <code>.claude/settings.json</code>의 deny <code>Edit(./data/rawdata/**)</code>). 훅을 썼다고 말하지 않을 것</li>
+<li>권한의 한계: 편집 금지는 편집 도구만 막음. R 코드로 쓰는 것은 막지 못함. 질문 나오면 운영체제의 읽기 전용 설정을 함께 권함</li>
+<li>사례 칸 출처: 대사증후군 정의와 집계값 규칙은 CLAUDE.md 예시 장, 수치 대조는 스킬 예시 장, 날짜 폴더는 memory 예시 장, R 세션과 PubMed는 MCP 구성 장</li>
+<li>다른 도구로 옮길 때: SKILL.md는 공개 표준, CLAUDE.md는 AGENTS.md로 이름만 바꾸면 Codex가 읽음. 지침 파일은 도구가 바뀌어도 그대로 사용</li>
+<li>다음 장: 오케스트레이션</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
