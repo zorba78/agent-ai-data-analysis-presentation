@@ -1,8 +1,8 @@
 ---
-title: "연구 생산성 향상을 위한 Agent AI 기반 워크플로우: 데이터 분석에서 논문 작성까지"
+title: "Positron 기반 에이전트 AI 활용 연구 워크플로우"
 subtitle: "국민건강영양조사 vs 공군 조종사 건강검진: 대사증후군, 지방간 위험 비교 사례"
 author: "구본초, 한국한의학연구원"
-date: last-modified
+date: 2026-11-25
 lang: ko
 format:
   revealjs:
@@ -14,7 +14,7 @@ format:
     code-line-numbers: false
     code-overflow: scroll
     highlight-style: github
-    footer: "Positron + Agentic AI 2026"
+    footer: "Positron 기반 에이전트 AI 활용 연구 워크플로우"
     menu: true
     chalkboard: false
     preview-links: false
